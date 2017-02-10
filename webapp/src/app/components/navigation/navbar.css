@@ -1,0 +1,64 @@
+.navbar-style{
+	background-color: #112e51;
+}
+
+.navbar{
+	margin-bottom: 0px; 
+	border: none;
+	border-radius: 0px;
+	border-bottom: 3px solid black;
+	height: 100px;
+}
+
+.navbar-default .navbar-nav>li>a{
+	color:#fff;
+	font-size: 1.3em;
+}
+
+.navbar-default .navbar-nav>li>a{
+	color:#fff;
+	font-size: 1.3em;
+}
+
+.navbar-default .navbar-toggle {
+	z-index: 5;
+}
+
+.title{
+	line-height: 100px;
+	color: #fff;
+	font-size: 3.0em;
+	white-space: nowrap;
+}
+
+.outer_title{
+	position: absolute; 
+	left: 20%;
+	z-index: 2;
+}
+
+.menu_item{
+	font-size: 1.2em;
+	margin-top: 25px;
+}
+
+.inner_title{
+	position: relative; left: -50%;
+}
+
+.brand_icon{
+	height: 80px;
+    top: -5px;
+    width: 80px;
+    position: relative;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+	color: #112e51;
+	font-size: 1.3em;
+}
+
+.navbar-toggle{
+	border: none;
+}
+

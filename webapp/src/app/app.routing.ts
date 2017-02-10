@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {Home} from './components/home/home';
 
 const appRoutes: Routes = [
-  { path: '/', component: Home },
+  { path: '**', component: Home },
 ];
 
 export const appRoutingProviders: any[] = [];
