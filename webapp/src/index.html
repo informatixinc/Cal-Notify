@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="/customer-service/">
+    <title>iPay Customer Service</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/uswds.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/ionicons.min.css"  media="all">
+
+    <script src="assets/js/md5.js"></script>
+    <script src="assets/js/sha1.js"></script>
+</head>
+
+<body>
+
+  <app>
+    Loading...
+  </app>
+
+  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
+
+
+</body>
+</html>
