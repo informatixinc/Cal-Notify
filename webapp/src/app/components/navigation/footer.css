@@ -14,7 +14,7 @@
 	list-style-type: none;
 	text-align: center;
 	margin-bottom: 0;
-	height: 40px;
+	padding-left: 0;
 }
 .footer-default>li{
 	display: inline-block;
@@ -32,7 +32,7 @@
 	list-style-type: none;
 	text-align: center;
 	margin-bottom: 0;
-	height: 38px;
+	padding-left: 0;
 }
 .footer-icons>li{
 	display: inline-block;
@@ -41,6 +41,5 @@
 	color:#fff;
 	font-size: 20px;
 	display: block;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 8px;
 }

@@ -4,14 +4,14 @@
 		float: left;
 		display: flex;
   		flex-flow: column;
-		height: calc(100% - 100px);
+		height: calc(100% - 180px);
 	}
 
 	.notification-area{
 		width: 20%;
 		display: flex;
   		flex-flow: column;
-  		height: calc(100% - 100px);
+  		height: calc(100% - 180px);
 		float: left;
 		background-color: #aeb0b5;
 	}
