@@ -7,7 +7,7 @@
 	border: none;
 	border-radius: 0px;
 	border-bottom: 3px solid black;
-	height: 100px;
+	min-height: 100px;
 }
 
 .navbar-default .navbar-nav>li>a{
@@ -24,6 +24,20 @@
 	z-index: 5;
 }
 
+.navbar-default .navbar-toggle .icon-bar{
+	background-color: #fff;
+    width: 25px;
+    height: 4px;
+}
+
+.navbar-collapse{
+	margin-top: 30px;
+}
+
+.navbar-toggle{
+	margin-top: 30px;
+}
+
 .title{
 	line-height: 100px;
 	color: #fff;
@@ -33,13 +47,12 @@
 
 .outer_title{
 	position: absolute; 
-	left: 20%;
+	left: 250px;
 	z-index: 2;
 }
 
 .menu_item{
 	font-size: 1.2em;
-	margin-top: 25px;
 }
 
 .inner_title{

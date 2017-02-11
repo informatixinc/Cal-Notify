@@ -1,0 +1,85 @@
+@media only screen and (min-device-width: 480px) {
+	.main-body{
+		width: 80%;
+		float: left;
+		display: flex;
+  		flex-flow: column;
+		height: calc(100% - 100px);
+	}
+
+	.notification-area{
+		width: 20%;
+		display: flex;
+  		flex-flow: column;
+  		height: calc(100% - 100px);
+		float: left;
+		background-color: #aeb0b5;
+	}
+}
+
+@media only screen and (max-device-width: 480px) {
+	.main-body{
+		width: 100%;
+		float: left;
+		display: flex;
+  		flex-flow: column;
+		height: calc(100% - 100px);
+	}
+}
+
+.clear{
+	clear: both;
+}
+
+.button{
+	-webkit-font-smoothing: antialiased;
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    background-color: #0071bc;
+    border: 0;
+    border-radius: 0.3rem;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1;
+    outline: none;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+input:focus, input.usa-input-focus,
+textarea:focus,
+textarea.usa-input-focus,
+select:focus,
+select.usa-input-focus {
+  box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+}
+
+input, textarea, select {
+    appearance: none;
+    border: 1px solid #5b616b;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #212121;
+    display: block;
+    font-size: 1.7rem;
+    height: 4.4rem;
+    line-height: 1.3;
+    margin: 0.2em 0;
+    max-width: 46rem;
+    outline: none;
+    padding: 1rem 0.7em;
+    width: 100%;
+}

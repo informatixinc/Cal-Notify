@@ -8,11 +8,11 @@ import { routing, appRoutingProviders } from './app.routing';
 
 import {Home} from './components/home/home';
 import {NavBar} from './components/navigation/navbar';
-import {Footer} from './components/navigation/footer';
+import {Notifications} from './components/notifications/notifications';
 
 @NgModule({
   imports: [ BrowserModule, routing, FormsModule, HttpModule, ReactiveFormsModule ],
-  declarations: [ AppComponent, Home, NavBar, Footer],
+  declarations: [ AppComponent, Home, NavBar, Notifications],
   providers: [appRoutingProviders],
   bootstrap: [ AppComponent ]
 })
