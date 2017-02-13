@@ -3,15 +3,15 @@
 		width: 80%;
 		float: left;
 		display: flex;
-  		flex-flow: column;
+  	flex-flow: column;
 		height: calc(100% - 180px);
 	}
 
 	.notification-area{
 		width: 20%;
 		display: flex;
-  		flex-flow: column;
-  		height: calc(100% - 180px);
+		flex-flow: column;
+		height: calc(100% - 180px);
 		float: left;
 		background-color: #aeb0b5;
 	}
@@ -22,8 +22,7 @@
 		width: 100%;
 		float: left;
 		display: flex;
-  		flex-flow: column;
-		height: calc(100% - 100px);
+  	flex-flow: column;
 	}
 }
 
@@ -50,6 +49,10 @@
     padding: 1rem 2rem;
     text-align: center;
     text-decoration: none;
+}
+
+.pointer{
+    cursor: pointer;
 }
 
 input:focus, input.usa-input-focus,
