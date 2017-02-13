@@ -1,0 +1,22 @@
+.notification-card{
+	background-color: #fff;
+	border: 1px solid #000;
+	height: 75px;
+}
+
+.notification-icon-area{
+	float: left;
+	position: relative;
+	margin-left: 5px;
+	height: auto;
+}
+
+.notification-icon{
+	height: 50px;
+	margin-top: 10px;
+}
+
+.message{
+	margin-left: 30%;
+	margin-top: 15px;
+}
