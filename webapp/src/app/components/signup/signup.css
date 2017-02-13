@@ -1,0 +1,16 @@
+
+.signup{
+	text-align: center;
+}
+.section-header{
+	font-size: 1.5em;
+}
+.spacer{
+  display: block;
+  width : 100%;
+  height: 50px;
+}
+
+.little_space{
+  margin-top: 15px;
+}
