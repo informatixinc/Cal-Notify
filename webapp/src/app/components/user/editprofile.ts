@@ -3,13 +3,13 @@ import {Router} from '@angular/router';
 
 
 @Component({
-  selector: 'accountsettings',
-  templateUrl: './account_settings.html',
-  styleUrls: ['./account_settings.css'],
+  selector: 'editprofile',
+  templateUrl: './editprofile.html',
+  styleUrls: ['./editprofile.css'],
   providers: [],
 })
 
-export class AccountSettings {
+export class EditProfile {
 
 	constructor( private router: Router) {}
 

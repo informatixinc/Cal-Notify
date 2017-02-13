@@ -19,14 +19,14 @@ import {Signup} from './components/signup/signup';
 import {Faq} from './components/faq/faq';
 import {Contact} from './components/contact/contact';
 import {Privacy} from './components/privacy/privacy';
-import {AccountSettings} from './components/user/account_settings';
+import {EditProfile} from './components/user/editprofile';
 import {NotificationSettings} from './components/user/notification_settings';
 import {Notify} from './components/admin/notify';
 import {Reports} from './components/admin/reports';
 
 @NgModule({
   imports: [ BrowserModule, routing, FormsModule, HttpModule, ReactiveFormsModule ],
-  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Notifications, Message, Faq, Contact, Privacy, AccountSettings, NotificationSettings, Notify, Reports, NotificationView],
+  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Notifications, Message, Faq, Contact, Privacy, EditProfile, NotificationSettings, Notify, Reports, NotificationView],
   providers: [appRoutingProviders, ApiRequest, UserState],
   bootstrap: [ AppComponent ]
 })
