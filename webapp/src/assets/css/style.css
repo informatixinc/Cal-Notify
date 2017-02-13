@@ -3,18 +3,18 @@
 		width: 80%;
 		float: left;
 		display: flex;
-  	flex-flow: column;
-		height: calc(100% - 180px);
-	}
+        flex-flow: column;
+        min-height: calc(100% - 180px);
+    }
 
-	.notification-area{
-		width: 20%;
-		display: flex;
-		flex-flow: column;
-		height: calc(100% - 180px);
-		float: left;
-		background-color: #aeb0b5;
-	}
+    .notification-area{
+      width: 20%;
+      display: flex;
+      flex-flow: column;
+      height: calc(100% - 180px);
+      float: left;
+      background-color: #aeb0b5;
+  }
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -22,8 +22,24 @@
 		width: 100%;
 		float: left;
 		display: flex;
-  	flex-flow: column;
-	}
+        flex-flow: column;
+    }
+}
+
+.min-height{
+    min-height: calc(100% - 180px);
+}
+
+.little-space{
+    height: 30px;
+    width: 100%;
+    display: block;
+}
+
+.med-space{
+    height: 50px;
+    width: 100%;
+    display: block;   
 }
 
 .clear{

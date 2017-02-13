@@ -11,10 +11,13 @@ import {NavBar} from './components/navigation/navbar';
 import {Notifications} from './components/notifications/notifications';
 import {Footer} from './components/navigation/footer';
 import {Signup} from './components/signup/signup';
+import {Faq} from './components/faq/faq';
+import {Contact} from './components/contact/contact';
+import {Privacy} from './components/privacy/privacy';
 
 @NgModule({
   imports: [ BrowserModule, routing, FormsModule, HttpModule, ReactiveFormsModule ],
-  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Notifications],
+  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Notifications, Faq, Contact, Privacy],
   providers: [appRoutingProviders],
   bootstrap: [ AppComponent ]
 })
