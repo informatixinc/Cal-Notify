@@ -11,7 +11,9 @@ import {Router} from '@angular/router';
 
 export class NotificationView {
 
-	constructor( ) {}
+	constructor( private router: Router) {}
 
- 
+ 	goToMessage(messageId: string){
+ 		this.router.navigate(['message',messageId]);
+ 	}
 }

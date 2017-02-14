@@ -52,6 +52,10 @@
 		left: 200px;
 		z-index: 2;
 	}
+
+	.hide-non-mobile{
+		display: none;
+	}
 }
 
 @media only screen and (max-device-width: 480px) {

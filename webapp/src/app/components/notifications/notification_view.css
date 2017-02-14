@@ -1,6 +1,6 @@
 .notification-card{
 	background-color: #fff;
-	border: 1px solid #000;
+	border-bottom: 1px solid #000;
 	height: 75px;
 }
 

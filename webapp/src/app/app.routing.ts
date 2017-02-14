@@ -26,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'notification', component: NotificationSettings },
   { path: 'notify', component: Notify },
   { path: 'reports', component: Reports },
+  { path: 'home', component: Home },
   { path: '**', component: Home },
 ];
 
