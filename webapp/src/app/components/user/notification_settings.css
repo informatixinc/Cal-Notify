@@ -1,0 +1,27 @@
+.section-header{
+	display: block;
+	text-align: center;
+	padding: 5px 5px 5px 5px;
+	margin: 0 auto;
+	font-size: 1.5em;
+	background: rgb(255,255,255); 
+   	background: rgba(255,255,255, 0.5);
+	margin-top: 20px;
+}
+
+.little_space{
+  margin-top: 12px;
+}
+.button{
+	width: 100%;
+}
+ul{
+	list-style-type: none;
+}
+input{
+	margin: 0;
+}
+
+label{
+	font-size: 1.5em;
+}
