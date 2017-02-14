@@ -17,7 +17,7 @@ export class NavBar {
 
 	setLanguage(language: string){
 		this._languageService.setSelectedLanguage(language);
-		location.reload();
+		// location.reload();
 	}
 
 	isLoggedIn(){

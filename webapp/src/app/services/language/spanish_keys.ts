@@ -22,6 +22,7 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "privacy_policy", "value": "Política de privacidad" },
 		{ "key": "signup1", "value": "Personal" },
 		{ "key": "signup2", "value": "Dirección" },
+		{ "key": "signup3", "value": "Contraseña" },
 		{ "key": "first_name", "value": "Nombre de Pila" }, 
 		{ "key": "last_name", "value": "Apellido" },
 		{ "key": "email", "value": "Dirección de Correo Electrónico" },
