@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-
+import {LanguageService} from '../../services/language/language_service';
 
 @Component({
   selector: 'notify',
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 
 export class Notify {
 
-	constructor( ) {}
+	constructor(private router: Router, private _languageService: LanguageService ) {}
 
  
 }

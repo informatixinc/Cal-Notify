@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-
+import {LanguageService} from '../../services/language/language_service';
 
 @Component({
   selector: 'faq',
@@ -13,7 +13,7 @@ export class Faq {
 
 	elements: boolean[] = [false];
 
-	constructor( private router: Router) {}
+	constructor(private router: Router, private _languageService: LanguageService) {}
 
  	toggleHidden(element: number){
 		this.elements[element] = !this.elements[element];

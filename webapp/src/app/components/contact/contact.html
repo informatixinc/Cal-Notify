@@ -2,30 +2,30 @@
 <div class = "min-height">
 	<div class = "little-space"></div>
 		<div class = "row text-center">
-		<div class="col-md-12"><h1 class = "text-center">Contact Us</h1></div>
+		<div class="col-md-12"><h1 class = "text-center">{{_languageService.getTranslation('contact_us')}}</h1></div>
 	</div>
 	<div class = "row">
 		<div class="col-md-offset-4 col-md-4">
 			<div class = "little-space"></div>
-			<input type="text" placeholder="Name" [(ngModel)]="name">
+			<input type="text" placeholder="{{_languageService.getTranslation('name')}}" [(ngModel)]="name">
 		</div>
 	</div>
 	<div class = "row">
 		<div class="col-md-offset-4 col-md-4">
 			<div class = "little-space"></div>
-			<input type="text" placeholder="Email" [(ngModel)]="email">
+			<input type="text" placeholder="{{_languageService.getTranslation('email')}}" [(ngModel)]="email">
 		</div>
 	</div>
 	<div class = "row">
 		<div class="col-md-offset-4 col-md-4">
 			<div class = "little-space"></div>
-			<textarea type="text" placeholder="How can we help you?" [(ngModel)]="comment"></textarea>
+			<textarea type="text" placeholder="{{_languageService.getTranslation('contact1')}}" [(ngModel)]="comment"></textarea>
 		</div>
 	</div>
 	<div class = "little-space"></div>
 	<div class="col-md-offset-4 col-md-4">
 		<button class="btn btn-lg btn-primary btn-block" type="button" (click)="submit()">
-			Submit
+			{{_languageService.getTranslation('submit')}}
 		</button>
 	</div>
 	<div class = "spacer"></div>

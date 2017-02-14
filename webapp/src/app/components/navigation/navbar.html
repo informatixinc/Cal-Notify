@@ -16,14 +16,14 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class = "menu_item"><a [routerLink]="['/home']">Home</a></li>
-        <li class = "menu_item"><a [routerLink]="['/faq']">FAQ</a></li>
-        <li class = "menu_item"><a [routerLink]="['/signup']">Sign Up</a></li>
+        <li class = "menu_item"><a [routerLink]="['/home']">{{_languageService.getTranslation('home')}}</a></li>
+        <li class = "menu_item"><a [routerLink]="['/faq']">{{_languageService.getTranslation('faq')}}</a></li>
+        <li class = "menu_item"><a [routerLink]="['/signup']">{{_languageService.getTranslation('signup')}}</a></li>
         <li class="dropdown menu_item" >
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{_languageService.getTranslation('language')}}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href = "#">English</a></li>
-            <li><a href = "#">Spanish</a></li>
+            <li><a href = "#" (click)="setLanguage('en')">{{_languageService.getTranslation('english')}}</a></li>
+            <li><a href = "#" (click)="setLanguage('es')">{{_languageService.getTranslation('spanish')}}</a></li>
           </ul>
       </ul>
     </div>

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-
+import {LanguageService} from '../../services/language/language_service';
 import {ApiRequest} from '../../services/http/api_request';
 import {UserState} from '../../services/user_state/user_state';
 
@@ -14,7 +14,7 @@ import {UserState} from '../../services/user_state/user_state';
 
 export class Home {
 
-	constructor( private router: Router, private _apiRequest: ApiRequest, private _userState: UserState) {}
+	constructor( private router: Router, private _apiRequest: ApiRequest, private _userState: UserState, private _languageService: LanguageService) {}
 
 	signup(){
 		this.router.navigate(['signup']);
@@ -25,6 +25,7 @@ export class Home {
 			this.router.navigate(['notify']);	
 		}else{
 			this.router.navigate(['notification']);	
+
 		}
 	}
  

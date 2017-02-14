@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-
+import {LanguageService} from '../../services/language/language_service';
 
 @Component({
   selector: 'navbar',
@@ -11,8 +11,11 @@ import {Router} from '@angular/router';
 
 export class NavBar {
 
-	constructor( private router: Router) {}
+	constructor( private router: Router, private _languageService: LanguageService) {}
 
-
+	setLanguage(language: string){
+		this._languageService.setSelectedLanguage(language);
+		location.reload();
+	}
 
 }
