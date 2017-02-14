@@ -48,6 +48,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "message", "value": "Message" },
 		{ "key": "send", "value": "Send" },
 		{ "key": "reports", "value": "Reports" },
+		{ "key": "high_wind_warning", "value": "High Wind Warning" },
 	
 	]
 

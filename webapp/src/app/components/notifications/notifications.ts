@@ -13,5 +13,7 @@ export class Notifications {
 
 	constructor( private router: Router, private _languageService: LanguageService) {}
 
- 
+ 	goToMessage(messageId: string){
+ 		this.router.navigate(['message',messageId]);
+ 	}
 }
