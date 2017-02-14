@@ -26,7 +26,8 @@ import {Reports} from './components/admin/reports';
 
 @NgModule({
   imports: [ BrowserModule, routing, FormsModule, HttpModule, ReactiveFormsModule ],
-  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Notifications, Message, Faq, Contact, Privacy, EditProfile, NotificationSettings, Notify, Reports, NotificationView],
+  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Notifications, Message, Faq, Contact, 
+  Privacy, EditProfile, NotificationSettings, Notify, Reports, NotificationView],
   providers: [appRoutingProviders, ApiRequest, UserState],
   bootstrap: [ AppComponent ]
 })
