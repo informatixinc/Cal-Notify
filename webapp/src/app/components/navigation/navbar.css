@@ -39,11 +39,12 @@
 }
 
 .title{
-	line-height: 100px;
+	line-height: 60px;
 	color: #fff;
 	font-size: 3.0em;
 	white-space: nowrap;
 }
+
 
 
 @media only screen and (min-device-width: 480px) {

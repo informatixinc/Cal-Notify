@@ -17,7 +17,25 @@ export class Signup {
 	constructor(private router: Router, private _languageService: LanguageService) {}
 	signup(){
 
-		
+		if(this.sign_up.firstName.length == 0){
+			console.log("first name is required");
+		}
+		if(this.sign_up.lastName.length == 0){
+			console.log("first name is required");
+		}
+		if(this.sign_up.email.length == 0){
+			console.log("first name is required");
+		}
+		if(this.sign_up.phoneNumber.length == 0){
+			console.log("first name is required");
+		}
+		if(this.sign_up.address1.length == 0){
+			console.log("first name is required");
+		}
+		if(this.sign_up.address2.length == 0){
+			console.log("first name is required");
+		}
+		this.router.navigate(['home']);
 	}
  	
 }

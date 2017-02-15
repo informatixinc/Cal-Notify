@@ -41,13 +41,14 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "new_password", "value": "nueva contraseña" },
 		{ "key": "update", "value": "Actualizar" },
 		{ "key": "notification_settings", "value": "Configuración de las notificaciones" },
-		{ "key": "sms", "value": "SMS" },
-		{ "key": "sns", "value": "SNS" },
+		{ "key": "sms", "value": "Mensaje de texto" },
+		{ "key": "sns", "value": "Notificaciones push" },
 		{ "key": "save", "value": "Salvar" },
 		{ "key": "notify_users", "value": "Notificar a los usuarios" },
 		{ "key": "title", "value": "Título" },
 		{ "key": "message", "value": "Mensaje" },
 		{ "key": "send", "value": "Enviar" },
 		{ "key": "reports", "value": "Informes" },
-
+		{ "key": "forgot_password", "value": "Se te olvidó tu contraseña ?" },
+		
 ]

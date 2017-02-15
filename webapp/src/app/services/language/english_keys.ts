@@ -40,8 +40,8 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "new_password", "value": "New Password" },
 		{ "key": "update", "value": "Update" },
 		{ "key": "notification_settings", "value": "Notification Settings" },
-		{ "key": "sms", "value": "SMS" },
-		{ "key": "sns", "value": "SNS" },
+		{ "key": "sms", "value": "Text Message" },
+		{ "key": "sns", "value": "Push Notifications" },
 		{ "key": "save", "value": "Save" },
 		{ "key": "notify_users", "value": "Notify Users" },
 		{ "key": "title", "value": "Title" },
@@ -49,6 +49,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "send", "value": "Send" },
 		{ "key": "reports", "value": "Reports" },
 		{ "key": "high_wind_warning", "value": "High Wind Warning" },
+		{ "key": "forgot_password", "value": "Forgot Password ?" },
 	
 	]
 

@@ -12,13 +12,15 @@
 			<br>
 			<div>{{_languageService.getTranslation('home4')}}</div>
 			<div class = "button" (click)="signup()">{{_languageService.getTranslation('create_account')}}</div>
+			
 		</div>
 
 		<div class = "col-md-4 col-md-offset-1 white-background signup-text top-space">
 			<h3>{{_languageService.getTranslation('login')}}</h3>
 			<input type = "text" placeholder="{{_languageService.getTranslation('email')}}" id = "email" class = "form-input">
-			<input type = "password" placeholder="{{_languageService.getTranslation('password')}}" id = "password" class = "form-input">
+			<input type = "password" placeholder="{{_languageService.getTranslation('password')}}" id = "password" class = "form-input" (keyup.enter)='login()'/>
 			<div class = "button"(click)="login()">{{_languageService.getTranslation('login')}}</div>
+			<a href="#">{{_languageService.getTranslation('forgot_password')}}</a>
 		</div>
 	</div>
 	<div class = "row">
