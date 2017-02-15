@@ -18,6 +18,15 @@
 .button{
 	width: 100%;
 }
+.dropdown-toggle{
+	width: 100%;
+	text-align: left;
+	height: 40px;
+}
+.dropdown-menu{
+	width: 100%;
+}
+
 
 @media only screen and (min-device-width: 480px) {
 	.top-space{

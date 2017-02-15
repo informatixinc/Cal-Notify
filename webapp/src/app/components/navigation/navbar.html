@@ -24,7 +24,7 @@
         <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/signup']">{{_languageService.getTranslation('signup')}}</a></li>
         <li class = "menu_item" *ngIf="isLoggedIn()"><a (click)="logOut()" class="pointer">Log Out</a></li>
         <li class="dropdown menu_item" >
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{_languageService.getTranslation('language')}}<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{_languageService.getTranslation('language')}}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a (click)="setLanguage('en')">{{_languageService.getTranslation('english')}}</a></li>
             <li><a (click)="setLanguage('es')">{{_languageService.getTranslation('spanish')}}</a></li>
