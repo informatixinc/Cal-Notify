@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.5
 -- Dumped by pg_dump version 9.5.5
 
--- Started on 2017-02-15 09:51:50
+-- Started on 2017-02-15 10:58:58
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2215 (class 0 OID 0)
+-- TOC entry 2228 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -39,7 +39,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 194 (class 1259 OID 35145)
+-- TOC entry 192 (class 1259 OID 35145)
 -- Name: contact_request; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -54,7 +54,7 @@ CREATE TABLE contact_request (
 ALTER TABLE contact_request OWNER TO postgres;
 
 --
--- TOC entry 193 (class 1259 OID 35143)
+-- TOC entry 191 (class 1259 OID 35143)
 -- Name: contact_request_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -69,8 +69,8 @@ CREATE SEQUENCE contact_request_id_seq
 ALTER TABLE contact_request_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2216 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2229 (class 0 OID 0)
+-- Dependencies: 191
 -- Name: contact_request_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -109,7 +109,7 @@ CREATE SEQUENCE notification_id_seq
 ALTER TABLE notification_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2217 (class 0 OID 0)
+-- TOC entry 2230 (class 0 OID 0)
 -- Dependencies: 185
 -- Name: notification_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -118,7 +118,7 @@ ALTER SEQUENCE notification_id_seq OWNED BY notification.id;
 
 
 --
--- TOC entry 195 (class 1259 OID 35154)
+-- TOC entry 193 (class 1259 OID 35154)
 -- Name: notification_settings; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -164,7 +164,7 @@ CREATE SEQUENCE notification_transmission_id_seq
 ALTER TABLE notification_transmission_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2218 (class 0 OID 0)
+-- TOC entry 2231 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: notification_transmission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -202,7 +202,7 @@ CREATE SEQUENCE notification_types_id_seq
 ALTER TABLE notification_types_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2219 (class 0 OID 0)
+-- TOC entry 2232 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: notification_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -211,7 +211,46 @@ ALTER SEQUENCE notification_types_id_seq OWNED BY notification_type.id;
 
 
 --
--- TOC entry 197 (class 1259 OID 35166)
+-- TOC entry 201 (class 1259 OID 35220)
+-- Name: sns_token; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE sns_token (
+    id integer NOT NULL,
+    user_id integer,
+    sns_token text,
+    sns_type_id integer
+);
+
+
+ALTER TABLE sns_token OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 35218)
+-- Name: sns_token_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sns_token_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sns_token_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2233 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: sns_token_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE sns_token_id_seq OWNED BY sns_token.id;
+
+
+--
+-- TOC entry 195 (class 1259 OID 35166)
 -- Name: sns_type; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -224,7 +263,7 @@ CREATE TABLE sns_type (
 ALTER TABLE sns_type OWNER TO postgres;
 
 --
--- TOC entry 196 (class 1259 OID 35164)
+-- TOC entry 194 (class 1259 OID 35164)
 -- Name: sns_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -239,8 +278,8 @@ CREATE SEQUENCE sns_type_id_seq
 ALTER TABLE sns_type_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2220 (class 0 OID 0)
--- Dependencies: 196
+-- TOC entry 2234 (class 0 OID 0)
+-- Dependencies: 194
 -- Name: sns_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -276,7 +315,7 @@ CREATE SEQUENCE transmission_type_id_seq
 ALTER TABLE transmission_type_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2221 (class 0 OID 0)
+-- TOC entry 2235 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: transmission_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -285,7 +324,7 @@ ALTER SEQUENCE transmission_type_id_seq OWNED BY transmission_type.id;
 
 
 --
--- TOC entry 192 (class 1259 OID 35134)
+-- TOC entry 199 (class 1259 OID 35202)
 -- Name: us_state; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -298,7 +337,7 @@ CREATE TABLE us_state (
 ALTER TABLE us_state OWNER TO postgres;
 
 --
--- TOC entry 191 (class 1259 OID 35132)
+-- TOC entry 198 (class 1259 OID 35200)
 -- Name: us_state_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -313,8 +352,8 @@ CREATE SEQUENCE us_state_id_seq
 ALTER TABLE us_state_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2222 (class 0 OID 0)
--- Dependencies: 191
+-- TOC entry 2236 (class 0 OID 0)
+-- Dependencies: 198
 -- Name: us_state_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -339,8 +378,6 @@ CREATE TABLE "user" (
     state_id integer,
     city text,
     zip_code text,
-    sns_token text,
-    sns_type integer,
     signup_date time with time zone
 );
 
@@ -363,7 +400,7 @@ CREATE SEQUENCE user_id_seq
 ALTER TABLE user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2223 (class 0 OID 0)
+-- TOC entry 2237 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -372,7 +409,7 @@ ALTER SEQUENCE user_id_seq OWNED BY "user".id;
 
 
 --
--- TOC entry 199 (class 1259 OID 35183)
+-- TOC entry 197 (class 1259 OID 35183)
 -- Name: user_locations; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -386,7 +423,7 @@ CREATE TABLE user_locations (
 ALTER TABLE user_locations OWNER TO postgres;
 
 --
--- TOC entry 198 (class 1259 OID 35181)
+-- TOC entry 196 (class 1259 OID 35181)
 -- Name: user_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -401,8 +438,8 @@ CREATE SEQUENCE user_locations_id_seq
 ALTER TABLE user_locations_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2224 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 2238 (class 0 OID 0)
+-- Dependencies: 196
 -- Name: user_locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -410,7 +447,7 @@ ALTER SEQUENCE user_locations_id_seq OWNED BY user_locations.id;
 
 
 --
--- TOC entry 2046 (class 2604 OID 35148)
+-- TOC entry 2052 (class 2604 OID 35148)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -418,7 +455,7 @@ ALTER TABLE ONLY contact_request ALTER COLUMN id SET DEFAULT nextval('contact_re
 
 
 --
--- TOC entry 2042 (class 2604 OID 35081)
+-- TOC entry 2049 (class 2604 OID 35081)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -426,7 +463,7 @@ ALTER TABLE ONLY notification ALTER COLUMN id SET DEFAULT nextval('notification_
 
 
 --
--- TOC entry 2043 (class 2604 OID 35103)
+-- TOC entry 2050 (class 2604 OID 35103)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -434,7 +471,7 @@ ALTER TABLE ONLY notification_transmission ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- TOC entry 2041 (class 2604 OID 35070)
+-- TOC entry 2048 (class 2604 OID 35070)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -442,7 +479,15 @@ ALTER TABLE ONLY notification_type ALTER COLUMN id SET DEFAULT nextval('notifica
 
 
 --
--- TOC entry 2047 (class 2604 OID 35169)
+-- TOC entry 2056 (class 2604 OID 35223)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY sns_token ALTER COLUMN id SET DEFAULT nextval('sns_token_id_seq'::regclass);
+
+
+--
+-- TOC entry 2053 (class 2604 OID 35169)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -450,7 +495,7 @@ ALTER TABLE ONLY sns_type ALTER COLUMN id SET DEFAULT nextval('sns_type_id_seq':
 
 
 --
--- TOC entry 2044 (class 2604 OID 35121)
+-- TOC entry 2051 (class 2604 OID 35121)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -458,7 +503,7 @@ ALTER TABLE ONLY transmission_type ALTER COLUMN id SET DEFAULT nextval('transmis
 
 
 --
--- TOC entry 2045 (class 2604 OID 35137)
+-- TOC entry 2055 (class 2604 OID 35205)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -466,7 +511,7 @@ ALTER TABLE ONLY us_state ALTER COLUMN id SET DEFAULT nextval('us_state_id_seq':
 
 
 --
--- TOC entry 2040 (class 2604 OID 35059)
+-- TOC entry 2047 (class 2604 OID 35059)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -474,7 +519,7 @@ ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regcl
 
 
 --
--- TOC entry 2048 (class 2604 OID 35186)
+-- TOC entry 2054 (class 2604 OID 35186)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -482,8 +527,8 @@ ALTER TABLE ONLY user_locations ALTER COLUMN id SET DEFAULT nextval('user_locati
 
 
 --
--- TOC entry 2202 (class 0 OID 35145)
--- Dependencies: 194
+-- TOC entry 2211 (class 0 OID 35145)
+-- Dependencies: 192
 -- Data for Name: contact_request; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -492,8 +537,8 @@ COPY contact_request (id, name, email, message) FROM stdin;
 
 
 --
--- TOC entry 2225 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2239 (class 0 OID 0)
+-- Dependencies: 191
 -- Name: contact_request_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -501,7 +546,7 @@ SELECT pg_catalog.setval('contact_request_id_seq', 1, false);
 
 
 --
--- TOC entry 2194 (class 0 OID 35078)
+-- TOC entry 2205 (class 0 OID 35078)
 -- Dependencies: 186
 -- Data for Name: notification; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -511,7 +556,7 @@ COPY notification (id, send_time, expire_time, info_url, notification_type) FROM
 
 
 --
--- TOC entry 2226 (class 0 OID 0)
+-- TOC entry 2240 (class 0 OID 0)
 -- Dependencies: 185
 -- Name: notification_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -520,8 +565,8 @@ SELECT pg_catalog.setval('notification_id_seq', 1, false);
 
 
 --
--- TOC entry 2203 (class 0 OID 35154)
--- Dependencies: 195
+-- TOC entry 2212 (class 0 OID 35154)
+-- Dependencies: 193
 -- Data for Name: notification_settings; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -530,7 +575,7 @@ COPY notification_settings (user_id, sms, email, push_notification) FROM stdin;
 
 
 --
--- TOC entry 2196 (class 0 OID 35100)
+-- TOC entry 2207 (class 0 OID 35100)
 -- Dependencies: 188
 -- Data for Name: notification_transmission; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -540,7 +585,7 @@ COPY notification_transmission (id, user_id, notification_id, send_time, transmi
 
 
 --
--- TOC entry 2227 (class 0 OID 0)
+-- TOC entry 2241 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: notification_transmission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -549,7 +594,7 @@ SELECT pg_catalog.setval('notification_transmission_id_seq', 1, false);
 
 
 --
--- TOC entry 2192 (class 0 OID 35067)
+-- TOC entry 2203 (class 0 OID 35067)
 -- Dependencies: 184
 -- Data for Name: notification_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -601,7 +646,7 @@ COPY notification_type (id, type, icon) FROM stdin;
 
 
 --
--- TOC entry 2228 (class 0 OID 0)
+-- TOC entry 2242 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: notification_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -610,8 +655,27 @@ SELECT pg_catalog.setval('notification_types_id_seq', 42, true);
 
 
 --
--- TOC entry 2205 (class 0 OID 35166)
--- Dependencies: 197
+-- TOC entry 2220 (class 0 OID 35220)
+-- Dependencies: 201
+-- Data for Name: sns_token; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY sns_token (id, user_id, sns_token, sns_type_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2243 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: sns_token_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('sns_token_id_seq', 1, false);
+
+
+--
+-- TOC entry 2214 (class 0 OID 35166)
+-- Dependencies: 195
 -- Data for Name: sns_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -620,8 +684,8 @@ COPY sns_type (id, type) FROM stdin;
 
 
 --
--- TOC entry 2229 (class 0 OID 0)
--- Dependencies: 196
+-- TOC entry 2244 (class 0 OID 0)
+-- Dependencies: 194
 -- Name: sns_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -629,7 +693,7 @@ SELECT pg_catalog.setval('sns_type_id_seq', 1, false);
 
 
 --
--- TOC entry 2198 (class 0 OID 35118)
+-- TOC entry 2209 (class 0 OID 35118)
 -- Dependencies: 190
 -- Data for Name: transmission_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -639,7 +703,7 @@ COPY transmission_type (id, type) FROM stdin;
 
 
 --
--- TOC entry 2230 (class 0 OID 0)
+-- TOC entry 2245 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: transmission_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -648,8 +712,8 @@ SELECT pg_catalog.setval('transmission_type_id_seq', 1, false);
 
 
 --
--- TOC entry 2200 (class 0 OID 35134)
--- Dependencies: 192
+-- TOC entry 2218 (class 0 OID 35202)
+-- Dependencies: 199
 -- Data for Name: us_state; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -666,65 +730,68 @@ COPY us_state (id, name) FROM stdin;
 10	Georgia
 11	Hawaii
 12	Idaho
-13	Illinois Indiana
-14	Iowa
-15	Kansas
-16	Kentucky
-17	Louisiana
-18	Maine
-19	Maryland
-20	Massachusetts
-21	Michigan
-22	Minnesota
-23	Mississippi
-24	Missouri
-25	Montana Nebraska
-26	Nevada
-27	New Hampshire
-28	New Jersey
-29	New Mexico
-30	New York
-31	North Carolina
-32	North Dakota
-33	Ohio
-34	Oklahoma
-35	Oregon
-36	Pennsylvania Rhode Island
-37	South Carolina
-38	South Dakota
-39	Tennessee
-40	Texas
-41	Utah
-42	Vermont
-43	Virginia
-44	Washington
-45	West Virginia
-46	Wisconsin
-47	Wyomin
+13	Illinois
+14	Indiana
+15	Iowa
+16	Kansas
+17	Kentucky
+18	Louisiana
+19	Maine
+20	Maryland
+21	Massachusetts
+22	Michigan
+23	Minnesota
+24	Mississippi
+25	Missouri
+26	Montana
+27	Nebraska
+28	Nevada
+29	New Hampshire
+30	New Jersey
+31	New Mexico
+32	New York
+33	North Carolina
+34	North Dakota
+35	Ohio
+36	Oklahoma
+37	Oregon
+38	Pennsylvania
+39	Rhode Island
+40	South Carolina
+41	South Dakota
+42	Tennessee
+43	Texas
+44	Utah
+45	Vermont
+46	Virginia
+47	Washington
+48	West Virginia
+49	Wisconsin
+50	Wyoming
 \.
 
 
 --
--- TOC entry 2231 (class 0 OID 0)
--- Dependencies: 191
+-- TOC entry 2246 (class 0 OID 0)
+-- Dependencies: 198
 -- Name: us_state_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('us_state_id_seq', 47, true);
+SELECT pg_catalog.setval('us_state_id_seq', 50, true);
 
 
 --
--- TOC entry 2190 (class 0 OID 35056)
+-- TOC entry 2201 (class 0 OID 35056)
 -- Dependencies: 182
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY "user" (id, email, password, last_login, first_name, last_name, phone_number, address_one, address_two, state_id, city, zip_code, sns_token, sns_type, signup_date) FROM stdin;
+COPY "user" (id, email, password, last_login, first_name, last_name, phone_number, address_one, address_two, state_id, city, zip_code, signup_date) FROM stdin;
 \.
 
 
 --
--- TOC entry 2232 (class 0 OID 0)
+-- TOC entry 2247 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -733,8 +800,8 @@ SELECT pg_catalog.setval('user_id_seq', 1, false);
 
 
 --
--- TOC entry 2207 (class 0 OID 35183)
--- Dependencies: 199
+-- TOC entry 2216 (class 0 OID 35183)
+-- Dependencies: 197
 -- Data for Name: user_locations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -743,8 +810,8 @@ COPY user_locations (id, user_id, location) FROM stdin;
 
 
 --
--- TOC entry 2233 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 2248 (class 0 OID 0)
+-- Dependencies: 196
 -- Name: user_locations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -752,7 +819,7 @@ SELECT pg_catalog.setval('user_locations_id_seq', 1, false);
 
 
 --
--- TOC entry 2062 (class 2606 OID 35153)
+-- TOC entry 2068 (class 2606 OID 35153)
 -- Name: pk_contact_us; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -761,7 +828,7 @@ ALTER TABLE ONLY contact_request
 
 
 --
--- TOC entry 2054 (class 2606 OID 35086)
+-- TOC entry 2062 (class 2606 OID 35086)
 -- Name: pk_notification; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -770,7 +837,7 @@ ALTER TABLE ONLY notification
 
 
 --
--- TOC entry 2064 (class 2606 OID 35158)
+-- TOC entry 2070 (class 2606 OID 35158)
 -- Name: pk_notification_settings; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -779,7 +846,7 @@ ALTER TABLE ONLY notification_settings
 
 
 --
--- TOC entry 2056 (class 2606 OID 35105)
+-- TOC entry 2064 (class 2606 OID 35105)
 -- Name: pk_notification_transmission; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -788,7 +855,7 @@ ALTER TABLE ONLY notification_transmission
 
 
 --
--- TOC entry 2052 (class 2606 OID 35075)
+-- TOC entry 2060 (class 2606 OID 35075)
 -- Name: pk_notification_type; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -797,7 +864,16 @@ ALTER TABLE ONLY notification_type
 
 
 --
--- TOC entry 2066 (class 2606 OID 35174)
+-- TOC entry 2078 (class 2606 OID 35228)
+-- Name: pk_sns_token; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY sns_token
+    ADD CONSTRAINT pk_sns_token PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2072 (class 2606 OID 35174)
 -- Name: pk_sns_type; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -806,16 +882,7 @@ ALTER TABLE ONLY sns_type
 
 
 --
--- TOC entry 2060 (class 2606 OID 35142)
--- Name: pk_state; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY us_state
-    ADD CONSTRAINT pk_state PRIMARY KEY (id);
-
-
---
--- TOC entry 2058 (class 2606 OID 35126)
+-- TOC entry 2066 (class 2606 OID 35126)
 -- Name: pk_transmission_type; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -824,7 +891,16 @@ ALTER TABLE ONLY transmission_type
 
 
 --
--- TOC entry 2050 (class 2606 OID 35064)
+-- TOC entry 2076 (class 2606 OID 35210)
+-- Name: pk_us_state; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY us_state
+    ADD CONSTRAINT pk_us_state PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2058 (class 2606 OID 35064)
 -- Name: pk_user; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -833,7 +909,7 @@ ALTER TABLE ONLY "user"
 
 
 --
--- TOC entry 2068 (class 2606 OID 35188)
+-- TOC entry 2074 (class 2606 OID 35188)
 -- Name: pk_user_location; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -842,7 +918,7 @@ ALTER TABLE ONLY user_locations
 
 
 --
--- TOC entry 2070 (class 2606 OID 35087)
+-- TOC entry 2079 (class 2606 OID 35087)
 -- Name: fk_notification_notification_type; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -851,7 +927,7 @@ ALTER TABLE ONLY notification
 
 
 --
--- TOC entry 2074 (class 2606 OID 35159)
+-- TOC entry 2083 (class 2606 OID 35159)
 -- Name: fk_notification_settings_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -860,7 +936,7 @@ ALTER TABLE ONLY notification_settings
 
 
 --
--- TOC entry 2071 (class 2606 OID 35106)
+-- TOC entry 2080 (class 2606 OID 35106)
 -- Name: fk_notification_transmission_notification; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -869,7 +945,7 @@ ALTER TABLE ONLY notification_transmission
 
 
 --
--- TOC entry 2073 (class 2606 OID 35127)
+-- TOC entry 2082 (class 2606 OID 35127)
 -- Name: fk_notification_transmission_transmission_type; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -878,7 +954,7 @@ ALTER TABLE ONLY notification_transmission
 
 
 --
--- TOC entry 2072 (class 2606 OID 35111)
+-- TOC entry 2081 (class 2606 OID 35111)
 -- Name: fk_notification_transmission_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -887,16 +963,25 @@ ALTER TABLE ONLY notification_transmission
 
 
 --
--- TOC entry 2069 (class 2606 OID 35175)
--- Name: fk_user_sns_type; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2085 (class 2606 OID 35234)
+-- Name: fk_sns_token_sns_type; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "user"
-    ADD CONSTRAINT fk_user_sns_type FOREIGN KEY (sns_type) REFERENCES sns_type(id);
+ALTER TABLE ONLY sns_token
+    ADD CONSTRAINT fk_sns_token_sns_type FOREIGN KEY (sns_type_id) REFERENCES sns_type(id);
 
 
 --
--- TOC entry 2214 (class 0 OID 0)
+-- TOC entry 2084 (class 2606 OID 35229)
+-- Name: fk_sns_token_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY sns_token
+    ADD CONSTRAINT fk_sns_token_user FOREIGN KEY (user_id) REFERENCES "user"(id);
+
+
+--
+-- TOC entry 2227 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -907,7 +992,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-02-15 09:51:51
+-- Completed on 2017-02-15 10:58:58
 
 --
 -- PostgreSQL database dump complete
