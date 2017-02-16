@@ -1,4 +1,4 @@
-package com.informatixinc.utils;
+package com.informatixinc.calnotify.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

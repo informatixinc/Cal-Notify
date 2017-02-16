@@ -1,4 +1,4 @@
-package com.informatixinc.dao;
+package com.informatixinc.calnotify.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 import org.postgresql.ds.PGPoolingDataSource;
 
-import com.informatixinc.utils.ProjectProperties;
+import com.informatixinc.calnotify.utils.ProjectProperties;
 
 
 public class DatabasePool {

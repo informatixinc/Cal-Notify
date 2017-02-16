@@ -1,17 +1,18 @@
-package com.informatixinc.model;
+package com.informatixinc.calnotify.model;
 
 public class User {
 	
-	private String email;
-	private byte[] password;
-	private String firstName;
-	private String lastName;
-	private String phoneNumber;
-	private String addressOne;
-	private String addressTwo;
-	private UsState usState;
-	private String city;
-	private String zipCode;
+	private String email = "";
+	private String password = "";
+	private String firstName = "";
+	private String lastName = "";
+	private String phoneNumber = "";
+	private String addressOne = "";
+	private String addressTwo = "";
+	private String state;
+	private String city = "";
+	private String zipCode = "";
+	private Point location;
 	
 	public String getFirstName() {
 		return firstName;
@@ -43,12 +44,6 @@ public class User {
 	public void setAddressTwo(String addressTwo) {
 		this.addressTwo = addressTwo;
 	}
-	public UsState getUsState() {
-		return usState;
-	}
-	public void setUsState(UsState usState) {
-		this.usState = usState;
-	}
 	public String getCity() {
 		return city;
 	}
@@ -67,10 +62,23 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public byte[] getPassword() {
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(byte[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Point getLocation() {
+		return location;
+	}
+	public void setLocation(Point location) {
+		this.location = location;
+	}
+	
 }

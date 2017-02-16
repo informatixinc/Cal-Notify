@@ -1,4 +1,4 @@
-package com.informatixinc.model;
+package com.informatixinc.calnotify.model;
 
 public class PutResponse {
 	

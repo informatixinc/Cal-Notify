@@ -1,4 +1,4 @@
-package com.informatixinc.utils;
+package com.informatixinc.calnotify.utils;
 
 public class StringUtils {
 	

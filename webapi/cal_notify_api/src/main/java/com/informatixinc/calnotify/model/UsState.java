@@ -1,4 +1,4 @@
-package com.informatixinc.model;
+package com.informatixinc.calnotify.model;
 
 public enum UsState {
 	
@@ -73,6 +73,16 @@ public enum UsState {
 
 	public String getStateAbbreviation() {
 		return stateAbbreviation;
+	}
+	
+	public static Integer getStateId(String state){
+		for(UsState instance: values()){
+			if(instance.getStateAbbreviation().toLowerCase().equals(state.toLowerCase())){
+				return instance.getStateId();
+			}
+		}
+		
+		return null;
 	}
 
 }

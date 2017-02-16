@@ -1,4 +1,4 @@
-package com.informatixinc.end_points;
+package com.informatixinc.calnotify.end_points;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
