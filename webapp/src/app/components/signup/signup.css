@@ -26,7 +26,19 @@
 .dropdown-menu{
 	width: 100%;
 }
+.error{
+	color: #ff0000;
+}
 
+// valid and required show green
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+
+// invalid
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
 
 @media only screen and (min-device-width: 480px) {
 	.top-space{
