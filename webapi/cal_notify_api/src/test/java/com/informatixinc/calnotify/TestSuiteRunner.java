@@ -9,11 +9,12 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.informatixinc.calnotify.dao.DatabasePool;
 import com.informatixinc.calnotify.end_points.LoginTest;
+import com.informatixinc.calnotify.end_points.NotificationTest;
 import com.informatixinc.calnotify.end_points.RegistrationTest;
 import com.informatixinc.calnotify.utils.ProjectProperties;
 
 @RunWith(Suite.class)
-@SuiteClasses({ LoginTest.class})
+@SuiteClasses({ NotificationTest.class})
 public class TestSuiteRunner {
 //	@SuiteClasses({ RegistrationTest.class, LoginTest.class})
 	
