@@ -13,6 +13,7 @@ public class User {
 	private String city = "";
 	private String zipCode = "";
 	private Point location;
+	private String accountType;
 	
 	public String getFirstName() {
 		return firstName;
@@ -79,6 +80,12 @@ public class User {
 	}
 	public void setLocation(Point location) {
 		this.location = location;
+	}
+	public String getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.UsState;
 import com.informatixinc.calnotify.model.User;
@@ -27,8 +28,8 @@ public class UserDao {
 		
 		try {
 			ps = conn.prepareStatement("insert into public.user (email, password, salt, last_login, first_name, last_name, "
-					+ "phone_number, address_one, address_two, state_id, city, zip_code, signup_date)"
-					+ "values (?,?,?,now(),?,?,?,?,?,?,?,?,now())", Statement.RETURN_GENERATED_KEYS);
+					+ "phone_number, address_one, address_two, state_id, city, zip_code, signup_date, account_type)"
+					+ "values (?,?,?,now(),?,?,?,?,?,?,?,?,now(),?)", Statement.RETURN_GENERATED_KEYS);
 			
 			ps.setString(index++, user.getEmail());
 			ps.setBytes(index++, SecurityUtils.hashPassword(user.getPassword().getBytes(), salt));
@@ -41,6 +42,8 @@ public class UserDao {
 			ps.setInt(index++, UsState.getStateId(user.getState()));
 			ps.setString(index++, user.getCity());
 			ps.setString(index++, user.getZipCode());
+			//Defaulting this to a user account type for now
+			ps.setInt(index++, 2);
 			
 			if(ps.executeUpdate() == 1){
 				session.setSession(AuthMap.addLogin(user.getEmail()));

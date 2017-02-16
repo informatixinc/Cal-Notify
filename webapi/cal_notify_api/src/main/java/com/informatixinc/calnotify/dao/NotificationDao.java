@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.informatixinc.calnotify.model.Notification;
+import com.informatixinc.calnotify.model.NotificationSettings;
+import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 
 public class NotificationDao {
@@ -80,6 +82,14 @@ public class NotificationDao {
 		}
 		
 		return notification;
+	}
+	
+	public PutResponse setNotificationSettings(NotificationSettings settings){
+		PutResponse putResponse = new PutResponse();
+		
+		
+		
+		return putResponse;
 	}
 
 }
