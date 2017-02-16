@@ -3,7 +3,7 @@ package com.informatixinc.calnotify.model;
 public class Session {
 	
 	private String session;
-	private ErrorResponse errorResponse;
+	private ErrorResponse errorResponse = new ErrorResponse();
 	
 	public String getSession() {
 		return session;

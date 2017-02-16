@@ -12,10 +12,10 @@ public class AuthMap {
 	
 	private static ConcurrentHashMap<String, Login> logins = new ConcurrentHashMap<String, Login>();
 	
-	public static String addLogin(String userName){
+	public static String addLogin(String email){
 		String uuid =  UUID.randomUUID().toString();
 		Login login = new Login();
-		login.setUserName(userName);
+		login.setUserName(email);
 		login.setLogin(new Date());
 		logins.put(uuid, login);
 		

@@ -31,6 +31,7 @@ public class DatabasePool {
 		
 		source.setDataSourceName("source");
 		source.setServerName(ProjectProperties.getProperty("db_url"));
+		source.setPortNumber(Integer.parseInt(ProjectProperties.getProperty("db_port")));
 		source.setDatabaseName(ProjectProperties.getProperty("db_name"));
 		source.setUser(ProjectProperties.getProperty("db_user_name"));
 		source.setPassword(ProjectProperties.getProperty("db_password"));

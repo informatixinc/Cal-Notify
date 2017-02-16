@@ -14,7 +14,7 @@
     <url-pattern>/*</url-pattern>
   </servlet-mapping>
   <listener>
-    <listener-class>com.informatixinc.servlets.ApplicationLifecycleListener</listener-class>
+    <listener-class>com.informatixinc.calnotify.servlets.ApplicationLifecycleListener</listener-class>
   </listener>
   <session-config>
     <session-timeout>30</session-timeout>
