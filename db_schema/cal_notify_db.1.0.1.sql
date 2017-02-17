@@ -33,6 +33,9 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
+create extension cube;
+create extension earthdistance;
+
 --
 -- Name: contact_request; Type: TABLE; Schema: public; Owner: -
 --
@@ -106,30 +109,19 @@ ALTER SEQUENCE user_id_seq OWNED BY "user".id;
 
 
 --
--- Name: event; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE event (
-    id integer DEFAULT nextval('user_id_seq'::regclass) NOT NULL,
-    eventid text NOT NULL,
-    infolink text NOT NULL,
-    location point NOT NULL,
-    expires timestamp with time zone NOT NULL,
-    description text NOT NULL,
-    type text NOT NULL
-);
-
-
---
 -- Name: notification; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE notification (
-    send_time time with time zone,
-    expire_time time with time zone,
-    info_url text,
-    notification_type integer,
-    id integer NOT NULL
+  id integer NOT NULL,
+  typeId integer,
+  title text,
+  image_url text,
+  info_url text,
+  notification_id text,
+  send_time timestamp with time zone,
+  expire_time timestamp with time zone,
+  location point
 );
 
 
@@ -424,14 +416,6 @@ ALTER TABLE ONLY user_locations ALTER COLUMN id SET DEFAULT nextval('user_locati
 
 ALTER TABLE ONLY contact_request
     ADD CONSTRAINT pk_contact_request PRIMARY KEY (id);
-
-
---
--- Name: pk_event; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY event
-    ADD CONSTRAINT pk_event PRIMARY KEY (id);
 
 
 --
