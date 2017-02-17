@@ -1,5 +1,7 @@
 package com.informatixinc.calnotify.utils;
 
+import java.math.BigDecimal;
+
 public class StringUtils {
 	
 	public static String nullToEmpty(String element){
@@ -8,6 +10,11 @@ public class StringUtils {
 		}
 		
 		return element;
+	}
+	
+	public static double parseDouble(String s) {
+		final BigDecimal bd = new BigDecimal(s);
+		return bd.doubleValue();
 	}
 
 }
