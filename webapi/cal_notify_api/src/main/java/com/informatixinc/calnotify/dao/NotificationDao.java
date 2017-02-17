@@ -153,9 +153,9 @@ public class NotificationDao {
 		double longitude = StringUtils.parseDouble(rings.get(0).getAsString());
 		location.setLatitude(latitude);
 		location.setLongitude(longitude);
-		final Notification event = new Notification(type.name(), type.id, title, infoUrl, notificationId, new Date(),
+		final Notification notification = new Notification(type.name(), type.id, title, infoUrl, notificationId, new Date(),
 				expireTime, location);
-		return event;
+		return notification;
 	}
 
 }
