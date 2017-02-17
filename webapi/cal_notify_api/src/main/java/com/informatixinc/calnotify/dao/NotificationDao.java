@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +29,7 @@ import com.informatixinc.calnotify.model.NotificationType;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
+import com.informatixinc.calnotify.utils.ProjectProperties;
 import com.informatixinc.calnotify.utils.StringUtils;
 
 public class NotificationDao {
@@ -104,7 +106,7 @@ public class NotificationDao {
 		return notification;
 	}
 
-	public List<Notification> fetchSourceNotifications(final NotificationType type) throws Exception {
+	public List<Notification> fetchSourceNotifications(final NotificationType type) {
 		final List<Notification> notifications = new ArrayList<Notification>();
 		final String json = doFetchJson(type);
 		final JsonParser parser = new JsonParser();
@@ -114,6 +116,12 @@ public class NotificationDao {
 			notifications.add(parseNotification(e.getAsJsonObject(), type));
 		}
 		return notifications;
+	}
+
+	public void save(Notification notification) {
+		if (!isDuplicate(notification)) {
+			insert(notification);
+		}
 	}
 
 	public PutResponse setNotificationSettings(NotificationSettings settings) {
@@ -153,9 +161,62 @@ public class NotificationDao {
 		double longitude = StringUtils.parseDouble(rings.get(0).getAsString());
 		location.setLatitude(latitude);
 		location.setLongitude(longitude);
-		final Notification notification = new Notification(type.name(), type.id, title, infoUrl, notificationId, new Date(),
-				expireTime, location);
+		final Notification notification = new Notification(type.name(), type.id, title, infoUrl, notificationId,
+				new Date(), expireTime, location);
 		return notification;
 	}
+	
+	private void insert(Notification n) {
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		final StringBuilder sql = new StringBuilder();
+		sql.append(" insert into public.notification ");
+		sql.append(" (typeid, title, info_url, notification_id, send_time, expire_time, location) ");
+		sql.append(" values(?, ?, ?, ?, ?, ?, POINT(?, ?)) ");
+		try {
+			ps = conn.prepareStatement(sql.toString());
+			ps.setInt(1, n.getTypeId());
+			ps.setString(2, n.getTitle());
+			ps.setString(3, n.getInfoUrl());
+			ps.setString(4, n.getNotificationId());
+			final Timestamp sendTime = new Timestamp(n.getSendTime().getTime());
+			final Timestamp expireTime = new Timestamp(n.getExpireTime().getTime());
+			ps.setTimestamp(5, sendTime);
+			ps.setTimestamp(6, expireTime);
+			ps.setDouble(7, n.getLocation().getLongitude());
+			ps.setDouble(8, n.getLocation().getLatitude());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString());
+		} finally {
+			DatabaseUtils.safeClose(conn, ps);
+		}
+	}
 
+	private boolean isDuplicate(Notification n) {
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		final StringBuilder sql = new StringBuilder();
+		sql.append(" select count(*) ");
+		sql.append(" from public.notification ");
+		sql.append(" where typeid = ? and title = ? and notification_id = ? and expire_time = ? and info_url = ? ");
+		try {
+			ps = conn.prepareStatement(sql.toString());
+			ps.setInt(1, n.getTypeId());
+			ps.setString(2, n.getTitle());
+			ps.setString(3, n.getNotificationId());
+			final Timestamp ts = new Timestamp(n.getExpireTime().getTime());
+			ps.setTimestamp(4, ts);
+			ps.setString(5, n.getInfoUrl());
+			rs = ps.executeQuery();
+			rs.next();
+			final int i = rs.getInt(1);
+			return i > 0;
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString());
+		} finally {
+			DatabaseUtils.safeClose(conn, ps, rs);
+		}
+	}
 }
