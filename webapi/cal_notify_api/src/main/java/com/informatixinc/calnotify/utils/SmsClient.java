@@ -3,24 +3,14 @@ package com.informatixinc.calnotify.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
+import org.apache.log4j.Logger;
+
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.MessageAttributeValue;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.PublishResult;
 
 public class SmsClient {
-	
-	public static void main(String...args) {
-		try {
-			SmsClient client = new SmsClient();
-			client.send("+19163003166", "CAL NOTIFY: This is your alert.");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.exit(0);
-	}
 
 	public void send(final String phoneNumber, final String message) {
 		//AWSCredentials credentials = new BasicAWSCredentials("xxx", "xxx");
@@ -40,6 +30,8 @@ public class SmsClient {
 	                        .withMessage(message)
 	                        .withPhoneNumber(phoneNumber)
 	                        .withMessageAttributes(smsAttributes));
-	    System.out.println(result);
+	    log.debug(result);
 	}
+	
+	private final Logger log = Logger.getLogger(this.getClass());
 }
