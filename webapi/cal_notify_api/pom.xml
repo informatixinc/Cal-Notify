@@ -53,7 +53,11 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>9.1-901-1.jdbc4</version>
 		</dependency>
-
+		<dependency>
+    		<groupId>javax.mail</groupId>
+    		<artifactId>javax.mail-api</artifactId>
+    		<version>1.5.6</version>
+		</dependency>
         <dependency>
 		    <groupId>org.apache.tomcat</groupId>
 		    <artifactId>tomcat-jdbc</artifactId>
