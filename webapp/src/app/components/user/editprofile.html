@@ -1,111 +1,134 @@
 <navbar></navbar>
 <div class = "border">
 	<div class = "row signup">
-		<div class = "col-md-8 col-md-offset-2">
-			<h3>{{_languageService.getTranslation('edit_profile')}}</h3>
-		</div>
-		<div class = "col-md-8 col-md-offset-2">
-			<hr>
-		</div>
+		<div class = "col-md-4 col-md-offset-1">
+			{{_languageService.getTranslation('manage')}} {{_languageService.getTranslation('my')}} <span class="second-word">{{_languageService.getTranslation('account')}}</span>
+		</div>		
 	</div>
 	<div class = "Personal">
 		<div class="row">
-			<div class = "col-md-4 col-md-offset-2 section-header">
-			{{_languageService.getTranslation('signup1')}}
+			<div class="little_space"></div>
+			<div class = "col-md-4 col-md-offset-1">
+				<label>{{_languageService.getTranslation('first_name')}}</label>   
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input #fname type="text" class = "form-input" placeholder="" id = "fname" [(ngModel)]="edit_profile.firstName" autofocus />
+				<div class = "error" id="error">{{error.firstName}}</div>
+			</div>
+			<div class="little_space"></div>
+			<div class = "col-md-4">
+				<label>{{_languageService.getTranslation('last_name')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input type="text" class = "form-input" placeholder="" id = "lname"  [(ngModel)]="edit_profile.lastName" />
+				<div class = "error" id="error">{{error.lastName}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
-			<div class = "col-md-4 col-md-offset-2">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('first_name')}}" id = "fname">
-			</div>
-			<div class="little_space"></div>
-			<div class = "col-md-4">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('last_name')}}" id = "lname">
+			<div class = "col-md-8 col-md-offset-1">
+				<label>{{_languageService.getTranslation('address1')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input type="text" class = "form-input address" placeholder="" id = "address1" [(ngModel)]="edit_profile.address1" />
+				<div class = "error" id="error">{{error.address1}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
-			<div class = "col-md-4 col-md-offset-2">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('email')}}" id = "email">
-			</div>
-			<div class="little_space"></div>
-			<div class = "col-md-4">
-				<input type="tel" class = "form-input" placeholder="{{_languageService.getTranslation('phone_number')}}" id = "phone">
+			<div class = "col-md-8 col-md-offset-1">
+				<label>{{_languageService.getTranslation('address2')}}</label>
+				<input type="text" class = "form-input address" placeholder="" id = "address2" [(ngModel)]="edit_profile.address2" />
+				<div class = "error" id="error">{{error.address2}}</div>
 			</div>
 		</div>
 	</div>
-	<div class="little_space"></div>
-	<div class = "Address">
-		<div class="row">
-			<div class = "col-md-4 col-md-offset-2 section-header">
-			{{_languageService.getTranslation('signup2')}}
-			</div>
-		</div>
+	<div class = "Address2">
 		<div class="row">
 			<div class="little_space"></div>
-			<div class = "col-md-4 col-md-offset-2">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('address1')}}" id = "address1">
+			<div class = "col-md-4 col-md-offset-1">
+				<label>{{_languageService.getTranslation('city')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input type="text" class = "form-input" placeholder="" id = "city" [(ngModel)]="edit_profile.city" />
+				<div class = "error" id="error">{{error.city}}</div>
 			</div>
 			<div class="little_space"></div>
-			<div class = "col-md-4">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('address2')}}" id = "address2">
-			</div>
-		</div>
-		<div class="row">
-			<div class="little_space"></div>
-			<div class = "col-md-4 col-md-offset-2">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('city')}}" id = "city">
-			</div>
-			<div class="little_space"></div>
-			<div class = "col-md-4">
-				<select class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id = "state">
-					<option *ngFor="let state of states" value="{{state}}">{{state}}</option>
-								  
+			<div class = "col-md-2">
+				<label>{{_languageService.getTranslation('state')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<select class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id = "state" >
+					<option *ngFor="let state of states" value="{{state}}">{{state}}</option>			  
 				</select>
-				<!-- <input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('state')}}" id = "state"> -->	
+				<!-- <input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('state')}}" id = "state"> -->
+			</div>
+			<div class="little_space"></div>
+			<div class = "col-md-2">
+				<label>{{_languageService.getTranslation('zip_code')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input type="text" class = "form-input" placeholder="" id = "zipcode" [(ngModel)]="edit_profile.zipCode"/>
+				<div class = "error" id="error">{{error.zipCode}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
-			<div class = "col-md-4 col-md-offset-2">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('zip_code')}}" id = "zipcode">
+			<div class = "col-md-4 col-md-offset-1">
+				<label>{{_languageService.getTranslation('phone_number')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required1')}}</i>)</span>
+				<input type="text" class = "form-input" placeholder="" id = "phone" [(ngModel)]="edit_profile.phoneNumber" />
+				<div class = "error" id="error">{{error.phoneNumber}}</div>
 			</div>
 		</div>
 	</div>
-	<div class="little_space"></div>
 	<div class = "Password">
-		<div class="row">
-			<div class = "col-md-4 col-md-offset-2 section-header">
-			{{_languageService.getTranslation('signup3')}}
+		<div class="row signup">
+			<div class="little_space"></div>
+			<div class = "col-md-4 col-md-offset-1">
+				<span class="second-word">{{_languageService.getTranslation('signin')}}</span> {{_languageService.getTranslation('information')}}
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
-			<div class = "col-md-4 col-md-offset-2">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('old_password')}}" id = "oldpassword">
+			<div class = "col-md-4 col-md-offset-1">
+				<label>{{_languageService.getTranslation('email')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input type="text" class = "form-input" placeholder="" id = "email" [(ngModel)]="edit_profile.email" />
+				<div class = "error" id="error">{{error.email}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
-			<div class = "col-md-4 col-md-offset-2">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('new_password')}}" id = "newpassword">
-			</div>	
+			<div class = "col-md-4 col-md-offset-1">
+				<label>{{_languageService.getTranslation('old_password')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input type="password" class = "form-input" placeholder="" id = "oldPassword" [(ngModel)]="edit_profile.oldPassword" />
+				<div class = "error" id="error">{{error.oldPassword}}</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="little_space"></div>
+			<div class = "col-md-4 col-md-offset-1">
+				<label>{{_languageService.getTranslation('new_password')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input type="password" class = "form-input" placeholder="" id = "newPassword" [(ngModel)]="edit_profile.newPassword" />
+				<div class = "error" id="error">{{error.newPassword}}</div>
+			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-4">
-				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('confirm_password')}}" id = "confpassword">
-			<div class = "col-md-8 col-md-offset-2">
-				
+				<label>{{_languageService.getTranslation('confirm_password')}}</label>
+				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<input type="password" class = "form-input" placeholder="" id = "confPassword" [(ngModel)]="edit_profile.confPassword" (keyup.enter)='save()'/>
+				<div class = "error" id="error">{{error.confPassword}} <br> {{error.passwordMatch}}</div>
+			</div>	
+		</div>
+	</div>
+	<div class = "SignupSubmit">
+		<div class="row">
+			<div class="little_space"></div>
+			<div class = "col-md-2 col-md-offset-1">
+				<div class = "button" type="submit" id = "submit" (click)="save()">{{_languageService.getTranslation('save')}}</div>		
 			</div>
-		</div>
-		<div class="little_space"></div>
-		<div class = "col-md-8 col-md-offset-2">
-			<hr>
-		</div>
-		<div class = "col-md-4 col-md-offset-4">
-			<div class = "button">{{_languageService.getTranslation('update')}}</div>		
-		</div>
-		
+			<div class="little_space"></div>
+			<div class = "col-md-2">
+				<div class = "button" type="submit" id = "cancel" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
+			</div>
+	    </div>
 	</div>
 </div>
 <div class="little_space"></div>

@@ -1,25 +1,26 @@
 .footer-style{
-	background-color: #112e51;
+	background-color: #aeb0b5;
 }
 .footer{
 	width: 100%;
 	border: none;
 	border-radius: 0px;
-	border-top: 3px solid black;
-	height: 80px;
+	height: 50px;
+	color: #212121;
+	margin-bottom: 0;
 }
 .footer-default{
 	list-style-type: none;
-	text-align: center;
+	text-align: left;
 	margin-bottom: 0;
 	padding-left: 0;
 }
 .footer-default>li{
 	display: inline-block;
-	color:#fff;
+	color: #212121;
 }
 .footer-default>li>a{
-	color:#fff;
+	color: #212121;
 	font-size: 1em;
 	display: block;
     padding-right: 10px;

@@ -1,14 +1,16 @@
 <div class="footer footer-style">
 	<div class="container-fluid text-center">
 		<ul class="footer-default">
+			<li><a [routerLink]="['/privacy']">{{_languageService.getTranslation('privacy_policy')}}</a></li>
+			<li>|</li>
 	        <li><a [routerLink]="['/contact']">{{_languageService.getTranslation('contact_us')}}</a></li>
 	        <li>|</li>
-	        <li><a [routerLink]="['/privacy']">{{_languageService.getTranslation('privacy_policy')}}</a></li>
+	        <li><a [routerLink]="['/faq']">{{_languageService.getTranslation('faq')}}</a></li>
+	        <li>|</li>
+	        <li><a (click)="setLanguage('en')">{{_languageService.getTranslation('english')}}</a></li>
+	        <li>|</li>
+	        <li><a (click)="setLanguage('es')">{{_languageService.getTranslation('spanish')}}</a></li>
 	    </ul>
-	    <ul class="footer-icons">
-	        <li> <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-	        <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-	        <li><a href="https://plus.google.com" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-	    </ul>
+
 	</div>
 </div>

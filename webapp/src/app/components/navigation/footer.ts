@@ -12,6 +12,11 @@ import {LanguageService} from '../../services/language/language_service';
 export class Footer {
 
 	constructor( private router: Router, private _languageService: LanguageService) {}
+	
+	setLanguage(language: string){
+		this._languageService.setSelectedLanguage(language);
+		// location.reload();
+	}
 
- 
+	 
 }
