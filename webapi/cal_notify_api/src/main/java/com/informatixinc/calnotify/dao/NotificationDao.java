@@ -126,6 +126,35 @@ public class NotificationDao {
 
 	public PutResponse setNotificationSettings(NotificationSettings settings) {
 		PutResponse putResponse = new PutResponse();
+		
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		
+		try {
+			ps = conn.prepareStatement("insert into public.notification_settings (user_location_id, sms, email, push_notification) "
+					+ "values (?, ?, ?, ?) "
+					+ "on conflict (user_location_id) "
+					+ "do update set sms = ?, email = ?, push_notification = ?");
+			ps.setInt(1, settings.getUserLocationId());
+			ps.setBoolean(2, settings.isSms());
+			ps.setBoolean(3, settings.isEmail());
+			ps.setBoolean(4, settings.isSns());
+			ps.setBoolean(5, settings.isSms());
+			ps.setBoolean(6, settings.isEmail());
+			ps.setBoolean(7, settings.isSns());
+			
+			if(ps.executeUpdate() == 1){
+				return putResponse;
+			}else{
+				putResponse.getErrorResponse().setError(true);
+				putResponse.getErrorResponse().setErrorMessage("Error updating notification settings");
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString());
+		} finally {
+			DatabaseUtils.safeClose(conn, ps);
+		}
 
 		return putResponse;
 	}

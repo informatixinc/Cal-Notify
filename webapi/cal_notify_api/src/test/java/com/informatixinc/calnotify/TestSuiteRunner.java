@@ -7,13 +7,15 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import com.informatixinc.calnotify.dao.DatabasePool;
-import com.informatixinc.calnotify.end_points.NotificationTest;
+import com.informatixinc.calnotify.end_points.GetNotificationTest;
+import com.informatixinc.calnotify.end_points.NotificationSettingsTest;
+import com.informatixinc.calnotify.end_points.RegistrationTest;
 import com.informatixinc.calnotify.utils.ProjectProperties;
 
 @RunWith(Suite.class)
-@SuiteClasses({ NotificationTest.class})
+@SuiteClasses({ NotificationSettingsTest.class})
 public class TestSuiteRunner {
-//	@SuiteClasses({ RegistrationTest.class, LoginTest.class})
+//	@SuiteClasses({ RegistrationTest.class, LoginTest.class, GetNotificationTest.class, NotificationSettingsTest.class})
 	
 	@BeforeClass 
     public static void oneTimeSetUp() {

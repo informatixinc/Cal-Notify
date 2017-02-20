@@ -5,14 +5,8 @@ public class NotificationSettings {
 	private boolean sms;
 	private boolean email;
 	private boolean sns;
-	private int addressId;
+	private int userLocationId;
 	
-	public int getAddressId() {
-		return addressId;
-	}
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
-	}
 	public boolean isSms() {
 		return sms;
 	}
@@ -30,6 +24,12 @@ public class NotificationSettings {
 	}
 	public void setSns(boolean sns) {
 		this.sns = sns;
+	}
+	public int getUserLocationId() {
+		return userLocationId;
+	}
+	public void setUserLocationId(int userLocationId) {
+		this.userLocationId = userLocationId;
 	}
 
 }

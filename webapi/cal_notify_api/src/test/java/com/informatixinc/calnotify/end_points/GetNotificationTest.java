@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 import org.junit.Test;
 
@@ -12,7 +11,7 @@ import com.informatixinc.calnotify.dao.DatabasePool;
 import com.informatixinc.calnotify.model.Notification;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 
-public class NotificationTest {
+public class GetNotificationTest {
 	
 	@Test
 	public void notificaitonTest(){

@@ -11,13 +11,13 @@ public class ApplicationLifecycleListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		ProjectProperties.init();
-//		DatabasePool.init();
+		DatabasePool.init();
 		
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-//		DatabasePool.close();
+		DatabasePool.close();
 		
 	}
 

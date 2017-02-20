@@ -23,5 +23,4 @@ public class LoginEndpoint {
 		UserDao userDao = new UserDao();
 		return userDao.login(login, session);
 	}
-
 }

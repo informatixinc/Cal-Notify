@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.UsState;
 import com.informatixinc.calnotify.model.User;
@@ -28,8 +27,8 @@ public class UserDao {
 		
 		try {
 			ps = conn.prepareStatement("insert into public.user (email, password, salt, last_login, first_name, last_name, "
-					+ "phone_number, address_one, address_two, state_id, city, zip_code, signup_date, account_type)"
-					+ "values (?,?,?,now(),?,?,?,?,?,?,?,?,now(),?)", Statement.RETURN_GENERATED_KEYS);
+					+ "phone_number, signup_date, account_type)"
+					+ "values (?,?,?,now(),?,?,?,now(),?)", Statement.RETURN_GENERATED_KEYS);
 			
 			ps.setString(index++, user.getEmail());
 			ps.setBytes(index++, SecurityUtils.hashPassword(user.getPassword().getBytes(), salt));
@@ -37,11 +36,6 @@ public class UserDao {
 			ps.setString(index++, user.getFirstName());
 			ps.setString(index++, user.getLastName());
 			ps.setString(index++, user.getPhoneNumber().replaceAll( "[^\\d]", "" ));
-			ps.setString(index++, user.getAddressOne());
-			ps.setString(index++, user.getAddressTwo());
-			ps.setInt(index++, UsState.getStateId(user.getState()));
-			ps.setString(index++, user.getCity());
-			ps.setString(index++, user.getZipCode());
 			//Defaulting this to a user account type for now
 			ps.setInt(index++, 2);
 			
@@ -50,12 +44,29 @@ public class UserDao {
 				rs = ps.getGeneratedKeys();
 				rs.next();
 				int userId = rs.getInt(1);
+				
 				DatabaseUtils.safeClose(ps, rs);
-				ps = conn.prepareStatement("insert into public.user_locations (user_id, location) values (?,point(?,?))");
+				ps = conn.prepareStatement("insert into public.user_address (user_id, address_one, address_two, state_id, zip_code) values (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+				ps.setInt(1, userId);
+				ps.setString(2, user.getAddressOne());
+				ps.setString(3, user.getAddressTwo());
+				ps.setInt(4, UsState.getStateId(user.getState()));
+				ps.setString(5, user.getZipCode());
+				ps.executeUpdate();
+				
+				rs = ps.getGeneratedKeys();
+				rs.next();
+				int addressId = rs.getInt(1);
+				
+				DatabaseUtils.safeClose(ps, rs);
+				
+				ps = conn.prepareStatement("insert into public.user_location (user_id, location, address_id) values (?,point(?,?),?)");
 				ps.setInt(1, userId);
 				ps.setDouble(2, user.getLocation().getLongitude());
 				ps.setDouble(3, user.getLocation().getLatitude());
+				ps.setInt(4, addressId);
 				ps.executeUpdate();
+				
 			}else{
 				session.getErrorResponse().setError(true);
 				session.getErrorResponse().setErrorMessage("Unknown error");
@@ -121,5 +132,6 @@ public class UserDao {
 		return session;
 		
 	}
+	
 	
 }
