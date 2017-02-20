@@ -46,6 +46,10 @@
 	clear: both;
 }
 
+.highlight-blue{
+    color: #006DB9;
+}
+
 .button{
 	-webkit-font-smoothing: antialiased;
     margin-top: 0.5em;

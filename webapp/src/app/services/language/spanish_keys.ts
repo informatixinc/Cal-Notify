@@ -2,6 +2,8 @@ import {LanguageComponent} from './language_value';
 
 export var SPANISH: LanguageComponent[] = [
 		{ "key": "home", "value": "Casa" },
+		{ "key": "signin", "value": "Registrarse" },
+		{ "key": "createanaccount", "value": "Crea una Cuenta" },
 		{ "key": "faq", "value": "FAQ" },
 		{ "key": "signup", "value": "Regístrate" },
 		{ "key": "language", "value": "Idioma" }, 

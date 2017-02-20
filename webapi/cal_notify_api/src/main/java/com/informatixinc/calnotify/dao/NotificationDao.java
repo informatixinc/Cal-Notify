@@ -63,7 +63,7 @@ public class NotificationDao {
 			}
 
 		} catch (SQLException e) {
-			throw new RuntimeException("SQL error statement is " + ps.toString());
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
@@ -98,7 +98,7 @@ public class NotificationDao {
 			}
 
 		} catch (SQLException e) {
-			throw new RuntimeException("SQL error statement is " + ps.toString());
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
@@ -151,7 +151,7 @@ public class NotificationDao {
 			}
 			
 		} catch (SQLException e) {
-			throw new RuntimeException("SQL error statement is " + ps.toString());
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally {
 			DatabaseUtils.safeClose(conn, ps);
 		}
@@ -216,7 +216,7 @@ public class NotificationDao {
 			ps.setDouble(8, n.getLocation().getLatitude());
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new RuntimeException("SQL error statement is " + ps.toString());
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally {
 			DatabaseUtils.safeClose(conn, ps);
 		}
@@ -243,7 +243,7 @@ public class NotificationDao {
 			final int i = rs.getInt(1);
 			return i > 0;
 		} catch (SQLException e) {
-			throw new RuntimeException("SQL error statement is " + ps.toString());
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}

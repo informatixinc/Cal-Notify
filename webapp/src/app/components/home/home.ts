@@ -21,7 +21,7 @@ export class Home {
 	}
 
 	login(){
-		this._userState.setSesstion("12345");
+		this._userState.setSession("12345");
 		if(this._userState.isAdmin){
 			this.router.navigate(['notify']);	
 		}else{

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.UsState;
 import com.informatixinc.calnotify.model.User;
@@ -73,7 +74,7 @@ public class UserDao {
 			}
 			
 		} catch (SQLException e) {
-			throw new RuntimeException("SQL error statement is " + ps.toString());
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		}finally{
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
@@ -124,7 +125,7 @@ public class UserDao {
 			session.setSession(AuthMap.addLogin(login.getEmail()));
 			
 		} catch (SQLException e) {
-			throw new RuntimeException("sql error", e);
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally{
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
@@ -132,6 +133,52 @@ public class UserDao {
 		return session;
 		
 	}
+	
+	public PutResponse updateAccount(User user, PutResponse putResponse, String sessionId){
+		
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String email = AuthMap.getUserName(sessionId);
+		if(email == null){
+			putResponse.getErrorResponse().setError(true);
+			putResponse.getErrorResponse().setErrorMessage("Not logged in");
+			return putResponse;
+		}
+		int locationId;
+		int userId;
+		
+		try {
+			//First address is their registration address
+			ps = conn.prepareStatement("select user.id as user_id, user_location.id as location_id from public.user, public.user_location where public.user.id = user_location.user_id where user.email = ?");
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				userId = rs.getInt("user_id");
+				locationId = rs.getInt("location_id");
+				DatabaseUtils.safeClose(ps, rs);
+				ps=conn.prepareStatement("update public.user set ");
+				
+			}else{
+				putResponse.getErrorResponse().setError(true);
+				putResponse.getErrorResponse().setErrorMessage("Unable to locate primary address");
+				return putResponse;
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		} finally{
+			DatabaseUtils.safeClose(conn, ps);
+		}
+		
+		
+		return putResponse;
+	}
+	
+	
 	
 	
 }

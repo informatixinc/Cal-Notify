@@ -11,9 +11,6 @@ import {UserState} from './services/user_state/user_state';
 
 import {Home} from './components/home/home';
 import {NavBar} from './components/navigation/navbar';
-import {Notifications} from './components/notifications/notifications';
-import {NotificationView} from './components/notifications/notification_view';
-import {Message} from './components/notifications/message';
 import {Footer} from './components/navigation/footer';
 import {Signup} from './components/signup/signup';
 import {Faq} from './components/faq/faq';
@@ -27,7 +24,7 @@ import {LanguageService} from './services/language/language_service';
 
 @NgModule({
   imports: [ BrowserModule, routing, FormsModule, HttpModule, ReactiveFormsModule ],
-  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Notifications, Message, Faq, Contact, Privacy, EditProfile, NotificationSettings, Notify, Reports, NotificationView],
+  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Faq, Contact, Privacy, EditProfile, NotificationSettings, Notify, Reports],
   providers: [appRoutingProviders, ApiRequest, UserState, LanguageService],
   bootstrap: [ AppComponent ]
 })

@@ -11,7 +11,7 @@ import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.model.Notification;
 
 @Path("getactivenotifications")
-public class GetActiveNotifications {
+public class GetActiveNotificationsEndpoint {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

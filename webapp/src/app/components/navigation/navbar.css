@@ -1,5 +1,5 @@
 .navbar-style{
-	background-color: #112e51;
+	background-color: #0071BD;
 }
 
 .navbar{
@@ -39,13 +39,14 @@
 }
 
 .title{
-	line-height: 60px;
 	color: #fff;
 	font-size: 3.0em;
-	white-space: nowrap;
 }
 
-
+.sub-header{
+	color: #DFEDBD;
+    margin-left: 18px;
+}
 
 @media only screen and (min-device-width: 480px) {
 	.outer_title{
@@ -57,6 +58,13 @@
 	.hide-non-mobile{
 		display: none;
 	}
+
+	.bottom_right_menu{
+	    position: absolute;
+	    right: 15px;
+	    bottom: -10px;
+	    font-size: .8em;
+	}
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -65,6 +73,15 @@
 		left: 50%;
 		z-index: 2;
 	}
+
+	.hide-mobile{
+		display: none;
+	}
+}
+
+.menu-spacer{
+	margin-top: 15px;
+	color: #fff;
 }
 
 .menu_item{
@@ -73,6 +90,7 @@
 
 .inner_title{
 	position: relative; left: -50%;
+	margin-top: 10px;
 }
 
 .brand_icon{

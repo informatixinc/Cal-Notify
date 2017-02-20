@@ -1,8 +1,10 @@
 import {LanguageComponent} from './language_value'
 export var ENGLISH: LanguageComponent[] = [
 		{ "key": "home", "value": "Home" },
+		{ "key": "signin", "value": "Sign in" },
 		{ "key": "faq", "value": "FAQ" },
 		{ "key": "signup", "value": "Sign Up" },
+		{ "key": "createanaccount", "value": "Create an Account" },
 		{ "key": "language", "value": "Language" },
 		{ "key": "english", "value": "English" },
 		{ "key": "spanish", "value": "Spanish" },

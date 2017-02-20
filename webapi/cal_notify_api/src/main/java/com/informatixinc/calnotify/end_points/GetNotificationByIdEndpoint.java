@@ -10,7 +10,7 @@ import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.model.Notification;
 
 @Path("getnotification")
-public class GetNotificationById {
+public class GetNotificationByIdEndpoint {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

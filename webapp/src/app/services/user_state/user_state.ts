@@ -14,7 +14,7 @@ export class UserState {
 		}
 	}
 
-	setSesstion(session: string){
+	setSession(session: string){
 		localStorage.setItem("session", session);
 	}
 

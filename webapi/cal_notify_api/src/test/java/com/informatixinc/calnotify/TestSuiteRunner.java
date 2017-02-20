@@ -13,7 +13,7 @@ import com.informatixinc.calnotify.end_points.RegistrationTest;
 import com.informatixinc.calnotify.utils.ProjectProperties;
 
 @RunWith(Suite.class)
-@SuiteClasses({ NotificationSettingsTest.class})
+@SuiteClasses({ RegistrationTest.class})
 public class TestSuiteRunner {
 //	@SuiteClasses({ RegistrationTest.class, LoginTest.class, GetNotificationTest.class, NotificationSettingsTest.class})
 	

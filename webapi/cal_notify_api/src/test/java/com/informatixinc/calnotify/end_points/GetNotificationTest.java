@@ -15,7 +15,7 @@ public class GetNotificationTest {
 	
 	@Test
 	public void notificaitonTest(){
-		GetNotificationById getNotificationById = new GetNotificationById();
+		GetNotificationByIdEndpoint getNotificationById = new GetNotificationByIdEndpoint();
 		Notification notification = getNotificationById.getNotifications(getLatestNotification());
 		assert(notification.getTitle().length() > 0);
 	}
