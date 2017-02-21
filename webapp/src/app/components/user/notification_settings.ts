@@ -13,5 +13,4 @@ export class NotificationSettings {
 
 	constructor( private router: Router, private _languageService: LanguageService) {}
 
- 
 }
