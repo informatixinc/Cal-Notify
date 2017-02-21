@@ -86,7 +86,10 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "zipcode_validation", "value": "Enter valid Zip Code" },
 		{ "key": "phone_validation", "value": "Enter valid Mobile Phone Number" },
 		{ "key": "password_info", "value": "Password: \n Should be more than 6 characters. \n Should have one Digit. \n Should have one Upper case letter. \n Should have one Lower case letter." },
-		
+		{ "key": "reset", "value": "Reset" },
+		{ "key": "password_reset_info", "value": "Send Password Reset Instructions" },
+		{ "key": "password_reset_text", "value": "Enter your email below and we'll email instructions on how to reset your password." },
+		{ "key": "email_addr", "value": "Email Address" },
 	]
 
 

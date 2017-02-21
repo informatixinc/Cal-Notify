@@ -10,9 +10,11 @@ import {EditProfile} from './components/user/editprofile';
 import {NotificationSettings} from './components/user/notification_settings';
 import {Notify} from './components/admin/notify';
 import {Reports} from './components/admin/reports';
+import {PasswordReset} from './components/user/password_reset';
 
 
 const appRoutes: Routes = [
+  { path: 'password-reset', component: PasswordReset },
   { path: 'signup', component: Signup },
   { path: 'faq', component: Faq },
   { path: 'contact', component: Contact },

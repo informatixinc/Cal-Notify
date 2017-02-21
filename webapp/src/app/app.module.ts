@@ -21,10 +21,11 @@ import {NotificationSettings} from './components/user/notification_settings';
 import {Notify} from './components/admin/notify';
 import {Reports} from './components/admin/reports';
 import {LanguageService} from './services/language/language_service';
+import {PasswordReset} from './components/user/password_reset';
 
 @NgModule({
   imports: [ BrowserModule, routing, FormsModule, HttpModule, ReactiveFormsModule ],
-  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Faq, Contact, Privacy, EditProfile, NotificationSettings, Notify, Reports],
+  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Faq, Contact, Privacy, EditProfile, NotificationSettings, Notify, Reports, PasswordReset],
   providers: [appRoutingProviders, ApiRequest, UserState, LanguageService],
   bootstrap: [ AppComponent ]
 })
