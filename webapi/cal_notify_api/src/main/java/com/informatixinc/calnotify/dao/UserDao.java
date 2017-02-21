@@ -198,26 +198,28 @@ public class UserDao {
 		try {
 			conn = DatabasePool.getConnection();
 			ps = conn.prepareStatement(sql.toString());
-			ps.setDouble(0, point.getLongitude());
-			ps.setDouble(1, point.getLatitude());
+			ps.setDouble(1, point.getLongitude());
+			ps.setDouble(2, point.getLatitude());
 			ps.setInt(3, MAXDISTANCEINMILES);
 			rs = ps.executeQuery();
-			final int userId = rs.getInt(1);
-			final String firstName = rs.getString(2);
-			final String lastName = rs.getString(3);
-			final String email = rs.getString(4);
-			final String phoneNumber = rs.getString(5);
-			final boolean sendSms = rs.getBoolean(6);
-			final boolean sendEmail = rs.getBoolean(7);
-			final UserNotification userNotification = new UserNotification();
-			userNotification.setUserId(userId);
-			userNotification.setFirstName(firstName);
-			userNotification.setLastName(lastName);
-			userNotification.setEmail(email);
-			userNotification.setPhoneNumber(phoneNumber);
-			userNotification.setSendSms(sendSms);
-			userNotification.setSendEmail(sendEmail);
-			userNotifications.add(userNotification);
+			while (rs.next()) {
+				final int userId = rs.getInt(1);
+				final String firstName = rs.getString(2);
+				final String lastName = rs.getString(3);
+				final String email = rs.getString(4);
+				final String phoneNumber = rs.getString(5);
+				final boolean sendSms = rs.getBoolean(6);
+				final boolean sendEmail = rs.getBoolean(7);
+				final UserNotification userNotification = new UserNotification();
+				userNotification.setUserId(userId);
+				userNotification.setFirstName(firstName);
+				userNotification.setLastName(lastName);
+				userNotification.setEmail(email);
+				userNotification.setPhoneNumber(phoneNumber);
+				userNotification.setSendSms(sendSms);
+				userNotification.setSendEmail(sendEmail);
+				userNotifications.add(userNotification);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException("sql error", e);
 		} finally {

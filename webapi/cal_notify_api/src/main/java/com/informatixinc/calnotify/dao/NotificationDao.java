@@ -222,6 +222,7 @@ public class NotificationDao {
 			ps.setDouble(9, n.getLocation().getLatitude());
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
+			rs.next();
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);

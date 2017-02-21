@@ -24,6 +24,7 @@ public class Notification {
 			String notificationId, Date sendTime, Date expireTime, Point location) {
 		this.type = type;
 		this.typeId = typeId;
+		this.classificationId = classificationId;
 		this.title = title;
 		this.infoUrl = infoUrl;
 		this.notificationId = notificationId;

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.informatixinc.calnotify.dao.DatabasePool;
 import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.dao.NotificationTransmissionDao;
 import com.informatixinc.calnotify.dao.UserDao;
@@ -97,6 +98,18 @@ public class FetchNotificationsJob implements Runnable {
 		nt.setTransmissionTypeId(tt.id);
 		NotificationTransmissionDao dao = new NotificationTransmissionDao();
 		dao.addNew(nt);
+	}
+	
+	public static void main(String...args) {
+		try {
+			ProjectProperties.init();
+			DatabasePool.init();
+			FetchNotificationsJob job = new FetchNotificationsJob();
+			job.run();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
 	}
 
 }
