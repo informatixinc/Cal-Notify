@@ -63,6 +63,8 @@
 	line-height: 50px;
 	padding-left: 10px;
 	padding-right: -10px;
+	border: 1px solid #CCCCCC;
+	border-left: 2px solid #CCCCCC;
 }
 
 .notification-option{
@@ -72,6 +74,11 @@
 	background-color: #F6F6F6;
 	text-align: center;
 	line-height: 50px;
+	border: 1px solid #CCCCCC;
+}
+
+.right-border{
+	border-right: 2px solid #CCCCCC;
 }
 
 .notification-header{

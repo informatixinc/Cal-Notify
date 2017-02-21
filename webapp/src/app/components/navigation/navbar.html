@@ -24,7 +24,7 @@
         <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/home']">{{_languageService.getTranslation('signin') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="!isLoggedIn()">|</li>
         <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/signup']">{{_languageService.getTranslation('createanaccount') | uppercase}}</a></li>
-        <li class = "menu_item"><a [routerLink]="['/notifications']">{{"My Dashboard" | uppercase}}</a></li>
+        <li class = "menu_item" *ngIf="isLoggedIn()"><a [routerLink]="['/dashboard']">{{"My Dashboard" | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn()">|</li>
         <li class = "menu_item" *ngIf="isLoggedIn()"><a [routerLink]="['/notification']">{{"Notifications" | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn()">|</li>

@@ -29,7 +29,7 @@
 		<div class = "little-space"></div>
 		<div class = "box-header">
 			Account Information
-			<div class = "edit-button button">
+			<div class = "edit-button button" [routerLink]="['/account']">
 				Edit
 			</div>
 		</div>
@@ -47,7 +47,7 @@
 	</div>
 	<div class="col-md-5">
 		<div class = "little-space"></div>
-		<div class = "box-header">
+		<div class = "box-header" [routerLink]="['/notification']">
 			Notifications
 			<div class = "edit-button button">
 				Edit
@@ -58,14 +58,14 @@
 				<div class = "nick-name notification-header">Locations</div>
 				<div class = "notification-option notification-header">Text Message</div>
 				<div class = "notification-option notification-header">Email</div>
-				<div class = "notification-option notification-header" style = "line-height: normal;padding-top: 8px;">Push Notification</div>
+				<div class = "notification-option notification-header right-border" style = "line-height: normal;padding-top: 8px;">Push Notification</div>
 				<div class = "clear"></div>
 			</div>
 			<div class = "notification-row" *ngFor="let setting of notificationSettings">
 				<div class = "nick-name">{{setting.nickName}}</div>
 				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.textMessage"></div>
 				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.email"></div>
-				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.pushNotification"></div>
+				<div class = "notification-option right-border"><input type = "checkbox" [(ngModel)]="setting.pushNotification"></div>
 				<div class = "clear"></div>
 			</div>
 
