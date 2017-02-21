@@ -12,6 +12,7 @@ import {NotificationSettings} from './components/user/notification_settings';
 import {Notify} from './components/admin/notify';
 import {Reports} from './components/admin/reports';
 import {PasswordReset} from './components/user/password_reset';
+import {DashBoard} from './components/user/dashboard';
 
 
 const appRoutes: Routes = [
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'reports', component: Reports },
   { path: 'home', component: Home },
   { path: 'setlocation', component: SetLocation },
+  { path: 'dashboard', component: DashBoard },
   { path: '**', component: Home },
 ];
 

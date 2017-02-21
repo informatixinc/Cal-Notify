@@ -1,0 +1,76 @@
+<navbar></navbar>
+<div class = "row">
+	<div class="col-md-11 col-md-offset-1">
+		<h1><b>My <span class = "highlight-blue">Dashboard</span></b></h1>
+	</div>
+</div>
+<div class = "row">
+	<div class="col-md-5 col-md-offset-1 box-height">
+		<div class = "little-space"></div>
+		<div class = "box-header">
+			Emergency Alerts
+		</div>
+		<div class = "alert-notification" *ngFor="let notification of notifications">
+			{{notification}}
+		</div>
+	</div>
+	<div class="col-md-5 box-height">
+		<div class = "little-space"></div>
+		<div class = "box-header">
+			Non-Emergency Alerts
+		</div>
+		<div class = "alert-notification" *ngFor="let notification of notifications">
+			{{notification}}
+		</div>
+	</div>
+</div>
+<div class = "row">
+	<div class="col-md-5 col-md-offset-1">
+		<div class = "little-space"></div>
+		<div class = "box-header">
+			Account Information
+			<div class = "edit-button button" [routerLink]="['/account']">
+				Edit
+			</div>
+		</div>
+		<div class = "box-solid-background box-height account-padding account-font">
+			<div class = "account-header">Name:</div>
+			<div>Sherie Delpriore</div>
+			<div class = "account-header">Address:</div>
+			<div>1723 Glenwood St</div>
+			<div>San Jose, CA 91520</div>
+			<div class = "account-header">Email Address:</div>
+			<div>sheriedelpriore1935@gmail.com</div>
+			<div class = "account-header">Phone Number:</div>
+			<div>555-555-5555</div>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div class = "little-space"></div>
+		<div class = "box-header" [routerLink]="['/notification']">
+			Notifications
+			<div class = "edit-button button">
+				Edit
+			</div>
+		</div>
+		<div class = "box-solid-background box-height">
+			<div class = "notification-row">
+				<div class = "nick-name notification-header">Locations</div>
+				<div class = "notification-option notification-header">Text Message</div>
+				<div class = "notification-option notification-header">Email</div>
+				<div class = "notification-option notification-header right-border" style = "line-height: normal;padding-top: 8px;">Push Notification</div>
+				<div class = "clear"></div>
+			</div>
+			<div class = "notification-row" *ngFor="let setting of notificationSettings">
+				<div class = "nick-name">{{setting.nickName}}</div>
+				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.textMessage"></div>
+				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.email"></div>
+				<div class = "notification-option right-border"><input type = "checkbox" [(ngModel)]="setting.pushNotification"></div>
+				<div class = "clear"></div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div class = "little-space"></div>
+<footer></footer>

@@ -33,7 +33,7 @@
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-3">
-				<div class = "button">{{_languageService.getTranslation('signin')}}</div>		
+				<div class = "button" (click)="login()">{{_languageService.getTranslation('signin')}}</div>		
 			</div>
 		</div>
 		<div class = "little_space"></div>
@@ -51,15 +51,14 @@
 			<div class = "text-center notification-header">
 				Active Notifications
 			</div>
-			<div class = "text-center set-location" *ngIf="_userState.getLocation().zip.length == 0">
-				<div [routerLink]="['/setlocation']">Set my location</div>
+			<div class = "text-center" *ngIf="_userState.getLocation().zip.length == 0">
+				<div class = "button" [routerLink]="['/setlocation']">Set my location</div>
 			</div>
 			<div class = "text-center show-location" *ngIf="_userState.getLocation().zip.length > 0">
 				<div>{{_userState.getLocation().address1}}</div>
 				<div>{{_userState.getLocation().city}} {{_userState.getLocation().zip}}</div>
-				<div class = "set-location" (click)="_userState.resetLocation()">Clear location</div>
+				<div class = "button" (click)="_userState.resetLocation()">Clear location</div>
 			</div>
-			<div class = "little-space"></div>
 			<div class = "notification-card pointer" (click)="goToMessage('1')">
 				<div class = "notification-icon-area">
 					<img src = "https://s3-us-west-2.amazonaws.com/cal-notify/user_icons/storm.png" class = "notification-icon">

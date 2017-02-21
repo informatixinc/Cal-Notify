@@ -1,0 +1,93 @@
+.box-header{
+	height: 50px;
+	line-height: 50px;
+	background-color: #D6D7D9;
+	width: 100%;
+	font-size: 1.5em;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: -10px;
+	position: relative;
+}
+
+.alert-notification{
+	height: 50px;
+	line-height: 50px;
+	background-color: #F1F1F1;
+	width: 100%;
+	font-size: 1.3em;
+	padding-left: 10px;
+	padding-right: -10px;
+	border-top: 1px solid #fff;
+}
+
+.box-height{
+	height: 360px;
+	overflow: hidden;
+}
+
+.box-height:hover{
+	overflow-y:scroll;
+}
+
+.box-solid-background{
+	background-color: #F1F1F1;
+	border-top: 1px solid #fff;
+}
+
+.edit-button{
+	position: absolute;
+	right: 5px;
+	width: 150px;
+}
+
+.account-padding{
+	padding-left: 15px;
+	padding-right: -15px;
+}
+
+.account-font{
+	font-size: 1.3em;
+}
+
+.account-header{
+	margin-top: 15px;	
+	font-weight: bold;
+}
+
+.nick-name{
+	width: 40%;
+	height: 50px;
+	float: left;
+	background-color: #F6F6F6;
+	line-height: 50px;
+	padding-left: 10px;
+	padding-right: -10px;
+	border: 1px solid #CCCCCC;
+	border-left: 2px solid #CCCCCC;
+}
+
+.notification-option{
+	width: 20%;
+	height: 50px;
+	float: left;	
+	background-color: #F6F6F6;
+	text-align: center;
+	line-height: 50px;
+	border: 1px solid #CCCCCC;
+}
+
+.right-border{
+	border-right: 2px solid #CCCCCC;
+}
+
+.notification-header{
+	background-color: #797D86;
+	color: #fff;
+	font-weight: bold;
+}
+
+input{
+	height: 20px;
+	margin-top: 15px;
+}
