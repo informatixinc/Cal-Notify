@@ -205,7 +205,7 @@ public class NotificationDao {
 		ResultSet rs = null;
 		final StringBuilder sql = new StringBuilder();
 		sql.append(" insert into public.notification ");
-		sql.append(" (typeid, classification_id, title, info_url, notification_id, send_time, expire_time, location) ");
+		sql.append(" (type_id, classification_id, title, info_url, notification_id, send_time, expire_time, location) ");
 		sql.append(" values(?, ?, ?, ?, ?, ?, ?, POINT(?, ?)) ");
 		try {
 			ps = conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
@@ -237,7 +237,7 @@ public class NotificationDao {
 		final StringBuilder sql = new StringBuilder();
 		sql.append(" select count(*) ");
 		sql.append(" from public.notification ");
-		sql.append(" where typeid = ? and title = ? and notification_id = ? and expire_time = ? and info_url = ? ");
+		sql.append(" where type_id = ? and title = ? and notification_id = ? and expire_time = ? and info_url = ? ");
 		try {
 			ps = conn.prepareStatement(sql.toString());
 			ps.setInt(1, n.getTypeId());
