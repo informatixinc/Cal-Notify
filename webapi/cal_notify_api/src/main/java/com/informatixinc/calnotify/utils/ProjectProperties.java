@@ -12,6 +12,7 @@ public class ProjectProperties {
 	public static void init() {
 		try {
 			projectProperties.load(ProjectProperties.class.getClassLoader().getResourceAsStream("project.properties"));
+			projectProperties.load(ProjectProperties.class.getClassLoader().getResourceAsStream("application.properties"));
 		} catch (IOException e) {
 			throw new RuntimeException("Unable to load project properties");
 		}
