@@ -18,14 +18,13 @@
 .footer-default>li{
 	display: inline-block;
 	color: #212121;
+	font-size: 1.1em;
+	font-weight: bold;
 }
 .footer-default>li>a{
 	color: #212121;
-	font-size: 1em;
 	display: block;
-    padding-right: 10px;
     padding-top: 10px;
-    padding-left: 10px;
 }
 .footer-icons{
 	list-style-type: none;

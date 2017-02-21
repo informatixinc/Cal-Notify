@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {LanguageService} from '../../services/language/language_service';
+import {ContactObject} from './contact_object';
+import {ContactObjectError} from './contact_error';
 
 @Component({
   selector: 'contact',
@@ -11,6 +13,35 @@ import {LanguageService} from '../../services/language/language_service';
 
 export class Contact {
 
+	contact: ContactObject = new ContactObject();
+	error: ContactObjectError = new ContactObjectError();
 	constructor(private router: Router, private _languageService: LanguageService) {}
 
+	submit(){
+		this.error.name = this.error.email = this.error.message = "";
+
+		document.getElementById("name").style["borderColor"] = "black";
+		document.getElementById("email").style["borderColor"] = "black";
+		document.getElementById("message").style["borderColor"] = "black";
+
+		var valEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+		if(this.contact.name.length == 0){
+			this.error.name = this._languageService.getTranslation("name_required");
+			document.getElementById("name").style["borderColor"] = "#CD2026";
+		}
+		if(this.contact.email.length > 0){
+			if(!valEmail.test(this.contact.email)){
+				this.error.email = this._languageService.getTranslation("email_validation");
+				document.getElementById("email").style["borderColor"] = "#CD2026";
+			}
+		}else{
+			this.error.email = this._languageService.getTranslation("email_required");
+			document.getElementById("email").style["borderColor"] = "#CD2026";
+		}
+		if(this.contact.message.length == 0){
+			this.error.message = this._languageService.getTranslation("message_required");
+			document.getElementById("message").style["borderColor"] = "#CD2026";
+		}
+	}
 }
