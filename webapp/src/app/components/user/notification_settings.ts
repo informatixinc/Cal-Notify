@@ -44,5 +44,5 @@ export class NotificationSettings {
 	stripNonNumeric(input: string){
 		return input.replace(/\D/g, '');
 	}
- 
+
 }

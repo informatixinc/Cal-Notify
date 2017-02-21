@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.MessageAttributeValue;
 import com.amazonaws.services.sns.model.PublishRequest;
@@ -13,8 +15,10 @@ import com.amazonaws.services.sns.model.PublishResult;
 public class SmsClient {
 
 	public void send(final String phoneNumber, final String message) {
-		//AWSCredentials credentials = new BasicAWSCredentials("xxx", "xxx");
-		final AmazonSNSClient client = new AmazonSNSClient();
+		final String accessKey = ProjectProperties.getProperty("aws_snsAccessKey");
+		final String secretKey = ProjectProperties.getProperty("aws_snsSecretKey");
+		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+		final AmazonSNSClient client = new AmazonSNSClient(credentials);
 		final Map<String, MessageAttributeValue> smsAttributes =
 		        new HashMap<String, MessageAttributeValue>();
 		smsAttributes.put("AWS.SNS.SMS.SenderID", new MessageAttributeValue()

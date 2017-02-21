@@ -3,9 +3,10 @@ package com.informatixinc.calnotify.model;
 import java.util.Date;
 
 public class Notification {
-
+	private int id;
 	private String type;
 	private int typeId;
+	private int classificationId;
 	private String title;
 	private String imageUrl;
 	private String infoUrl;
@@ -19,8 +20,8 @@ public class Notification {
 
 	}
 
-	public Notification(String type, int typeId, String title, String infoUrl, String notificationId, Date sendTime,
-			Date expireTime, Point location) {
+	public Notification(String type, int typeId, int classificationId, String title, String infoUrl,
+			String notificationId, Date sendTime, Date expireTime, Point location) {
 		this.type = type;
 		this.typeId = typeId;
 		this.title = title;
@@ -29,7 +30,14 @@ public class Notification {
 		this.sendTime = sendTime;
 		this.expireTime = expireTime;
 		this.location = location;
+	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -78,6 +86,14 @@ public class Notification {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public int getClassificationId() {
+		return classificationId;
+	}
+
+	public void setClassificationId(int classificationId) {
+		this.classificationId = classificationId;
 	}
 
 	public String getInfoUrl() {

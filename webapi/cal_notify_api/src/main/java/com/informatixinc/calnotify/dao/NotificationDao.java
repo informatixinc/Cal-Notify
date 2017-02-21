@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -24,12 +25,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.informatixinc.calnotify.model.Notification;
+import com.informatixinc.calnotify.model.NotificationClassification;
 import com.informatixinc.calnotify.model.NotificationSettings;
 import com.informatixinc.calnotify.model.NotificationType;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
-import com.informatixinc.calnotify.utils.ProjectProperties;
 import com.informatixinc.calnotify.utils.StringUtils;
 
 public class NotificationDao {
@@ -118,9 +119,11 @@ public class NotificationDao {
 		return notifications;
 	}
 
-	public void save(Notification notification) {
+	public int addNew(Notification notification) {
 		if (!isDuplicate(notification)) {
-			insert(notification);
+			return doInsert(notification);
+		} else {
+			return -1;
 		}
 	}
 
@@ -190,31 +193,36 @@ public class NotificationDao {
 		double longitude = StringUtils.parseDouble(rings.get(0).getAsString());
 		location.setLatitude(latitude);
 		location.setLongitude(longitude);
-		final Notification notification = new Notification(type.name(), type.id, title, infoUrl, notificationId,
-				new Date(), expireTime, location);
+		int classificationId = this.lookUpClassificationId(title);
+		final Notification notification = new Notification(type.name(), type.id, classificationId, title, infoUrl,
+				notificationId, new Date(), expireTime, location);
 		return notification;
 	}
 	
-	private void insert(Notification n) {
+	private int doInsert(Notification n) {
 		Connection conn = DatabasePool.getConnection();
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		final StringBuilder sql = new StringBuilder();
 		sql.append(" insert into public.notification ");
-		sql.append(" (typeid, title, info_url, notification_id, send_time, expire_time, location) ");
-		sql.append(" values(?, ?, ?, ?, ?, ?, POINT(?, ?)) ");
+		sql.append(" (typeid, classification_id, title, info_url, notification_id, send_time, expire_time, location) ");
+		sql.append(" values(?, ?, ?, ?, ?, ?, ?, POINT(?, ?)) ");
 		try {
-			ps = conn.prepareStatement(sql.toString());
+			ps = conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, n.getTypeId());
-			ps.setString(2, n.getTitle());
-			ps.setString(3, n.getInfoUrl());
-			ps.setString(4, n.getNotificationId());
+			ps.setInt(2, n.getClassificationId());
+			ps.setString(3, n.getTitle());
+			ps.setString(4, n.getInfoUrl());
+			ps.setString(5, n.getNotificationId());
 			final Timestamp sendTime = new Timestamp(n.getSendTime().getTime());
 			final Timestamp expireTime = new Timestamp(n.getExpireTime().getTime());
-			ps.setTimestamp(5, sendTime);
-			ps.setTimestamp(6, expireTime);
-			ps.setDouble(7, n.getLocation().getLongitude());
-			ps.setDouble(8, n.getLocation().getLatitude());
+			ps.setTimestamp(6, sendTime);
+			ps.setTimestamp(7, expireTime);
+			ps.setDouble(8, n.getLocation().getLongitude());
+			ps.setDouble(9, n.getLocation().getLatitude());
 			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally {
@@ -247,5 +255,20 @@ public class NotificationDao {
 		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
+	}
+	
+	private int lookUpClassificationId(final String title) {
+		NotificationClassification nc = NotificationClassification.valueOf(title.replaceAll(" ", ""));
+		return nc.getId();
+	}
+	
+	public static void main(String...args) {
+		try {
+			NotificationClassification nc = NotificationClassification.valueOf("BlowingDustAdvisory");
+			System.out.println(nc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
 	}
 }
