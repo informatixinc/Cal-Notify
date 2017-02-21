@@ -5,13 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.UsState;
 import com.informatixinc.calnotify.model.User;
+import com.informatixinc.calnotify.model.UserNotification;
 import com.informatixinc.calnotify.utils.AuthMap;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
+import com.informatixinc.calnotify.utils.ProjectProperties;
 import com.informatixinc.calnotify.utils.SecurityUtils;
 
 public class UserDao {
@@ -177,8 +182,49 @@ public class UserDao {
 		
 		return putResponse;
 	}
-	
-	
+
+	public List<UserNotification> findUsersInProximityofEvent(Point point) {
+		final List<UserNotification> userNotifications = new ArrayList<UserNotification>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		final int MAXDISTANCEINMILES = ProjectProperties.getProperty("app_maxDistanceInMiles", 50);
+		final StringBuilder sql = new StringBuilder();
+		sql.append(" select u.id, u.first_name, u.last_name, u.email, u.phone_number, ns.sms, ns.email ");
+		sql.append(" from public.user u ");
+		sql.append(" inner join public.user_location ul on ul.user_id = u.id ");
+		sql.append("	and (ul.location <@> POINT(?, ?)) < ? ");
+		sql.append(" inner join public.notification_settings ns on ns.user_location_id = ul.id ");
+		try {
+			conn = DatabasePool.getConnection();
+			ps = conn.prepareStatement(sql.toString());
+			ps.setDouble(0, point.getLongitude());
+			ps.setDouble(1, point.getLatitude());
+			ps.setInt(3, MAXDISTANCEINMILES);
+			rs = ps.executeQuery();
+			final int userId = rs.getInt(1);
+			final String firstName = rs.getString(2);
+			final String lastName = rs.getString(3);
+			final String email = rs.getString(4);
+			final String phoneNumber = rs.getString(5);
+			final boolean sendSms = rs.getBoolean(6);
+			final boolean sendEmail = rs.getBoolean(7);
+			final UserNotification userNotification = new UserNotification();
+			userNotification.setUserId(userId);
+			userNotification.setFirstName(firstName);
+			userNotification.setLastName(lastName);
+			userNotification.setEmail(email);
+			userNotification.setPhoneNumber(phoneNumber);
+			userNotification.setSendSms(sendSms);
+			userNotification.setSendEmail(sendEmail);
+			userNotifications.add(userNotification);
+		} catch (SQLException e) {
+			throw new RuntimeException("sql error", e);
+		} finally {
+			DatabaseUtils.safeClose(conn, ps, rs);
+		}
+		return userNotifications;
+	}
 	
 	
 }

@@ -14,14 +14,14 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -37,7 +37,40 @@ create extension cube;
 create extension earthdistance;
 
 --
--- Name: contact_request; Type: TABLE; Schema: public; Owner: -
+-- Name: account_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE account_type (
+    id integer NOT NULL,
+    type text
+);
+
+
+ALTER TABLE account_type OWNER TO postgres;
+
+--
+-- Name: account_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE account_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE account_type_id_seq OWNER TO postgres;
+
+--
+-- Name: account_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE account_type_id_seq OWNED BY account_type.id;
+
+
+--
+-- Name: contact_request; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE contact_request (
@@ -48,8 +81,10 @@ CREATE TABLE contact_request (
 );
 
 
+ALTER TABLE contact_request OWNER TO postgres;
+
 --
--- Name: contact_request_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: contact_request_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE contact_request_id_seq
@@ -60,61 +95,23 @@ CREATE SEQUENCE contact_request_id_seq
     CACHE 1;
 
 
+ALTER TABLE contact_request_id_seq OWNER TO postgres;
+
 --
--- Name: contact_request_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: contact_request_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE contact_request_id_seq OWNED BY contact_request.id;
 
 
 --
--- Name: user; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE "user" (
-    id integer NOT NULL,
-    email text,
-    password bytea,
-    last_login time with time zone,
-    first_name text,
-    last_name text,
-    phone_number text,
-    address_one text,
-    address_two text,
-    state_id integer,
-    city text,
-    zip_code text,
-    signup_date time with time zone,
-    salt bytea
-);
-
-
---
--- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE user_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE user_id_seq OWNED BY "user".id;
-
-
---
--- Name: notification; Type: TABLE; Schema: public; Owner: -
+-- Name: notification; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE notification (
   id integer NOT NULL,
-  typeId integer,
+  type_id integer,
+  classification_id integer,
   title text,
   image_url text,
   info_url text,
@@ -125,8 +122,10 @@ CREATE TABLE notification (
 );
 
 
+ALTER TABLE notification OWNER TO postgres;
+
 --
--- Name: notification_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: notification_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE notification_id_seq
@@ -137,27 +136,31 @@ CREATE SEQUENCE notification_id_seq
     CACHE 1;
 
 
+ALTER TABLE notification_id_seq OWNER TO postgres;
+
 --
--- Name: notification_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: notification_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE notification_id_seq OWNED BY notification.id;
 
 
 --
--- Name: notification_settings; Type: TABLE; Schema: public; Owner: -
+-- Name: notification_settings; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE notification_settings (
-    user_id integer NOT NULL,
+    user_location_id integer NOT NULL,
     sms boolean,
     email boolean,
     push_notification boolean
 );
 
 
+ALTER TABLE notification_settings OWNER TO postgres;
+
 --
--- Name: notification_transmission; Type: TABLE; Schema: public; Owner: -
+-- Name: notification_transmission; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE notification_transmission (
@@ -169,22 +172,26 @@ CREATE TABLE notification_transmission (
 );
 
 
+ALTER TABLE notification_transmission OWNER TO postgres;
+
 --
--- Name: notification_type; Type: TABLE; Schema: public; Owner: -
+-- Name: notification_classification; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE notification_type (
+CREATE TABLE notification_classification (
     type text,
     icon text,
     id integer NOT NULL
 );
 
 
+ALTER TABLE notification_classification OWNER TO postgres;
+
 --
--- Name: notification_type_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: notification_classification_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE notification_type_id_seq
+CREATE SEQUENCE notification_classification_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -192,15 +199,17 @@ CREATE SEQUENCE notification_type_id_seq
     CACHE 1;
 
 
---
--- Name: notification_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE notification_type_id_seq OWNED BY notification_type.id;
-
+ALTER TABLE notification_classification_id_seq OWNER TO postgres;
 
 --
--- Name: sns_token; Type: TABLE; Schema: public; Owner: -
+-- Name: notification_classification_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE notification_classification_id_seq OWNED BY notification_classification.id;
+
+
+--
+-- Name: sns_token; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE sns_token (
@@ -211,8 +220,10 @@ CREATE TABLE sns_token (
 );
 
 
+ALTER TABLE sns_token OWNER TO postgres;
+
 --
--- Name: sns_token_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sns_token_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE sns_token_id_seq
@@ -223,15 +234,17 @@ CREATE SEQUENCE sns_token_id_seq
     CACHE 1;
 
 
+ALTER TABLE sns_token_id_seq OWNER TO postgres;
+
 --
--- Name: sns_token_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sns_token_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE sns_token_id_seq OWNED BY sns_token.id;
 
 
 --
--- Name: sns_type; Type: TABLE; Schema: public; Owner: -
+-- Name: sns_type; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE sns_type (
@@ -240,8 +253,10 @@ CREATE TABLE sns_type (
 );
 
 
+ALTER TABLE sns_type OWNER TO postgres;
+
 --
--- Name: sns_type_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sns_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE sns_type_id_seq
@@ -252,15 +267,17 @@ CREATE SEQUENCE sns_type_id_seq
     CACHE 1;
 
 
+ALTER TABLE sns_type_id_seq OWNER TO postgres;
+
 --
--- Name: sns_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sns_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE sns_type_id_seq OWNED BY sns_type.id;
 
 
 --
--- Name: transmission_type; Type: TABLE; Schema: public; Owner: -
+-- Name: transmission_type; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE transmission_type (
@@ -269,8 +286,10 @@ CREATE TABLE transmission_type (
 );
 
 
+ALTER TABLE transmission_type OWNER TO postgres;
+
 --
--- Name: transmission_type_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: transmission_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE transmission_type_id_seq
@@ -281,15 +300,17 @@ CREATE SEQUENCE transmission_type_id_seq
     CACHE 1;
 
 
+ALTER TABLE transmission_type_id_seq OWNER TO postgres;
+
 --
--- Name: transmission_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: transmission_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE transmission_type_id_seq OWNED BY transmission_type.id;
 
 
 --
--- Name: us_state; Type: TABLE; Schema: public; Owner: -
+-- Name: us_state; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE us_state (
@@ -298,8 +319,10 @@ CREATE TABLE us_state (
 );
 
 
+ALTER TABLE us_state OWNER TO postgres;
+
 --
--- Name: us_state_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: us_state_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE us_state_id_seq
@@ -310,26 +333,109 @@ CREATE SEQUENCE us_state_id_seq
     CACHE 1;
 
 
+ALTER TABLE us_state_id_seq OWNER TO postgres;
+
 --
--- Name: us_state_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: us_state_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE us_state_id_seq OWNED BY us_state.id;
 
 
 --
--- Name: user_locations; Type: TABLE; Schema: public; Owner: -
+-- Name: user; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE user_locations (
-    user_id integer,
-    location point,
-    id integer NOT NULL
+CREATE TABLE "user" (
+    id integer NOT NULL,
+    email text,
+    password bytea,
+    last_login time with time zone,
+    first_name text,
+    last_name text,
+    phone_number text,
+    signup_date time with time zone,
+    salt bytea,
+    account_type integer
 );
 
 
+ALTER TABLE "user" OWNER TO postgres;
+
 --
--- Name: user_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: user_address; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE user_address (
+    id integer NOT NULL,
+    user_id integer,
+    address_one text,
+    address_two text,
+    state_id integer,
+    zip_code text
+);
+
+
+ALTER TABLE user_address OWNER TO postgres;
+
+--
+-- Name: user_address_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE user_address_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE user_address_id_seq OWNER TO postgres;
+
+--
+-- Name: user_address_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE user_address_id_seq OWNED BY user_address.id;
+
+
+--
+-- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE user_id_seq OWNER TO postgres;
+
+--
+-- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE user_id_seq OWNED BY "user".id;
+
+
+--
+-- Name: user_location; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE user_location (
+    user_id integer,
+    location point,
+    id integer NOT NULL,
+    address_id integer
+);
+
+
+ALTER TABLE user_location OWNER TO postgres;
+
+--
+-- Name: user_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE user_locations_id_seq
@@ -340,78 +446,102 @@ CREATE SEQUENCE user_locations_id_seq
     CACHE 1;
 
 
---
--- Name: user_locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE user_locations_id_seq OWNED BY user_locations.id;
-
+ALTER TABLE user_locations_id_seq OWNER TO postgres;
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: user_locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE user_locations_id_seq OWNED BY user_location.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY account_type ALTER COLUMN id SET DEFAULT nextval('account_type_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY contact_request ALTER COLUMN id SET DEFAULT nextval('contact_request_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY notification ALTER COLUMN id SET DEFAULT nextval('notification_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY notification_type ALTER COLUMN id SET DEFAULT nextval('notification_type_id_seq'::regclass);
+ALTER TABLE ONLY notification_classification ALTER COLUMN id SET DEFAULT nextval('notification_classification_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY sns_token ALTER COLUMN id SET DEFAULT nextval('sns_token_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY sns_type ALTER COLUMN id SET DEFAULT nextval('sns_type_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY transmission_type ALTER COLUMN id SET DEFAULT nextval('transmission_type_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY us_state ALTER COLUMN id SET DEFAULT nextval('us_state_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY user_locations ALTER COLUMN id SET DEFAULT nextval('user_locations_id_seq'::regclass);
+ALTER TABLE ONLY user_address ALTER COLUMN id SET DEFAULT nextval('user_address_id_seq'::regclass);
 
 
 --
--- Name: pk_contact_request; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_location ALTER COLUMN id SET DEFAULT nextval('user_locations_id_seq'::regclass);
+
+
+--
+-- Name: pk_account_type; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY account_type
+    ADD CONSTRAINT pk_account_type PRIMARY KEY (id);
+
+
+--
+-- Name: pk_contact_request; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY contact_request
@@ -419,7 +549,7 @@ ALTER TABLE ONLY contact_request
 
 
 --
--- Name: pk_notification; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_notification; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY notification
@@ -427,15 +557,15 @@ ALTER TABLE ONLY notification
 
 
 --
--- Name: pk_notification_settings; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_notification_settings; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY notification_settings
-    ADD CONSTRAINT pk_notification_settings PRIMARY KEY (user_id);
+    ADD CONSTRAINT pk_notification_settings PRIMARY KEY (user_location_id);
 
 
 --
--- Name: pk_notification_transmission; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_notification_transmission; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY notification_transmission
@@ -443,15 +573,15 @@ ALTER TABLE ONLY notification_transmission
 
 
 --
--- Name: pk_notification_type; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_notification_classification; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY notification_type
-    ADD CONSTRAINT pk_notification_type PRIMARY KEY (id);
+ALTER TABLE ONLY notification_classification
+    ADD CONSTRAINT pk_notification_classification PRIMARY KEY (id);
 
 
 --
--- Name: pk_sns_token; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_sns_token; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY sns_token
@@ -459,7 +589,7 @@ ALTER TABLE ONLY sns_token
 
 
 --
--- Name: pk_sns_type; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_sns_type; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY sns_type
@@ -467,7 +597,7 @@ ALTER TABLE ONLY sns_type
 
 
 --
--- Name: pk_transmission_type; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_transmission_type; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY transmission_type
@@ -475,7 +605,7 @@ ALTER TABLE ONLY transmission_type
 
 
 --
--- Name: pk_us_state; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_us_state; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY us_state
@@ -483,7 +613,7 @@ ALTER TABLE ONLY us_state
 
 
 --
--- Name: pk_user; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_user; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY "user"
@@ -491,15 +621,23 @@ ALTER TABLE ONLY "user"
 
 
 --
--- Name: pk_user_location; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pk_user_address; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY user_locations
+ALTER TABLE ONLY user_address
+    ADD CONSTRAINT pk_user_address PRIMARY KEY (id);
+
+
+--
+-- Name: pk_user_location; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_location
     ADD CONSTRAINT pk_user_location PRIMARY KEY (id);
 
 
 --
--- Name: uk_user_email; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: uk_user_email; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY "user"
@@ -507,15 +645,23 @@ ALTER TABLE ONLY "user"
 
 
 --
--- Name: fk_notification_settings_user; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_notification_notification_classification; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY notification
+    ADD CONSTRAINT fk_notification_notification_classification FOREIGN KEY (classification_id) REFERENCES notification_classification(id);
+
+
+--
+-- Name: fk_notification_settings_user_location; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY notification_settings
-    ADD CONSTRAINT fk_notification_settings_user FOREIGN KEY (user_id) REFERENCES "user"(id);
+    ADD CONSTRAINT fk_notification_settings_user_location FOREIGN KEY (user_location_id) REFERENCES user_location(id);
 
 
 --
--- Name: fk_notification_transmission_notification; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_notification_transmission_notification; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY notification_transmission
@@ -523,7 +669,7 @@ ALTER TABLE ONLY notification_transmission
 
 
 --
--- Name: fk_notification_transmission_user; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_notification_transmission_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY notification_transmission
@@ -531,7 +677,7 @@ ALTER TABLE ONLY notification_transmission
 
 
 --
--- Name: fk_sns_token_sns_type; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_sns_token_sns_type; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY sns_token
@@ -539,7 +685,7 @@ ALTER TABLE ONLY sns_token
 
 
 --
--- Name: fk_sns_token_user; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_sns_token_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY sns_token
@@ -547,15 +693,31 @@ ALTER TABLE ONLY sns_token
 
 
 --
--- Name: fk_user_locations_user; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_user_account_type; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY user_locations
+ALTER TABLE ONLY "user"
+    ADD CONSTRAINT fk_user_account_type FOREIGN KEY (account_type) REFERENCES account_type(id);
+
+
+--
+-- Name: fk_user_address_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_address
+    ADD CONSTRAINT fk_user_address_user FOREIGN KEY (user_id) REFERENCES "user"(id);
+
+
+--
+-- Name: fk_user_locations_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_location
     ADD CONSTRAINT fk_user_locations_user FOREIGN KEY (user_id) REFERENCES "user"(id);
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: -
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
