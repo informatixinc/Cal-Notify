@@ -10,6 +10,7 @@ import {ApiRequest} from './services/http/api_request';
 import {UserState} from './services/user_state/user_state';
 
 import {Home} from './components/home/home';
+import {SetLocation} from './components/home/set_location';
 import {NavBar} from './components/navigation/navbar';
 import {Footer} from './components/navigation/footer';
 import {Signup} from './components/signup/signup';
@@ -25,7 +26,7 @@ import {PasswordReset} from './components/user/password_reset';
 
 @NgModule({
   imports: [ BrowserModule, routing, FormsModule, HttpModule, ReactiveFormsModule ],
-  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Faq, Contact, Privacy, EditProfile, NotificationSettings, Notify, Reports, PasswordReset],
+  declarations: [ AppComponent, Home, NavBar, Footer, Signup, Faq, Contact, Privacy, EditProfile, NotificationSettings, Notify, Reports, PasswordReset, SetLocation],
   providers: [appRoutingProviders, ApiRequest, UserState, LanguageService],
   bootstrap: [ AppComponent ]
 })

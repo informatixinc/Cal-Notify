@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Address} from '../../components/common/address';
+
 
 @Injectable()
 export class UserState {
@@ -24,5 +26,20 @@ export class UserState {
 
 	removeSession(){
 		localStorage.removeItem("session");
+	}
+
+	resetLocation(){
+		localStorage.removeItem("address");
+	}
+
+	setLocation(address: Address){
+		localStorage.setItem("address", JSON.stringify(address));
+	}
+
+	getLocation():Address{
+		if(localStorage.getItem("address") == null){
+			return new Address();
+		}
+		return (JSON.parse(localStorage.getItem("address")));	
 	}
 }

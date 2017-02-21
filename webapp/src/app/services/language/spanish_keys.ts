@@ -19,6 +19,7 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "create_account", "value": "Crea una cuenta" },
 		{ "key": "login", "value": "Iniciar Sesión" },
 		{ "key": "email", "value": "Email" },
+		{ "key": "email_account", "value": "Cuenta de correo electrónico" },
 		{ "key": "password", "value": "Contraseña" },
 		{ "key": "contact_us", "value": "Contáctenos" },
 		{ "key": "privacy_policy", "value": "Política de privacidad" },
@@ -52,5 +53,6 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "send", "value": "Enviar" },
 		{ "key": "reports", "value": "Informes" },
 		{ "key": "forgot_password", "value": "Se te olvidó tu contraseña ?" },
+		{ "key": "show_password", "value": "Mostrar contraseña"},
 		
 ]

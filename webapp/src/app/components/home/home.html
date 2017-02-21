@@ -4,16 +4,69 @@
 		<img src = "assets/images/ocean.jpg" class = "banner">
 	</div>
 </div>
-<div class = "container">
+<div class = "main-container">
 	<div class = "main-body">
 		<h1><b>Welcome to <span class = "highlight-blue">Cal Notify</span></b></h1>
 		<p>Cal Notify has been established to help keep California residents informed about events that may impact their safety, health and / or daily activities.  Residents can receive email, text and push notifications for multiple locations including home, child day care, work, etc.  We encourage you to create an account so you can receive instant notifications concerning your safety and the safety of those you care about.</p>
 
 		<p>To find active notifications in your area, you may search by zip code in the active notification panel.  You do not need to create an account to search.</p>
+
+		<h1><b>Sign In</b></h1>
+		<p class = "strip-decorators">or <a [routerLink]="['/signup']">{{_languageService.getTranslation('createanaccount')}}</a></p>
+		<div class="row">
+			<div class = "col-md-8">
+				<span>{{_languageService.getTranslation('email_account')}}</span>
+				<input type="text" class = "form-input" placeholder="" id = "email"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class = "col-md-8">
+				<span>{{_languageService.getTranslation('password')}}</span>
+				<input type="password" class = "form-input" placeholder="" id = "password"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class = "col-md-7 text-right password-align">
+				{{_languageService.getTranslation('show_password')}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="little_space"></div>
+			<div class = "col-md-3">
+				<div class = "button">{{_languageService.getTranslation('signin')}}</div>		
+			</div>
+		</div>
+		<div class = "little_space"></div>
+		<div class="row">
+			<div class = "col-md-3 forgot-password">
+				{{_languageService.getTranslation('forgot_password')}}
+			</div>
+		</div>
+
+		<div class = "med-space"></div>
 	</div>
 
 	<div class = "notification-body">
-		sdfsdf
+		<div class = "notification-setter">
+			<div class = "text-center notification-header">
+				Active Notifications
+			</div>
+			<div class = "text-center set-location" *ngIf="_userState.getLocation().zip.length == 0">
+				<div [routerLink]="['/setlocation']">Set my location</div>
+			</div>
+			<div class = "text-center show-location" *ngIf="_userState.getLocation().zip.length > 0">
+				<div>{{_userState.getLocation().address1}}</div>
+				<div>{{_userState.getLocation().city}} {{_userState.getLocation().zip}}</div>
+				<div class = "set-location" (click)="_userState.resetLocation()">Clear location</div>
+			</div>
+			<div class = "little-space"></div>
+			<div class = "notification-card pointer" (click)="goToMessage('1')">
+				<div class = "notification-icon-area">
+					<img src = "https://s3-us-west-2.amazonaws.com/cal-notify/user_icons/storm.png" class = "notification-icon">
+				</div>
+				<div class = "message"><b>Flood Warning</b><br>Today at 8:14 AM PST</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div class = "clear"></div>

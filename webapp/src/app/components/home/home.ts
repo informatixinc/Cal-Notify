@@ -16,6 +16,12 @@ export class Home {
 
 	constructor( private router: Router, private _apiRequest: ApiRequest, private _userState: UserState, private _languageService: LanguageService) {}
 
+	ngOnInit(){
+		setTimeout(() => {
+			document.getElementsByClassName("notification-body")[0]["style"].height = document.getElementsByClassName("main-body")[0].clientHeight + "px";
+		},1);
+	}
+
 	signup(){
 		this.router.navigate(['signup']);
 	}

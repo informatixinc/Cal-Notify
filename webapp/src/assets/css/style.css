@@ -42,6 +42,10 @@
     display: block;   
 }
 
+.required{
+    color: #CD2026;
+}
+
 .clear{
 	clear: both;
 }

@@ -1,0 +1,44 @@
+<navbar></navbar>
+<div class = "border">
+	<div class = "row">
+		<div class = "col-md-4 col-md-offset-1">
+			<h1><b>Set my <span class="highlight-blue">Location</span></b></h1>
+		</div>		
+	</div>
+	<div class="row">
+		<div class="little-space"></div>
+		<div class = "col-md-8 col-md-offset-1">
+			<label>{{_languageService.getTranslation('address1')}}</label>
+			<input type="text" class = "form-input address" placeholder="" id = "address1" [(ngModel)]="address.address1"/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class = "col-md-4 col-md-offset-1">
+			<div class="little-space"></div>
+			<label>{{_languageService.getTranslation('city')}}</label>
+			<input type="text" class = "form-input" placeholder="" id = "city" [(ngModel)]="address.city" />
+		</div>
+		<div class = "col-md-2">
+			<div class="little-space"></div>
+			<label>{{_languageService.getTranslation('state')}}</label>
+			<select class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id = "state" [(ngModel)]="address.state">
+				<option *ngFor="let state of states" value="{{state}}">{{state}}</option>			  
+			</select>
+		</div>
+		<div class = "col-md-2">
+			<div class="little-space"></div>
+			<label>{{_languageService.getTranslation('zip_code')}}</label>
+			<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+			<input type="text" class = "form-input" placeholder="" id = "zipcode" [(ngModel)]="address.zip" />
+		</div>
+	</div>
+	<div class="row">
+		<div class = "col-md-8 col-md-offset-1">
+			<div class="little-space"></div>
+			<div class = "button" (click)="setLocation()">Set Location</div>		
+		</div>
+	</div>
+	<div class="little-space"></div>
+</div>
+<footer></footer>

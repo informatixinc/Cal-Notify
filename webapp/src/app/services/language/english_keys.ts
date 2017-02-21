@@ -21,6 +21,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "signin", "value": "Sign In" },
 		{ "key": "information", "value": "Information" },
 		{ "key": "email", "value": "Email" },
+		{ "key": "email_account", "value": "Email Account" },
 		{ "key": "password", "value": "Password" },
 		{ "key": "contact_us", "value": "Contact Us" },
 		{ "key": "contact", "value": "Contact" },
@@ -64,7 +65,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "send", "value": "Send" },
 		{ "key": "reports", "value": "Reports" },
 		{ "key": "high_wind_warning", "value": "High Wind Warning" },
-		{ "key": "forgot_password", "value": "Forgot Password ?" },
+		{ "key": "forgot_password", "value": "Forgot Password?" },
 		{ "key": "first_name_required", "value": "First Name Required" },
 		{ "key": "last_name_required", "value": "Last Name Required" },
 		{ "key": "email_required", "value": "Email Required" },
@@ -90,6 +91,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "password_reset_info", "value": "Send Password Reset Instructions" },
 		{ "key": "password_reset_text", "value": "Enter your email below and we'll email instructions on how to reset your password." },
 		{ "key": "email_addr", "value": "Email Address" },
+		{ "key": "show_password", "value": "Show Password"},
 	]
 
 

@@ -2,6 +2,7 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import {Home} from './components/home/home';
+import {SetLocation} from './components/home/set_location';
 import {Signup} from './components/signup/signup';
 import {Faq} from './components/faq/faq';
 import {Contact} from './components/contact/contact';
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'notify', component: Notify },
   { path: 'reports', component: Reports },
   { path: 'home', component: Home },
+  { path: 'setlocation', component: SetLocation },
   { path: '**', component: Home },
 ];
 
