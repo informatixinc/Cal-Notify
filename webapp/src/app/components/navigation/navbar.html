@@ -1,6 +1,7 @@
 <div class = "outer_title">
   <div class="inner_title">
-    <a class="title navbar-brand " [routerLink]="['/home']">Cal Notify</a>
+    <a class="title navbar-brand " [routerLink]="['/home']" *ngIf="!isLoggedIn()">Cal Notify</a>
+    <a class="title navbar-brand " [routerLink]="['/dashboard']" *ngIf="isLoggedIn()">Cal Notify</a>
     <div class = "sub-header">
       ALERT NOTIFICATION SYSTEM
     </div>
