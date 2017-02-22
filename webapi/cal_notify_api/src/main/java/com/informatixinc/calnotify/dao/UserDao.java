@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.informatixinc.calnotify.model.Address;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.Session;
@@ -54,10 +55,10 @@ public class UserDao {
 				DatabaseUtils.safeClose(ps, rs);
 				ps = conn.prepareStatement("insert into public.user_address (user_id, address_one, address_two, state_id, zip_code) values (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 				ps.setInt(1, userId);
-				ps.setString(2, user.getAddressOne());
-				ps.setString(3, user.getAddressTwo());
-				ps.setInt(4, UsState.getStateId(user.getState()));
-				ps.setString(5, user.getZipCode());
+				ps.setString(2, user.getAddress().getAddressOne());
+				ps.setString(3, user.getAddress().getAddressTwo());
+				ps.setInt(4, UsState.getStateId(user.getAddress().getState()));
+				ps.setString(5, user.getAddress().getZipCode());
 				ps.executeUpdate();
 				
 				rs = ps.getGeneratedKeys();
@@ -115,27 +116,21 @@ public class UserDao {
 			ps.setBytes(2, SecurityUtils.hashPassword(login.getPassword().getBytes(), salt));
 			rs = ps.executeQuery();
 			
-			int userId;
-			
 			if(rs.next()){
-				userId = rs.getInt("id");
+				session.setSession(AuthMap.addLogin(login.getEmail()));
+				return session;
 			}else{
 				session.getErrorResponse().setError(true);
 				session.getErrorResponse().setErrorMessage("Invalid email or password");
 				return session;
 			}
 			
-			DatabaseUtils.safeClose(ps, rs);
-			
-			session.setSession(AuthMap.addLogin(login.getEmail()));
 			
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally{
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
-		
-		return session;
 		
 	}
 	
@@ -159,11 +154,50 @@ public class UserDao {
 			ps = conn.prepareStatement("select user.id as user_id, user_location.id as location_id from public.user, public.user_location where public.user.id = user_location.user_id where user.email = ?");
 			ps.setString(1, email);
 			rs = ps.executeQuery();
+			ps.close();
 			if(rs.next()){
 				userId = rs.getInt("user_id");
 				locationId = rs.getInt("location_id");
 				DatabaseUtils.safeClose(ps, rs);
-				ps=conn.prepareStatement("update public.user set ");
+				StringBuilder sb = new StringBuilder();
+				sb.append("update public.user set email = ?,");
+				if(user.getPassword().length() > 0){
+					sb.append("password = ?,salt = ?");
+				}
+				sb.append("first_name = ?, last_name = ?, phone_number = ?");
+				sb.append("where public.user.id = ?");
+				
+				int index = 1;
+				ps=conn.prepareStatement(sb.toString());
+				ps.setString(index++, user.getEmail());
+				if(user.getPassword().length() > 0){
+					byte[] salt = SecurityUtils.getNewSalt();
+					ps.setBytes(index++, SecurityUtils.hashPassword(user.getPassword().getBytes(), salt));
+					ps.setBytes(index++, salt);
+				}
+				ps.setString(index++, user.getFirstName());
+				ps.setString(index++, user.getLastName());
+				ps.setString(index++, user.getPhoneNumber());
+				ps.setInt(index++, userId);
+				
+				if(ps.executeUpdate() == 1){
+					DatabaseUtils.safeClose(ps,rs);
+					ps = conn.prepareStatement("update public.user_address set address_one = ?, address_two = ?, state_id = ?, nick_name = ? where id = ?");
+					ps.setString(1, user.getAddress().getAddressOne());
+					ps.setString(2, user.getAddress().getAddressTwo());
+					ps.setInt(3, UsState.getStateId(user.getAddress().getState()));
+					ps.setString(4, user.getAddress().getNickName());
+					ps.setInt(5, locationId);
+					
+					if(ps.executeUpdate() == 1){
+						return putResponse;
+					}else{
+						throw new RuntimeException("Error updating user address");
+					}
+					
+				}else{
+					throw new RuntimeException("Error updating user account");
+				}
 				
 			}else{
 				putResponse.getErrorResponse().setError(true);
@@ -178,9 +212,6 @@ public class UserDao {
 		} finally{
 			DatabaseUtils.safeClose(conn, ps);
 		}
-		
-		
-		return putResponse;
 	}
 
 	public List<UserNotification> findUsersInProximityofEvent(Point point) {
@@ -228,5 +259,42 @@ public class UserDao {
 		return userNotifications;
 	}
 	
-	
+	public User getAccountInformation(String email){
+		User user = new User();
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			ps = conn.prepareStatement("select first_name, last_name, address_one, address_two, state_id, zip_code, email, phone_number "
+					+ "from public.user, public.user_address where email = ? and public.user.id = user_address.user_id limit 1");
+			ps.setString(1, email);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()){
+				user.setAddress(new Address());
+				user.setFirstName(rs.getString("first_name"));
+				user.setLastName(rs.getString("last_name"));
+				user.getAddress().setAddressOne(rs.getString("address_one"));
+				user.getAddress().setAddressTwo(rs.getString("address_two"));
+				user.getAddress().setCity(rs.getString("city"));
+				user.getAddress().setState(UsState.getStateName(rs.getInt("state_id")));
+				user.getAddress().setZipCode(rs.getString("zip_code"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("phone_number"));
+				
+			}else{
+				throw new RuntimeException("User not found");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("sql error", e);
+		} finally {
+			DatabaseUtils.safeClose(conn, ps, rs);
+		}
+		
+		return user;
+	}
 }

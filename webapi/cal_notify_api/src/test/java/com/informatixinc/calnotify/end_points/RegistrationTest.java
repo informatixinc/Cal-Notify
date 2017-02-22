@@ -3,6 +3,7 @@ package com.informatixinc.calnotify.end_points;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
+import com.informatixinc.calnotify.model.Address;
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.User;
 
@@ -20,19 +21,20 @@ public class RegistrationTest {
 		String password = "Welcome101!";
 		
 		for (int i = 0; i < 1000; i++) {
-			password = DigestUtils.sha1Hex(password);
+			password = DigestUtils.sha512Hex(password);
 		}
 		
-		user.setAddressOne("2485 Natomas Park Drive");
-		user.setAddressTwo("Suite 430");
-		user.setCity("Sacramento");
+		user.setAddress(new Address());
+		user.getAddress().setAddressOne("2485 Natomas Park Drive");
+		user.getAddress().setAddressTwo("Suite 430");
+		user.getAddress().setCity("Sacramento");
 		user.setEmail("resident@norcal.informatixinc.com");
 		user.setFirstName("Raul");
 		user.setLastName("Ocazionez");
 		user.setPassword(password);
 		user.setPhoneNumber("555-555-5555");
-		user.setState("CA");
-		user.setZipCode("95833");
+		user.getAddress().setState("CA");
+		user.getAddress().setZipCode("95833");
 		
 		session = rep.register(user);
 		

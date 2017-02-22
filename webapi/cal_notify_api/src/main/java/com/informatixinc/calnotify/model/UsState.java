@@ -75,6 +75,16 @@ public enum UsState {
 		return stateAbbreviation;
 	}
 	
+	public static String getStateName(int id){
+		for(UsState instance: values()){
+			if(instance.getStateId() == id){
+				return instance.getStateName();
+			}
+		}
+		
+		return null;
+	}
+	
 	public static Integer getStateId(String state){
 		for(UsState instance: values()){
 			if(instance.getStateAbbreviation().toLowerCase().equals(state.toLowerCase())){

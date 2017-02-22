@@ -263,13 +263,35 @@ public class NotificationDao {
 		return nc.getId();
 	}
 	
-	public static void main(String...args) {
+	public ArrayList<NotificationSettings> getNotificationSettings(String email){
+		ArrayList<NotificationSettings> settings = new ArrayList<NotificationSettings>();
+		
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
 		try {
-			NotificationClassification nc = NotificationClassification.valueOf("BlowingDustAdvisory");
-			System.out.println(nc);
-		} catch (Exception e) {
-			e.printStackTrace();
+			ps = conn.prepareStatement("select sms, notification_settings.email, push_notification from public.user, "
+					+ "public.user_location, public.notification_settings where public.user.email = ? and "
+					+ "public.user.id = user_location.user_id and user_location.id = notification_settings.user_location_id");
+			
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				NotificationSettings setting = new NotificationSettings();
+				setting.setEmail(rs.getBoolean("email"));
+				setting.setSms(rs.getBoolean("sms"));
+				setting.setSns(rs.getBoolean("sns"));
+				
+				settings.add(setting);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		} finally {
+			DatabaseUtils.safeClose(conn, ps, rs);
 		}
-		System.exit(0);
+		
+		return settings;
 	}
 }

@@ -42,25 +42,25 @@ public class UpdateAccountEndpoint {
 			return putResponse;
 		}
 		
-		if(user.getAddressOne().length() == 0){
+		if(user.getAddress().getAddressOne().length() == 0){
 			putResponse.getErrorResponse().setError(true);
 			putResponse.getErrorResponse().setErrorMessage("Missing Address Line One");
 			return putResponse;
 		}
 		
-		if(user.getCity().length() == 0){
+		if(user.getAddress().getCity().length() == 0){
 			putResponse.getErrorResponse().setError(true);
 			putResponse.getErrorResponse().setErrorMessage("Missing City");
 			return putResponse;
 		}
 		
-		if(user.getState().length() == 0){
+		if(user.getAddress().getState().length() == 0){
 			putResponse.getErrorResponse().setError(true);
 			putResponse.getErrorResponse().setErrorMessage("Missing State");
 			return putResponse;
 		}
 		
-		if(user.getZipCode().length() == 0){
+		if(user.getAddress().getZipCode().length() == 0){
 			putResponse.getErrorResponse().setError(true);
 			putResponse.getErrorResponse().setErrorMessage("Missing Zip Code");
 			return putResponse;

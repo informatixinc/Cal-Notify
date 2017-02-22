@@ -30,11 +30,11 @@ public class GeoLookup {
 		
 		try {
 			sb.append("https://maps.googleapis.com/maps/api/geocode/json?address=");
-			sb.append(codec.encode(user.getAddressOne()));
+			sb.append(codec.encode(user.getAddress().getAddressOne()));
 			sb.append(",+");
-			sb.append(codec.encode(user.getCity()));
+			sb.append(codec.encode(user.getAddress().getCity()));
 			sb.append(",+");
-			sb.append(codec.encode(user.getState()));
+			sb.append(codec.encode(user.getAddress().getState()));
 			sb.append("&key=");
 			sb.append(ProjectProperties.getProperty("google_maps_api_key"));
 			

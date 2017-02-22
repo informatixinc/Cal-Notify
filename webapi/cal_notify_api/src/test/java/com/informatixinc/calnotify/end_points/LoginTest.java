@@ -25,7 +25,7 @@ public class LoginTest {
 		assert(session.getErrorResponse().isError());
 		
 		for (int i = 0; i < 1000; i++) {
-			password = DigestUtils.sha1Hex(password);
+			password = DigestUtils.sha512Hex(password);
 		}
 		
 		login.setPassword(password);

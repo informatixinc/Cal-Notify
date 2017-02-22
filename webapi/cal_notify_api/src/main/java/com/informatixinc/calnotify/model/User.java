@@ -7,14 +7,22 @@ public class User {
 	private String firstName = "";
 	private String lastName = "";
 	private String phoneNumber = "";
-	private String addressOne = "";
-	private String addressTwo = "";
-	private String state;
-	private String city = "";
-	private String zipCode = "";
-	private Point location;
 	private String accountType;
+	private Address address;
+	private Point location;
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -33,47 +41,17 @@ public class User {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public String getAddressOne() {
-		return addressOne;
+	public String getAccountType() {
+		return accountType;
 	}
-	public void setAddressOne(String addressOne) {
-		this.addressOne = addressOne;
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
-	public String getAddressTwo() {
-		return addressTwo;
+	public Address getAddress() {
+		return address;
 	}
-	public void setAddressTwo(String addressTwo) {
-		this.addressTwo = addressTwo;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getZipCode() {
-		return zipCode;
-	}
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	public Point getLocation() {
 		return location;
@@ -81,11 +59,6 @@ public class User {
 	public void setLocation(Point location) {
 		this.location = location;
 	}
-	public String getAccountType() {
-		return accountType;
-	}
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
 	
+		
 }
