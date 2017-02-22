@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.informatixinc.calnotify.dao.DatabasePool;
 import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.dao.NotificationTransmissionDao;
@@ -26,28 +28,33 @@ public class FetchNotificationsJob implements Runnable {
 
 	@Override
 	public void run() {
-		List<Notification> notifications = fetchNotifications();
-		for (Notification notification : notifications) {
-			int id = addNew(notification);
-			if (id == -1) {
-				continue;
-			}
-			notification.setId(id);
-			final List<UserNotification> userNotifications = findUsersInProximityOfEvent(notification.getLocation());
-			for (UserNotification userNotification : userNotifications) {
-				userNotification.setNotificationId(notification.getId());
-				userNotification.setNotificationType(notification.getType());
-				userNotification.setNotificationTitle(notification.getTitle());
-				userNotification.setInfoUrl(notification.getInfoUrl());
-				userNotification.setExpires(notification.getExpireTime());
-				userNotification.setSendTime(notification.getSendTime());
-				if (userNotification.isSendSms()) {
-					sendSms(userNotification);
+		try {
+			List<Notification> notifications = fetchNotifications();
+			for (Notification notification : notifications) {
+				int id = addNew(notification);
+				if (id == -1) {
+					continue;
 				}
-				if (userNotification.isSendEmail()) {
-					sendEmail(userNotification);
+				notification.setId(id);
+				final List<UserNotification> userNotifications = findUsersInProximityOfEvent(
+						notification.getLocation());
+				for (UserNotification userNotification : userNotifications) {
+					userNotification.setNotificationId(notification.getId());
+					userNotification.setNotificationType(notification.getType());
+					userNotification.setNotificationTitle(notification.getTitle());
+					userNotification.setInfoUrl(notification.getInfoUrl());
+					userNotification.setExpires(notification.getExpireTime());
+					userNotification.setSendTime(notification.getSendTime());
+					if (userNotification.isSendSms()) {
+						sendSms(userNotification);
+					}
+					if (userNotification.isSendEmail()) {
+						sendEmail(userNotification);
+					}
 				}
 			}
+		} catch (RuntimeException e) {
+			log.error("A runtime exeception occurred", e);
 		}
 	}
 
@@ -76,10 +83,10 @@ public class FetchNotificationsJob implements Runnable {
 		final String msgBody = MessageFormat.format(ProjectProperties.getProperty("app_notificationBody"),
 				userNotification.getNotificationTitle(), expires, userNotification.getInfoUrl());
 		final SmsClient smsClient = new SmsClient();
-		smsClient.send("+1"+ userNotification.getPhoneNumber(), msgPrefix + ":" + msgBody);
+		smsClient.send("+1" + userNotification.getPhoneNumber(), msgPrefix + ":" + msgBody);
 		addNewTransmission(userNotification, TransmissionType.SMS);
 	}
-	
+
 	private void sendEmail(final UserNotification userNotification) {
 		final String subject = ProjectProperties.getProperty("app_notificationSubject");
 		final String expires = df.format(userNotification.getExpires());
@@ -89,7 +96,7 @@ public class FetchNotificationsJob implements Runnable {
 		emailClient.send(userNotification.getEmail(), subject, body);
 		addNewTransmission(userNotification, TransmissionType.EMAIL);
 	}
-	
+
 	private void addNewTransmission(UserNotification un, TransmissionType tt) {
 		final NotificationTransmission nt = new NotificationTransmission();
 		nt.setUserId(un.getUserId());
@@ -99,8 +106,8 @@ public class FetchNotificationsJob implements Runnable {
 		NotificationTransmissionDao dao = new NotificationTransmissionDao();
 		dao.addNew(nt);
 	}
-	
-	public static void main(String...args) {
+
+	public static void main(String... args) {
 		try {
 			ProjectProperties.init();
 			DatabasePool.init();
@@ -112,4 +119,5 @@ public class FetchNotificationsJob implements Runnable {
 		System.exit(0);
 	}
 
+	public final Logger log = Logger.getLogger(this.getClass());
 }
