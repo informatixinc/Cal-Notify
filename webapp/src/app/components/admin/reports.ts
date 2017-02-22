@@ -29,7 +29,7 @@ export class Reports {
 
   drawBarChart(){
     var data = google.visualization.arrayToDataTable([
-          ['Catagory', 'User Activity'],
+          ['', 'User Activity'],
           ['NEW', 450],
           ['ACTIVE', 1170],
           ['DELETED', 10],

@@ -35,5 +35,9 @@ export class Home {
 
 		}
 	}
+
+	goToNotification(notificationId: string){
+		this.router.navigate(["notification",notificationId]);
+	}
  
 }

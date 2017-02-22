@@ -13,6 +13,7 @@ import {Notify} from './components/admin/notify';
 import {Reports} from './components/admin/reports';
 import {PasswordReset} from './components/user/password_reset';
 import {DashBoard} from './components/user/dashboard';
+import {Notification} from './components/notifications/notification';
 
 
 const appRoutes: Routes = [
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'privacy', component: Privacy },
   { path: 'account', component: EditProfile },
   { path: 'notification', component: NotificationSettings },
+  { path: 'notification/:notification_id', component: Notification },
   { path: 'notify', component: Notify },
   { path: 'reports', component: Reports },
   { path: 'home', component: Home },
