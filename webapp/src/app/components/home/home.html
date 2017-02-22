@@ -7,9 +7,9 @@
 <div class = "main-container">
 	<div class = "main-body">
 		<h1><b>Welcome to <span class = "highlight-blue">Cal Notify</span></b></h1>
-		<p>Cal Notify has been established to help keep California residents informed about events that may impact their safety, health and / or daily activities.  Residents can receive email, text and push notifications for multiple locations including home, child day care, work, etc.  We encourage you to create an account so you can receive instant notifications concerning your safety and the safety of those you care about.</p>
+		<p>{{_languageService.getTranslation('home1')}} {{_languageService.getTranslation('home2')}} {{_languageService.getTranslation('home3')}}</p>
 
-		<p>To find active notifications in your area, you may search by zip code in the active notification panel.  You do not need to create an account to search.</p>
+		<p>{{_languageService.getTranslation('home4')}} {{_languageService.getTranslation('home5')}}</p>
 
 		<h1><b>Sign In</b></h1>
 		<p class = "strip-decorators">or <a [routerLink]="['/signup']">{{_languageService.getTranslation('createanaccount')}}</a></p>
@@ -49,10 +49,10 @@
 	<div class = "notification-body">
 		<div class = "notification-setter">
 			<div class = "text-center notification-header">
-				Active Notifications
+				{{_languageService.getTranslation('home6')}}
 			</div>
 			<div class = "text-center" *ngIf="_userState.getLocation().zip.length == 0">
-				<div class = "button" [routerLink]="['/setlocation']">Set my location</div>
+				<div class = "button" [routerLink]="['/setlocation']">{{_languageService.getTranslation('home7')}}</div>
 			</div>
 			<div class = "text-center show-location" *ngIf="_userState.getLocation().zip.length > 0">
 				<div>{{_userState.getLocation().address1}}</div>
