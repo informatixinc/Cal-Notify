@@ -72,6 +72,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "high_wind_warning", "value": "High Wind Warning" },
 		{ "key": "forgot_password", "value": "Forgot Password?" },
 		{ "key": "show_password", "value": "Show Password"},
+		{ "key": "hide_password", "value": "Hide Password"},
 		{ "key": "first_name_required", "value": "First Name Required" },
 		{ "key": "last_name_required", "value": "Last Name Required" },
 		{ "key": "email_required", "value": "Email Required" },
