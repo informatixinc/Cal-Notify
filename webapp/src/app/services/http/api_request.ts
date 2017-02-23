@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 export class ApiRequest {
 	constructor(private http: Http) { }
 
-	private apiUrl = "http://localhost:8080/";
+	private apiUrl = "http://localhost:8081/";
 
 	public doRequest(urlParam: string, request: any) {
       	sessionStorage.setItem("lastActive", new Date().getTime().toString());
