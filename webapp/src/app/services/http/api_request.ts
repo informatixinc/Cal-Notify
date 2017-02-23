@@ -9,9 +9,9 @@ import 'rxjs/add/operator/catch';
 export class ApiRequest {
 	constructor(private http: Http) { }
 
-	private apiUrl = "/api/";
+	private apiUrl = "http://localhost:8080/";
 
-	public doRequest(urlParam: string, request: any, accountName: string) {
+	public doRequest(urlParam: string, request: any) {
       	sessionStorage.setItem("lastActive", new Date().getTime().toString());
 
 	 	let bodyString = JSON.stringify(request); 

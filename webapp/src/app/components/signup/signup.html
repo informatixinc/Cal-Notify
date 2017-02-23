@@ -27,16 +27,16 @@
 			<div class = "col-md-8 col-md-offset-1">
 				<label>{{_languageService.getTranslation('address1')}}</label>
 				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
-				<input type="text" class = "form-input address" placeholder="" id = "address1" [(ngModel)]="sign_up.address1" />
-				<div class = "error" id="error">{{error.address1}}</div>
+				<input type="text" class = "form-input address" placeholder="" id = "address1" [(ngModel)]="sign_up.addresses[0].addressOne" />
+				<div class = "error" id="error">{{error.addresses[0].addressOne}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-8 col-md-offset-1">
 				<label>{{_languageService.getTranslation('address2')}}</label>
-				<input type="text" class = "form-input address" placeholder="" id = "address2" [(ngModel)]="sign_up.address2" />
-				<div class = "error" id="error">{{error.address2}}</div>
+				<input type="text" class = "form-input address" placeholder="" id = "address2" [(ngModel)]="sign_up.addresses[0].addressTwo" />
+				<div class = "error" id="error">{{error.addresses[0].addressTwo}}</div>
 			</div>
 		</div>
 	</div>
@@ -46,14 +46,14 @@
 			<div class = "col-md-4 col-md-offset-1">
 				<label>{{_languageService.getTranslation('city')}}</label>
 				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
-				<input type="text" class = "form-input" placeholder="" id = "city" [(ngModel)]="sign_up.city" />
-				<div class = "error" id="error">{{error.city}}</div>
+				<input type="text" class = "form-input" placeholder="" id = "city" [(ngModel)]="sign_up.addresses[0].city" />
+				<div class = "error" id="error">{{error.addresses[0].city}}</div>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
 				<label>{{_languageService.getTranslation('state')}}</label>
 				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
-				<select class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id = "state" >
+				<select class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id = "state" [(ngModel)]="sign_up.addresses[0].state">
 					<option *ngFor="let state of states" value="{{state}}">{{state}}</option>			  
 				</select>
 				<!-- <input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('state')}}" id = "state"> -->
@@ -62,8 +62,8 @@
 			<div class = "col-md-2">
 				<label>{{_languageService.getTranslation('zip_code')}}</label>
 				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
-				<input type="text" class = "form-input" placeholder="" id = "zipcode" [(ngModel)]="sign_up.zipCode"/>
-				<div class = "error" id="error">{{error.zipCode}}</div>
+				<input type="text" class = "form-input" placeholder="" id = "zipcode" [(ngModel)]="sign_up.addresses[0].zipCode"/>
+				<div class = "error" id="error">{{error.addresses[0].zipCode}}</div>
 			</div>
 		</div>
 		<div class="row">

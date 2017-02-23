@@ -1,7 +1,8 @@
 export class Address{
-	address1 = "";
-	address2 = "";
+	addressOne = "";
+	addressTwo = "";
 	city = "";
 	state = "";
-	zip = "";
+	zipCode = "";
+	nickName = "";
 }

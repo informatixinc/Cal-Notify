@@ -7,11 +7,11 @@ declare var jsSHA: any;
 export class LoginService {
 	constructor(private router: Router ) {}
 	
-	prepareLogin(userName: string, password: string){
+	prepareLogin(email: string, password: string){
 		var shaObj = new jsSHA("SHA-512", "TEXT");
 		shaObj.update(password);
 		var login: LoginObject = new LoginObject();
-		login.userName = userName;
+		login.email = email;
 		login.password = shaObj.getHash("HEX");
 		return login;
 	}

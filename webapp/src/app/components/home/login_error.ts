@@ -1,5 +1,5 @@
 export class LoginObjectError {
-  userName: string;
+  email: string;
   password: string;
   showPassword: string;
 }

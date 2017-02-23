@@ -1,4 +1,4 @@
 export class LoginObject {
-  userName: string;
+  email: string;
   password: string;
 }

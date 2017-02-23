@@ -30,19 +30,7 @@
 			<div class = "col-md-7 text-right password-align">
 				<span (click)="showPassword(input)" id="show">{{error.showPassword}}</span>
 			</div>
-			<!-- <div class = "col-md-8">
-				<span>{{_languageService.getTranslation('password')}}</span>
-				<input type="password" *ngIf="!isShowPassword()" class = "form-input" placeholder="" id = "password" [(ngModel)]="password" (keyup.enter)='login()' />
-				<div class = "error" id="error">{{error.password}}</div>	
-			</div>
-			<div class = "col-md-7 text-right password-align">
-				<span *ngIf="!isShowPassword()" id="hide">Hide Password</span>
-			</div> -->
 		</div>
-		<!-- <div class = "col-md-7 text-right password-align">
-			<span *ngIf="showPassword" (click)="isShowPassword()" id="show">{{_languageService.getTranslation('show_password')}}</span>
-			<span *ngIf="!showPassword" (click)="isShowPassword()" id="hide">Hide Password</span>
-		</div> -->
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-3">
