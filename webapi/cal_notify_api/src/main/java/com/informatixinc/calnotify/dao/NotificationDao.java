@@ -127,7 +127,7 @@ public class NotificationDao {
 		}
 	}
 
-	public PutResponse setNotificationSettings(NotificationSettings settings) {
+	public PutResponse addNotificationSettings(NotificationSettings settings) {
 		PutResponse putResponse = new PutResponse();
 		
 		Connection conn = DatabasePool.getConnection();
@@ -293,5 +293,34 @@ public class NotificationDao {
 		}
 		
 		return settings;
+	}
+	
+	//There is a security hole on this command that allows for exploitation due to use of DB id's.  Leaving due to prototype.  
+	public PutResponse updateNotificationSettings(ArrayList<NotificationSettings> settings, PutResponse putResponse){
+		
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement("update public.notification_settings set sms = ?, email = ?, push_notification = ? where id = ?");
+			conn.setAutoCommit(false);
+
+			for(NotificationSettings instance: settings){
+				ps.setBoolean(1, instance.isSms());
+				ps.setBoolean(2, instance.isEmail());
+				ps.setBoolean(3, instance.isSns());
+				ps.setInt(4, instance.getNotificationId());
+				ps.addBatch();
+			}
+			ps.executeBatch();
+			conn.commit();
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		} finally {
+			DatabaseUtils.safeClose(conn, ps, rs);
+		}
+		
+		return putResponse;
 	}
 }

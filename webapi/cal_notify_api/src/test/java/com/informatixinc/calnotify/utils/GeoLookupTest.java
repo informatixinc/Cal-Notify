@@ -1,5 +1,7 @@
 package com.informatixinc.calnotify.utils;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import com.informatixinc.calnotify.model.Address;
@@ -14,10 +16,11 @@ public class GeoLookupTest {
 	public void lookupAddressTest(){
 		ProjectProperties.init();
 		User user = new User();
-		user.setAddress(new Address());
-		user.getAddress().setAddressOne("2485 Natomas Park Drive");
-		user.getAddress().setCity("Sacramento");
-		user.getAddress().setState("CA");
+		user.setAddresses(new ArrayList<Address>());
+		user.getAddresses().add(new Address());
+		user.getAddresses().get(0).setAddressOne("2485 Natomas Park Drive");
+		user.getAddresses().get(0).setCity("Sacramento");
+		user.getAddresses().get(0).setState("CA");
 		GeoLookup geoLookup = new GeoLookup();
 		Point point = geoLookup.latLongFromAddress(user);
 		assert(point != null);

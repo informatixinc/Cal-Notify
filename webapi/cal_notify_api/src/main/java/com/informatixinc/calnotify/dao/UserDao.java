@@ -55,10 +55,10 @@ public class UserDao {
 				DatabaseUtils.safeClose(ps, rs);
 				ps = conn.prepareStatement("insert into public.user_address (user_id, address_one, address_two, state_id, zip_code) values (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 				ps.setInt(1, userId);
-				ps.setString(2, user.getAddress().getAddressOne());
-				ps.setString(3, user.getAddress().getAddressTwo());
-				ps.setInt(4, UsState.getStateId(user.getAddress().getState()));
-				ps.setString(5, user.getAddress().getZipCode());
+				ps.setString(2, user.getAddresses().get(0).getAddressOne());
+				ps.setString(3, user.getAddresses().get(0).getAddressTwo());
+				ps.setInt(4, UsState.getStateId(user.getAddresses().get(0).getState()));
+				ps.setString(5, user.getAddresses().get(0).getZipCode());
 				ps.executeUpdate();
 				
 				rs = ps.getGeneratedKeys();
@@ -183,10 +183,10 @@ public class UserDao {
 				if(ps.executeUpdate() == 1){
 					DatabaseUtils.safeClose(ps,rs);
 					ps = conn.prepareStatement("update public.user_address set address_one = ?, address_two = ?, state_id = ?, nick_name = ? where id = ?");
-					ps.setString(1, user.getAddress().getAddressOne());
-					ps.setString(2, user.getAddress().getAddressTwo());
-					ps.setInt(3, UsState.getStateId(user.getAddress().getState()));
-					ps.setString(4, user.getAddress().getNickName());
+					ps.setString(1, user.getAddresses().get(0).getAddressOne());
+					ps.setString(2, user.getAddresses().get(0).getAddressTwo());
+					ps.setInt(3, UsState.getStateId(user.getAddresses().get(0).getState()));
+					ps.setString(4, user.getAddresses().get(0).getNickName());
 					ps.setInt(5, locationId);
 					
 					if(ps.executeUpdate() == 1){
@@ -266,6 +266,7 @@ public class UserDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		conn = DatabasePool.getConnection();
 		
 		try {
 			ps = conn.prepareStatement("select first_name, last_name, address_one, address_two, state_id, zip_code, email, phone_number "
@@ -275,14 +276,15 @@ public class UserDao {
 			rs = ps.executeQuery();
 			
 			if(rs.next()){
-				user.setAddress(new Address());
+				user.setAddresses(new ArrayList<Address>());
+				user.getAddresses().add(new Address());
 				user.setFirstName(rs.getString("first_name"));
 				user.setLastName(rs.getString("last_name"));
-				user.getAddress().setAddressOne(rs.getString("address_one"));
-				user.getAddress().setAddressTwo(rs.getString("address_two"));
-				user.getAddress().setCity(rs.getString("city"));
-				user.getAddress().setState(UsState.getStateName(rs.getInt("state_id")));
-				user.getAddress().setZipCode(rs.getString("zip_code"));
+				user.getAddresses().get(0).setAddressOne(rs.getString("address_one"));
+				user.getAddresses().get(0).setAddressTwo(rs.getString("address_two"));
+				user.getAddresses().get(0).setCity(rs.getString("city"));
+				user.getAddresses().get(0).setState(UsState.getStateName(rs.getInt("state_id")));
+				user.getAddresses().get(0).setZipCode(rs.getString("zip_code"));
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("phone_number"));
 				

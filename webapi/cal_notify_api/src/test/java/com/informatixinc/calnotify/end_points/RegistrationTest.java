@@ -1,5 +1,7 @@
 package com.informatixinc.calnotify.end_points;
 
+import java.util.ArrayList;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
@@ -24,17 +26,18 @@ public class RegistrationTest {
 			password = DigestUtils.sha512Hex(password);
 		}
 		
-		user.setAddress(new Address());
-		user.getAddress().setAddressOne("2485 Natomas Park Drive");
-		user.getAddress().setAddressTwo("Suite 430");
-		user.getAddress().setCity("Sacramento");
+		user.setAddresses(new ArrayList<Address>());
+		user.getAddresses().add(new Address());
+		user.getAddresses().get(0).setAddressOne("2485 Natomas Park Drive");
+		user.getAddresses().get(0).setAddressTwo("Suite 430");
+		user.getAddresses().get(0).setCity("Sacramento");
 		user.setEmail("resident@norcal.informatixinc.com");
 		user.setFirstName("Raul");
 		user.setLastName("Ocazionez");
 		user.setPassword(password);
 		user.setPhoneNumber("555-555-5555");
-		user.getAddress().setState("CA");
-		user.getAddress().setZipCode("95833");
+		user.getAddresses().get(0).setState("CA");
+		user.getAddresses().get(0).setZipCode("95833");
 		
 		session = rep.register(user);
 		

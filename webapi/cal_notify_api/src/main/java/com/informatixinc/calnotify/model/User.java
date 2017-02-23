@@ -1,5 +1,7 @@
 package com.informatixinc.calnotify.model;
 
+import java.util.ArrayList;
+
 public class User {
 	
 	private String email = "";
@@ -8,7 +10,7 @@ public class User {
 	private String lastName = "";
 	private String phoneNumber = "";
 	private String accountType;
-	private Address address;
+	private ArrayList<Address> addresses;
 	private Point location;
 	
 	public String getEmail() {
@@ -47,17 +49,17 @@ public class User {
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 	public Point getLocation() {
 		return location;
 	}
 	public void setLocation(Point location) {
 		this.location = location;
+	}
+	public ArrayList<Address> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(ArrayList<Address> addresses) {
+		this.addresses = addresses;
 	}
 	
 		

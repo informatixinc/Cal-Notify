@@ -47,25 +47,25 @@ public class RegisterEndpoint {
 			return session;
 		}
 		
-		if(registration.getAddress().getAddressOne().length() == 0){
+		if(registration.getAddresses().get(0).getAddressOne().length() == 0){
 			session.getErrorResponse().setError(true);
 			session.getErrorResponse().setErrorMessage("Missing Address Line One");
 			return session;
 		}
 		
-		if(registration.getAddress().getCity().length() == 0){
+		if(registration.getAddresses().get(0).getCity().length() == 0){
 			session.getErrorResponse().setError(true);
 			session.getErrorResponse().setErrorMessage("Missing City");
 			return session;
 		}
 		
-		if(registration.getAddress().getState().length() == 0){
+		if(registration.getAddresses().get(0).getState().length() == 0){
 			session.getErrorResponse().setError(true);
 			session.getErrorResponse().setErrorMessage("Missing State");
 			return session;
 		}
 		
-		if(registration.getAddress().getZipCode().length() == 0){
+		if(registration.getAddresses().get(0).getZipCode().length() == 0){
 			session.getErrorResponse().setError(true);
 			session.getErrorResponse().setErrorMessage("Missing Zip Code");
 			return session;

@@ -23,7 +23,7 @@ public class NotificationSettingsEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public PutResponse setNotificationSettings(NotificationSettings settings){
 		NotificationDao notificationDao = new NotificationDao();
-		return notificationDao.setNotificationSettings(settings);
+		return notificationDao.addNotificationSettings(settings);
 	}
 	
 	@GET

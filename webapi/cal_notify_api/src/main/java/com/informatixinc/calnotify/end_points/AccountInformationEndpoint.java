@@ -17,7 +17,7 @@ public class AccountInformationEndpoint {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User setNotificationSettings(Session session){
+	public User accountInformation(Session session){
 		UserDao userDao = new UserDao();
 		return userDao.getAccountInformation(AuthMap.getUserName(session.getSession()));
 	}

@@ -26,7 +26,7 @@ public class NotificationSettingsTest {
 		notificationSettings.setSms(true);
 		notificationSettings.setSns(true);
 		
-		PutResponse response = notificationDao.setNotificationSettings(notificationSettings);
+		PutResponse response = notificationDao.addNotificationSettings(notificationSettings);
 		assert(!response.getErrorResponse().isError());
 	}
 	

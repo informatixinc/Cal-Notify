@@ -6,6 +6,7 @@ public class NotificationSettings {
 	private boolean email;
 	private boolean sns;
 	private int userLocationId;
+	private int notificationId;
 	
 	public boolean isSms() {
 		return sms;
@@ -30,6 +31,12 @@ public class NotificationSettings {
 	}
 	public void setUserLocationId(int userLocationId) {
 		this.userLocationId = userLocationId;
+	}
+	public int getNotificationId() {
+		return notificationId;
+	}
+	public void setNotificationId(int notificationId) {
+		this.notificationId = notificationId;
 	}
 
 }
