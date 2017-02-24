@@ -2,15 +2,12 @@
   <div class="inner_title">
     <a class="title navbar-brand " [routerLink]="['/home']" *ngIf="!isLoggedIn()">Cal Notify</a>
     <a class="title navbar-brand " [routerLink]="['/dashboard']" *ngIf="isLoggedIn()">Cal Notify</a>
-    <div class = "sub-header">
-      ALERT NOTIFICATION SYSTEM
-    </div>
   </div>
 </div>
 <nav class="navbar navbar-default navbar-style">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -18,9 +15,9 @@
       </button>
       <a class="navbar-brand" [routerLink]="['/home']"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right bottom_right_menu">
-        <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/faq']">{{_languageService.getTranslation('faq') | uppercase}}</a></li>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+         <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/faq']">{{_languageService.getTranslation('faq') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="!isLoggedIn()">|</li>
         <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/home']">{{_languageService.getTranslation('signin') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="!isLoggedIn()">|</li>
