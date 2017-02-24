@@ -10,8 +10,8 @@
 		<div class = "box-header">
 			Emergency Alerts
 		</div>
-		<div class = "alert-notification" *ngFor="let notification of notifications">
-			{{notification}}
+		<div class = "alert-notification" *ngFor="let notification of emergencyNotifications">
+			{{notification.title}}
 		</div>
 	</div>
 	<div class="col-md-5 box-height">
@@ -19,8 +19,8 @@
 		<div class = "box-header">
 			Non-Emergency Alerts
 		</div>
-		<div class = "alert-notification" *ngFor="let notification of notifications">
-			{{notification}}
+		<div class = "alert-notification" *ngFor="let notification of nonEmergencyNotifications">
+			{{notification.title}}
 		</div>
 	</div>
 </div>

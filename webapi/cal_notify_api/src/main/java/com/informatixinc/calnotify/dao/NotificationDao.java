@@ -20,6 +20,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.postgresql.geometric.PGpoint;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -30,6 +32,8 @@ import com.informatixinc.calnotify.model.NotificationSettings;
 import com.informatixinc.calnotify.model.NotificationType;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
+import com.informatixinc.calnotify.model.Session;
+import com.informatixinc.calnotify.utils.AuthMap;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 import com.informatixinc.calnotify.utils.ProjectProperties;
 import com.informatixinc.calnotify.utils.StringUtils;
@@ -332,5 +336,42 @@ public class NotificationDao {
 		}
 		
 		return putResponse;
+	}
+	
+	public ArrayList<Notification> getUserNotifications(Session session){
+		
+		ArrayList<Notification> notifications = new ArrayList<Notification>();
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement("select distinct(notification.id) as notification_id, type, send_time, "
+					+ "expire_time, icon from public.user, public.user_location, public.notification, "
+					+ "public.notification_classification where email = ? and user_location.location <@> notification.location < ? "
+					+ "and notification.classification_id = notification_classification.id and public.user.id = user_location.user_id");
+			ps.setString(1, AuthMap.getUserName(session.getSession()));
+			ps.setInt(2, ProjectProperties.getProperty("getProperty", 50));
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				Notification notification = new Notification();
+				notification.setId(rs.getInt("notification_id"));
+				notification.setTitle(rs.getString("type"));
+				notification.setSendTime(new Date(rs.getTimestamp("send_time").getTime()));
+				notification.setExpireTime(new Date(rs.getTimestamp("expire_time").getTime()));
+				notification.setImageUrl(rs.getString("icon"));
+				notification.setNotificationId(rs.getString("notification_id"));
+
+				notifications.add(notification);
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		} finally {
+			DatabaseUtils.safeClose(conn, ps, rs);
+		}
+		
+		return notifications;
 	}
 }
