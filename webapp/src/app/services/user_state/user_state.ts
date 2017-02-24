@@ -30,6 +30,7 @@ export class UserState {
 
 	resetLocation(){
 		localStorage.removeItem("address");
+		localStorage.removeItem("geoLocation");
 	}
 
 	setAddress(address: Address){
