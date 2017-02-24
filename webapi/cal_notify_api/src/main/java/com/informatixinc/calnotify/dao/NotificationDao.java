@@ -291,7 +291,7 @@ public class NotificationDao {
 				NotificationSettings setting = new NotificationSettings();
 				setting.setEmail(rs.getBoolean("email"));
 				setting.setSms(rs.getBoolean("sms"));
-				setting.setSns(rs.getBoolean("sns"));
+				setting.setSns(rs.getBoolean("push_notification"));
 				
 				settings.add(setting);
 			}

@@ -23,7 +23,7 @@ public class ManageNotificationsEndpoint {
 		
 		if(settings.size() == 0){
 			putResponse.getErrorResponse().setError(true);
-			putResponse.getErrorResponse().setErrorMessage("No setting passed");
+			putResponse.getErrorResponse().setErrorMessage("No settings passed");
 			return putResponse;
 		}
 		

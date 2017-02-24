@@ -14,7 +14,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>jersey-serlvet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
 	<listener>
 		<listener-class>com.informatixinc.calnotify.servlets.ApplicationLifecycleListener</listener-class>
@@ -28,7 +28,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthChain</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/api/*</url-pattern>
 	</filter-mapping>
 	<session-config>
 		<session-timeout>30</session-timeout>

@@ -31,6 +31,7 @@ public class DatabaseUtils {
 			}
 			if (ps != null) {
 				ps.close();
+				ps = null;
 			}
 		} catch (SQLException e) {
 			logger.error("Unable to close result set", e);

@@ -43,6 +43,7 @@ export class Home {
 
 	login(){
 
+		var hasError = false;
 		this.error.email = this.error.password = "";
 		document.getElementById("email").style["borderColor"] = "black";
 		document.getElementById("password").style["borderColor"] = "black";
@@ -52,33 +53,39 @@ export class Home {
 			document.getElementById("email").style["borderColor"] = "#CD2026";
 			this.error.password = this._languageService.getTranslation("password_required");
 			document.getElementById("password").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}else if(this.email.length == 0){
 			this.error.email = this._languageService.getTranslation("email_required");
 			document.getElementById("email").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}else if(this.password.length == 0){
 			this.error.password = this._languageService.getTranslation("password_required");
 			document.getElementById("password").style["borderColor"] = "#CD2026";
-		}else{
-			var loginObj: LoginObject = new LoginObject();
-			loginObj = this._loginService.prepareLogin(this.email, this.password);
-			this._apiRequest.doRequest('login', loginObj).subscribe(res => this.processResponse(res));
+			hasError = true;
 		}
+		
+		if(hasError){
+			return;
+		}
+
+		var login = this._loginService.prepareLogin(this.email, this.password);
+		this._apiRequest.doRequest('login', login).subscribe(res => this.processResponse(res));
 	}
 
 	processResponse(response: any){
-		if(response.error == true){
-			console.log(response.error);
-		}else{
-			console.log(response);
-			this._userState.setSession(response.session);
-			localStorage.setItem("accountType", response.accountType);
-			if(localStorage.getItem("accountType") == "2"){
+		console.log(response);
+    	if(!response.errorResponse.error){
+	      	this._userState.setSession(response.session);
+			// if(this._userState.isAdmin()){
+			// 	this.router.navigate(['notify']);	
+			// }else{
 				this.router.navigate(['dashboard']);
-			}else {
-				this.router.navigate(['notify']);
-			}
-			
-		}
+			// }
+	    }else{
+	      	// this.loginError = response.errorMessage;
+	      	// this.showLoginPopup = true;
+	    }
+>>>>>>> Stashed changes
   	}
 
 	goToNotification(notificationId: string){

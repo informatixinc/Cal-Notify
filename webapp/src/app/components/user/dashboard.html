@@ -35,14 +35,15 @@
 		</div>
 		<div class = "box-solid-background box-height account-padding account-font">
 			<div class = "account-header">Name:</div>
-			<div>Sherie Delpriore</div>
+			<div>{{user.firstName}} {{user.lastName}}</div>
 			<div class = "account-header">Address:</div>
-			<div>1723 Glenwood St</div>
-			<div>San Jose, CA 91520</div>
+			<div>{{user.addresses[0].addressOne}}</div>
+			<div *ngIf="user.addresses[0].addressTwo.length > 0">{{user.addresses[0].addressTwo}}</div>
+			<div>{{user.addresses[0].city}}, {{user.addresses[0].state}} {{user.addresses[0].zipCode}}</div>
 			<div class = "account-header">Email Address:</div>
-			<div>sheriedelpriore1935@gmail.com</div>
+			<div>{{user.email}}</div>
 			<div class = "account-header">Phone Number:</div>
-			<div>555-555-5555</div>
+			<div>{{user.phoneNumber}}</div>
 		</div>
 	</div>
 	<div class="col-md-5">
@@ -63,9 +64,9 @@
 			</div>
 			<div class = "notification-row" *ngFor="let setting of notificationSettings">
 				<div class = "nick-name">{{setting.nickName}}</div>
-				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.textMessage"></div>
+				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.sms"></div>
 				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.email"></div>
-				<div class = "notification-option right-border"><input type = "checkbox" [(ngModel)]="setting.pushNotification"></div>
+				<div class = "notification-option right-border"><input type = "checkbox" [(ngModel)]="setting.sns"></div>
 				<div class = "clear"></div>
 			</div>
 

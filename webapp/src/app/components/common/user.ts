@@ -1,6 +1,6 @@
 import {Address} from '../common/address';
 
-export class SignupObject {
+export class User {
 	firstName: string = "";
 	lastName: string = "";
 	phoneNumber: string = "";

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {LanguageService} from '../../services/language/language_service';
-import {SignupObject} from './signup_object';
+import {User} from '../common/user';
 import {SignupObjectError} from './signup_error';
 import {LoginService} from '../home/login_service';
 import {ApiRequest} from '../../services/http/api_request';
@@ -17,12 +17,14 @@ import {UserState} from '../../services/user_state/user_state';
 
 export class Signup {
 
-	states = ["CA", "AL", "AK", "AZ", "AR", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
-	sign_up: SignupObject = new SignupObject();
+	states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+	sign_up: User = new User();
 	error: SignupObjectError = new SignupObjectError();
 
-	constructor(private router: Router, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest, private _userState: UserState) {
+	constructor(private router: Router, private _userState: UserState, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest,) {}
 
+	ngOnInit(){
+		this.sign_up.addresses[0].state = "CA";
 	}
 
 	signup(){
@@ -137,7 +139,6 @@ export class Signup {
 	}
 
 	processResponse(response: any){
-		console.log(response);
 		if(response.error == true){
 			
 		}else{

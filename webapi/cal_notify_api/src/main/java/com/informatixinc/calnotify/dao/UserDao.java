@@ -53,25 +53,47 @@ public class UserDao {
 				int userId = rs.getInt(1);
 				
 				DatabaseUtils.safeClose(ps, rs);
-				ps = conn.prepareStatement("insert into public.user_address (user_id, address_one, address_two, state_id, zip_code) values (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+				ps = conn.prepareStatement("insert into public.user_address (user_id, address_one, address_two, city, state_id, zip_code) values (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 				ps.setInt(1, userId);
 				ps.setString(2, user.getAddresses().get(0).getAddressOne());
 				ps.setString(3, user.getAddresses().get(0).getAddressTwo());
-				ps.setInt(4, UsState.getStateId(user.getAddresses().get(0).getState()));
-				ps.setString(5, user.getAddresses().get(0).getZipCode());
+				ps.setString(4, user.getAddresses().get(0).getCity());
+				ps.setInt(5, UsState.getStateId(user.getAddresses().get(0).getState()));
+				ps.setString(6, user.getAddresses().get(0).getZipCode());
 				ps.executeUpdate();
-				
-				rs = ps.getGeneratedKeys();
-				rs.next();
-				int addressId = rs.getInt(1);
 				
 				DatabaseUtils.safeClose(ps, rs);
 				
-				ps = conn.prepareStatement("insert into public.user_location (user_id, location, address_id) values (?,point(?,?),?)");
+				ps = conn.prepareStatement("select id from public.user_address where user_id = ?");
+				ps.setInt(1, userId);
+				rs = ps.executeQuery();
+				rs.next();
+				
+				int addressId = rs.getInt("id");
+				
+				DatabaseUtils.safeClose(ps, rs);
+				
+				ps = conn.prepareStatement("insert into public.user_location (user_id, location, address_id, nick_name) values (?,point(?,?),?,?)");
 				ps.setInt(1, userId);
 				ps.setDouble(2, user.getLocation().getLongitude());
 				ps.setDouble(3, user.getLocation().getLatitude());
 				ps.setInt(4, addressId);
+				ps.setString(5, "Primary Location");
+				ps.executeUpdate();
+				
+				DatabaseUtils.safeClose(ps, rs);
+				
+				ps = conn.prepareStatement("select id from public.user_location where address_id = ?");
+				ps.setInt(1, addressId);
+				rs = ps.executeQuery();
+				rs.next();
+				
+				int locationId = rs.getInt("id");
+				
+				DatabaseUtils.safeClose(ps, rs);
+				
+				ps = conn.prepareStatement("insert into public.notification_settings (user_location_id, sms,email,push_notification) values (?, true, true, false)");
+				ps.setInt(1, locationId);
 				ps.executeUpdate();
 				
 			}else{
@@ -270,8 +292,8 @@ public class UserDao {
 		conn = DatabasePool.getConnection();
 		
 		try {
-			ps = conn.prepareStatement("select first_name, last_name, address_one, address_two, state_id, zip_code, email, phone_number "
-					+ "from public.user, public.user_address where email = ? and public.user.id = user_address.user_id limit 1");
+			ps = conn.prepareStatement("select first_name, last_name, address_one, address_two, city, state_id, zip_code, email, phone_number "
+					+ "from public.user, public.user_address where public.user.id = user_address.user_id and public.user.email = ? limit 1");
 			ps.setString(1, email);
 			
 			rs = ps.executeQuery();
@@ -287,7 +309,7 @@ public class UserDao {
 				user.getAddresses().get(0).setState(UsState.getStateName(rs.getInt("state_id")));
 				user.getAddresses().get(0).setZipCode(rs.getString("zip_code"));
 				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("phone_number"));
+				user.setPhoneNumber(rs.getString("phone_number"));
 				
 			}else{
 				throw new RuntimeException("User not found");
