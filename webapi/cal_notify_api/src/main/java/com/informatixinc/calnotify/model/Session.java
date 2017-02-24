@@ -4,7 +4,14 @@ public class Session {
 	
 	private String session;
 	private ErrorResponse errorResponse = new ErrorResponse();
-	
+	private int accountType;
+
+	public int getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(int accountType) {
+		this.accountType = accountType;
+	}
 	public String getSession() {
 		return session;
 	}

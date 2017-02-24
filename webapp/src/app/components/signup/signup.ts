@@ -138,14 +138,9 @@ export class Signup {
 	processResponse(response: any){
 		console.log(response);
 		if(response.error == true){
-			// if (response.element_id == "ssn_ein"){
-			// 	this.error.ssnFein = response.message;
-			// 	this.error.ssnFeinCssError = this.cssError;
-			// 	this.setErrorId("ssn_ein");
-			// }
-			// this.registration.passwordOne = this.registration.passwordTwo;
+			
 		}else{
-			location.href = "/dashboard";
+			this.router.navigate(['dashboard']);
 		}
 	}
 

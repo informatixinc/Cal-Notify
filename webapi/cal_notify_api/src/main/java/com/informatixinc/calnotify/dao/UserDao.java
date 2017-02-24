@@ -111,13 +111,14 @@ public class UserDao {
 			
 			DatabaseUtils.safeClose(ps, rs);
 			
-			ps = conn.prepareStatement("select id from public.user where email = ? and password = ?");
+			ps = conn.prepareStatement("select id, account_type from public.user where email = ? and password = ?");
 			ps.setString(1, login.getEmail());
 			ps.setBytes(2, SecurityUtils.hashPassword(login.getPassword().getBytes(), salt));
 			rs = ps.executeQuery();
 			
 			if(rs.next()){
 				session.setSession(AuthMap.addLogin(login.getEmail()));
+				session.setAccountType(rs.getInt("account_type"));
 				return session;
 			}else{
 				session.getErrorResponse().setError(true);

@@ -59,34 +59,22 @@ export class Home {
 			this.error.password = this._languageService.getTranslation("password_required");
 			document.getElementById("password").style["borderColor"] = "#CD2026";
 		}else{
-			var login = this._loginService.prepareLogin(this.email, this.password);
-			console.log(login);
-			
+			var loginObj: LoginObject = new LoginObject();
+			loginObj = this._loginService.prepareLogin(this.email, this.password);
+			this._apiRequest.doRequest('login', loginObj).subscribe(res => this.processResponse(res));
 		}
-		var loginObj: LoginObject = new LoginObject();
-		this._apiRequest.doRequest('login', loginObj).subscribe(res => this.processResponse(res));
 	}
 
 	processResponse(response: any){
-    	if(response.authenticationSuccess){
-	      // 	sessionStorage.setItem("sessionId", response.sessionId);
-	      // 	sessionStorage.setItem("accountType", response.accountType);
-	      // 	sessionStorage.setItem("lastActive", new Date().getTime().toString());
-	      // 	if(response.accountType.toLowerCase() == "localadmin"){
-	      //   	this.router.navigate(['/choose']);  
-	     	// }else{
-	      //   	this.router.navigate(['/locate-account']);
-	      // 	}
-	      	this._userState.setSession("12345");
-			if(this._userState.isAdmin){
-				this.router.navigate(['notify']);	
-			}else{
-				this.router.navigate(['dashboard']);
-			}
-	    }else{
-	      	// this.loginError = response.errorMessage;
-	      	// this.showLoginPopup = true;
-	    }
+		if(response.error == true){
+			console.log(response.error);
+		}else{
+
+			sessionStorage.setItem("sessionId", response.session);
+			console.log(response);
+			this._userState.setSession(response.session);
+			this.router.navigate(['dashboard']);
+		}
   	}
 
 	goToNotification(notificationId: string){
