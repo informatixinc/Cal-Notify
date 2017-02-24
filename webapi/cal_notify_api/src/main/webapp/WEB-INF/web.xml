@@ -19,6 +19,9 @@
 	<listener>
 		<listener-class>com.informatixinc.calnotify.servlets.ApplicationLifecycleListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>com.informatixinc.calnotify.servlets.BackgroundJobManager</listener-class>
+	</listener>
 	<filter>
 		<filter-name>AuthChain</filter-name>
 		<filter-class>com.informatixinc.calnotify.servlets.AuthChain</filter-class>
