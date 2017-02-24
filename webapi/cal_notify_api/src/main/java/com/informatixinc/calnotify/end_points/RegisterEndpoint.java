@@ -72,7 +72,7 @@ public class RegisterEndpoint {
 		}
 		
 		GeoLookup geoLookup = new GeoLookup();
-		Point coordinates = geoLookup.latLongFromAddress(registration);
+		Point coordinates = geoLookup.latLongFromAddress(registration.getAddresses().get(0));
 		
 		if(coordinates == null){
 			session.getErrorResponse().setError(true);

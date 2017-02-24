@@ -9,7 +9,7 @@
 		<div class="little-space"></div>
 		<div class = "col-md-8 col-md-offset-1">
 			<label>{{_languageService.getTranslation('address1')}}</label>
-			<input type="text" class = "form-input address" placeholder="" id = "address1" [(ngModel)]="address.address1"/>
+			<input type="text" class = "form-input address" placeholder="" id = "address1" [(ngModel)]="address.addressOne"/>
 		</div>
 	</div>
 
@@ -30,7 +30,7 @@
 			<div class="little-space"></div>
 			<label>{{_languageService.getTranslation('zip_code')}}</label>
 			<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
-			<input type="text" class = "form-input" placeholder="" id = "zipcode" [(ngModel)]="address.zip" />
+			<input type="text" class = "form-input" placeholder="" id = "zipcode" [(ngModel)]="address.zipCode" />
 		</div>
 	</div>
 	<div class="row">

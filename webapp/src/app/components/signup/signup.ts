@@ -6,6 +6,7 @@ import {SignupObjectError} from './signup_error';
 import {LoginService} from '../home/login_service';
 import {ApiRequest} from '../../services/http/api_request';
 import {Address} from '../common/address';
+import {UserState} from '../../services/user_state/user_state';
 
 @Component({
   selector: 'signup',
@@ -20,7 +21,7 @@ export class Signup {
 	sign_up: SignupObject = new SignupObject();
 	error: SignupObjectError = new SignupObjectError();
 
-	constructor(private router: Router, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest,) {
+	constructor(private router: Router, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest, private _userState: UserState) {
 
 	}
 
@@ -138,14 +139,10 @@ export class Signup {
 	processResponse(response: any){
 		console.log(response);
 		if(response.error == true){
-			// if (response.element_id == "ssn_ein"){
-			// 	this.error.ssnFein = response.message;
-			// 	this.error.ssnFeinCssError = this.cssError;
-			// 	this.setErrorId("ssn_ein");
-			// }
-			// this.registration.passwordOne = this.registration.passwordTwo;
+			
 		}else{
-			location.href = "/dashboard";
+			this._userState.setSession(response.session);
+			this.router.navigate(['dashboard']);
 		}
 	}
 

@@ -6,6 +6,7 @@ import {UserState} from '../../services/user_state/user_state';
 import {LoginService} from './login_service';
 import {LoginObject} from './login_object';
 import {LoginObjectError} from './login_error';
+import {Notification} from '../common/notification';
 
 @Component({
   selector: 'home',
@@ -19,6 +20,7 @@ export class Home {
 	email = "";
 	password = "";
 	errorMessage = "";
+	notifications: Notification[] = [];
 	
 	error: LoginObjectError = new LoginObjectError();
 	constructor( private router: Router, private _apiRequest: ApiRequest, private _userState: UserState, private _languageService: LanguageService, private _loginService: LoginService) {}
@@ -28,6 +30,11 @@ export class Home {
 			document.getElementsByClassName("notification-body")[0]["style"].height = document.getElementsByClassName("main-body")[0].clientHeight + "px";
 		},1);
 		this.error.showPassword = this._languageService.getTranslation("show_password");
+		this._apiRequest.doRequest('getactivenotifications',this._userState.getGeoLocation()).subscribe(res => this.loadNotifications(res));
+	}
+
+	loadNotifications(input: any){
+		this.notifications = input;
 	}
 
 	signup(){
@@ -52,34 +59,26 @@ export class Home {
 			this.error.password = this._languageService.getTranslation("password_required");
 			document.getElementById("password").style["borderColor"] = "#CD2026";
 		}else{
-			var login = this._loginService.prepareLogin(this.email, this.password);
-			console.log(login);
-			
+			var loginObj: LoginObject = new LoginObject();
+			loginObj = this._loginService.prepareLogin(this.email, this.password);
+			this._apiRequest.doRequest('login', loginObj).subscribe(res => this.processResponse(res));
 		}
-		var loginObj: LoginObject = new LoginObject();
-		this._apiRequest.doRequest('login', loginObj).subscribe(res => this.processResponse(res));
 	}
 
 	processResponse(response: any){
-    	if(response.authenticationSuccess){
-	      // 	sessionStorage.setItem("sessionId", response.sessionId);
-	      // 	sessionStorage.setItem("accountType", response.accountType);
-	      // 	sessionStorage.setItem("lastActive", new Date().getTime().toString());
-	      // 	if(response.accountType.toLowerCase() == "localadmin"){
-	      //   	this.router.navigate(['/choose']);  
-	     	// }else{
-	      //   	this.router.navigate(['/locate-account']);
-	      // 	}
-	      	this._userState.setSession("12345");
-			if(this._userState.isAdmin){
-				this.router.navigate(['notify']);	
-			}else{
+		if(response.error == true){
+			console.log(response.error);
+		}else{
+			console.log(response);
+			this._userState.setSession(response.session);
+			localStorage.setItem("accountType", response.accountType);
+			if(localStorage.getItem("accountType") == "2"){
 				this.router.navigate(['dashboard']);
+			}else {
+				this.router.navigate(['notify']);
 			}
-	    }else{
-	      	// this.loginError = response.errorMessage;
-	      	// this.showLoginPopup = true;
-	    }
+			
+		}
   	}
 
 	goToNotification(notificationId: string){

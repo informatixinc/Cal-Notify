@@ -20,6 +20,12 @@
     width: 25%;
     float: left;
 	background-color: #AFB0B5;
+	overflow: hidden;
+	white-space:nowrap;
+}
+
+.notification-body:hover{
+	overflow-y: auto;
 }
 
 .strip-decorators{
@@ -86,6 +92,8 @@
 .message{
 	margin-left: 30%;
 	margin-top: 15px;
+    overflow: hidden;
+    white-space:nowrap;
 }
 .error{
 	color: #CD2026;
