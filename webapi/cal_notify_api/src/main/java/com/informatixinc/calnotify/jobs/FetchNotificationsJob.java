@@ -28,6 +28,7 @@ public class FetchNotificationsJob implements Runnable {
 
 	@Override
 	public void run() {
+		log.info("=====Fetch Notification Job Running=====");
 		try {
 			List<Notification> notifications = fetchNotifications();
 			for (Notification notification : notifications) {
@@ -56,6 +57,7 @@ public class FetchNotificationsJob implements Runnable {
 		} catch (RuntimeException e) {
 			log.error("A runtime exeception occurred", e);
 		}
+		log.info("=====Fetch Notification Job Complete=====");
 	}
 
 	private List<Notification> fetchNotifications() {
