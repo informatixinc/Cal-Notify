@@ -7,6 +7,7 @@ public class NotificationSettings {
 	private boolean sns;
 	private int userLocationId;
 	private int notificationId;
+	private String nickName;
 	
 	public boolean isSms() {
 		return sms;
@@ -37,6 +38,12 @@ public class NotificationSettings {
 	}
 	public void setNotificationId(int notificationId) {
 		this.notificationId = notificationId;
+	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 }

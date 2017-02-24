@@ -280,7 +280,7 @@ public class NotificationDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = conn.prepareStatement("select sms, notification_settings.email, push_notification from public.user, "
+			ps = conn.prepareStatement("select nick_name, sms, notification_settings.email, push_notification from public.user, "
 					+ "public.user_location, public.notification_settings where public.user.email = ? and "
 					+ "public.user.id = user_location.user_id and user_location.id = notification_settings.user_location_id");
 			
@@ -289,6 +289,7 @@ public class NotificationDao {
 			
 			while(rs.next()){
 				NotificationSettings setting = new NotificationSettings();
+				setting.setNickName(rs.getString("nick_name"));
 				setting.setEmail(rs.getBoolean("email"));
 				setting.setSms(rs.getBoolean("sms"));
 				setting.setSns(rs.getBoolean("push_notification"));

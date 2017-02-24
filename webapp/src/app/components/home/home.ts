@@ -85,7 +85,6 @@ export class Home {
 	      	// this.loginError = response.errorMessage;
 	      	// this.showLoginPopup = true;
 	    }
->>>>>>> Stashed changes
   	}
 
 	goToNotification(notificationId: string){
