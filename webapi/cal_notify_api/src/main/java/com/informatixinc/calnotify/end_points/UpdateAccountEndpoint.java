@@ -67,7 +67,7 @@ public class UpdateAccountEndpoint {
 		}
 		
 		GeoLookup geoLookup = new GeoLookup();
-		Point coordinates = geoLookup.latLongFromAddress(user);
+		Point coordinates = geoLookup.latLongFromAddress(user.getAddresses().get(0));
 		
 		if(coordinates == null){
 			putResponse.getErrorResponse().setError(true);

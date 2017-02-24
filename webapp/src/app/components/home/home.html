@@ -52,19 +52,21 @@
 			<div class = "text-center notification-header">
 				{{_languageService.getTranslation('home6')}}
 			</div>
-			<div class = "text-center" *ngIf="_userState.getLocation().zip.length == 0">
+			<div class = "text-center" *ngIf="_userState.getAddress().zipCode.length == 0">
 				<div class = "button" [routerLink]="['/setlocation']">{{_languageService.getTranslation('home7')}}</div>
 			</div>
-			<div class = "text-center show-location" *ngIf="_userState.getLocation().zip.length > 0">
-				<div>{{_userState.getLocation().address1}}</div>
-				<div>{{_userState.getLocation().city}} {{_userState.getLocation().zip}}</div>
+			<div class = "text-center show-location" *ngIf="_userState.getAddress().zipCode.length > 0">
+				<div>{{_userState.getAddress().addressOne}}</div>
+				<div>{{_userState.getAddress().city}} {{_userState.getAddress().zipCode}}</div>
 				<div class = "button" (click)="_userState.resetLocation()">Clear location</div>
 			</div>
-			<div class = "notification-card pointer" (click)="goToNotification('1')">
-				<div class = "notification-icon-area">
-					<img src = "https://s3-us-west-2.amazonaws.com/cal-notify/user_icons/storm.png" class = "notification-icon">
+			<div class = "notification-container" *ngFor="let notification of notifications">
+				<div class = "notification-card pointer" (click)="goToNotification(notification.id)">
+					<div class = "notification-icon-area">
+						<img src = "https://s3-us-west-2.amazonaws.com/cal-notify/user_icons/storm.png" class = "notification-icon">
+					</div>
+					<div class = "message"><b>{{notification.title}}</b><br>{{notification.expireTime}}</div>
 				</div>
-				<div class = "message"><b>Flood Warning</b><br>Today at 8:14 AM PST</div>
 			</div>
 		</div>
 	</div>

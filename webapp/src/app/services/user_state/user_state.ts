@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Address} from '../../components/common/address';
-
+import {Point} from '../../components/common/point';
 
 @Injectable()
 export class UserState {
@@ -32,14 +32,25 @@ export class UserState {
 		localStorage.removeItem("address");
 	}
 
-	setLocation(address: Address){
+	setAddress(address: Address){
 		localStorage.setItem("address", JSON.stringify(address));
 	}
 
-	getLocation():Address{
+	getAddress():Address{
 		if(localStorage.getItem("address") == null){
 			return new Address();
 		}
 		return (JSON.parse(localStorage.getItem("address")));	
+	}
+
+	setGeoLocation(point: Point){
+		localStorage.setItem("geoLocation", JSON.stringify(point));
+	}
+
+	getGeoLocation():Point{
+		if(localStorage.getItem("geoLocation") == null){
+			return new Point();
+		}
+		return (JSON.parse(localStorage.getItem("geoLocation")));	
 	}
 }

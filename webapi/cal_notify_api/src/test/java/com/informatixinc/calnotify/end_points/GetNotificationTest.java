@@ -20,17 +20,19 @@ public class GetNotificationTest {
 		assert(notification.getTitle().length() > 0);
 	}
 	
-	private int getLatestNotification(){
+	private Notification getLatestNotification(){
 		Connection conn = DatabasePool.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		Notification notification = new Notification();
 		
 		try {
 			ps = conn.prepareStatement("select id from public.notification order by id desc limit 1");
 			
 			rs = ps.executeQuery();
 			if(rs.next()){
-				return rs.getInt("id");
+				notification.setId(rs.getInt("id"));
+				return notification;
 			}else{
 				throw new RuntimeException("No notifications to test with");
 			}

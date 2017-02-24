@@ -6,6 +6,7 @@ import {UserState} from '../../services/user_state/user_state';
 import {LoginService} from './login_service';
 import {LoginObject} from './login_object';
 import {LoginObjectError} from './login_error';
+import {Notification} from '../common/notification';
 
 @Component({
   selector: 'home',
@@ -19,6 +20,7 @@ export class Home {
 	email = "";
 	password = "";
 	errorMessage = "";
+	notifications: Notification[] = [];
 	
 	error: LoginObjectError = new LoginObjectError();
 	constructor( private router: Router, private _apiRequest: ApiRequest, private _userState: UserState, private _languageService: LanguageService, private _loginService: LoginService) {}
@@ -28,6 +30,11 @@ export class Home {
 			document.getElementsByClassName("notification-body")[0]["style"].height = document.getElementsByClassName("main-body")[0].clientHeight + "px";
 		},1);
 		this.error.showPassword = this._languageService.getTranslation("show_password");
+		this._apiRequest.doRequest('getactivenotifications',this._userState.getGeoLocation()).subscribe(res => this.loadNotifications(res));
+	}
+
+	loadNotifications(input: any){
+		this.notifications = input;
 	}
 
 	signup(){

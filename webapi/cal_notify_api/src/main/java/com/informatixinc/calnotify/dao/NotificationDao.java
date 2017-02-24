@@ -31,13 +31,14 @@ import com.informatixinc.calnotify.model.NotificationType;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
+import com.informatixinc.calnotify.utils.ProjectProperties;
 import com.informatixinc.calnotify.utils.StringUtils;
 
 public class NotificationDao {
 	private final String baseUrl = "https://igems.doi.gov/arcgis/rest/services/igems_haz/MapServer/find?searchText=x%3DCA&contains=true&searchFields=link&sr=4326&layerDefs=&returnGeometry=true&maxAllowableOffset=&geometryPrecision=2&dynamicLayers=&returnZ=false&returnM=false&gdbVersion=&f=pjson&layers=";
 	private final DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
 
-	public ArrayList<Notification> getActiveNotifications() {
+	public ArrayList<Notification> getActiveNotifications(Point point) {
 
 		ArrayList<Notification> notifications = new ArrayList<Notification>();
 
@@ -46,16 +47,27 @@ public class NotificationDao {
 		ResultSet rs = null;
 
 		try {
-			ps = conn.prepareStatement(
-					"select notification.id as notification_id, type, issue_time, expire_time, icon from public.notification, public.notification_type "
-							+ "where notification.notification_type = notification_type.id and expire_time > now()");
+			if(point.getLatitude() == 0D){
+				ps = conn.prepareStatement(
+						"select notification.id as notification_id, type, send_time, expire_time, icon from public.notification, "
+						+ "public.notification_classification where notification.type_id = notification_classification.id and expire_time > now()");
+			}else{
+				ps = conn.prepareStatement("select notification.id as notification_id, type, send_time, expire_time, icon from public.notification,"
+						+ "public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() "
+						+ "and location <@> POINT(?,?)  < ?");
+				ps.setDouble(1, point.getLongitude());
+				ps.setDouble(2, point.getLatitude());
+				ps.setInt(3, ProjectProperties.getProperty("getProperty", 50));
+			}
+			
 
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
 				Notification notification = new Notification();
+				notification.setId(rs.getInt("notification_id"));
 				notification.setTitle(rs.getString("type"));
-				notification.setSendTime(new Date(rs.getTimestamp("issue_time").getTime()));
+				notification.setSendTime(new Date(rs.getTimestamp("send_time").getTime()));
 				notification.setExpireTime(new Date(rs.getTimestamp("expire_time").getTime()));
 				notification.setImageUrl(rs.getString("icon"));
 				notification.setNotificationId(rs.getString("notification_id"));
@@ -81,18 +93,15 @@ public class NotificationDao {
 
 		try {
 			ps = conn.prepareStatement(
-					"select notification.id as notification_id, type, issue_time, expire_time, icon from public.notification, public.notification_type "
-							+ "where notification.notification_type = notification_type.id and notification.id = ?");
+					"select title, info_url from public.notification, public.notification_classification "
+					+ "where notification.type_id = notification_classification.id and notification.id = ?");
 			ps.setInt(1, id);
 
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				notification.setTitle(rs.getString("type"));
-				notification.setSendTime(new Date(rs.getTimestamp("issue_time").getTime()));
-				notification.setExpireTime(new Date(rs.getTimestamp("expire_time").getTime()));
-				notification.setImageUrl(rs.getString("icon"));
-				notification.setNotificationId(rs.getString("notification_id"));
+				notification.setTitle(rs.getString("title"));
+				notification.setInfoUrl(rs.getString("info_url"));
 			} else {
 				notification.getErrorResponse().setError(true);
 				notification.getErrorResponse().setErrorMessage("Unable to locate notification");

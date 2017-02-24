@@ -15,14 +15,14 @@ import org.apache.http.impl.client.HttpClients;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.informatixinc.calnotify.model.Address;
 import com.informatixinc.calnotify.model.Point;
-import com.informatixinc.calnotify.model.User;
 
 public class GeoLookup {
 	
 	
 	//Null responses will be not found
-	public Point latLongFromAddress(User user){
+	public Point latLongFromAddress(Address address){
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		URLCodec codec = new URLCodec();
 		StringBuilder sb = new StringBuilder();
@@ -30,11 +30,11 @@ public class GeoLookup {
 		
 		try {
 			sb.append("https://maps.googleapis.com/maps/api/geocode/json?address=");
-			sb.append(codec.encode(user.getAddresses().get(0).getAddressOne()));
+			sb.append(codec.encode(address.getAddressOne()));
 			sb.append(",+");
-			sb.append(codec.encode(user.getAddresses().get(0).getCity()));
+			sb.append(codec.encode(address.getCity()));
 			sb.append(",+");
-			sb.append(codec.encode(user.getAddresses().get(0).getState()));
+			sb.append(codec.encode(address.getState()));
 			sb.append("&key=");
 			sb.append(ProjectProperties.getProperty("google_maps_api_key"));
 			
