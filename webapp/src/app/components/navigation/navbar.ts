@@ -26,6 +26,7 @@ export class NavBar {
 	
 	logOut(){
 		this._userState.removeSession();
+		localStorage.removeItem("accountType");
 		this.router.navigate(['/home']);
 	}
 }

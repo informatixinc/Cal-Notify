@@ -69,11 +69,15 @@ export class Home {
 		if(response.error == true){
 			console.log(response.error);
 		}else{
-
-			sessionStorage.setItem("sessionId", response.session);
 			console.log(response);
 			this._userState.setSession(response.session);
-			this.router.navigate(['dashboard']);
+			localStorage.setItem("accountType", response.accountType);
+			if(localStorage.getItem("accountType") == "2"){
+				this.router.navigate(['dashboard']);
+			}else {
+				this.router.navigate(['notify']);
+			}
+			
 		}
   	}
 
