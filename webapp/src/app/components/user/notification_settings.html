@@ -24,7 +24,7 @@
 			<div class="little_space"></div>
 			<div class = "col-md-4 col-md-offset-1">
 				<label>{{_languageService.getTranslation('addr_nickname')}}</label>   
-				<input type="text" class = "form-input" placeholder="" id = "nickname" autofocus [(ngModel)]="notification.addrNickname" />
+				<input type="text" class = "form-input" placeholder="" id = "nickname" autofocus [(ngModel)]="additional_loc.addresses[0].nickName" />
 				<!-- <div class = "error" id="error">{{error.addrNickname}}</div> -->
 			</div>
 		</div>
@@ -32,31 +32,31 @@
 			<div class="little_space"></div>
 			<div class = "col-md-8 col-md-offset-1">
 				<label>{{_languageService.getTranslation('address')}}</label>
-				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
-				<input type="text" class = "form-input address" placeholder="" id = "address" [(ngModel)]="notification.address"/>
-				<div class = "error" id="error">{{error.address}}</div>
+				<span class="required">({{_languageService.getTranslation('required')}})</span>
+				<input type="text" class = "form-input address" placeholder="" id = "address" [(ngModel)]="additional_loc.addresses[0].addressOne"/>
+				<div class = "error" id="error">{{error.addresses[0].addressOne}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-4 col-md-offset-1">
 				<label>{{_languageService.getTranslation('city')}}</label>
-				<input type="text" class = "form-input" placeholder="" id = "city" [(ngModel)]="notification.city"/>
+				<input type="text" class = "form-input" placeholder="" id = "city" [(ngModel)]="additional_loc.addresses[0].city"/>
 				<!-- <div class = "error" id="error">{{error.city}}</div> -->
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
 				<label>{{_languageService.getTranslation('state')}}</label>
-				<select class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id = "state" >
+				<select class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id = "state" [(ngModel)]="additional_loc.addresses[0].state" >
 					<option *ngFor="let state of states" value="{{state}}">{{state}}</option>			  
 				</select>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
 				<label>{{_languageService.getTranslation('zip_code')}}</label>
-				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
-				<input type="text" class = "form-input" placeholder="" id = "zip" [(ngModel)]="notification.zipCode" (keyup.enter)='addLoc()'/>
-				<div class = "error" id="error">{{error.zipCode}}</div>
+				<span class="required">({{_languageService.getTranslation('required')}})</span>
+				<input type="text" class = "form-input" placeholder="" id = "zip" [(ngModel)]="additional_loc.addresses[0].zipCode" (keyup.enter)='addLoc()'/>
+				<div class = "error" id="error">{{error.addresses[0].zipCode}}</div>
 			</div>
 		</div>
 		<div class="row">
@@ -89,25 +89,14 @@
 				        <th scope="col">{{_languageService.getTranslation('receive_push')}}</th>
 				      </tr>
 				    </thead>
-				    <tbody>
-				      <tr>
-				        <th scope="row">{{_languageService.getTranslation('geo_loc')}}</th>
-				        <td><input type="checkbox" name=""></td>
-				        <td><input type="checkbox" name=""></td>
-				        <td><input type="checkbox" name=""></td>
+				    <tbody >
+				      <tr *ngFor = "let notification of notifications">
+				        <th scope="row">{{notification.nickName}}</th>
+				        <td><input type="checkbox" name="" [(ngModel)]="notification.sms" ></td>
+				        <td><input type="checkbox" name="" [(ngModel)]="notification.email" ></td>
+				        <td><input type="checkbox" name="" [(ngModel)]="notification.sns" ></td>
 				      </tr>
-				      <tr>
-				        <th scope="row">{{_languageService.getTranslation('primary_addr')}}</th>
-				        <td><input type="checkbox" name=""></td>
-				        <td><input type="checkbox" name=""></td>
-				        <td><input type="checkbox" name=""></td>
-				      </tr>
-				      <tr>
-				        <th scope="row">{{_languageService.getTranslation('additional_loc')}}</th>
-				        <td><input type="checkbox" name=""></td>
-				        <td><input type="checkbox" name=""></td>
-				        <td><input type="checkbox" name=""></td>
-				      </tr>
+				  
 				    </tbody>
 				</table>
 			</div>
@@ -120,8 +109,8 @@
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
-			<div class = "col-md-3 col-md-offset-1">
-				<div class = "button" type="submit" id = "submit" (click)="save()">{{_languageService.getTranslation('save_notifications')}}</div>
+			<div class = "col-md-2 col-md-offset-1">
+				<div class = "button" type="submit" id = "submit" (click)="saveNotifications()">{{_languageService.getTranslation('save_notifications')}}</div>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">

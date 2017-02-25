@@ -21,7 +21,7 @@ export class Signup {
 	sign_up: User = new User();
 	error: SignupObjectError = new SignupObjectError();
 
-	constructor(private router: Router, private _userState: UserState, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest,) {}
+	constructor(private router: Router, private _userState: UserState, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest) {}
 
 	ngOnInit(){
 		this.sign_up.addresses[0].state = "CA";

@@ -1,14 +1,11 @@
+import {Address} from '../common/address';
 export class EditprofileObject {
-	firstName: string = "";
-	lastName: string = "";
-	phoneNumber: string = "";
-	email: string = "";
-	address1: string = "";
-	address2: string = "";
-	city: string = "";
-	state: string = "";
-	zipCode: string = "";
-	newPassword: string = "";
-	oldPassword: string = "";
-	confPassword: string = "";
+	firstName: string;
+	lastName: string;
+	phoneNumber: string;
+	email: string;
+	password: string;
+	oldPassword: string;
+	confPassword: string;
+	addresses: Address[] = [new Address()];
 }

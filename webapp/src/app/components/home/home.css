@@ -19,7 +19,7 @@
 .notification-body{
     width: 25%;
     float: left;
-	background-color: #AFB0B5;
+	background-color: #d6d7d9;
 	overflow: hidden;
 	white-space:nowrap;
 }
@@ -38,7 +38,7 @@
 .password-align{
 	margin-left: -26px;
 	cursor:pointer;
-	color:blue;
+	color: #0071bc;
 	text-decoration:underline;
 	line-height: 10px;
     font-size: .8em;
@@ -54,7 +54,7 @@
 	line-height: 10px;
     font-size: .8em;
     cursor:pointer;
-	color:blue;
+	color: #0071bc;
 	text-decoration:underline;
 	margin-top: 25px;
 }
@@ -66,7 +66,7 @@
 
 .set-location{
 	cursor:pointer;
-	color:blue;
+	color: #0071bc;
 	text-decoration:underline;
 }
 
@@ -100,4 +100,7 @@
 }
 .little_space{
   margin-top: 12px;
+}
+.decorator{
+	text-decoration:underline;
 }

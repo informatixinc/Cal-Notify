@@ -3,24 +3,34 @@ import {Router} from '@angular/router';
 import {LanguageService} from '../../services/language/language_service';
 import {EditprofileObject} from './editprofile_object';
 import {EditprofileObjectError} from './editprofile_error';
+import {ApiRequest} from '../../services/http/api_request';
+import {Address} from '../common/address';
+import {UserState} from '../../services/user_state/user_state';
+import {LoginService} from '../home/login_service';
 
 @Component({
   selector: 'editprofile',
   templateUrl: './editprofile.html',
   styleUrls: ['./editprofile.css'],
-  providers: [],
+  providers: [LoginService, ApiRequest],
 })
 
 export class EditProfile {
 
 
-	states = ["CA", "AL", "AK", "AZ", "AR", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+	states = ["AL", "AK", "AZ", "AR","CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
 	edit_profile: EditprofileObject = new EditprofileObject();
 	error: EditprofileObjectError = new EditprofileObjectError();
-	constructor( private router: Router, private _languageService: LanguageService) {}
+	constructor(private router: Router, private _userState: UserState, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest) {
+
+	}
+	ngOnInit(){
+		this.edit_profile.addresses[0].state = "CA";
+	}
+
 	save(){
-		this.error.firstName = this.error.lastName = this.error.email = this.error.phoneNumber = this.error.address1 = this.error.address2 = 
-		this.error.city = this.error.zipCode = this.error.newPassword = this.error.oldPassword = this.error.confPassword = "";
+		this.error.firstName = this.error.lastName = this.error.email = this.error.phoneNumber = this.error.addresses[0].addressOne = this.error.addresses[0].addressTwo = 
+		this.error.addresses[0].city = this.error.addresses[0].zipCode = this.error.password = this.error.oldPassword = this.error.confPassword = "";
 
 		document.getElementById("fname").style["borderColor"] = "black";
 		document.getElementById("lname").style["borderColor"] = "black";
@@ -38,7 +48,7 @@ export class EditProfile {
 		var lower = /[a-z]/;
 		var upper = /[A-Z]/;
 		var valEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		var strippedZipcode = this.stripNonNumeric(this.edit_profile.zipCode);
+		var strippedZipcode = this.stripNonNumeric(this.edit_profile.addresses[0].zipCode);
 		var strippedPhone = this.stripNonNumeric(this.edit_profile.phoneNumber);
 
 		if(this.edit_profile.firstName.length == 0){
@@ -70,26 +80,26 @@ export class EditProfile {
 			document.getElementById("phone").style["borderColor"] = "#CD2026";
 		}
 
-		if(this.edit_profile.address1.length == 0){
-			this.error.address1 = this._languageService.getTranslation("address1_required");
+		if(this.edit_profile.addresses[0].addressOne.length == 0){
+			this.error.addresses[0].addressOne = this._languageService.getTranslation("address1_required");
 			document.getElementById("address1").style["borderColor"] = "#CD2026";
 		}
 		// if(this.edit_profile.address2.length == 0){
 		// 	this.error.address2 = this._languageService.getTranslation("address2_required");
 		// 	document.getElementById("address2").style["borderColor"] = "#CD2026";
 		// }
-		if(this.edit_profile.city.length == 0){
-			this.error.city = this._languageService.getTranslation("city_required");
+		if(this.edit_profile.addresses[0].city.length == 0){
+			this.error.addresses[0].city = this._languageService.getTranslation("city_required");
 			document.getElementById("city").style["borderColor"] = "#CD2026";
 		}
 
 		if(strippedZipcode.length > 0){
 			if(strippedZipcode.length != 5){
-				this.error.zipCode = this._languageService.getTranslation("zipcode_validation");
+				this.error.addresses[0].zipCode = this._languageService.getTranslation("zipcode_validation");
 				document.getElementById("zipcode").style["borderColor"] = "#CD2026";
 			}
 		}else{
-			this.error.zipCode = this._languageService.getTranslation("zipcode_required");
+			this.error.addresses[0].zipCode = this._languageService.getTranslation("zipcode_required");
 			document.getElementById("zipcode").style["borderColor"] = "#CD2026";
 		}
 
@@ -98,28 +108,28 @@ export class EditProfile {
 			document.getElementById("oldPassword").style["borderColor"] = "#CD2026";
 		}
 
-		if(this.edit_profile.newPassword.length > 0){		
-			if(this.edit_profile.newPassword.length < 6){
-				this.error.newPassword = this._languageService.getTranslation("password_length_low");
+		if(this.edit_profile.password.length > 0){		
+			if(this.edit_profile.password.length < 6){
+				this.error.password = this._languageService.getTranslation("password_length_low");
 				document.getElementById("newPassword").style["borderColor"] = "#CD2026";
-			}else if(!num.test(this.edit_profile.newPassword)){
-				this.error.newPassword = this._languageService.getTranslation("password_number");
+			}else if(!num.test(this.edit_profile.password)){
+				this.error.password = this._languageService.getTranslation("password_number");
 				document.getElementById("newPassword").style["borderColor"] = "#CD2026";
-			}else if(!lower.test(this.edit_profile.newPassword)){
-				this.error.newPassword = this._languageService.getTranslation("password_lower");
+			}else if(!lower.test(this.edit_profile.password)){
+				this.error.password = this._languageService.getTranslation("password_lower");
 				document.getElementById("newPassword").style["borderColor"] = "#CD2026";
-			}else if(!upper.test(this.edit_profile.newPassword)){
-				this.error.newPassword = this._languageService.getTranslation("password_upper");
+			}else if(!upper.test(this.edit_profile.password)){
+				this.error.password = this._languageService.getTranslation("password_upper");
 				document.getElementById("newPassword").style["borderColor"] = "#CD2026";
 			}	
 		}else {
-			this.error.newPassword = this._languageService.getTranslation("new_password_required");
+			this.error.password = this._languageService.getTranslation("new_password_required");
 			document.getElementById("newPassword").style["borderColor"] = "#CD2026";
 		}
 
 
 		if(this.edit_profile.confPassword.length > 0 ){
-			if(this.edit_profile.confPassword != this.edit_profile.newPassword){
+			if(this.edit_profile.confPassword != this.edit_profile.password){
 				document.getElementById("confPassword").style["borderColor"] = "#CD2026";
 				this.error.confPassword = this._languageService.getTranslation("password_dont_match");
 			}
@@ -128,7 +138,23 @@ export class EditProfile {
 			document.getElementById("confPassword").style["borderColor"] = "#CD2026";
 		}
 
+		var editprofileObj = JSON.parse(JSON.stringify(this.edit_profile));
+		editprofileObj.password = this._loginService.prepareLogin("", this.edit_profile.password).password;
+		delete editprofileObj.confPassword;
+		delete editprofileObj.oldPassword;
+		console.log(JSON.stringify(editprofileObj));
+		this._apiRequest.doRequest('updateaccount',editprofileObj).subscribe(res => this.processResponse(res));
+
+
 		
+	}
+
+	processResponse(response: any){
+		if(response.error == true){
+			
+		}else{
+
+		}
 	}
 
 	stripNonNumeric(input: string){

@@ -175,10 +175,10 @@ public class UserDao {
 		
 		try {
 			//First address is their registration address
-			ps = conn.prepareStatement("select user.id as user_id, user_location.id as location_id from public.user, public.user_location where public.user.id = user_location.user_id where user.email = ?");
+			ps = conn.prepareStatement("select public.user.id as user_id, public.user_location.user_id as location_id from public.user, public.user_location where public.user.id = public.user_location.user_id and public.user.email = ?");
 			ps.setString(1, email);
 			rs = ps.executeQuery();
-			ps.close();
+//			ps.close();
 			if(rs.next()){
 				userId = rs.getInt("user_id");
 				locationId = rs.getInt("location_id");
@@ -186,7 +186,7 @@ public class UserDao {
 				StringBuilder sb = new StringBuilder();
 				sb.append("update public.user set email = ?,");
 				if(user.getPassword().length() > 0){
-					sb.append("password = ?,salt = ?");
+					sb.append("password = ?,salt = ?,");
 				}
 				sb.append("first_name = ?, last_name = ?, phone_number = ?");
 				sb.append("where public.user.id = ?");
@@ -206,7 +206,7 @@ public class UserDao {
 				
 				if(ps.executeUpdate() == 1){
 					DatabaseUtils.safeClose(ps,rs);
-					ps = conn.prepareStatement("update public.user_address set address_one = ?, address_two = ?, state_id = ?, nick_name = ? where id = ?");
+					ps = conn.prepareStatement("update public.user_address set address_one = ?, address_two = ?, state_id = ?, nick_name = ? where user_id = ?");
 					ps.setString(1, user.getAddresses().get(0).getAddressOne());
 					ps.setString(2, user.getAddresses().get(0).getAddressTwo());
 					ps.setInt(3, UsState.getStateId(user.getAddresses().get(0).getState()));
@@ -322,5 +322,89 @@ public class UserDao {
 		}
 		
 		return user;
+	}
+	
+public PutResponse addlocations(User user, PutResponse putResponse, String sessionId){
+		
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String email = AuthMap.getUserName(sessionId);
+		if(email == null){
+			putResponse.getErrorResponse().setError(true);
+			putResponse.getErrorResponse().setErrorMessage("Not logged in");
+			return putResponse;
+		}
+		int userId;
+		try {
+			//Select user_id from user table
+			ps = conn.prepareStatement("select public.user.id as user_id from public.user where public.user.email = ?");
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+	
+			
+			if(rs.next()){
+				userId = rs.getInt("user_id");
+	
+				
+					DatabaseUtils.safeClose(ps,rs);
+					ps = conn.prepareStatement("insert into public.user_address (user_id, address_one, address_two, city, state_id, zip_code) values (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+					ps.setInt(1, userId);
+					ps.setString(2, user.getAddresses().get(0).getAddressOne());
+					ps.setString(3, user.getAddresses().get(0).getAddressTwo());
+					ps.setString(4, user.getAddresses().get(0).getCity());
+					ps.setInt(5, UsState.getStateId(user.getAddresses().get(0).getState()));
+					ps.setString(6, user.getAddresses().get(0).getZipCode());
+					ps.executeUpdate();
+					
+					
+					
+					rs = ps.getGeneratedKeys();
+					rs.next();
+					int addressId = rs.getInt(1);
+
+					DatabaseUtils.safeClose(ps, rs);
+					ps = conn.prepareStatement("insert into public.user_location (user_id, location, address_id, nick_name) values (?,point(?,?),?,?)", Statement.RETURN_GENERATED_KEYS);
+					ps.setInt(1, userId);
+					ps.setDouble(2, user.getLocation().getLongitude());
+					ps.setDouble(3, user.getLocation().getLatitude());
+					ps.setInt(4, addressId);
+					ps.setString(5, user.getAddresses().get(0).getNickName());
+					ps.executeUpdate();
+					
+					
+					rs = ps.getGeneratedKeys();
+					rs.next();
+					int locationId = rs.getInt(3);
+	
+					DatabaseUtils.safeClose(ps, rs);
+					ps = conn.prepareStatement("insert into public.notification_settings (user_location_id, sms, email, push_notification) values (?,?,?,?)");
+					ps.setInt(1, locationId);
+					ps.setBoolean(2, true);
+					ps.setBoolean(3, true);
+					ps.setBoolean(4, false);
+					
+					if(ps.executeUpdate() == 1){
+						return putResponse;
+					}else{
+						throw new RuntimeException("Error adding additional location");
+					}
+			
+	
+				
+			}else{
+				putResponse.getErrorResponse().setError(true);
+				putResponse.getErrorResponse().setErrorMessage("Unable to locate address");
+				return putResponse;
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		} finally{
+			DatabaseUtils.safeClose(conn, ps);
+		}
 	}
 }

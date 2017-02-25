@@ -4,9 +4,7 @@
 	font-size: 1.5em;
 	font-weight: bold;
 }
-.second-word{
-	color: #0071BD;
-}
+
 textarea{
 	height: 100px;
 	width: 100%;
@@ -23,17 +21,11 @@ textarea{
 }
 .button{
 	width: 100%;
-	background-color: #1C5394;
 }
 .contact_text{
 	font-size: 1.2em;
 }
-.required{
-	color: #CD2026;
-}
-.error{
-	color: #CD2026;
-}
+
 @media only screen and (min-device-width: 480px) {
 	.top-space{
 		margin-top: 150px;

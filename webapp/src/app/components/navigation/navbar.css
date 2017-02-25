@@ -1,5 +1,5 @@
 .navbar-style{
-	background-color: #0071BD;
+	background-color: #0071BC;
 }
 
 .navbar{
@@ -41,9 +41,11 @@
 	color: #fff;
 	font-size: 3.0em;
 }
-
+.title-color{
+	color: #e1f3f8;
+}
 .sub-header{
-	color: #DFEDBD;
+	color: #FAD980;
     margin-left: 18px;
 }
 

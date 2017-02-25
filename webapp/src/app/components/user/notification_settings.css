@@ -4,9 +4,7 @@
 	font-size: 1.5em;
 	font-weight: bold;
 }
-.second-word{
-	color: #0071BD;
-}
+
 .Search{
 	font-size: 1.3em;
 }
@@ -21,7 +19,7 @@
 }
 .button{
 	width: 100%;
-	background-color: #1C5394;
+	
 }
 .notification-text{
 	text-align: justify;
@@ -29,15 +27,10 @@
 	font-weight: normal;
 }
 
-.required{
-	color: #CD2026;
-}
 .address{
 	max-width: 100%;
 }
-.error{
-	color: #CD2026;
-}
+
 .hr{
 	border-style: inset;
     border-width: 1px;
@@ -54,7 +47,7 @@ th{
 	text-align: center;
 }
 thead{
-	background-color: #e4e2e0;
+	background-color: #f1f1f1;
 }
 @media only screen and (min-device-width: 480px) {
 	.top-space{

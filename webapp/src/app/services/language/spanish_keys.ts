@@ -36,7 +36,7 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "message_required", "value": "Mensaje requerido" },
 		{ "key": "name_required", "value": "Nombre (requerido" },
 		{ "key": "privacy_policy", "value": "Política de privacidad" },
-		{ "key": "required", "value": "Necesario" },
+		{ "key": "required", "value": "* Necesario" },
 		{ "key": "required1", "value": "Requerido para notificaciones de texto" },
 		{ "key": "cancel", "value": "Cancelar" },
 		{ "key": "create", "value": "Crear" },

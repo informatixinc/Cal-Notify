@@ -26,6 +26,7 @@ import {LanguageService} from './services/language/language_service';
 import {PasswordReset} from './components/user/password_reset';
 import {ViewNotification} from './components/notifications/notification';
 import {LoginService} from './components/home/login_service';
+// import {PopoverDirective} from './components/common/popover';
 
 
 @NgModule({

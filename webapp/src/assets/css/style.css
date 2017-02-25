@@ -45,13 +45,15 @@
 .required{
     color: #CD2026;
 }
-
+.error{
+    color: #CD2026;
+}
 .clear{
 	clear: both;
 }
 
 .highlight-blue{
-    color: #006DB9;
+    color: #0071bc;
 }
 
 .button{
@@ -59,7 +61,7 @@
     margin-top: 0.5em;
     margin-right: 0.5em;
     margin-bottom: 0.5em;
-    background-color: #1B5293;
+    background-color: #0071bc;
     border: 0;
     border-radius: 0.3rem;
     color: #ffffff;
@@ -108,4 +110,7 @@ input, textarea, select {
     outline: none;
     padding: 1rem 0.7em;
     width: 100%;
+}
+.second-word{
+    color: #0071BC;
 }

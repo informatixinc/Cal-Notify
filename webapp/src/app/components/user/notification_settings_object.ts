@@ -1,7 +1,8 @@
+import {Address} from '../common/address';
+
 export class NotificationObject {
-	addrNickname: string = "";
-	address: string = "";
-	city: string = "";
-	state: string = "";
-	zipCode: string = "";
+	addresses: Address[] = [new Address()];
+	sms: boolean;
+	email: boolean;
+	sns: boolean;
 }

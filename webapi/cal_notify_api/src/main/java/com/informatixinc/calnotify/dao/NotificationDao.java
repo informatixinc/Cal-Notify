@@ -282,7 +282,7 @@ public class NotificationDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = conn.prepareStatement("select nick_name, sms, notification_settings.email, push_notification from public.user, "
+			ps = conn.prepareStatement("select nick_name, sms, notification_settings.email, user_location_id, push_notification from public.user, "
 					+ "public.user_location, public.notification_settings where public.user.email = ? and "
 					+ "public.user.id = user_location.user_id and user_location.id = notification_settings.user_location_id");
 			
@@ -295,7 +295,7 @@ public class NotificationDao {
 				setting.setEmail(rs.getBoolean("email"));
 				setting.setSms(rs.getBoolean("sms"));
 				setting.setSns(rs.getBoolean("push_notification"));
-				
+				setting.setUserLocationId(rs.getInt("user_location_id"));
 				settings.add(setting);
 			}
 		} catch (SQLException e) {
@@ -315,18 +315,20 @@ public class NotificationDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = conn.prepareStatement("update public.notification_settings set sms = ?, email = ?, push_notification = ? where id = ?");
-			conn.setAutoCommit(false);
+			ps = conn.prepareStatement("update public.notification_settings set sms = ?, email = ?, push_notification = ? where user_location_id = ?");
+			//conn.setAutoCommit(false);
 
 			for(NotificationSettings instance: settings){
 				ps.setBoolean(1, instance.isSms());
 				ps.setBoolean(2, instance.isEmail());
 				ps.setBoolean(3, instance.isSns());
-				ps.setInt(4, instance.getNotificationId());
-				ps.addBatch();
+				ps.setInt(4, instance.getUserLocationId());
+				//ps.addBatch();
+				ps.executeUpdate();
 			}
-			ps.executeBatch();
-			conn.commit();
+			
+			//ps.executeBatch();
+			//conn.commit();
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally {

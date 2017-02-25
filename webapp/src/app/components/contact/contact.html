@@ -16,7 +16,7 @@
 		<div class = "little-space"></div>
 		<div class="col-md-4 col-md-offset-1">
 			<label>{{_languageService.getTranslation('name')}}</label>
-			<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+			<span class="required">({{_languageService.getTranslation('required')}})</span>
 			<input type="text" id="name" placeholder="" [(ngModel)]="contact.name" />
 			<div class = "error" id="error">{{error.name}}</div>
 		</div>
@@ -25,7 +25,7 @@
 		<div class = "little-space"></div>
 		<div class="col-md-4 col-md-offset-1">
 			<label>{{_languageService.getTranslation('email')}}</label>
-			<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+			<span class="required">({{_languageService.getTranslation('required')}})</span>
 			<input type="text" id="email" placeholder="" [(ngModel)]="contact.email" />
 			<div class = "error" id="error">{{error.email}}</div>
 		</div>
@@ -34,14 +34,14 @@
 		<div class = "little-space"></div>
 		<div class="col-md-6 col-md-offset-1">
 			<label>{{_languageService.getTranslation('contact1')}}</label>
-			<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+			<span class="required">({{_languageService.getTranslation('required')}})</span>
 			<textarea type="text" id="message" placeholder="" [(ngModel)]="contact.message" (keyup.enter)='submit()'></textarea>
 			<div class = "error" id="error">{{error.message}}</div>
 		</div>
 	</div>
 	<div class = "row">
 		<div class = "little-space"></div>
-		<div class="col-md-4 col-md-offset-1">
+		<div class="col-md-3 col-md-offset-1">
 			<button class="button" type="submit" (click)="submit()">
 				{{_languageService.getTranslation('submit')}}
 			</button>
