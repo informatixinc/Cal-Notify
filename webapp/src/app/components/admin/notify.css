@@ -65,3 +65,7 @@ td{
 		padding-right: 5px;
 	}
 }
+
+textarea{
+	height: 200px;
+}

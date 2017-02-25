@@ -17,7 +17,7 @@
 			<div class = "col-md-4 col-md-offset-1">
 				<label>{{_languageService.getTranslation('notify_title')}}</label>  
 				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span> 
-				<input type="text" class = "form-input" placeholder="" id = "title" autofocus  [(ngModel)]="notify.notifyTitle" />
+				<input type="text" class = "form-input" placeholder="Enter up to 80 characters only" id = "title" autofocus (keydown)="prevent($event)"  [(ngModel)]="notify.notifyTitle" />
 				<div class = "error" id="error">{{error.notifyTitle}}</div>
 			</div>
 			<div class="little_space"></div>
@@ -33,7 +33,7 @@
 			<div class = "col-md-8 col-md-offset-1">
 				<label>{{_languageService.getTranslation('notify_details')}}</label>
 				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
-				<textarea class="form-input notify_details" rows="8" id = "message" placeholder="Enter upto 140 characters only" (keyup.enter)='send()' [(ngModel)]="notify.notifyDetails" ></textarea>
+				<textarea class="form-input notify_details" rows="8" id = "message" (keyup.enter)='send()' [(ngModel)]="notify.notifyDetails" ></textarea>
 				<div class = "error" id="error">{{error.notifyDetails}}</div>
 			</div>
 		</div>
@@ -44,7 +44,7 @@
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
-			<div class = "button" >{{_languageService.getTranslation('cancel')}}</div>
+			<div class = "button" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
 			</div>
 		</div>
 	</div>
@@ -72,23 +72,11 @@
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr>
-				        <td>EDD office closed due to Flooding</td>
-				        <td>Expires 2/30/2017</td>
-				        <td>Active john.smith@edd.ca.gov</td>
-				        <td><a>Edit and Resend</a></td>
-				      </tr>
-				      <tr>
-				        <td>EDD office closed due to Flooding</td>
-				        <td>Expires 2/30/2017</td>
-				        <td>Active john.smith@edd.ca.gov</td>
-				        <td><a>Edit and Resend</a></td>
-				      </tr>
-				      <tr>
-				        <td>EDD office closed due to Flooding</td>
-				        <td>Expires 2/30/2017</td>
-				        <td>Active john.smith@edd.ca.gov</td>
-				        <td><a>Edit and Resend</a></td>
+				      <tr *ngFor="let message of adminMessages">
+				        <td>{{message.title}}</td>
+				        <td>{{message.expirationDate | date}}</td>
+				        <td>{{message.sentBy}}</td>
+				        <td><a (click)="editAndResend(message)" class = "pointer">Edit and Resend</a></td>
 				      </tr>
 				    </tbody>
 				</table>

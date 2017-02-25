@@ -6,7 +6,17 @@ import {Point} from '../../components/common/point';
 export class UserState {
 	constructor() { }
 
-	isAdmin = false;
+	setAccountType(type: string){
+		localStorage.setItem("accountType", type);
+	}
+
+	isAdmin(){
+		if(localStorage.getItem("accountType") == "1"){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	getLoggedIn(){
 		if(localStorage.getItem("session") != null){

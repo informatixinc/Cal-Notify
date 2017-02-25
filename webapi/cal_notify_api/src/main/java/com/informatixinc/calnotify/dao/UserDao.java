@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.informatixinc.calnotify.model.AccountType;
 import com.informatixinc.calnotify.model.Address;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
@@ -44,10 +45,10 @@ public class UserDao {
 			ps.setString(index++, user.getLastName());
 			ps.setString(index++, user.getPhoneNumber().replaceAll( "[^\\d]", "" ));
 			//Defaulting this to a user account type for now
-			ps.setInt(index++, 2);
+			ps.setInt(index++, AccountType.USER.getAccountType());
 			
 			if(ps.executeUpdate() == 1){
-				session.setSession(AuthMap.addLogin(user.getEmail()));
+				session.setSession(AuthMap.addLogin(user.getEmail(), AccountType.USER.getAccountType()));
 				rs = ps.getGeneratedKeys();
 				rs.next();
 				int userId = rs.getInt(1);
@@ -139,7 +140,7 @@ public class UserDao {
 			rs = ps.executeQuery();
 			
 			if(rs.next()){
-				session.setSession(AuthMap.addLogin(login.getEmail()));
+				session.setSession(AuthMap.addLogin(login.getEmail(), rs.getInt("account_type")));
 				session.setAccountType(rs.getInt("account_type"));
 				return session;
 			}else{

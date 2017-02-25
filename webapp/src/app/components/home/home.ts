@@ -75,11 +75,12 @@ export class Home {
 	processResponse(response: any){
     	if(!response.errorResponse.error){
 	      	this._userState.setSession(response.session);
-			// if(this._userState.isAdmin()){
-			// 	this.router.navigate(['notify']);	
-			// }else{
+	      	this._userState.setAccountType(response.accountType);
+			if(response.accountType == 1){
+				this.router.navigate(['notify']);	
+			}else{
 				this.router.navigate(['dashboard']);
-			// }
+			}
 	    }else{
 	      	// this.loginError = response.errorMessage;
 	      	// this.showLoginPopup = true;

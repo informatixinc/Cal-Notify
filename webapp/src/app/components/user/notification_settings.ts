@@ -45,4 +45,6 @@ export class NotificationSettings {
 		return input.replace(/\D/g, '');
 	}
 
+	
+
 }

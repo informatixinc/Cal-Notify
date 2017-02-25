@@ -29,4 +29,8 @@ export class NavBar {
 		localStorage.removeItem("accountType");
 		this.router.navigate(['/home']);
 	}
+
+	isAdmin(){
+		return this._userState.isAdmin();
+	}
 }

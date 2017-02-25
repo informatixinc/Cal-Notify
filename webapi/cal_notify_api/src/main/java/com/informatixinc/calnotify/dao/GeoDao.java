@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
@@ -39,12 +40,24 @@ public class GeoDao {
 					ps.executeUpdate();
 				}else{
 					DatabaseUtils.safeClose(ps,rs);
-					ps = conn.prepareStatement("insert into public.user_location (location, user_id, nick_name) values (point(?,?),?,?)");
+					ps = conn.prepareStatement("insert into public.user_location (location, user_id, nick_name) values (point(?,?),?,?)", Statement.RETURN_GENERATED_KEYS);
 					ps.setDouble(1, point.getLongitude());
 					ps.setDouble(2, point.getLatitude());
 					ps.setInt(3, userId);
 					ps.setString(4, "geo location");
-					ps.executeUpdate();
+					if(ps.executeUpdate() == 1){
+						DatabaseUtils.safeClose(ps,rs);
+						ps = conn.prepareStatement("select id from public.user_location where user_id = ? order by id desc limit 1");
+						ps.setInt(1, userId);
+						rs = ps.executeQuery();
+						rs.next();
+												
+						int locationId = rs.getInt("id");
+						DatabaseUtils.safeClose(ps,rs);
+						ps = conn.prepareStatement("insert into public.notification_settings (user_location_id, sms,email,push_notification) values (?, true, true, false)");
+						ps.setInt(1, locationId);
+						ps.executeUpdate();
+					}
 				}
 			}
 			

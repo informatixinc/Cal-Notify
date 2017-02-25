@@ -5,8 +5,8 @@ import java.util.Date;
 public class Login {
 	
 	private String userName;
+	private int accountType;
 	private Date login;
-	
 	
 	public String getUserName() {
 		return userName;
@@ -20,6 +20,11 @@ public class Login {
 	public void setLogin(Date login) {
 		this.login = login;
 	}
-	
+	public int getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(int accountType) {
+		this.accountType = accountType;
+	}
 
 }
