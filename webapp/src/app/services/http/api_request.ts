@@ -15,7 +15,7 @@ export class ApiRequest {
       	sessionStorage.setItem("lastActive", new Date().getTime().toString());
 
 	 	let bodyString = JSON.stringify(request); 
-        let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization':sessionStorage.getItem("sessionId")});
+        let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization':localStorage.getItem("session")});
         let options = new RequestOptions({ headers: headers }); 
 
         return this.http.post(this.apiUrl+urlParam, JSON.stringify(request), options) 

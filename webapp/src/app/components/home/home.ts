@@ -73,7 +73,6 @@ export class Home {
 	}
 
 	processResponse(response: any){
-		console.log(response);
     	if(!response.errorResponse.error){
 	      	this._userState.setSession(response.session);
 			// if(this._userState.isAdmin()){

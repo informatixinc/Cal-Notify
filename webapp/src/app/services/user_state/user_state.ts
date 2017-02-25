@@ -54,4 +54,6 @@ export class UserState {
 		}
 		return (JSON.parse(localStorage.getItem("geoLocation")));	
 	}
+
+	
 }

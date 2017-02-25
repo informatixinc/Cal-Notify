@@ -7,6 +7,7 @@ import {Notification} from '../common/notification';
 import {ApiRequest} from '../../services/http/api_request';
 import {Session} from '../common/session';
 import {User} from '../common/user';
+import {Point} from '../common/point';
 
 @Component({
   selector: 'dashboard',
@@ -25,13 +26,27 @@ export class DashBoard {
 	constructor( private router: Router, private _languageService: LanguageService, private _userState: UserState, private _apiRequest: ApiRequest) {}
 
 	ngOnInit(){
-
 		var session = new Session();
 		session.session = this._userState.getSession();
 		this._apiRequest.doRequest('accountinformation',session).subscribe(res => this.loadUser(res));
 		this._apiRequest.doRequest('getnotificationsettings',session).subscribe(res => this.loadSettings(res));
 		this._apiRequest.doRequest('getusernotifications',session).subscribe(res => this.loadNotifications(res));
+		navigator.geolocation.getCurrentPosition(this.geoSuccess.bind(this), this.geoFail);
 		
+	}
+
+	geoSuccess(position: any){
+		var geoLocation = new Point();
+		geoLocation.longitude = position.coords.longitude;
+		geoLocation.latitude =  position.coords.latitude;
+		this._apiRequest.doRequest('updateuserposition',geoLocation).subscribe(res => this.ignore(res));
+	}
+
+	ignore(res:any){
+		console.log(res);
+	}
+
+	geoFail(){
 	}
 
 	loadNotifications(notificaitons: any){
