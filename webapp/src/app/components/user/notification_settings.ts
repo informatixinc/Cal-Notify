@@ -61,8 +61,9 @@ export class NotificationSettings {
 	}
 
 	saveNotifications(){
-
-		this._apiRequest.doRequest('managenotifications', this.notifications).subscribe(res => this.processResponse(res));
+		var wrapper = {};
+		wrapper["notificationSettings"] = this.notifications;
+		this._apiRequest.doRequest('managenotifications', wrapper).subscribe(res => this.processResponse(res));
 	}
 
 	processResponse(response: any){

@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.model.NotificationSettings;
+import com.informatixinc.calnotify.model.NotificationsWrapper;
 import com.informatixinc.calnotify.model.PutResponse;
 
 @Path("/managenotifications")
@@ -18,7 +19,8 @@ public class ManageNotificationsEndpoint {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PutResponse manageNotificationSettings(ArrayList<NotificationSettings> settings){
+	public PutResponse manageNotificationSettings(NotificationsWrapper nw){
+		ArrayList<NotificationSettings> settings = nw.getNotificationSettings();
 		PutResponse putResponse = new PutResponse();
 		
 		if(settings.size() == 0){

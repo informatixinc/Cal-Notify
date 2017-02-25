@@ -1,11 +1,25 @@
 .report-title{
-	height: 50px;
+	height: 60px;
 	background-color: #D6D7D9;
 	font-weight: bold;
-	line-height: 50px;
+	text-align: center;
 	font-size: 1.5em;
 	padding-left: 10px;
 	padding-right: -10px;
+}
+
+.inner-container{
+	width: 90%;
+	margin-left: 5%;
+}
+
+.inner-title{
+	width: 100%;
+	background-color: #D6D7D9;
+	text-align: center;
+	font-size: 1.3em;
+	font-weight: bold;
+	height: 30px;
 }
 
 select{

@@ -316,19 +316,18 @@ public class NotificationDao {
 		
 		try {
 			ps = conn.prepareStatement("update public.notification_settings set sms = ?, email = ?, push_notification = ? where user_location_id = ?");
-			//conn.setAutoCommit(false);
+			conn.setAutoCommit(false);
 
 			for(NotificationSettings instance: settings){
 				ps.setBoolean(1, instance.isSms());
 				ps.setBoolean(2, instance.isEmail());
 				ps.setBoolean(3, instance.isSns());
 				ps.setInt(4, instance.getUserLocationId());
-				//ps.addBatch();
-				ps.executeUpdate();
+				ps.addBatch();
 			}
 			
-			//ps.executeBatch();
-			//conn.commit();
+			ps.executeBatch();
+			conn.commit();
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		} finally {
