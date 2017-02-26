@@ -20,9 +20,11 @@ export class Reports {
   groupings = {};
   gaugeData = 0;
   sourcesData: any;
+  userReportData: any;
   notificationData: string[] = [];
   sourceData: string[] = [];
   userData: any[] = [];
+  userDataLabels: string[] = [];
 
 	constructor(private router: Router, private _languageService: LanguageService, private _apiRequest: ApiRequest, private _userState: UserState ) {}
 
@@ -40,9 +42,12 @@ export class Reports {
     var highestYearMinusOne = 0;
     var highestMonthMinusOne = 0;
 
+    var years = [];
+
     for(var key in reportData.reportData){
       if(parseInt(key) > highestYear){
         highestYear = parseInt(key);
+        years.push(key);
       }
     }
 
@@ -64,8 +69,24 @@ export class Reports {
     this.userData.push(['New', reportData.reportData[highestYear][highestMonth][0].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][0].count]);
     this.userData.push(['Active', reportData.reportData[highestYear][highestMonth][1].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][1].count]);
     this.userData.push(['Inactive', reportData.reportData[highestYear][highestMonth][2].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][2].count]);
-    console.log(this.userData);
     this.drawBar();
+
+    years = years.sort().reverse();
+
+    for (var i = 0; i < years.length; ++i) {
+      for (var j = 13 - 1; j >= 1; j--) {
+        if(j in reportData.reportData[years[i]]){
+          if(String(j).length == 1){
+            this.userDataLabels.push("0" + j + "/" + years[i]);
+          }else{
+            this.userDataLabels.push(j + "/" + years[i]);
+          }
+        }
+      }
+    }
+
+    this.userReportData = reportData.reportData;
+
   }
 
   processDataNotificationReports(reportData: any){
@@ -191,8 +212,43 @@ export class Reports {
     gauge.draw(gaugeData, gaugeOptions);
   }
 
-  exportNotifications(date:string){
-    console.log(date);
+  exportUserData(date: string, event:any){
+    var exportText = "New Users,Active Users,Inactive Users\n";
+    var keys = date.split("/");
+    var data = this.userReportData[parseInt(keys[1])][parseInt(keys[0])];
+    exportText = exportText + data[0].count + "," + data[1].count + "," + data[2].count + ","
+
+    this.doExport(exportText, event.target, "User Activity - "+date+".csv");
+  }
+
+  exportCatagory(catagory: string, event:any){
+    var exportText = "Notification Type, Expire Time, Notification Time,\n";
+    var keys = [new Date().getMonth()+1, new Date().getFullYear()];
+
+    for (var i = 0; i < this.groupings[keys[1]][keys[0]].length; ++i) {
+      var notification = this.groupings[keys[1]][keys[0]][i];
+      if(notification.title == catagory){
+        exportText = exportText + notification.title + "," + notification.expireTime.replace(",","") + "," + notification.sendTime.replace(",","") + ",\n";
+      }
+    }
+    this.doExport(exportText, event.target, "Notifications - "+catagory+".csv");
+  }
+
+  exportNotifications(date: string, event:any){
+    var exportText = "Notification Type, Expire Time, Notification Time,\n";
+    var keys = date.split("/");
+    for (var i = 0; i < this.groupings[parseInt(keys[1])][parseInt(keys[0])].length; ++i) {
+      var notification = this.groupings[parseInt(keys[1])][parseInt(keys[0])][i];
+      exportText = exportText + notification.title + "," + notification.expireTime.replace(",","") + "," + notification.sendTime.replace(",","") + ",\n";
+    }
+
+    this.doExport(exportText, event.target, "Notifications - "+date+".csv");
+  }
+
+  doExport(text: string, element: any, fileName: string){
+    var file = new Blob([text], {type: 'text/plain'});
+    element["href"] = URL.createObjectURL(file);
+    element["download"] = fileName;
   }
 
 }
