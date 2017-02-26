@@ -104,3 +104,6 @@
 .decorator{
 	text-decoration:underline;
 }
+.text_align{
+	text-align: justify;
+}

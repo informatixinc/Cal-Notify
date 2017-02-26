@@ -2,7 +2,7 @@ import {Address} from '../common/address';
 export class EditprofileObject {
 	firstName: string;
 	lastName: string;
-	phoneNumber: string;
+	phoneNumber: string = "";
 	email: string;
 	password: string;
 	oldPassword: string;

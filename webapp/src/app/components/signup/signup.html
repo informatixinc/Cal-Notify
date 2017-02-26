@@ -35,6 +35,7 @@
 			<div class="little_space"></div>
 			<div class = "col-md-8 col-md-offset-1">
 				<label>{{_languageService.getTranslation('address2')}}</label>
+				<span class="required">({{_languageService.getTranslation('optional')}})</span>
 				<input type="text" class = "form-input address" placeholder="" id = "address2" [(ngModel)]="sign_up.addresses[0].addressTwo" />
 				<div class = "error" id="error">{{error.addresses[0].addressTwo}}</div>
 			</div>
@@ -113,11 +114,11 @@
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-2 col-md-offset-1">
-				<div class = "button" type="submit" id = "submit" (click)="signup()">{{_languageService.getTranslation('create_account')}}</div>		
+				<div class = "button" type="submit" id = "submit" (click)="signup()">{{_languageService.getTranslation('save')}}</div>		
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
-				<div class = "button" type="submit" id = "cancel" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
+				<div class = "button" type="cancel" id = "cancel" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
 			</div>
 	    </div>
 	</div>

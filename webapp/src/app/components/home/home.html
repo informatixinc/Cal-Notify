@@ -7,15 +7,15 @@
 <div class = "main-container">
 	<div class = "main-body">
 		<h1><b>{{_languageService.getTranslation('welcome')}} <span class = "highlight-blue">{{_languageService.getTranslation('calnotify')}}</span></b></h1>
-		<p>{{_languageService.getTranslation('home1')}} {{_languageService.getTranslation('home2')}} {{_languageService.getTranslation('home3')}}</p>
+		<p class="text_align">{{_languageService.getTranslation('home1')}} {{_languageService.getTranslation('home2')}} {{_languageService.getTranslation('home3')}}</p>
 
-		<p>{{_languageService.getTranslation('home4')}} {{_languageService.getTranslation('home5')}}</p>
+		<p class="text_align">{{_languageService.getTranslation('home4')}} {{_languageService.getTranslation('home5')}}</p>
 
-		<h1><b>Sign In</b></h1>
+		<h1><b>{{_languageService.getTranslation('signin')}}</b></h1>
 		<p class = "strip-decorators">or <a [routerLink]="['/signup']"><span class="decorator">{{_languageService.getTranslation('createanaccount')}}</span></a></p>
 		<div class="row">
 			<div class = "col-md-8">
-				<span>{{_languageService.getTranslation('email_account')}}</span>
+				<span>{{_languageService.getTranslation('email')}}</span>
 				<input type="text" class = "form-input" placeholder="" id = "email" [(ngModel)]="email" />
 				<div class = "error" id="error">{{error.email}}</div>
 			</div>

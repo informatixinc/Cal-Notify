@@ -1,15 +1,17 @@
 <navbar></navbar>
 <div class = "border">
-	<div class = "row">
+	<div class = "row section-title">
 		<div class = "col-md-4 col-md-offset-1">
-			<h1><b>{{_languageService.getTranslation('home8')}} <span class="highlight-blue">{{_languageService.getTranslation('home9')}}</span></b></h1>
+			{{_languageService.getTranslation('home8')}} <span class="highlight-blue">{{_languageService.getTranslation('home9')}}</span>
 		</div>		
 	</div>
 	<div class="row">
 		<div class="little-space"></div>
 		<div class = "col-md-8 col-md-offset-1">
 			<label>{{_languageService.getTranslation('address1')}}</label>
+			<span class="required">({{_languageService.getTranslation('required')}})</span>
 			<input type="text" class = "form-input address" placeholder="" id = "address1" [(ngModel)]="address.addressOne"/>
+			<div class = "error" id="error">{{error.addressOne}}</div>
 		</div>
 	</div>
 
@@ -31,13 +33,18 @@
 			<label>{{_languageService.getTranslation('zip_code')}}</label>
 			<span class="required">({{_languageService.getTranslation('required')}})</span>
 			<input type="text" class = "form-input" placeholder="" id = "zipcode" [(ngModel)]="address.zipCode" />
+			<div class = "error" id="error">{{error.zipCode}}</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class = "col-md-3 col-md-offset-1">
-			<div class="little-space"></div>
-			<div class = "button" (click)="setLocation()">{{_languageService.getTranslation('home10')}}</div>		
+		<div class="little-space"></div>
+		<div class = "col-md-2 col-md-offset-1">
+			<div class = "button" (click)="setLocation()">{{_languageService.getTranslation('save')}}</div>		
 		</div>
+		<div class="little_space"></div>
+		<div class = "col-md-2">
+			<div class = "button" id = "cancel" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
+		</div>	
 	</div>
 	<div class="little-space"></div>
 </div>

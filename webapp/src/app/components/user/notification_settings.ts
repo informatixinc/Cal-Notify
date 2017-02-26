@@ -33,13 +33,18 @@ export class NotificationSettings {
 		this.notifications = notifications;
 	}
 	addLoc(){
-		this.error.addresses[0].addressOne = this.error.addresses[0].zipCode = "";
+		this.error.addresses[0].addressOne = this.error.addresses[0].nickName = this.error.addresses[0].zipCode = "";
 
 		document.getElementById("address").style["borderColor"] = "black";
 		document.getElementById("zip").style["borderColor"] = "black";
+		document.getElementById("nickname").style["borderColor"] = "black";
 
 		var strippedZipcode = this.stripNonNumeric(this.additional_loc.addresses[0].zipCode);
 
+		if(this.additional_loc.addresses[0].nickName.length == 0){
+			this.error.addresses[0].nickName = this._languageService.getTranslation("nickname_required");
+			document.getElementById("nickname").style["borderColor"] = "#CD2026";
+		}
 		if(this.additional_loc.addresses[0].addressOne.length == 0){
 			this.error.addresses[0].addressOne = this._languageService.getTranslation("address_required");
 			document.getElementById("address").style["borderColor"] = "#CD2026";

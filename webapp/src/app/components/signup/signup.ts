@@ -49,7 +49,7 @@ export class Signup {
 		var valEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		var strippedZipcode = this.stripNonNumeric(this.sign_up.addresses[0].zipCode);
 		var strippedPhone = this.stripNonNumeric(this.sign_up.phoneNumber);
-
+		var hasError = false;
 		if(this.sign_up.firstName.length == 0){
 			this.error.firstName = this._languageService.getTranslation("first_name_required");
 			document.getElementById("fname").style["borderColor"] = "#CD2026";
@@ -128,7 +128,11 @@ export class Signup {
 			this.error.confPassword = this._languageService.getTranslation("confpassword_required");
 			document.getElementById("confPassword").style["borderColor"] = "#CD2026";
 		}
-
+		
+		if(hasError){
+			return;
+		}
+		
 		var regObj = JSON.parse(JSON.stringify(this.sign_up));
 		regObj.password = this._loginService.prepareLogin("", this.sign_up.password).password;
 		delete regObj.confPassword;
@@ -140,13 +144,17 @@ export class Signup {
 
 	processResponse(response: any){
 		if(response.error == true){
-			
+
 		}else{
 			this._userState.setSession(response.session);
 			this.router.navigate(['dashboard']);
 		}
 	}
 
+	cancel(){
+		this.router.navigate(['home']);
+	}
+	
 	stripNonNumeric(input: string){
 		return input.replace(/\D/g, '');
 	}

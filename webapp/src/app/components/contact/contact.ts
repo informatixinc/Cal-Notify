@@ -25,7 +25,7 @@ export class Contact {
 		document.getElementById("message").style["borderColor"] = "black";
 
 		var valEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+		var hasError = false;
 		if(this.contact.name.length == 0){
 			this.error.name = this._languageService.getTranslation("name_required");
 			document.getElementById("name").style["borderColor"] = "#CD2026";
@@ -43,5 +43,11 @@ export class Contact {
 			this.error.message = this._languageService.getTranslation("message_required");
 			document.getElementById("message").style["borderColor"] = "#CD2026";
 		}
+		if(hasError){
+			return;
+		}
+	}
+	cancel(){
+		this.router.navigate(['home']);
 	}
 }

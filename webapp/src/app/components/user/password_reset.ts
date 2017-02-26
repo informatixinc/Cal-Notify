@@ -24,7 +24,7 @@ export class PasswordReset {
 		document.getElementById("email").style["borderColor"] = "black";
 
 		var valEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+		var hasError = false;
 		if(this.password_reset.email.length > 0){
 			if(!valEmail.test(this.password_reset.email)){
 				this.error.email = this._languageService.getTranslation("email_validation");
@@ -34,6 +34,12 @@ export class PasswordReset {
 			this.error.email = this._languageService.getTranslation("email_required");
 			document.getElementById("email").style["borderColor"] = "#CD2026";
 		}
+		if(hasError){
+			return;
+		}
 
+	}
+	cancel(){
+		this.router.navigate(['home']);
 	}
 }

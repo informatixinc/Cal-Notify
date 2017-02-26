@@ -39,14 +39,7 @@ export class Notify {
 	}
 
 	cancel(){
-		document.getElementById("title").style["borderColor"] = "black";
-		document.getElementById("expdate").style["borderColor"] = "black";
-		document.getElementById("message").style["borderColor"] = "black";
-		
-		this.error.notifyTitle = this.error.expDate = this.error.notifyDetails = "";
-		this.notify.notifyTitle = "";
-		this.notify.notifyDetails = "";
-		this.notify.expDate = "";
+		this.router.navigate(['reports']);
 	}
 
 	send(){
@@ -93,5 +86,7 @@ export class Notify {
 			this.notify.notifyTitle = this.notify.notifyTitle.substring(0,80);
 		}
 	}
+
+	
  
 }
