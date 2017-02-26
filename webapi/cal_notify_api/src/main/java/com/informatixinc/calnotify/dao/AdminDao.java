@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.informatixinc.calnotify.model.AdminMessage;
+import com.informatixinc.calnotify.model.Notification;
 import com.informatixinc.calnotify.model.NotificationClassification;
 import com.informatixinc.calnotify.model.PutResponse;
+import com.informatixinc.calnotify.model.UserReport;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 
 public class AdminDao {
@@ -67,6 +69,39 @@ public class AdminDao {
 		}
 		
 		return messages;
+	}
+	
+	public ArrayList<Notification> getNotificationsForReport(){
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		ArrayList<Notification> notifications = new ArrayList<Notification>();
+		
+		try {
+			ps = conn.prepareStatement("select type as title, send_time, expire_time from public.notification, public.notification_classification where notification.classification_id = notification_classification.id");
+			rs = ps.executeQuery();
+			while(rs.next()){
+				Notification notification = new Notification();
+				notification.setTitle(rs.getString("title"));
+				notification.setSendTime(rs.getTimestamp("send_time"));
+				notification.setExpireTime(rs.getTimestamp("expire_time"));
+				notifications.add(notification);
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		}finally{
+			DatabaseUtils.safeClose(conn, ps, rs);
+		}
+		
+		return notifications;
+	}
+	
+	public UserReport getUserReport(){
+		UserReport userReport = new UserReport();
+		
+		return userReport;
 	}
 
 }

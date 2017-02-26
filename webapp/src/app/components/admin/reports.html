@@ -15,7 +15,11 @@
 			<div class = "little-space"></div>
 			<div class = "inner-container">
 				<div class = "inner-title">{{_languageService.getTranslation('by_date')}}</div>
-				<div class = 
+				<div class = "report-row" *ngFor="let date of notificationData">
+					<div class = "row-date">{{date}}</div>
+					<div class = "export-button" (click)="exportNotifications(date)">{{_languageService.getTranslation('export')}}</div>
+					<div class = "clear"></div>
+				</div>
 			</div>
 			<div class = "little-space"></div>
 		</div>
@@ -28,7 +32,14 @@
 		<div class = "chart-display-background">
 			<div id = "notifications-pie"></div>
 			<div class = "little-space"></div>
-			<div class = "button">{{_languageService.getTranslation('export')}}</div>
+			<div class = "inner-container">
+				<div class = "inner-title">By Source</div>
+				<div class = "report-row" *ngFor="let catagory of sourceData">
+					<div class = "row-date">{{catagory}}</div>
+					<div class = "export-button" (click)="exportCatagory(catagory)">{{_languageService.getTranslation('export')}}</div>
+					<div class = "clear"></div>
+				</div>
+			</div>
 			<div class = "little-space"></div>
 		</div>
 	</div>
@@ -40,7 +51,14 @@
 		<div class = "chart-display-background">
 			<div id = "notifications-bar"></div>
 			<div class = "little-space"></div>
-			<div class = "button">{{_languageService.getTranslation('export')}}</div>
+			<div class = "inner-container">
+				<div class = "inner-title">By Date Range</div>
+				<div class = "report-row">
+					<div class = "row-date">02/2016</div>
+					<div class = "export-button">{{_languageService.getTranslation('export')}}</div>
+					<div class = "clear"></div>
+				</div>
+			</div>
 			<div class = "little-space"></div>
 		</div>
 	</div>

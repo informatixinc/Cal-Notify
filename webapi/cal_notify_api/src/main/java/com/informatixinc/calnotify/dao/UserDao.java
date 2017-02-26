@@ -54,6 +54,13 @@ public class UserDao {
 				int userId = rs.getInt(1);
 				
 				DatabaseUtils.safeClose(ps, rs);
+				
+				ps = conn.prepareStatement("insert into public.user_login (user_id, date) values (?,now())");
+				ps.setInt(1, userId);
+				ps.executeUpdate();
+				
+				DatabaseUtils.safeClose(ps, rs);
+				
 				ps = conn.prepareStatement("insert into public.user_address (user_id, address_one, address_two, city, state_id, zip_code) values (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 				ps.setInt(1, userId);
 				ps.setString(2, user.getAddresses().get(0).getAddressOne());
@@ -142,6 +149,11 @@ public class UserDao {
 			if(rs.next()){
 				session.setSession(AuthMap.addLogin(login.getEmail(), rs.getInt("account_type")));
 				session.setAccountType(rs.getInt("account_type"));
+				int userId = rs.getInt("id");
+				DatabaseUtils.safeClose(ps, rs);
+				ps = conn.prepareStatement("insert into public.user_login (user_id, date) values (?,now())");
+				ps.setInt(1, userId);
+				ps.executeUpdate();
 				return session;
 			}else{
 				session.getErrorResponse().setError(true);

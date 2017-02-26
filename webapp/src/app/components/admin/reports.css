@@ -19,7 +19,8 @@
 	text-align: center;
 	font-size: 1.3em;
 	font-weight: bold;
-	height: 30px;
+	height: 40px;
+	line-height: 40px;
 }
 
 select{
@@ -53,4 +54,29 @@ select{
 	margin-left: 5%;
 	margin-right: 5%;
 	width: 90%;
+}
+
+.report-row{
+	width: 100%;
+	background-color: #fff;
+	border-bottom: 1px solid #D6D7D9;
+	text-align: left;
+	font-size: 1.3em;
+	height: 35px;
+	position: relative;
+}
+
+.row-date{
+	position: absolute;
+	left: 10%;
+	line-height: 35px;
+}
+
+.export-button{
+	position: absolute;
+	right: 10%;
+	line-height: 35px;
+	cursor:pointer;
+	color: #0071bc;
+	text-decoration:underline;
 }
