@@ -1,6 +1,6 @@
 <navbar></navbar>
 <div class = "border">
-	<div class = "row notification">
+	<div class = "row section-title">
 		<div class = "col-md-4 col-md-offset-1">
 			{{_languageService.getTranslation('notification')}} <span class="second-word">{{_languageService.getTranslation('management')}}</span>
 		</div>
@@ -16,14 +16,14 @@
 			<div class="little_space"></div>
 			<div class = "col-md-4 col-md-offset-1">
 				<label>{{_languageService.getTranslation('notify_title')}}</label>  
-				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span> 
+				<span class="required">({{_languageService.getTranslation('required')}})</span> 
 				<input type="text" class = "form-input" placeholder="Enter up to 80 characters only" id = "title" autofocus (keydown)="prevent($event)"  [(ngModel)]="notify.notifyTitle" />
 				<div class = "error" id="error">{{error.notifyTitle}}</div>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-4">
 				<label>{{_languageService.getTranslation('exp_date')}}</label>
-				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<span class="required">({{_languageService.getTranslation('required')}})</span>
 				<input type="date" class = "form-input" id = "expdate" [(ngModel)]="notify.expDate" />
 				<div class = "error" id="error">{{error.expDate}}</div>
 			</div>
@@ -32,15 +32,15 @@
 			<div class="little_space"></div>
 			<div class = "col-md-8 col-md-offset-1">
 				<label>{{_languageService.getTranslation('notify_details')}}</label>
-				<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+				<span class="required">({{_languageService.getTranslation('required')}})</span>
 				<textarea class="form-input notify_details" rows="8" id = "message" (keyup.enter)='send()' [(ngModel)]="notify.notifyDetails" ></textarea>
 				<div class = "error" id="error">{{error.notifyDetails}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
-			<div class = "col-md-3 col-md-offset-1">
-				<div class = "button" (click)="send()">{{_languageService.getTranslation('send_notification')}}</div>
+			<div class = "col-md-2 col-md-offset-1">
+				<div class = "button" (click)="send()">{{_languageService.getTranslation('send')}}</div>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">

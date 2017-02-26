@@ -39,7 +39,7 @@
 
 .title{
 	color: #fff;
-	font-size: 3.0em;
+	font-size: 2em;
 }
 .title-color{
 	color: #e1f3f8;
@@ -47,6 +47,7 @@
 .sub-header{
 	color: #FAD980;
     margin-left: 18px;
+    font-size: 12px;
 }
 
 @media only screen and (min-device-width: 480px) {

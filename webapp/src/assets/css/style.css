@@ -43,7 +43,7 @@
 }
 
 .required{
-    color: #CD2026;
+    color: #000000;
 }
 .error{
     color: #CD2026;
@@ -113,4 +113,13 @@ input, textarea, select {
 }
 .second-word{
     color: #0071BC;
+}
+.password_info{
+    font-size: 0.8em;
+}
+.section-title{
+    margin-top: 15px;
+    text-align: left;
+    font-size: 2em;
+    font-weight: bold;
 }

@@ -1,6 +1,6 @@
 <navbar></navbar>
 <div class = "border">
-	<div class = "row notification">
+	<div class = "row section-title">
 		<div class = "col-md-4 col-md-offset-1">
 			{{_languageService.getTranslation('manage')}} {{_languageService.getTranslation('my')}} <span class="second-word">{{_languageService.getTranslation('notifications')}}</span>
 		</div>	
@@ -72,8 +72,8 @@
 				<hr class="hr">
 			</div>
 		</div>
-		<div class = "row notification">
-			<div class = "col-md-4 col-md-offset-1">
+		<div class = "row section-title">
+			<div class = "col-md-6 col-md-offset-1">
 				{{_languageService.getTranslation('my1')}} {{_languageService.getTranslation('loc')}} {{_languageService.getTranslation('and')}} <span class="second-word">{{_languageService.getTranslation('preferences')}}</span>
 			</div>
 		</div>
@@ -110,11 +110,11 @@
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-2 col-md-offset-1">
-				<div class = "button" type="submit" id = "submit" (click)="saveNotifications()">{{_languageService.getTranslation('save_notifications')}}</div>
+				<div class = "button" type="submit" id = "submit" (click)="saveNotifications()">{{_languageService.getTranslation('save')}}</div>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
-				<div class = "button" type="submit" id = "submit" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
+				<div class = "button" id = "cancel" (click)="cancel()" >{{_languageService.getTranslation('cancel')}}</div>
 			</div>
 		</div>
 

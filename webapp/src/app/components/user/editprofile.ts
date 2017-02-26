@@ -160,5 +160,8 @@ export class EditProfile {
 	stripNonNumeric(input: string){
 		return input.replace(/\D/g, '');
 	}
+	cancel(){
+		this.router.navigate(['dashboard']);
+	}
  
 }

@@ -3,7 +3,7 @@
     <a class="title navbar-brand " [routerLink]="['/home']" *ngIf="!isLoggedIn()">Cal <span class="title-color">Notify</span></a>
     <a class="title navbar-brand " [routerLink]="['/dashboard']" *ngIf="isLoggedIn()">Cal <span class="title-color">Notify</span></a>
     <div class = "sub-header">
-      ALERT NOTIFICATION SYSTEM
+      CALIFORNIA ALERT NOTIFICATION SYSTEM
     </div>
   </div>
 </div>
@@ -25,18 +25,18 @@
         <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/home']">{{_languageService.getTranslation('signin') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="!isLoggedIn()">|</li>
         <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/signup']">{{_languageService.getTranslation('createanaccount') | uppercase}}</a></li>
-        <li class = "menu_item" *ngIf="isLoggedIn() && !isAdmin()"><a [routerLink]="['/dashboard']">{{"My Dashboard" | uppercase}}</a></li>
+        <li class = "menu_item" *ngIf="isLoggedIn() && !isAdmin()"><a [routerLink]="['/dashboard']">{{_languageService.getTranslation('my_dashboard') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn() && !isAdmin()">|</li>
-        <li class = "menu_item" *ngIf="isLoggedIn()  && !isAdmin()"><a [routerLink]="['/notification']">{{"Notifications" | uppercase}}</a></li>
+        <li class = "menu_item" *ngIf="isLoggedIn()  && !isAdmin()"><a [routerLink]="['/notification']">{{_languageService.getTranslation('manage_notification') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn() && !isAdmin()">|</li>
-        <li class = "menu_item" *ngIf="isLoggedIn()  && !isAdmin()"><a [routerLink]="['/account']">{{"Account"| uppercase}}</a></li>
+        <li class = "menu_item" *ngIf="isLoggedIn()  && !isAdmin()"><a [routerLink]="['/account']">{{_languageService.getTranslation('account') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn() && !isAdmin()">|</li>
         <li class = "menu_item" *ngIf="isLoggedIn()  && !isAdmin()"><a [routerLink]="['/faq']">{{_languageService.getTranslation('faq') | uppercase}}</a></li>
-        <li class = "menu_item" *ngIf="isLoggedIn()  && isAdmin()"><a [routerLink]="['/notify']">{{"Message Users" | uppercase}}</a></li>
+        <li class = "menu_item" *ngIf="isLoggedIn()  && isAdmin()"><a [routerLink]="['/notify']">{{_languageService.getTranslation('message_users') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn() && isAdmin()">|</li>
-        <li class = "menu_item" *ngIf="isLoggedIn()  && isAdmin()"><a [routerLink]="['/reports']">{{"Reports" | uppercase}}</a></li>
+        <li class = "menu_item" *ngIf="isLoggedIn()  && isAdmin()"><a [routerLink]="['/reports']">{{_languageService.getTranslation('reports') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn()">|</li>
-        <li class = "menu_item" *ngIf="isLoggedIn()"><a (click)="logOut()" class="pointer">{{"Sign Out" | uppercase}}</a></li>
+        <li class = "menu_item" *ngIf="isLoggedIn()"><a (click)="logOut()" class="pointer">{{_languageService.getTranslation('sign_out') | uppercase}}</a></li>
       </ul>
     </div>
   </div>

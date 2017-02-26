@@ -12,7 +12,7 @@ import {UserState} from '../../services/user_state/user_state';
   selector: 'notify',
   templateUrl: './notify.html',
   styleUrls: ['./notify.css'],
-  providers: [],
+  providers: [LanguageService],
 })
 
 export class Notify {

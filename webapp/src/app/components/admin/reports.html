@@ -8,13 +8,13 @@
 	<div class = "col-md-3 col-md-offset-1">
 		<div class = "little-space"></div>
 		<div class = "report-title">
-			This Month's<br>Notifications
+			{{_languageService.getTranslation('this_month')}}<br>{{_languageService.getTranslation('notifications')}}
 		</div>
 		<div class = "chart-display-background">
 			<div id = "notifications-gauge"></div>
 			<div class = "little-space"></div>
 			<div class = "inner-container">
-				<div class = "inner-title">By Date</div>
+				<div class = "inner-title">{{_languageService.getTranslation('by_date')}}</div>
 				<div class = 
 			</div>
 			<div class = "little-space"></div>
@@ -23,24 +23,24 @@
 	<div class = "col-md-3">
 		<div class = "little-space"></div>
 		<div class = "report-title">
-			Notifications<br>by Source
+			{{_languageService.getTranslation('notifications')}}<br>{{_languageService.getTranslation('by_source')}}
 		</div>
 		<div class = "chart-display-background">
 			<div id = "notifications-pie"></div>
 			<div class = "little-space"></div>
-			<div class = "button">Export</div>
+			<div class = "button">{{_languageService.getTranslation('export')}}</div>
 			<div class = "little-space"></div>
 		</div>
 	</div>
 	<div class = "col-md-3">
 		<div class = "little-space"></div>
 		<div class = "report-title">
-			Accounts by Status 2 Month Compare
+			{{_languageService.getTranslation('by_status')}} {{_languageService.getTranslation('month_compare')}}
 		</div>
 		<div class = "chart-display-background">
 			<div id = "notifications-bar"></div>
 			<div class = "little-space"></div>
-			<div class = "button">Export</div>
+			<div class = "button">{{_languageService.getTranslation('export')}}</div>
 			<div class = "little-space"></div>
 		</div>
 	</div>

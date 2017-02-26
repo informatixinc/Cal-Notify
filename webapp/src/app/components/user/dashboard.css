@@ -54,7 +54,9 @@
 	margin-top: 15px;	
 	font-weight: bold;
 }
-
+.box-readonly{
+	pointer-events: none;
+}
 .nick-name{
 	width: 40%;
 	height: 50px;

@@ -1,14 +1,14 @@
 <navbar></navbar>
 <div class = "row">
 	<div class="col-md-11 col-md-offset-1">
-		<h1><b>My <span class = "highlight-blue">Dashboard</span></b></h1>
+		<h1><b>{{_languageService.getTranslation('my')}} <span class = "highlight-blue">{{_languageService.getTranslation('dashboard')}}</span></b></h1>
 	</div>
 </div>
 <div class = "row">
 	<div class="col-md-5 col-md-offset-1 box-height">
 		<div class = "little-space"></div>
 		<div class = "box-header">
-			Emergency Alerts
+			{{_languageService.getTranslation('emergency_alerts')}}
 		</div>
 		<div class = "alert-notification" *ngFor="let notification of emergencyNotifications">
 			{{notification.title}}
@@ -17,7 +17,7 @@
 	<div class="col-md-5 box-height">
 		<div class = "little-space"></div>
 		<div class = "box-header">
-			Non-Emergency Alerts
+			{{_languageService.getTranslation('non_emergency')}}
 		</div>
 		<div class = "alert-notification" *ngFor="let notification of nonEmergencyNotifications">
 			{{notification.title}}
@@ -28,45 +28,45 @@
 	<div class="col-md-5 col-md-offset-1">
 		<div class = "little-space"></div>
 		<div class = "box-header">
-			Account Information
+			{{_languageService.getTranslation('non_emergency')}}
 			<div class = "edit-button button" [routerLink]="['/account']">
-				Edit
+				{{_languageService.getTranslation('edit')}}
 			</div>
 		</div>
 		<div class = "box-solid-background box-height account-padding account-font">
-			<div class = "account-header">Name:</div>
+			<div class = "account-header">{{_languageService.getTranslation('name')}}:</div>
 			<div>{{user.firstName}} {{user.lastName}}</div>
-			<div class = "account-header">Address:</div>
+			<div class = "account-header">{{_languageService.getTranslation('address')}}:</div>
 			<div>{{user.addresses[0].addressOne}}</div>
 			<div *ngIf="user.addresses[0].addressTwo.length > 0">{{user.addresses[0].addressTwo}}</div>
 			<div>{{user.addresses[0].city}}, {{user.addresses[0].state}} {{user.addresses[0].zipCode}}</div>
-			<div class = "account-header">Email Address:</div>
+			<div class = "account-header">{{_languageService.getTranslation('email')}}:</div>
 			<div>{{user.email}}</div>
-			<div class = "account-header">Phone Number:</div>
+			<div class = "account-header">{{_languageService.getTranslation('phone_number')}}:</div>
 			<div>{{user.phoneNumber}}</div>
 		</div>
 	</div>
 	<div class="col-md-5">
 		<div class = "little-space"></div>
 		<div class = "box-header" [routerLink]="['/notification']">
-			Notifications
+			{{_languageService.getTranslation('non_emergency')}}
 			<div class = "edit-button button">
-				Edit
+				{{_languageService.getTranslation('edit')}}
 			</div>
 		</div>
-		<div class = "box-solid-background box-height">
+		<div class = "box-solid-background box-height" >
 			<div class = "notification-row">
-				<div class = "nick-name notification-header">Locations</div>
-				<div class = "notification-option notification-header">Text Message</div>
-				<div class = "notification-option notification-header">Email</div>
-				<div class = "notification-option notification-header right-border" style = "line-height: normal;padding-top: 8px;">Push Notification</div>
+				<div class = "nick-name notification-header">{{_languageService.getTranslation('loc')}}</div>
+				<div class = "notification-option notification-header">{{_languageService.getTranslation('sms')}}</div>
+				<div class = "notification-option notification-header">{{_languageService.getTranslation('email')}}</div>
+				<div class = "notification-option notification-header right-border" style = "line-height: normal;padding-top: 8px;">{{_languageService.getTranslation('sns')}}</div>
 				<div class = "clear"></div>
 			</div>
-			<div class = "notification-row" *ngFor="let setting of notificationSettings">
+			<div class = "notification-row box-readonly" *ngFor="let setting of notificationSettings">
 				<div class = "nick-name">{{setting.nickName}}</div>
-				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.sms"></div>
-				<div class = "notification-option"><input type = "checkbox" [(ngModel)]="setting.email"></div>
-				<div class = "notification-option right-border"><input type = "checkbox" [(ngModel)]="setting.sns"></div>
+				<div class = "notification-option"><input id="checkbox" type = "checkbox" [(ngModel)]="setting.sms" ></div>
+				<div class = "notification-option"><input id="checkbox" type = "checkbox" [(ngModel)]="setting.email" ></div>
+				<div class = "notification-option right-border"><input id="checkbox" type = "checkbox" [(ngModel)]="setting.sns" ></div>
 				<div class = "clear"></div>
 			</div>
 

@@ -29,7 +29,7 @@
 		<div class = "col-md-2">
 			<div class="little-space"></div>
 			<label>{{_languageService.getTranslation('zip_code')}}</label>
-			<span class="required">(<i class="fa fa-asterisk" aria-hidden="true"> {{_languageService.getTranslation('required')}}</i>)</span>
+			<span class="required">({{_languageService.getTranslation('required')}})</span>
 			<input type="text" class = "form-input" placeholder="" id = "zipcode" [(ngModel)]="address.zipCode" />
 		</div>
 	</div>

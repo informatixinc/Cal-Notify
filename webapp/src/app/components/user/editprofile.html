@@ -1,6 +1,6 @@
 <navbar></navbar>
 <div class = "border">
-	<div class = "row signup">
+	<div class = "row section-title">
 		<div class = "col-md-4 col-md-offset-1">
 			{{_languageService.getTranslation('manage')}} {{_languageService.getTranslation('my')}} <span class="second-word">{{_languageService.getTranslation('account')}}</span>
 		</div>		
@@ -77,7 +77,7 @@
 		</div>
 	</div>
 	<div class = "Password">
-		<div class="row signup">
+		<div class="row section-title">
 			<div class="little_space"></div>
 			<div class = "col-md-4 col-md-offset-1">
 				<span class="second-word">{{_languageService.getTranslation('signin')}}</span> {{_languageService.getTranslation('information')}}
@@ -97,7 +97,7 @@
 			<div class = "col-md-4 col-md-offset-1">
 				<label>{{_languageService.getTranslation('old_password')}}</label>
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
-				<input type="password" class = "form-input" placeholder="" id = "oldPassword" [(ngModel)]="edit_profile.oldPassword" />
+				<input type="password" class = "form-input password_info" placeholder="" id = "oldPassword" [(ngModel)]="edit_profile.oldPassword" />
 				<div class = "error" id="error">{{error.oldPassword}}</div>
 			</div>
 		</div>
@@ -106,14 +106,14 @@
 			<div class = "col-md-4 col-md-offset-1">
 				<label>{{_languageService.getTranslation('new_password')}}</label>
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
-				<input type="password" class = "form-input" placeholder="" id = "newPassword" [(ngModel)]="edit_profile.password" />
+				<input type="password" class = "form-input password_info" placeholder="{{_languageService.getTranslation('password_info')}}" id = "newPassword" [(ngModel)]="edit_profile.password" />
 				<div class = "error" id="error">{{error.password}}</div>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-4">
 				<label>{{_languageService.getTranslation('confirm_password')}}</label>
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
-				<input type="password" class = "form-input" placeholder="" id = "confPassword" [(ngModel)]="edit_profile.confPassword" (keyup.enter)='save()'/>
+				<input type="password" class = "form-input password_info" placeholder="" id = "confPassword" [(ngModel)]="edit_profile.confPassword" (keyup.enter)='save()'/>
 				<div class = "error" id="error">{{error.confPassword}} <br> {{error.passwordMatch}}</div>
 			</div>	
 		</div>
@@ -126,7 +126,7 @@
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
-				<div class = "button" type="submit" id = "cancel" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
+				<div class = "button" id = "cancel" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
 			</div>
 	    </div>
 	</div>
