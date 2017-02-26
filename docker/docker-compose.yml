@@ -1,0 +1,36 @@
+version: "2"
+services:
+  web:
+    image: infxinc/calnotify-web
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_port=80
+    links:
+      - sc
+
+  sc:
+    restart: always  
+    image: infxinc/calnotify-sc
+    expose:
+       - "8080"
+    links:
+      - db
+    depends_on:
+      - db
+
+  db:  
+    restart: always
+    image: infxinc/calnotify-db
+    ports:
+      - "5432:5432"
+    volumes_from:
+      - db-data
+
+  db-data:  
+    image: cogniteev/echo
+    command: echo 'Data Container for PostgreSQL'
+    volumes:
+      - /var/lib/postgresql/data

@@ -1,0 +1,44 @@
+version: "2"
+services:
+  web:
+    image: nginx
+    restart: always
+    volumes:
+      - ./web/:/etc/nginx/conf.d/
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_port=80
+    links:
+      - sc
+
+  sc:
+    restart: always  
+    build: ./sc
+    expose:
+       - "8080"
+    ports:
+      - "25:25"
+      - "465:465"
+      - "587:587"
+    links:
+      - db
+    depends_on:
+      - db
+
+  db:  
+    restart: always
+    build: ./db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    volumes_from:
+      - db-data
+
+  db-data:  
+    image: cogniteev/echo
+    command: echo 'Data Container for PostgreSQL'
+    volumes:
+      - /var/lib/postgresql/data
