@@ -6,11 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.informatixinc.calnotify.model.AdminMessage;
 import com.informatixinc.calnotify.model.Notification;
 import com.informatixinc.calnotify.model.NotificationClassification;
 import com.informatixinc.calnotify.model.PutResponse;
+import com.informatixinc.calnotify.model.UserEvent;
 import com.informatixinc.calnotify.model.UserReport;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 
@@ -100,6 +105,48 @@ public class AdminDao {
 	
 	public UserReport getUserReport(){
 		UserReport userReport = new UserReport();
+		
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+						
+			int firstYear = 2017;
+			Calendar now = Calendar.getInstance(); 
+			int currentYear = now.get(Calendar.YEAR);
+			int currentMonth = now.get(Calendar.MONTH) + 1;
+			
+			for (int i = 0; i <= currentYear - firstYear; i++) {
+				userReport.getReportData().put(i + firstYear, new HashMap<Integer, ArrayList<UserEvent>>());
+				for (int j = 1; j <= 12; j++) {
+					if(currentYear == i + firstYear && j > currentMonth){
+						continue;
+					}
+					userReport.getReportData().get(i + firstYear).put(j, new ArrayList<UserEvent>());
+					ps = conn.prepareStatement("select count(id) as new_users from public.user WHERE EXTRACT(MONTH FROM signup_date) = ? and EXTRACT(YEAR FROM signup_date) = ?");
+					ps.setInt(1, j);
+					ps.setInt(2, i + firstYear);
+					rs = ps.executeQuery();
+					rs.next();
+					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("new user", rs.getInt("new_users")));
+					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("inactive users", 0));
+					DatabaseUtils.safeClose(ps,rs);
+					
+					ps = conn.prepareStatement("select count(distinct(email)) as active_users from public.user, public.user_login where public.user.id = user_login.user_id and EXTRACT(MONTH FROM date) = ? and EXTRACT(YEAR FROM date) = ?");
+					ps.setInt(1, j);
+					ps.setInt(2, i + firstYear);
+					rs = ps.executeQuery();
+					rs.next();
+					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("active_users", rs.getInt("active_users")));
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		}finally{
+			DatabaseUtils.safeClose(conn, ps, rs);
+		}
 		
 		return userReport;
 	}

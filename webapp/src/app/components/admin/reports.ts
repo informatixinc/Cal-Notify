@@ -22,6 +22,7 @@ export class Reports {
   sourcesData: any;
   notificationData: string[] = [];
   sourceData: string[] = [];
+  userData: any[] = [];
 
 	constructor(private router: Router, private _languageService: LanguageService, private _apiRequest: ApiRequest, private _userState: UserState ) {}
 
@@ -29,10 +30,45 @@ export class Reports {
     google.charts.load('current', {'packages':['bar', 'corechart', 'gauge']});
     var session = new Session();
     session.session = this._userState.getSession();
-    this._apiRequest.doRequest('adminmessagereport',session).subscribe(res => this.processData(res));
+    this._apiRequest.doRequest('adminmessagereport',session).subscribe(res => this.processDataNotificationReports(res));
+    this._apiRequest.doRequest('accountreport',session).subscribe(res => this.processAccountReports(res));
 	}
 
-  processData(reportData: any){
+  processAccountReports(reportData: any){
+    var highestYear = 0;
+    var highestMonth = 0;
+    var highestYearMinusOne = 0;
+    var highestMonthMinusOne = 0;
+
+    for(var key in reportData.reportData){
+      if(parseInt(key) > highestYear){
+        highestYear = parseInt(key);
+      }
+    }
+
+    for(var key in reportData.reportData[highestYear]){
+        if(parseInt(key) > highestMonth){
+          highestMonth = parseInt(key);
+        }
+    }
+
+    if(highestMonth == 1){
+      highestYearMinusOne = highestYear - 1;
+      highestMonthMinusOne = 12
+    }else{
+      highestYearMinusOne = highestYear;
+      highestMonthMinusOne = highestMonth - 1;
+    }
+
+    this.userData.push(['', 'This Month', 'Last Month']);
+    this.userData.push(['New', reportData.reportData[highestYear][highestMonth][0].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][0].count]);
+    this.userData.push(['Active', reportData.reportData[highestYear][highestMonth][1].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][1].count]);
+    this.userData.push(['Inactive', reportData.reportData[highestYear][highestMonth][2].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][2].count]);
+    console.log(this.userData);
+    this.drawBar();
+  }
+
+  processDataNotificationReports(reportData: any){
     var highestYear = 0;
     var highestMonth = 0;
     var years = [];
@@ -90,21 +126,14 @@ export class Reports {
 
     this.drawGuage();
     this.drawPie();
-    this.drawBar();
   }
 
   drawBar(){
-    google.charts.setOnLoadCallback(this.drawBarChart);
+    google.charts.setOnLoadCallback(this.drawBarChart.bind(this));
   }
 
   drawBarChart(){
-    var data = google.visualization.arrayToDataTable([
-          ['', 'This Month', 'Last Month'],
-          ['New', 354, 243],
-          ['Deleted', 10, 23],
-          ['Active', 660, 550],
-          ['Inactive', 230, 350]
-        ]);
+    var data = google.visualization.arrayToDataTable(this.userData);
 
         var options = {
           chart: {
