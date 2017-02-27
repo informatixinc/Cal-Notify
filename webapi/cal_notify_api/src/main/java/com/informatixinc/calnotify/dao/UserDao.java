@@ -269,11 +269,12 @@ public class UserDao {
 		ResultSet rs = null;
 		final int MAXDISTANCEINMILES = ProjectProperties.getProperty("app_maxDistanceInMiles", 50);
 		final StringBuilder sql = new StringBuilder();
-		sql.append(" select u.id, u.first_name, u.last_name, u.email, u.phone_number, ns.sms, ns.email ");
+		sql.append(" select u.id, u.first_name, u.last_name, u.email, u.phone_number, ns.sms, ns.email, ns.push_notification, st.sns_token ");
 		sql.append(" from public.user u ");
 		sql.append(" inner join public.user_location ul on ul.user_id = u.id ");
 		sql.append("	and (ul.location <@> POINT(?, ?)) < ? ");
 		sql.append(" inner join public.notification_settings ns on ns.user_location_id = ul.id ");
+		sql.append(" left outer join public.sns_token st on st.user_id = u.id ");
 		try {
 			conn = DatabasePool.getConnection();
 			ps = conn.prepareStatement(sql.toString());
@@ -289,6 +290,8 @@ public class UserDao {
 				final String phoneNumber = rs.getString(5);
 				final boolean sendSms = rs.getBoolean(6);
 				final boolean sendEmail = rs.getBoolean(7);
+				final boolean sendPush = rs.getBoolean(8);
+				final String snsToken = rs.getString(9);
 				final UserNotification userNotification = new UserNotification();
 				userNotification.setUserId(userId);
 				userNotification.setFirstName(firstName);
@@ -297,6 +300,8 @@ public class UserDao {
 				userNotification.setPhoneNumber(phoneNumber);
 				userNotification.setSendSms(sendSms);
 				userNotification.setSendEmail(sendEmail);
+				userNotification.setSendPush(sendPush);
+				userNotification.setSnsToken(snsToken);
 				userNotifications.add(userNotification);
 			}
 		} catch (SQLException e) {

@@ -31,5 +31,9 @@ public class ProjectProperties {
 		return defaultValue;
 	}
 	
+	public static Properties getProperties() {
+		return projectProperties;
+	}
+	
 	private static final Logger logger = Logger.getLogger(ProjectProperties.class);
 }

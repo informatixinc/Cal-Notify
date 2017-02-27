@@ -19,7 +19,9 @@ import com.informatixinc.calnotify.model.TransmissionType;
 import com.informatixinc.calnotify.model.UserNotification;
 import com.informatixinc.calnotify.utils.EmailClient;
 import com.informatixinc.calnotify.utils.ProjectProperties;
+import com.informatixinc.calnotify.utils.PushService;
 import com.informatixinc.calnotify.utils.SmsClient;
+import com.informatixinc.calnotify.utils.StringUtils;
 
 public class FetchNotificationsJob implements Runnable {
 
@@ -50,6 +52,9 @@ public class FetchNotificationsJob implements Runnable {
 					}
 					if (userNotification.isSendEmail()) {
 						sendEmail(userNotification);
+					}
+					if (userNotification.isSendPush()) {
+						sendPush(userNotification);
 					}
 				}
 			}
@@ -96,6 +101,20 @@ public class FetchNotificationsJob implements Runnable {
 		final EmailClient emailClient = new EmailClient();
 		emailClient.send(userNotification.getEmail(), subject, body);
 		addNewTransmission(userNotification, TransmissionType.EMAIL);
+	}
+	
+	private void sendPush(final UserNotification userNotification) {
+		final String snsToken = userNotification.getSnsToken();
+		if (StringUtils.isNull(snsToken)) {
+			log.error("Push failed: push setting set to true, but token is null");
+			return;
+		}
+		final String messageTitle = ProjectProperties.getProperty("app_notificationSubject");
+		final String expires = df.format(userNotification.getExpires());
+		final String messageBody = MessageFormat.format(ProjectProperties.getProperty("app_notificationBody"),
+				userNotification.getNotificationTitle(), expires, userNotification.getInfoUrl());
+		PushService ps = new PushService();
+		ps.push(snsToken, messageBody, messageTitle);
 	}
 
 	private void addNewTransmission(UserNotification un, TransmissionType tt) {

@@ -101,7 +101,16 @@
 		    <artifactId>junit</artifactId>
 		    <version>4.12</version>
 		</dependency>
-		
+		<dependency>
+		  <groupId>de.bytefish.fcmjava</groupId>
+		  <artifactId>fcmjava-core</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>de.bytefish.fcmjava</groupId>
+		  <artifactId>fcmjava-client</artifactId>
+		  <version>1.0</version>
+		</dependency>
     </dependencies>
     <build>
 		<plugins>

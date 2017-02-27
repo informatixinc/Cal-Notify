@@ -3,7 +3,7 @@ package com.informatixinc.calnotify.model;
 import java.util.Date;
 
 public class UserNotification {
-	
+
 	private int notificationId;
 	private String notificationType;
 	private String notificationTitle;
@@ -17,7 +17,9 @@ public class UserNotification {
 	private String phoneNumber;
 	private boolean sendSms = false;
 	private boolean sendEmail = false;
-	
+	private boolean sendPush = false;
+	private String snsToken = null;
+
 	public int getUserId() {
 		return userId;
 	}
@@ -121,4 +123,21 @@ public class UserNotification {
 	public void setSendEmail(boolean sendEmail) {
 		this.sendEmail = sendEmail;
 	}
+
+	public boolean isSendPush() {
+		return sendPush;
+	}
+
+	public void setSendPush(boolean sendPush) {
+		this.sendPush = sendPush;
+	}
+
+	public String getSnsToken() {
+		return snsToken;
+	}
+
+	public void setSnsToken(String snsToken) {
+		this.snsToken = snsToken;
+	}
+
 }
