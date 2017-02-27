@@ -35,6 +35,7 @@
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
 				<textarea class="form-input notify_details" rows="8" id = "message" (keyup.enter)='send()' [(ngModel)]="notify.notifyDetails" ></textarea>
 				<div class = "error" id="error">{{error.notifyDetails}}</div>
+				<div class = "success">{{successMessage}}</div>
 			</div>
 		</div>
 		<div class="row">

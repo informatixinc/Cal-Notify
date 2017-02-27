@@ -18,4 +18,10 @@ export class Faq {
  	toggleHidden(element: number){
 		this.elements[element] = !this.elements[element];
 	}
+
+	ngOnInit(){
+		setTimeout(function() {
+			window.scrollTo(0,0);
+		}, 100);
+	}
 }

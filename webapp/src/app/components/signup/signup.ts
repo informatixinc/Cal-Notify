@@ -160,8 +160,8 @@ export class Signup {
 	}
 
 	processResponse(response: any){
-		if(response.error == true){
-
+		if(response.errorResponse.error == true){
+			this.error.email = response.errorResponse.errorMessage;
 		}else{
 			this._userState.setSession(response.session);
 			this.router.navigate(['notification']);

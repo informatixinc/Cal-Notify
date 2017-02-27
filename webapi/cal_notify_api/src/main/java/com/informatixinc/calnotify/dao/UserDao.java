@@ -34,6 +34,18 @@ public class UserDao {
 		byte[] salt = SecurityUtils.getNewSalt();
 		
 		try {
+			ps = conn.prepareStatement("select id from public.user where email = ?");
+			ps.setString(1, user.getEmail());
+			rs = ps.executeQuery();
+			
+			if(rs.next()){
+				session.getErrorResponse().setError(true);
+				session.getErrorResponse().setErrorMessage("Email address already registered");
+				return session;
+			}
+			
+			DatabaseUtils.safeClose(ps,rs);
+			
 			ps = conn.prepareStatement("insert into public.user (email, password, salt, last_login, first_name, last_name, "
 					+ "phone_number, signup_date, account_type)"
 					+ "values (?,?,?,now(),?,?,?,now(),?)", Statement.RETURN_GENERATED_KEYS);

@@ -20,6 +20,7 @@ export class Notify {
 	notify: NotifyObject = new NotifyObject();
 	error: NotifyObjectError = new NotifyObjectError();
 	adminMessages: AdminMessage[] = [];
+	successMessage = "";
 
 	constructor(private router: Router, private _languageService: LanguageService, private _apiRequest: ApiRequest, private _userState: UserState) {}
 
@@ -78,7 +79,17 @@ export class Notify {
 		adminMessage.expirationDate = new Date(this.notify.expDate).getTime();
 
 
-		this._apiRequest.doRequest('adminmessage',adminMessage).subscribe(res => {});
+		this._apiRequest.doRequest('adminmessage',adminMessage).subscribe(res => this.updateView());
+	}
+
+	updateView(){
+		var session = new Session();
+		session.session = this._userState.getSession();
+		this.notify.notifyTitle = "";
+		this.notify.expDate = "";
+		this.notify.notifyDetails = "";
+		this._apiRequest.doRequest('adminmessagehistory',session).subscribe(res => this.processHistory(res));
+		this.successMessage = "Message sent successfully";
 	}
 
 	prevent(event: any){

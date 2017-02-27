@@ -16,8 +16,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" [routerLink]="['/home']" *ngIf="!isLoggedIn()"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
-      <a class="navbar-brand" [routerLink]="['/dashboard']" *ngIf="isLoggedIn()"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
+      <a class="navbar-brand" [routerLink]="['/home']" *ngIf="!isLoggedIn() && !isAdmin()"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
+      <a class="navbar-brand" [routerLink]="['/dashboard']" *ngIf="isLoggedIn() && !isAdmin()"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
+      <a class="navbar-brand" [routerLink]="['/reports']" *ngIf="isLoggedIn() && isAdmin()"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right bottom_right_menu">

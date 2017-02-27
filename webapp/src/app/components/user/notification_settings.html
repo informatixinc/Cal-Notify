@@ -93,9 +93,9 @@
 				    <tbody >
 				      <tr *ngFor = "let notification of notifications">
 				        <th scope="row">{{notification.nickName}}</th>
-				        <td><input type="checkbox" name="" [(ngModel)]="notification.sms" ></td>
-				        <td><input type="checkbox" name="" [(ngModel)]="notification.email" ></td>
-				        <td><input type="checkbox" name="" [(ngModel)]="notification.sns" ></td>
+				        <td><input type="checkbox" class = "input-box" [(ngModel)]="notification.sms" ></td>
+				        <td><input type="checkbox" class = "input-box" [(ngModel)]="notification.email" ></td>
+				        <td><input type="checkbox" class = "input-box" [(ngModel)]="notification.sns" ></td>
 				      </tr>
 				  
 				    </tbody>

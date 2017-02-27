@@ -87,8 +87,8 @@ export class Home {
 				this.router.navigate(['dashboard']);
 			}
 	    }else{
-	      	// this.loginError = response.errorMessage;
-	      	// this.showLoginPopup = true;
+
+	      	this.error.password = response.errorResponse.errorMessage;
 	    }
   	}
 
