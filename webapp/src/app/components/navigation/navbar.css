@@ -54,8 +54,9 @@
 @media only screen and (min-device-width: 480px) {
 	.outer_title{
 		position: absolute; 
-		left: 215px;
+		left: 165px;
 		z-index: 2;
+		margin-top: 10px;
 	}
 
 	.hide-non-mobile{
@@ -73,8 +74,9 @@
 @media only screen and (max-device-width: 480px) {
 	.outer_title{
 		position: absolute; 
-		left: 52%;
+		left: 42%;
 		z-index: 2;
+		margin-top: 15px;
 	}
 
 	.hide-mobile{
