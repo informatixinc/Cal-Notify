@@ -38,15 +38,18 @@ export class SetLocation {
 		if(this.address.addressOne.length == 0){
 			this.error.addressOne = this._languageService.getTranslation("address1_required");
 			document.getElementById("address1").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}
 		if(strippedZipcode.length > 0){
 			if(strippedZipcode.length != 5){
 				this.error.zipCode = this._languageService.getTranslation("zipcode_validation");
 				document.getElementById("zipcode").style["borderColor"] = "#CD2026";
+				hasError = true;
 			}
 		}else{
 			this.error.zipCode = this._languageService.getTranslation("zipcode_required");
 			document.getElementById("zipcode").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}
 		
 		if(hasError){

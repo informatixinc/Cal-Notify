@@ -29,10 +29,12 @@ export class PasswordReset {
 			if(!valEmail.test(this.password_reset.email)){
 				this.error.email = this._languageService.getTranslation("email_validation");
 				document.getElementById("email").style["borderColor"] = "#CD2026";
+				hasError = true;
 			}
 		}else{
 			this.error.email = this._languageService.getTranslation("email_required");
 			document.getElementById("email").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}
 		if(hasError){
 			return;

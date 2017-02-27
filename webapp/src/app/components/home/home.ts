@@ -77,7 +77,7 @@ export class Home {
 	      	this._userState.setSession(response.session);
 	      	this._userState.setAccountType(response.accountType);
 			if(response.accountType == 1){
-				this.router.navigate(['notify']);	
+				this.router.navigate(['reports']);	
 			}else{
 				this.router.navigate(['dashboard']);
 			}

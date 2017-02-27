@@ -1,4 +1,28 @@
 .blue{
-	color: #0000EE;
+	color: #0071bc;
 	margin-left: 5px;
+}
+.page_font{
+	
+}
+
+@media only screen and (min-device-width: 480px) {
+	.top-space{
+		margin-top: 150px;
+	}
+}
+
+@media only screen and (max-device-width: 480px) {
+	.top-space{
+		margin-top: 30px;
+	}
+	.bottom-space{
+		display: block;
+		width : 100%;
+		height: 30px;
+	}
+	.border{
+		padding-left: 5px;
+		padding-right: 5px;
+	}
 }

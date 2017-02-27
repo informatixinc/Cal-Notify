@@ -29,19 +29,23 @@ export class Contact {
 		if(this.contact.name.length == 0){
 			this.error.name = this._languageService.getTranslation("name_required");
 			document.getElementById("name").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}
 		if(this.contact.email.length > 0){
 			if(!valEmail.test(this.contact.email)){
 				this.error.email = this._languageService.getTranslation("email_validation");
 				document.getElementById("email").style["borderColor"] = "#CD2026";
+				hasError = true;
 			}
 		}else{
 			this.error.email = this._languageService.getTranslation("email_required");
 			document.getElementById("email").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}
 		if(this.contact.message.length == 0){
 			this.error.message = this._languageService.getTranslation("message_required");
 			document.getElementById("message").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}
 		if(hasError){
 			return;

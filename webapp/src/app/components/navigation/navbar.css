@@ -40,20 +40,21 @@
 .title{
 	color: #fff;
 	font-size: 2em;
+	text-align: left;
 }
 .title-color{
 	color: #e1f3f8;
 }
 .sub-header{
 	color: #FAD980;
-    margin-left: 18px;
+    margin-left: -23px;
     font-size: 12px;
 }
 
 @media only screen and (min-device-width: 480px) {
 	.outer_title{
 		position: absolute; 
-		left: 200px;
+		left: 215px;
 		z-index: 2;
 	}
 
@@ -72,7 +73,7 @@
 @media only screen and (max-device-width: 480px) {
 	.outer_title{
 		position: absolute; 
-		left: 50%;
+		left: 52%;
 		z-index: 2;
 	}
 
