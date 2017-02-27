@@ -8,10 +8,10 @@
 	height: 50px;
 	color: #212121;
 	margin-bottom: 0;
+	text-align: center;
 }
 .footer-default{
 	list-style-type: none;
-	text-align: center;
 	margin-bottom: 0;
 	padding-left: 0;
 }

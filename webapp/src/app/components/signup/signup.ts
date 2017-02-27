@@ -20,7 +20,7 @@ export class Signup {
 	states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
 	sign_up: User = new User();
 	error: SignupObjectError = new SignupObjectError();
-
+	errorMessage = "";
 	constructor(private router: Router, private _userState: UserState, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest) {}
 
 	ngOnInit(){

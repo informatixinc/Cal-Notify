@@ -23,47 +23,48 @@
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-4 col-md-offset-1">
-				<label>{{_languageService.getTranslation('addr_nickname')}}</label>  
+				<label for="nickname">{{_languageService.getTranslation('addr_nickname')}}</label>  
 				<span class="required">({{_languageService.getTranslation('required')}})</span> 
 				<input type="text" class = "form-input" placeholder="" id = "nickname" autofocus [(ngModel)]="additional_loc.addresses[0].nickName" />
-				<div class = "error" id="error">{{error.addrNickname}}</div>
+				<div class = "error" id="error1">{{error.addrNickname}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-8 col-md-offset-1">
-				<label>{{_languageService.getTranslation('address')}}</label>
+				<label for="address">{{_languageService.getTranslation('address')}}</label>
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
 				<input type="text" class = "form-input address" placeholder="" id = "address" [(ngModel)]="additional_loc.addresses[0].addressOne"/>
-				<div class = "error" id="error">{{error.addresses[0].addressOne}}</div>
+				<div class = "error" id="error2">{{error.addresses[0].addressOne}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-4 col-md-offset-1">
-				<label>{{_languageService.getTranslation('city')}}</label>
+				<label for="city">{{_languageService.getTranslation('city')}}</label>
 				<input type="text" class = "form-input" placeholder="" id = "city" [(ngModel)]="additional_loc.addresses[0].city"/>
 				<!-- <div class = "error" id="error">{{error.city}}</div> -->
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
-				<label>{{_languageService.getTranslation('state')}}</label>
+				<label for="state">{{_languageService.getTranslation('state')}}</label>
 				<select class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id = "state" [(ngModel)]="additional_loc.addresses[0].state" >
 					<option *ngFor="let state of states" value="{{state}}">{{state}}</option>			  
 				</select>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">
-				<label>{{_languageService.getTranslation('zip_code')}}</label>
+				<label for="zip">{{_languageService.getTranslation('zip_code')}}</label>
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
 				<input type="text" class = "form-input" placeholder="" id = "zip" [(ngModel)]="additional_loc.addresses[0].zipCode" (keyup.enter)='addLoc()'/>
-				<div class = "error" id="error">{{error.addresses[0].zipCode}}</div>
+				<div class = "error" id="error3">{{error.addresses[0].zipCode}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-2 col-md-offset-1">
 				<div class = "button" type="submit" id = "add_loc" (click)="addLoc()">{{_languageService.getTranslation('add_loc')}}</div>
+
 			</div>
 		</div>
 	</div>
@@ -93,9 +94,9 @@
 				    <tbody >
 				      <tr *ngFor = "let notification of notifications">
 				        <th scope="row">{{notification.nickName}}</th>
-				        <td><input type="checkbox" class = "input-box" [(ngModel)]="notification.sms" ></td>
-				        <td><input type="checkbox" class = "input-box" [(ngModel)]="notification.email" ></td>
-				        <td><input type="checkbox" class = "input-box" [(ngModel)]="notification.sns" ></td>
+				        <td><input id="checkbox1" type="checkbox" class = "input-box" [(ngModel)]="notification.sms" ></td>
+				        <td><input id="checkbox2" type="checkbox" class = "input-box" [(ngModel)]="notification.email" ></td>
+				        <td><input id="checkbox3" type="checkbox" class = "input-box" [(ngModel)]="notification.sns" ></td>
 				      </tr>
 				  
 				    </tbody>
@@ -112,6 +113,7 @@
 			<div class="little_space"></div>
 			<div class = "col-md-2 col-md-offset-1">
 				<div class = "button" type="submit" id = "submit" (click)="saveNotifications()">{{_languageService.getTranslation('save')}}</div>
+				
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-2">

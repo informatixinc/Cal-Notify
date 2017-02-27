@@ -15,7 +15,7 @@ import {PasswordReset} from './components/user/password_reset';
 import {DashBoard} from './components/user/dashboard';
 import {ViewNotification} from './components/notifications/notification';
 import {NotificationView} from "./components/notifications/notification_view";
-
+import {AuthGuard} from "./auth_guard";
 
 const appRoutes: Routes = [
   { path: 'password-reset', component: PasswordReset },
@@ -23,15 +23,15 @@ const appRoutes: Routes = [
   { path: 'faq', component: Faq },
   { path: 'contact', component: Contact },
   { path: 'privacy', component: Privacy },
-  { path: 'account', component: EditProfile },
-  { path: 'notification', component: NotificationSettings },
+  { path: 'account', component: EditProfile, canActivate:[AuthGuard] },
+  { path: 'notification', component: NotificationSettings, canActivate:[AuthGuard] },
   { path: 'notificationview', component: NotificationView },
   { path: 'notification/:notification_id', component: ViewNotification },
-  { path: 'notify', component: Notify },
-  { path: 'reports', component: Reports },
+  { path: 'notify', component: Notify, canActivate:[AuthGuard]},
+  { path: 'reports', component: Reports, canActivate:[AuthGuard]},
   { path: 'home', component: Home },
   { path: 'setlocation', component: SetLocation },
-  { path: 'dashboard', component: DashBoard },
+  { path: 'dashboard', component: DashBoard, canActivate:[AuthGuard]},
   { path: '**', component: Home },
 ];
 

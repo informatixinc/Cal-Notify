@@ -22,6 +22,7 @@ export class NotificationSettings {
 	additional_loc: NotificationObject = new NotificationObject();
 	error: NotificationObjectError = new NotificationObjectError();
 	notifications: NotificationSetting[] = [];
+	
 	ngOnInit(){
 		var session = new Session();
 		session.session = this._userState.getSession();
@@ -39,25 +40,32 @@ export class NotificationSettings {
 		document.getElementById("address").style["borderColor"] = "black";
 		document.getElementById("zip").style["borderColor"] = "black";
 		document.getElementById("nickname").style["borderColor"] = "black";
-
+		var hasError = false;
 		var strippedZipcode = this.stripNonNumeric(this.additional_loc.addresses[0].zipCode);
 
 		if(this.additional_loc.addresses[0].nickName.length == 0){
 			this.error.addresses[0].nickName = this._languageService.getTranslation("nickname_required");
 			document.getElementById("nickname").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}
 		if(this.additional_loc.addresses[0].addressOne.length == 0){
 			this.error.addresses[0].addressOne = this._languageService.getTranslation("address_required");
 			document.getElementById("address").style["borderColor"] = "#CD2026";
+			hasError = true;
 		}
 		if(strippedZipcode.length > 0){
 			if(strippedZipcode.length != 5){
 				this.error.addresses[0].zipCode = this._languageService.getTranslation("zipcode_validation");
 				document.getElementById("zip").style["borderColor"] = "#CD2026";
+				hasError = true;
 			}
 		}else{
 			this.error.addresses[0].zipCode = this._languageService.getTranslation("zipcode_required");
 			document.getElementById("zip").style["borderColor"] = "#CD2026";
+			hasError = true;
+		}
+		if(hasError){
+			return;
 		}
 
 		var addLocObj = JSON.parse(JSON.stringify(this.additional_loc));
@@ -86,12 +94,11 @@ export class NotificationSettings {
 		
 	}
 	processResponse(response: any){
-		console.log("The response is:" + response);
-		if(response.error == true){
-			
-		}else{
-			
-		}
+		if(!response.errorResponse.error){
+	   
+	    }else{
+			// this.error.email = response.errorResponse.errorMessage;
+	    }
 	}
 
 	cancel(){

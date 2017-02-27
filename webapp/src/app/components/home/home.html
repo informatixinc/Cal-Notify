@@ -1,7 +1,7 @@
 <navbar></navbar>
 <div class = "row">
 	<div class="col-md-12">
-		<img src = "assets/images/ocean.jpg" class = "banner">
+		<img src = "assets/images/ocean.jpg" class = "banner" alt="ocean image">
 	</div>
 </div>
 <div class = "main-container">
@@ -15,17 +15,17 @@
 		<p class = "strip-decorators">or <a [routerLink]="['/signup']"><span class="decorator">{{_languageService.getTranslation('createanaccount')}}</span></a></p>
 		<div class="row">
 			<div class = "col-md-8">
-				<span>{{_languageService.getTranslation('email')}}</span>
+				<label for="email">{{_languageService.getTranslation('email')}}</label>
 				<input type="text" class = "form-input" placeholder="" id = "email" [(ngModel)]="email" />
-				<div class = "error" id="error">{{error.email}}</div>
+				<div class = "error" id="error1">{{error.email}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-8">
-				<span>{{_languageService.getTranslation('password')}}</span>
+				<label for="password">{{_languageService.getTranslation('password')}}</label>
 				<input #input type="password" class = "form-input" placeholder="" id = "password" [(ngModel)]="password" (keyup.enter)='login()' />
-				<div class = "error" id="error">{{error.password}}</div>	
+				<div class = "error" id="error2">{{error.password}}</div>	
 			</div>
 			<div class = "col-md-7 text-right password-align">
 				<span (click)="showPassword(input)" id="show">{{error.showPassword}}</span>

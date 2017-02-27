@@ -42,9 +42,6 @@
 	font-size: 2em;
 	text-align: left;
 }
-.title-color{
-	color: #e1f3f8;
-}
 .sub-header{
 	color: #FAD980;
     margin-left: -23px;
@@ -95,7 +92,7 @@
 
 .inner_title{
 	position: relative; left: -50%;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .brand_icon{
