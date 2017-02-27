@@ -62,8 +62,19 @@ export class NotificationSettings {
 
 		var addLocObj = JSON.parse(JSON.stringify(this.additional_loc));
 		console.log(JSON.stringify(addLocObj));
-		this._apiRequest.doRequest('addlocations',addLocObj).subscribe(res => this.processResponse(res));
+		this._apiRequest.doRequest('addlocations',addLocObj).subscribe(res => this.updateTable());
 
+	}
+
+	updateTable(){
+		var session = new Session();
+		session.session = this._userState.getSession();
+		this.additional_loc.addresses[0].nickName = "";
+		this.additional_loc.addresses[0].addressOne = "";
+		this.additional_loc.addresses[0].city = "";
+		this.additional_loc.addresses[0].state = "";
+		this.additional_loc.addresses[0].zipCode = "";
+		this._apiRequest.doRequest('getnotificationsettings',session).subscribe(res => this.addNotifications(res));
 	}
 
 	// saveNotifications(){
@@ -71,11 +82,9 @@ export class NotificationSettings {
 	// 	wrapper["notificationSettings"] = this.notifications;
 	// 	this._apiRequest.doRequest('managenotifications', wrapper).subscribe(res => this.processResponse(res));
 	// }
-
 	saveNotifications(){
 		
 	}
-
 	processResponse(response: any){
 		console.log("The response is:" + response);
 		if(response.error == true){
