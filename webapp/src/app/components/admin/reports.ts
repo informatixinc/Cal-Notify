@@ -154,21 +154,22 @@ export class Reports {
   }
 
   drawBarChart(){
-    var data = google.visualization.arrayToDataTable(this.userData);
+    setTimeout(() => {
+      var data = google.visualization.arrayToDataTable(this.userData);
+          var options = {
+            chart: {
+              title: '',
+            },
+            chartArea:{left:"5%",top:"5%",width:"90%",height:"90%", backgroundColor: 'transparent'},
+            height: document.getElementById("notifications-gauge").offsetHeight,
+            backgroundColor: 'transparent',
+            legend: {position: 'none'}
+          };
 
-        var options = {
-          chart: {
-            title: '',
-          },
-          chartArea:{left:"5%",top:"5%",width:"90%",height:"90%", backgroundColor: 'transparent'},
-          height: document.getElementById("notifications-gauge").offsetHeight,
-          backgroundColor: 'transparent',
-          legend: {position: 'none'}
-        };
+          var chart = new google.charts.Bar(document.getElementById('notifications-bar'));
 
-        var chart = new google.charts.Bar(document.getElementById('notifications-bar'));
-
-        chart.draw(data, options);
+          chart.draw(data, options);
+        }, 100);
   }
 
   drawPie(){

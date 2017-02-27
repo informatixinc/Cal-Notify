@@ -2,18 +2,20 @@
 <html>
 <head>
   <base href="/">
-    <title>Cal Notify</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/uswds.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <title>Cal Notify</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/uswds.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 
-    <script src="assets/js/sha-512.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="assets/js/sha-512.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+  <link rel="manifest" href="assets/files/manifest.json">
 </head>
 
 <body>
@@ -25,7 +27,15 @@
   <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
   <script src="/webpack-dev-server.js"></script>
   <% } %>
-
-
+  <script>
+    setTimeout(function(){
+      var config = {
+        apiKey: "AIzaSyDqXuKcJAOviQIUvSAvhpLubA1TJjZDExc",
+        authDomain: "calnotify-d2352.firebaseapp.com",
+        messagingSenderId: "1081107955861"
+      };
+      firebase.initializeApp(config);
+    }, 3000);
+  </script>
 </body>
 </html>

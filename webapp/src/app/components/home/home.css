@@ -8,14 +8,6 @@
 	font-size: 1.3em;
 }
 
-.main-body{
-	width: 75%;
-	padding-left: 20px;
-	padding-right: 20px;
-	line-height: 25px;
-	float: left;
-}
-
 .notification-body{
     width: 25%;
     float: left;
@@ -106,4 +98,30 @@
 }
 .text_align{
 	text-align: justify;
+}
+
+@media only screen and (max-device-width: 480px) {
+	.hide-mobile{
+		display: none;
+	}
+
+	.main-body{
+		width: 100%;
+		padding-left: 20px;
+		padding-right: 20px;
+		line-height: 25px;
+		float: left;
+	}
+}
+
+@media only screen and (min-device-width: 480px) {
+
+	.main-body{
+		width: 75%;
+		padding-left: 20px;
+		padding-right: 20px;
+		line-height: 25px;
+		float: left;
+	}
+	
 }

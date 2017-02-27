@@ -32,6 +32,7 @@ export class NotificationSettings {
 	addNotifications(notifications: any){
 		this.notifications = notifications;
 	}
+
 	addLoc(){
 		this.error.addresses[0].addressOne = this.error.addresses[0].nickName = this.error.addresses[0].zipCode = "";
 
@@ -65,10 +66,14 @@ export class NotificationSettings {
 
 	}
 
+	// saveNotifications(){
+	// 	var wrapper = {};
+	// 	wrapper["notificationSettings"] = this.notifications;
+	// 	this._apiRequest.doRequest('managenotifications', wrapper).subscribe(res => this.processResponse(res));
+	// }
+
 	saveNotifications(){
-		var wrapper = {};
-		wrapper["notificationSettings"] = this.notifications;
-		this._apiRequest.doRequest('managenotifications', wrapper).subscribe(res => this.processResponse(res));
+		
 	}
 
 	processResponse(response: any){
@@ -87,7 +92,4 @@ export class NotificationSettings {
 	stripNonNumeric(input: string){
 		return input.replace(/\D/g, '');
 	}
-
-	
-
 }

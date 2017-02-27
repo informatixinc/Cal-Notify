@@ -7,6 +7,7 @@ import {ApiRequest} from '../../services/http/api_request';
 import {Address} from '../common/address';
 import {UserState} from '../../services/user_state/user_state';
 import {LoginService} from '../home/login_service';
+import {Session} from '../common/session';
 
 @Component({
   selector: 'editprofile',
@@ -26,6 +27,13 @@ export class EditProfile {
 	}
 	ngOnInit(){
 		this.edit_profile.addresses[0].state = "CA";
+		var session = new Session();
+		session.session = this._userState.getSession();
+		this._apiRequest.doRequest('accountinformation',session).subscribe(res => this.loadUser(res));
+	}
+
+	loadUser(result: any){
+		this.edit_profile = result;
 	}
 
 	save(){

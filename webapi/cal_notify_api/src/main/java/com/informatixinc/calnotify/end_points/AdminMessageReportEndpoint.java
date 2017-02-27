@@ -2,16 +2,13 @@ package com.informatixinc.calnotify.end_points;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import com.informatixinc.calnotify.dao.AdminDao;
-import com.informatixinc.calnotify.model.AdminMessage;
 import com.informatixinc.calnotify.model.Notification;
 import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.Session;

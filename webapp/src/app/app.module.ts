@@ -26,13 +26,14 @@ import {LanguageService} from './services/language/language_service';
 import {PasswordReset} from './components/user/password_reset';
 import {ViewNotification} from './components/notifications/notification';
 import {LoginService} from './components/home/login_service';
+import {NotificationView} from "./components/notifications/notification_view";
 // import {PopoverDirective} from './components/common/popover';
 
 
 @NgModule({
   imports: [ BrowserModule, routing, FormsModule, HttpModule, ReactiveFormsModule ],
   declarations: [ AppComponent, Home, NavBar, Footer, Signup, Faq, Contact, Privacy, 
-  	EditProfile, NotificationSettings, Notify, Reports, PasswordReset, SetLocation, DashBoard, ViewNotification],
+  	EditProfile, NotificationSettings, Notify, Reports, PasswordReset, SetLocation, DashBoard, ViewNotification, NotificationView],
   providers: [appRoutingProviders, ApiRequest, UserState, LanguageService, LoginService],
   bootstrap: [ AppComponent ]
 })

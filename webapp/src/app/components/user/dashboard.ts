@@ -43,16 +43,19 @@ export class DashBoard {
 	}
 
 	ignore(res:any){
-		console.log(res);
 	}
 
 	geoFail(){
 	}
 
+	goToNotification(notificationId: string){
+		this.router.navigate(["notification",notificationId]);
+	}
+
 	loadNotifications(notificaitons: any){
 		let notifications: Notification[] = notificaitons;
 		for (var i = 0; i < notifications.length; ++i) {
-			if(notificaitons[i].title == "Admin Notification"){
+			if(notificaitons[i].title.toLowerCase().startsWith("admin")){
 				this.nonEmergencyNotifications.push(notificaitons[i]);
 			}else{
 				this.emergencyNotifications.push(notificaitons[i]);

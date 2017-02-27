@@ -93,3 +93,30 @@ input{
 	height: 20px;
 	margin-top: 15px;
 }
+
+
+.notification-card{
+	background-color: #F1F1F1;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	height: 75px;
+}
+
+.notification-icon-area{
+	float: left;
+	position: relative;
+	margin-left: 5px;
+	height: auto;
+}
+
+.notification-icon{
+	height: 50px;
+	margin-top: 10px;
+}
+
+.message{
+	margin-left: 30%;
+	margin-top: 15px;
+    overflow: hidden;
+    white-space:nowrap;
+}

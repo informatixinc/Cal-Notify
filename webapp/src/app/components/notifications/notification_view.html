@@ -1,0 +1,12 @@
+<navbar></navbar>
+<div class = "min-height">
+	<div class = "notification-container" *ngFor="let notification of notifications">
+		<div class = "notification-card pointer" (click)="goToNotification(notification.id)">
+			<div class = "notification-icon-area">
+				<img [src]="notification.imageUrl" class = "notification-icon">
+			</div>
+			<div class = "message"><b>{{notification.title}}</b><br>{{notification.expireTime}}</div>
+		</div>
+	</div>
+</div>
+<footer></footer>

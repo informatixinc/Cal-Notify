@@ -10,8 +10,13 @@
 		<div class = "box-header">
 			{{_languageService.getTranslation('emergency_alerts')}}
 		</div>
-		<div class = "alert-notification" *ngFor="let notification of emergencyNotifications">
-			{{notification.title}}
+		<div class = "notification-container" *ngFor="let notification of emergencyNotifications">
+			<div class = "notification-card pointer" (click)="goToNotification(notification.id)">
+				<div class = "notification-icon-area">
+					<img [src]="notification.imageUrl" class = "notification-icon">
+				</div>
+				<div class = "message"><b>{{notification.title}}</b><br>{{notification.expireTime}}</div>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-5 box-height">
@@ -19,8 +24,13 @@
 		<div class = "box-header">
 			{{_languageService.getTranslation('non_emergency')}}
 		</div>
-		<div class = "alert-notification" *ngFor="let notification of nonEmergencyNotifications">
-			{{notification.title}}
+		<div class = "notification-container" *ngFor="let notification of nonEmergencyNotifications">
+			<div class = "notification-card pointer" (click)="goToNotification(notification.id)">
+				<div class = "notification-icon-area">
+					<img [src]="notification.imageUrl" class = "notification-icon">
+				</div>
+				<div class = "message"><b>{{notification.title}}</b><br>{{notification.expireTime}}</div>
+			</div>
 		</div>
 	</div>
 </div>

@@ -41,6 +41,11 @@ export class Home {
 		this.router.navigate(['signup']);
 	}
 
+	clearLocation(){
+		this._userState.resetLocation();
+		this._apiRequest.doRequest('getactivenotifications',this._userState.getGeoLocation()).subscribe(res => this.loadNotifications(res));
+	}
+
 	login(){
 
 		var hasError = false;

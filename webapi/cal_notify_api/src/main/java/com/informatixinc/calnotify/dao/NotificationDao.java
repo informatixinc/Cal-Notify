@@ -94,9 +94,7 @@ public class NotificationDao {
 		Notification notification = new Notification();
 
 		try {
-			ps = conn.prepareStatement(
-					"select title, info_url from public.notification, public.notification_classification "
-					+ "where notification.type_id = notification_classification.id and notification.id = ?");
+			ps = conn.prepareStatement("select title, info_url, admin_message_body, classification_id from public.notification where notification.id = ?");
 			ps.setInt(1, id);
 
 			rs = ps.executeQuery();
@@ -104,6 +102,8 @@ public class NotificationDao {
 			if (rs.next()) {
 				notification.setTitle(rs.getString("title"));
 				notification.setInfoUrl(rs.getString("info_url"));
+				notification.setAdminMessageBody(rs.getString("admin_message_body"));
+				notification.setClassificationId(rs.getInt("classification_id"));
 			} else {
 				notification.getErrorResponse().setError(true);
 				notification.getErrorResponse().setErrorMessage("Unable to locate notification");
@@ -351,6 +351,26 @@ public class NotificationDao {
 					+ "and notification.classification_id = notification_classification.id and public.user.id = user_location.user_id");
 			ps.setString(1, AuthMap.getUserName(session.getSession()));
 			ps.setInt(2, ProjectProperties.getProperty("getProperty", 50));
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				Notification notification = new Notification();
+				notification.setId(rs.getInt("notification_id"));
+				notification.setTitle(rs.getString("type"));
+				notification.setSendTime(new Date(rs.getTimestamp("send_time").getTime()));
+				notification.setExpireTime(new Date(rs.getTimestamp("expire_time").getTime()));
+				notification.setImageUrl(rs.getString("icon"));
+				notification.setNotificationId(rs.getString("notification_id"));
+
+				notifications.add(notification);
+			}
+			
+			DatabaseUtils.safeClose(ps,rs);
+			
+			ps = conn.prepareStatement("select distinct(notification.id) as notification_id, type, send_time, "
+					+ "expire_time, icon from public.notification, public.notification_classification "
+					+ "where classification_id = 42 and public.notification.classification_id = notification_classification.id");
+			
 			rs = ps.executeQuery();
 			
 			while(rs.next()){

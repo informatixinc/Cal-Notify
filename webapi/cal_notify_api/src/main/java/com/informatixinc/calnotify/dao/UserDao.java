@@ -319,7 +319,7 @@ public class UserDao {
 				user.getAddresses().get(0).setAddressOne(rs.getString("address_one"));
 				user.getAddresses().get(0).setAddressTwo(rs.getString("address_two"));
 				user.getAddresses().get(0).setCity(rs.getString("city"));
-				user.getAddresses().get(0).setState(UsState.getStateName(rs.getInt("state_id")));
+				user.getAddresses().get(0).setState(UsState.getStateAbbreviation(rs.getInt("state_id")));
 				user.getAddresses().get(0).setZipCode(rs.getString("zip_code"));
 				user.setEmail(rs.getString("email"));
 				user.setPhoneNumber(rs.getString("phone_number"));

@@ -47,7 +47,7 @@
 		<div class = "med-space"></div>
 	</div>
 
-	<div class = "notification-body">
+	<div class = "notification-body hide-mobile">
 		<div class = "notification-setter">
 			<div class = "text-center notification-header">
 				{{_languageService.getTranslation('home6')}}
@@ -58,7 +58,7 @@
 			<div class = "text-center show-location" *ngIf="_userState.getAddress().zipCode.length > 0">
 				<div>{{_userState.getAddress().addressOne}}</div>
 				<div>{{_userState.getAddress().city}} {{_userState.getAddress().zipCode}}</div>
-				<div class = "button" (click)="_userState.resetLocation()">Clear location</div>
+				<div class = "button" (click)="clearLocation()">Clear location</div>
 			</div>
 			<div class = "notification-container" *ngFor="let notification of notifications">
 				<div class = "notification-card pointer" (click)="goToNotification(notification.id)">

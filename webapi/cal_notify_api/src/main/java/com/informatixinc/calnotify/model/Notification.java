@@ -11,6 +11,7 @@ public class Notification {
 	private String imageUrl;
 	private String infoUrl;
 	private String notificationId;
+	private String adminMessageBody;
 	private Date sendTime;
 	private Date expireTime;
 	private Point location;
@@ -127,5 +128,13 @@ public class Notification {
 
 	public void setErrorResponse(ErrorResponse errorResponse) {
 		this.errorResponse = errorResponse;
+	}
+
+	public String getAdminMessageBody() {
+		return adminMessageBody;
+	}
+
+	public void setAdminMessageBody(String adminMessageBody) {
+		this.adminMessageBody = adminMessageBody;
 	}
 }

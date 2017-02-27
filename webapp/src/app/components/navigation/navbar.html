@@ -16,10 +16,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" [routerLink]="['/home']"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
+      <a class="navbar-brand" [routerLink]="['/home']" *ngIf="!isLoggedIn()"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
+      <a class="navbar-brand" [routerLink]="['/dashboard']" *ngIf="isLoggedIn()"><img class = "brand_icon" src="assets/images/state_seal.png"></a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right bottom_right_menu">
+        <li class = "menu_item hide-non-mobile"><a [routerLink]="['/notificationview']">{{_languageService.getTranslation('notifications') | uppercase}}</a></li>
          <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/faq']">{{_languageService.getTranslation('faq') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="!isLoggedIn()">|</li>
         <li class = "menu_item" *ngIf="!isLoggedIn()"><a [routerLink]="['/home']">{{_languageService.getTranslation('signin') | uppercase}}</a></li>

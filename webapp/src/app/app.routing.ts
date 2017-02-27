@@ -14,6 +14,7 @@ import {Reports} from './components/admin/reports';
 import {PasswordReset} from './components/user/password_reset';
 import {DashBoard} from './components/user/dashboard';
 import {ViewNotification} from './components/notifications/notification';
+import {NotificationView} from "./components/notifications/notification_view";
 
 
 const appRoutes: Routes = [
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'privacy', component: Privacy },
   { path: 'account', component: EditProfile },
   { path: 'notification', component: NotificationSettings },
+  { path: 'notificationview', component: NotificationView },
   { path: 'notification/:notification_id', component: ViewNotification },
   { path: 'notify', component: Notify },
   { path: 'reports', component: Reports },

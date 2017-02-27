@@ -31,10 +31,14 @@ export class ViewNotification {
 
 
 	 lodNotification(input: any){
-		this.http.get(input.infoUrl)
-		.map((res:Response) => res.text())
-		.subscribe(
-		    data => {
+	 	if(input.classificationId == 42){
+	 		this.title = input.title;
+	 		this.body = input.adminMessageBody;
+	 	}else{
+	 		this.http.get(input.infoUrl)
+				.map((res:Response) => res.text())
+				.subscribe(
+				    data => {
 		    		data = data.replace(/&amp;/g, '');
 		        	var xmlString = data;
 					var parser = new DOMParser();
@@ -43,6 +47,7 @@ export class ViewNotification {
 					this.body = doc.getElementsByTagName("description")[0].innerHTML;
 					this.instructions = doc.getElementsByTagName("instruction")[0].innerHTML;
 		     });
+	 	}
 	 }
 
 	
