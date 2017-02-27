@@ -1,11 +1,12 @@
 <navbar></navbar>
 <div class = "border">
 	<div class = "row section-title">
-		<div class = "col-md-4 col-md-offset-1">
+		<div class = "col-md-6 col-md-offset-1">
 			{{_languageService.getTranslation('faq1')}} {{_languageService.getTranslation('faq2')}} <span class="second-word">{{_languageService.getTranslation('faq3')}}</span>
 		</div>		
 	</div>
 	<div class = "Questions page_font">
+		
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<h3 class = "pointer" (click)="toggleHidden(0)">{{_languageService.getTranslation('q1')}} <span class = "blue" *ngIf = "!elements[0]">+</span><span class = "blue" *ngIf="elements[0]">-</span></h3>
@@ -99,8 +100,11 @@
 				<h3 class = "pointer" (click)="toggleHidden(22)">{{_languageService.getTranslation('q23')}} <span class = "blue" *ngIf = "!elements[22]">+</span><span class = "blue" *ngIf="elements[22]">-</span></h3>
 				<span class = "description" *ngIf = "elements[22]">{{_languageService.getTranslation('a23')}}</span>
 			</div>
-			
+			<!-- <div class="col-md-10 col-md-offset-1">
+				
+			</div> -->
 		</div>
 	</div>
+	<div class="little_space"></div>
 </div>
 <footer></footer>
