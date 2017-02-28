@@ -108,7 +108,7 @@
 				<label for="newPassword">{{_languageService.getTranslation('new_password')}}</label>
 				<!-- <span class="required">({{_languageService.getTranslation('required')}})</span> -->
 				<input type="password" class = "form-input password_info" placeholder="{{_languageService.getTranslation('password_info')}}" id = "newPassword" [(ngModel)]="edit_profile.password" />
-				<!-- <div class = "error" id="error">{{error.password}}</div> -->
+				<div class = "error" id="error">{{error.password}}</div>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-4">
@@ -116,6 +116,7 @@
 				<!-- <span class="required">({{_languageService.getTranslation('required')}})</span> -->
 				<input type="password" class = "form-input password_info" placeholder="" id = "confPassword" [(ngModel)]="edit_profile.confPassword" (keyup.enter)='save()'/>
 				<!-- <div class = "error" id="error">{{error.confPassword}} <br> {{error.passwordMatch}}</div> -->
+				
 			</div>	
 		</div>
 	</div>

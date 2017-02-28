@@ -22,7 +22,7 @@ export class NotificationSettings {
 	additional_loc: NotificationObject = new NotificationObject();
 	error: NotificationObjectError = new NotificationObjectError();
 	notifications: NotificationSetting[] = [];
-	
+	errorMessage = "";
 	ngOnInit(){
 		var session = new Session();
 		session.session = this._userState.getSession();
@@ -85,20 +85,17 @@ export class NotificationSettings {
 		this._apiRequest.doRequest('getnotificationsettings',session).subscribe(res => this.addNotifications(res));
 	}
 
-	// saveNotifications(){
-	// 	var wrapper = {};
-	// 	wrapper["notificationSettings"] = this.notifications;
-	// 	this._apiRequest.doRequest('managenotifications', wrapper).subscribe(res => this.processResponse(res));
-	// }
 	saveNotifications(){
-		
+		var wrapper = {};
+		wrapper["notificationSettings"] = this.notifications;
+		this._apiRequest.doRequest('managenotifications', wrapper).subscribe(res => this.processResponse(res));
 	}
 	processResponse(response: any){
-		if(!response.errorResponse.error){
-	   
-	    }else{
-			// this.error.email = response.errorResponse.errorMessage;
-	    }
+		if(response.errorResponse.error == true){
+			this.error.notifications = response.errorResponse.errorMessage;
+		}else{
+			this.router.navigate(['dashboard']);
+		}
 	}
 
 	cancel(){
