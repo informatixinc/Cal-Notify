@@ -44,7 +44,7 @@ public class GeoDao {
 					ps.setDouble(1, point.getLongitude());
 					ps.setDouble(2, point.getLatitude());
 					ps.setInt(3, userId);
-					ps.setString(4, "geo location");
+					ps.setString(4, "**Geo Location");
 					if(ps.executeUpdate() == 1){
 						DatabaseUtils.safeClose(ps,rs);
 						ps = conn.prepareStatement("select id from public.user_location where user_id = ? order by id desc limit 1");

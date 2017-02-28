@@ -153,6 +153,7 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "nickname_required", "value": "Dirección Apodo requerido"},
 		{ "key": "faq1", "value": "Preguntas"},
 		{ "key": "faq2", "value": "frecuentes"},
+		{ "key": "faq3", "value": ""},
 		{ "key": "q1", "value": "¿Cómo recibo alertas?"},
 		{ "key": "q2", "value": "No quiero ingresar mi información privada. ¿Dónde puedo ir si quiero ver alertas?"},
 		{ "key": "q3", "value": "¿A quién se le entrega mi información una vez presentada?"},
