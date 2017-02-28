@@ -18,6 +18,7 @@ import com.informatixinc.calnotify.model.SnsType;
 import com.informatixinc.calnotify.model.UsState;
 import com.informatixinc.calnotify.model.User;
 import com.informatixinc.calnotify.model.UserNotification;
+import com.informatixinc.calnotify.model.UserSettings;
 import com.informatixinc.calnotify.utils.AuthMap;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 import com.informatixinc.calnotify.utils.ProjectProperties;
@@ -460,6 +461,51 @@ public class UserDao {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
 		return -1;
+	}
+	
+	public List<UserSettings> fetchSettingForAllUsers() {
+		final List<UserSettings> allSettings = new ArrayList<>();
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		final StringBuilder sql = new StringBuilder();
+		sql.append(
+				" select distinct u.id, u.email, u.phone_number, ns.sms, ns.email, ns.push_notification, st.sns_token ");
+		sql.append(" from public.user u ");
+		sql.append(" inner join public.user_location ul on ul.user_id = u.id ");
+		sql.append(" inner join public.notification_settings ns on ns.user_location_id = ul.id ");
+		sql.append(" inner join public.account_type at on at.id = u.account_type ");
+		sql.append(" 	and at.id = ? ");
+		sql.append(" left outer join public.sns_token st on st.user_id = u.id ");
+		try {
+			conn = DatabasePool.getConnection();
+			ps = conn.prepareStatement(sql.toString());
+			ps.setInt(1, 2);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				final int userId = rs.getInt(1);
+				final String email = rs.getString(2);
+				final String phoneNumber = rs.getString(3);
+				final boolean sendSms = rs.getBoolean(4);
+				final boolean sendEmail = rs.getBoolean(5);
+				final boolean sendSns = rs.getBoolean(6);
+				final String token = rs.getString(7);
+				final UserSettings us = new UserSettings();
+				us.setUserId(userId);
+				us.setEmail(email);
+				us.setPhoneNumber(phoneNumber);
+				us.setSendSms(sendSms);
+				us.setSendEmail(sendEmail);
+				us.setSendSns(sendSns);
+				us.setToken(token);
+				allSettings.add(us);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		} finally {
+			DatabaseUtils.safeClose(conn, ps, rs);
+		}
+		return allSettings;
 	}
 
 	public PutResponse saveSnsToken(final String token, final String session) {

@@ -32,5 +32,4 @@ public class AdminMessage {
 	public void setSentBy(String sentBy) {
 		this.sentBy = sentBy;
 	}
-
 }
