@@ -13,11 +13,11 @@ export class Privacy {
 
 	constructor( private router: Router, private _languageService: LanguageService) {}
 
-	ngOnInit(){
-		setTimeout(function() {
-			window.scrollTo(0,0);
-		}, 100);
-	}
+	// ngOnInit(){
+	// 	setTimeout(function() {
+	// 		window.scrollTo(0,0);
+	// 	}, 100);
+	// }
 
  
 }
