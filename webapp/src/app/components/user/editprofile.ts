@@ -22,6 +22,7 @@ export class EditProfile {
 	states = ["AL", "AK", "AZ", "AR","CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
 	edit_profile: EditprofileObject = new EditprofileObject();
 	error: EditprofileObjectError = new EditprofileObjectError();
+	errorMessage = "";
 	constructor(private router: Router, private _userState: UserState, private _languageService: LanguageService, private _loginService: LoginService, private _apiRequest: ApiRequest) {
 
 	}
@@ -165,6 +166,9 @@ export class EditProfile {
 
 		var editprofileObj = JSON.parse(JSON.stringify(this.edit_profile));
 		editprofileObj.password = this._loginService.prepareLogin("", this.edit_profile.password).password;
+		if(this.edit_profile.password.length == 0){
+			editprofileObj.password = "";
+		}
 		delete editprofileObj.confPassword;
 		delete editprofileObj.oldPassword;
 		console.log(JSON.stringify(editprofileObj));
@@ -173,10 +177,11 @@ export class EditProfile {
 	}
 
 	processResponse(response: any){
-		if(response.error == true){
-			
+		if(!response.errorResponse.error){
+			this.router.navigate(['dashboard']);
 		}else{
-
+			this.error.password = response.errorResponse.errorMessage;
+			return;
 		}
 	}
 

@@ -151,9 +151,8 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "or", "value": "or"},
 		{ "key": "optional", "value": "Optional"},
 		{ "key": "nickname_required", "value": "Address Nickname Required"},
-		{ "key": "faq1", "value": "Frequently"},
-		{ "key": "faq2", "value": "Asked"},
-		{ "key": "faq3", "value": "Questions"},
+		{ "key": "faq1", "value": "Frequently Asked"},
+		{ "key": "faq2", "value": "Questions"},
 		{ "key": "q1", "value": "How do I receive alerts?"},
 		{ "key": "q2", "value": "I don’t want to enter my private information. Where can I go if I want to see alerts?"},
 		{ "key": "q3", "value": "Who is my information given to once submitted?"},
@@ -216,5 +215,3 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "policy14", "value": "The Cal Notify application will have vulnerabilities security testing done on a quarterly basis. If a security breach is identified outside of the normal testing time additional testing will be implemented."},
 		{ "key": "policy15", "value": "March 1, 2017"},
 	]
-
-

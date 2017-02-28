@@ -160,11 +160,12 @@ export class Signup {
 	}
 
 	processResponse(response: any){
-		if(response.errorResponse.error == true){
-			this.error.email = response.errorResponse.errorMessage;
-		}else{
+		if(!response.errorResponse.error){
 			this._userState.setSession(response.session);
 			this.router.navigate(['notification']);
+		}else{
+			this.error.password = response.errorResponse.errorMessage;
+			return;
 		}
 	}
 
