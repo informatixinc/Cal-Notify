@@ -5,9 +5,6 @@ services:
     restart: always
     ports:
       - "80:80"
-    environment:
-      - NGINX_HOST=localhost
-      - NGINX_port=80
     links:
       - sc
 

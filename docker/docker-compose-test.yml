@@ -1,15 +1,10 @@
 version: "2"
 services:
   web:
-    image: nginx
     restart: always
-    volumes:
-      - ./web/:/etc/nginx/conf.d/
+    build: ./web
     ports:
       - "80:80"
-    environment:
-      - NGINX_HOST=localhost
-      - NGINX_port=80
     links:
       - sc
 
@@ -18,10 +13,6 @@ services:
     build: ./sc
     expose:
        - "8080"
-    ports:
-      - "25:25"
-      - "465:465"
-      - "587:587"
     links:
       - db
     depends_on:
@@ -31,7 +22,7 @@ services:
     restart: always
     build: ./db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - ./db:/docker-entrypoint-initdb.d
     volumes_from:
