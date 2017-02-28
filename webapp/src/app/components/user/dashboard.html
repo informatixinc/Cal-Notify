@@ -77,9 +77,9 @@
 			</div>
 			<div class = "notification-row box-readonly" *ngFor="let setting of notificationSettings">
 				<div class = "nick-name">{{setting.nickName}}</div>
-				<div class = "notification-option"><input id="checkbox1" type = "checkbox" [(ngModel)]="setting.sms" ></div>
-				<div class = "notification-option"><input id="checkbox2" type = "checkbox" [(ngModel)]="setting.email" ></div>
-				<div class = "notification-option right-border"><input id="checkbox3" type = "checkbox" [(ngModel)]="setting.sns" ></div>
+				<div class = "notification-option"><input id="checkbox1" type = "checkbox" [(ngModel)]="setting.sms" disabled="true"></div>
+				<div class = "notification-option"><input id="checkbox2" type = "checkbox" [(ngModel)]="setting.email" disabled="true"></div>
+				<div class = "notification-option right-border"><input id="checkbox3" type = "checkbox" [(ngModel)]="setting.sns" disabled="true"></div>
 				<div class = "clear"></div>
 			</div>
 

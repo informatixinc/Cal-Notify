@@ -26,7 +26,7 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "home10", "value": "Escoger localización" },
 		{ "key": "create_account", "value": "Crea una cuenta" },
 		{ "key": "login", "value": "Iniciar Sesión" },
-		{ "key": "signin", "value": "Registrarse" },
+		// { "key": "signin", "value": "Registrarse" },
 		{ "key": "information", "value": "Información" },
 		{ "key": "email", "value": "Correo electrónico" },
 		{ "key": "email_account", "value": "Cuenta de correo electrónico" },
@@ -153,7 +153,7 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "nickname_required", "value": "Dirección Apodo requerido"},
 		{ "key": "faq1", "value": "Preguntas"},
 		{ "key": "faq2", "value": "frecuentes"},
-				{ "key": "q1", "value": "¿Cómo recibo alertas?"},
+		{ "key": "q1", "value": "¿Cómo recibo alertas?"},
 		{ "key": "q2", "value": "No quiero ingresar mi información privada. ¿Dónde puedo ir si quiero ver alertas?"},
 		{ "key": "q3", "value": "¿A quién se le entrega mi información una vez presentada?"},
 		{ "key": "q4", "value": "¿Con qué rapidez recibiré mis alertas?"},
@@ -215,4 +215,5 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "policy14", "value": "La aplicación Cal Notify tendrá pruebas de seguridad de vulnerabilidades realizadas trimestralmente. Si se identifica un incumplimiento de seguridad fuera del tiempo normal de prueba, se realizarán pruebas adicionales."},
 		{ "key": "policy15", "value": "1 de marzo de 2017"},
 		{ "key": "delete", "value": "Borrar"},
+		{ "key": "active_notifications", "value": "Notificaciones activas" },
 ]

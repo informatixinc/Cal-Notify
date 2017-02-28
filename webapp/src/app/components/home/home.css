@@ -14,11 +14,12 @@
 	background-color: #d6d7d9;
 	overflow: hidden;
 	white-space:nowrap;
+	overflow-y: scroll;
 }
 
-.notification-body:hover{
-	overflow-y: auto;
-}
+/*.notification-body:hover{
+	
+}*/
 
 .strip-decorators{
     line-height: 10px;

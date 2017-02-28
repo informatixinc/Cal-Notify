@@ -26,7 +26,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "home10", "value": "Set Location" },
 		{ "key": "create_account", "value": "Create Account" },
 		{ "key": "login", "value": "Login" },
-		{ "key": "signin", "value": "Sign In" },
+		// { "key": "signin", "value": "Sign In" },
 		{ "key": "information", "value": "Information" },
 		{ "key": "email", "value": "Email" },
 		{ "key": "email_account", "value": "Email Account" },
@@ -215,4 +215,6 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "policy14", "value": "The Cal Notify application will have vulnerabilities security testing done on a quarterly basis. If a security breach is identified outside of the normal testing time additional testing will be implemented."},
 		{ "key": "policy15", "value": "March 1, 2017"},
 		{ "key": "delete", "value": "Delete"},
+		{ "key": "active_notifications", "value": "Active Notifications" },
+		
 	]

@@ -6,3 +6,38 @@
 	padding-left: 5px;
 	padding-right: 5px;
 }
+.show-mobile{
+	display: none;
+}
+@media only screen and (min-device-width: 480px) {
+	.outer_title{
+		position: absolute; 
+		left: 165px;
+		z-index: 2;
+		margin-top: 10px;
+	}
+
+	.hide-non-mobile{
+		display: none;
+	}
+
+	.bottom_right_menu{
+	    position: absolute;
+	    right: 20px;
+	    bottom: -10px;
+	    font-size: .8em;
+	}
+}
+
+@media only screen and (max-device-width: 480px) {
+	.outer_title{
+		position: absolute; 
+		left: 42%;
+		z-index: 2;
+		margin-top: 15px;
+	}
+
+	.hide-mobile{
+		display: none;
+	}
+}

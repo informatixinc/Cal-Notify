@@ -1,5 +1,13 @@
 <navbar></navbar>
 <div class = "min-height">
+	<div class = "text-center" *ngIf="_userState.getAddress().zipCode.length == 0">
+		<div class="button" [routerLink]="['/setlocation']">{{_languageService.getTranslation('home7')}}</div>
+	</div>
+	<div class = "text-center show-location" *ngIf="_userState.getAddress().zipCode.length > 0">
+		<div>{{_userState.getAddress().addressOne}}</div>
+		<div>{{_userState.getAddress().city}} {{_userState.getAddress().zipCode}}</div>
+		<div class = "button" (click)="clearLocation()">Clear location</div>
+	</div>
 	<div class = "notification-container" *ngFor="let notification of notifications">
 		<div class = "notification-card pointer" (click)="goToNotification(notification.id)">
 			<div class = "notification-icon-area">

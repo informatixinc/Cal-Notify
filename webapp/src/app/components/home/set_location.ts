@@ -23,7 +23,6 @@ export class SetLocation {
 	address = new Address();
 	error: SetLocationError = new SetLocationError();
 	errorMessage = "";
-
 	ngOnInit(){
 		this.address.state = "CA";
 	}
@@ -70,11 +69,58 @@ export class SetLocation {
 			delete input.errorResponse;
 			this._userState.setGeoLocation(input);
 			this.router.navigate(['home']);
-
+			
+			
 		}
 	}
 	cancel(){
 		this.router.navigate(['home']);
+	}
+
+	setLocationMobile(){
+		this.error.addressOne = this.error.zipCode = "";
+		document.getElementById("address1").style["borderColor"] = "black";
+		document.getElementById("zipcode").style["borderColor"] = "black";
+
+		var strippedZipcode = this.stripNonNumeric(this.address.zipCode);
+		var hasError = false;
+		if(this.address.addressOne.length == 0){
+			this.error.addressOne = this._languageService.getTranslation("address1_required");
+			document.getElementById("address1").style["borderColor"] = "#CD2026";
+			hasError = true;
+		}
+		if(strippedZipcode.length > 0){
+			if(strippedZipcode.length != 5){
+				this.error.zipCode = this._languageService.getTranslation("zipcode_validation");
+				document.getElementById("zipcode").style["borderColor"] = "#CD2026";
+				hasError = true;
+			}
+		}else{
+			this.error.zipCode = this._languageService.getTranslation("zipcode_required");
+			document.getElementById("zipcode").style["borderColor"] = "#CD2026";
+			hasError = true;
+		}
+		
+		if(hasError){
+			return;
+		}
+		this._apiRequest.doRequest('geofromaddress', this.address).subscribe(res => this.setCoordinatesMobile(res));
+	}
+	setCoordinatesMobile(input: any){
+		if(input.errorResponse.error){
+			this.errorMessage = input.errorResponse.errorMessage;
+		}else{
+			this._userState.setAddress(this.address);
+			delete input.errorResponse;
+			this._userState.setGeoLocation(input);
+			this.router.navigate(['notificationview']);
+			
+			
+		}
+	}
+
+	cancelMobile(){
+		this.router.navigate(['notificationview']);
 	}
  
 }

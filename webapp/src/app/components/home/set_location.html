@@ -39,11 +39,13 @@
 	<div class="row">
 		<div class="little-space"></div>
 		<div class = "col-md-2 col-md-offset-1">
-			<div class = "button" (click)="setLocation()">{{_languageService.getTranslation('save')}}</div>		
+			<div class = "button hide-mobile" (click)="setLocation()">{{_languageService.getTranslation('save')}}</div>	
+			<div class = "button hide-non-mobile" (click)="setLocationMobile()">{{_languageService.getTranslation('save')}}</div>	
 		</div>
 		<div class="little_space"></div>
 		<div class = "col-md-2">
-			<div class = "button" id = "cancel" (click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
+			<div class = "button hide-mobile"(click)="cancel()">{{_languageService.getTranslation('cancel')}}</div>
+			<div class = "button hide-non-mobile" (click)="cancelMobile()">{{_languageService.getTranslation('cancel')}}</div>
 		</div>	
 	</div>
 	<div class="little-space"></div>

@@ -24,11 +24,13 @@
 .box-height{
 	height: 360px;
 	overflow: hidden;
+	overflow-y:scroll;
+	background-color: #f1f1f1;
 }
 
-.box-height:hover{
+/*.box-height:hover{
 	overflow-y:scroll;
-}
+}*/
 
 .box-solid-background{
 	background-color: #F1F1F1;
