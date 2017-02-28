@@ -25,8 +25,8 @@ import com.informatixinc.calnotify.utils.StringUtils;
 
 public class FetchNotificationsJob implements Runnable {
 
-	private final DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
-
+	private final DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy hh:mm:ss a");
+	
 	@Override
 	public void run() {
 		log.info("=====Fetch Notification Job Running=====");
