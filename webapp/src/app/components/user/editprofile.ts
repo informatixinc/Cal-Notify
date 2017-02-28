@@ -165,6 +165,10 @@ export class EditProfile {
 		}
 
 		var editprofileObj = JSON.parse(JSON.stringify(this.edit_profile));
+		editprofileObj.password = this._loginService.prepareLogin("", this.edit_profile.password).password;
+		if(this.edit_profile.password.length == 0){
+			editprofileObj.password = "";
+		}
 		delete editprofileObj.confPassword;
 		delete editprofileObj.oldPassword;
 		console.log(JSON.stringify(editprofileObj));
