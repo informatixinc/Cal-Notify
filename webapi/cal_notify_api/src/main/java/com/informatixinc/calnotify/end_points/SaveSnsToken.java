@@ -10,14 +10,15 @@ import javax.ws.rs.core.MediaType;
 
 import com.informatixinc.calnotify.dao.UserDao;
 import com.informatixinc.calnotify.model.PutResponse;
+import com.informatixinc.calnotify.model.SnsToken;
 
 @Path("/savesnstoken")
 public class SaveSnsToken {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PutResponse updatePosition(String token, @Context HttpServletRequest req) {
+	public PutResponse updatePosition(SnsToken token, @Context HttpServletRequest req) {
 		UserDao userDao = new UserDao();
-		return userDao.saveSnsToken(token, req.getHeader("Authorization"));
+		return userDao.saveSnsToken(token.getToken(), req.getHeader("Authorization"));
 	}
 }

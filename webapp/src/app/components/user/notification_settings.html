@@ -89,7 +89,6 @@
 				        <th scope="col">{{_languageService.getTranslation('receive_text')}}</th>
 				        <th scope="col">{{_languageService.getTranslation('receive_email')}}</th>
 				        <th scope="col">{{_languageService.getTranslation('receive_push')}}</th>
-				        <th scope="col">{{_languageService.getTranslation('delete')}}</th>
 				      </tr>
 				    </thead>
 				    <tbody >
@@ -98,9 +97,7 @@
 				        <td><input id="checkbox1" type="checkbox" class = "input-box" [(ngModel)]="notification.sms" ></td>
 				        <td><input id="checkbox2" type="checkbox" class = "input-box" [(ngModel)]="notification.email" ></td>
 				        <td><input id="checkbox3" type="checkbox" class = "input-box" [(ngModel)]="notification.sns" ></td>
-				        <td><i class="fa fa-trash-o pointer" aria-hidden="true" (click)="deleteLocation(notification)"></i></td>
 				      </tr>
-				  
 				    </tbody>
 				</table>
 			</div>

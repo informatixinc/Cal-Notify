@@ -25,5 +25,18 @@
   <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
   <script src="/webpack-dev-server.js"></script>
   <% } %>
+  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+  <script>
+     setTimeout(() => {
+        var config = {
+          apiKey: "AIzaSyA3RptRhCwTx3dbtGXHP3Qppqe7zHK0OXs",
+          authDomain: "calnotify-159923.firebaseapp.com",
+          databaseURL: "https://calnotify-159923.firebaseio.com",
+          storageBucket: "calnotify-159923.appspot.com",
+          messagingSenderId: "964503787836"
+        };
+        firebase.initializeApp(config);
+      }, 1000);
+  </script>
 </body>
 </html>

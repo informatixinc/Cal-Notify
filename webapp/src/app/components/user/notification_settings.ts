@@ -8,6 +8,9 @@ import {Address} from '../common/address';
 import {UserState} from '../../services/user_state/user_state';
 import {NotificationSetting} from '../common/notification_setting';
 import {Session} from '../common/session';
+import {SnsToken} from '../common/sns_token';
+
+declare var firebase: any;
 
 @Component({
   selector: 'notification',
@@ -23,12 +26,48 @@ export class NotificationSettings {
 	error: NotificationObjectError = new NotificationObjectError();
 	notifications: NotificationSetting[] = [];
 	errorMessage = "";
+	messaging: any;
 
 	ngOnInit(){
 		var session = new Session();
 		session.session = this._userState.getSession();
 		this.additional_loc.addresses[0].state = "CA";
-		this._apiRequest.doRequest('getnotificationsettings',session).subscribe(res => this.addNotifications(res))
+		this._apiRequest.doRequest('getnotificationsettings',session).subscribe(res => this.addNotifications(res));
+
+		setTimeout(function() {
+		    this.messaging = firebase.messaging();
+		    this.initPush()
+	  	}.bind(this), 1500);
+	}
+
+	initPush(){
+		this.messaging.onTokenRefresh(function() {
+			this.messaging.getToken()
+			.then(function(refreshedToken) {
+				console.log("Refresh Token");
+				let snsToken = new SnsToken();
+				snsToken.token = refreshedToken;
+				this._apiRequest.doRequest('savesnstoken',snsToken).subscribe(res => {});
+			}.bind(this))
+			.catch(function(err) {
+			});
+		}.bind(this));
+
+		this.messaging.requestPermission()
+	    .then(function() {
+	      this.messaging.getToken()
+			.then(function(currentToken) {
+				console.log("New Token");
+				let snsToken = new SnsToken();
+				snsToken.token = currentToken;
+				this._apiRequest.doRequest('savesnstoken',snsToken).subscribe(res => {});
+			}.bind(this))
+			.catch(function(err) {
+			});
+	    }.bind(this))
+	    .catch(function(err) {
+	      console.log('Unable to get permission to notify.', err);
+	    });
 	}
 
 	constructor( private router: Router, private _languageService: LanguageService, private _apiRequest: ApiRequest, private _userState: UserState) {}
@@ -113,3 +152,4 @@ export class NotificationSettings {
 		return input.replace(/\D/g, '');
 	}
 }
+

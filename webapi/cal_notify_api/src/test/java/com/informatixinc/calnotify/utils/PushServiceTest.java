@@ -8,7 +8,7 @@ public class PushServiceTest {
 	public void sendTestMessage(){
 		ProjectProperties.init();
 		PushService pushService = new PushService();
-		pushService.push("dHkutJOaJF0:APA91bFzK_TxayDavXpG8e9e7fC8JuCdOO-GD1DiDmb3hyCuwXaQhHwJLPfjDn1o2SZLbgQzGDmzLbdZgRwLQXXBCnSSj9MeWzRgTAUp0u5iUcwH0ATIvZKEOwaNgIdHBJmRGPoDo1w_", 
-				"Message Body", "Message Title");
+		pushService.push("dL1YVfvrcdQ:APA91bEmHWvlQBsZkbtCnR3SVpS4lZJ5KeWd4kPZVV8yYakJNgRTUuXrntx86pg3Pcg5AouCdjYCYoRSHVDC3NMBq0rL6pSdjLLd4EpmV7AM3QHSWDIM3GT10oJ06rhDKyzh0zCJPZur", 
+				"Push Notification Test Body", "Push Notification Test Title");
 	}
 }

@@ -336,25 +336,6 @@ public class NotificationDao {
 		return putResponse;
 	}
 	
-	public PutResponse deleteLocation(NotificationSettings notificationSetting){
-		PutResponse putResponse = new PutResponse();
-		
-		Connection conn = DatabasePool.getConnection();
-		PreparedStatement ps = null;
-		
-		try {
-			ps = conn.prepareStatement("delete from public.user_location where id = ?");
-			ps.setInt(1, notificationSetting.getUserLocationId());
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
-		} finally {
-			DatabaseUtils.safeClose(conn, ps);
-		}
-		
-		return putResponse;
-	}
-	
 	public ArrayList<Notification> getUserNotifications(Session session){
 		
 		ArrayList<Notification> notifications = new ArrayList<Notification>();
