@@ -67,8 +67,8 @@ export class Reports {
 
     this.userData.push(['', 'This Month', 'Last Month']);
     this.userData.push(['New', reportData.reportData[highestYear][highestMonth][0].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][0].count]);
-    this.userData.push(['Active', reportData.reportData[highestYear][highestMonth][1].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][1].count]);
-    this.userData.push(['Inactive', reportData.reportData[highestYear][highestMonth][2].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][2].count]);
+    this.userData.push(['Inactive', reportData.reportData[highestYear][highestMonth][1].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][1].count]);
+    this.userData.push(['Active', reportData.reportData[highestYear][highestMonth][2].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][2].count]);
     this.drawBar();
 
     years = years.sort().reverse();

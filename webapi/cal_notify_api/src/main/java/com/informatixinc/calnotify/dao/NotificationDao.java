@@ -51,11 +51,11 @@ public class NotificationDao {
 		try {
 			if(point.getLatitude() == 0D){
 				ps = conn.prepareStatement(
-						"select notification.id as notification_id, type, send_time, expire_time, icon from public.notification, "
-						+ "public.notification_classification where notification.type_id = notification_classification.id and expire_time > now()");
+						"select notification.id as notification_id, unique(notification_id), type, send_time, expire_time, icon from public.notification, "
+						+ "public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() order by notification.id desc");
 			}else{
-				ps = conn.prepareStatement("select notification.id as notification_id, type, send_time, expire_time, icon from public.notification,"
-						+ "public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() "
+				ps = conn.prepareStatement("select notification.id as notification_id, unique(notification_id), type, send_time, expire_time, icon from public.notification,"
+						+ "public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() order by notification.id desc"
 						+ "and location <@> POINT(?,?)  < ?");
 				ps.setDouble(1, point.getLongitude());
 				ps.setDouble(2, point.getLatitude());
@@ -345,10 +345,10 @@ public class NotificationDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = conn.prepareStatement("select distinct(notification.id) as notification_id, type, send_time, "
+			ps = conn.prepareStatement("select distinct(notification.id) as notification_id, unique(notification_id), type, send_time, "
 					+ "expire_time, icon from public.user, public.user_location, public.notification, "
 					+ "public.notification_classification where email = ? and user_location.location <@> notification.location < ? "
-					+ "and notification.classification_id = notification_classification.id and public.user.id = user_location.user_id");
+					+ "and notification.classification_id = notification_classification.id and public.user.id = user_location.user_id  order by notification.id desc");
 			ps.setString(1, AuthMap.getUserName(session.getSession()));
 			ps.setInt(2, ProjectProperties.getProperty("getProperty", 50));
 			rs = ps.executeQuery();
