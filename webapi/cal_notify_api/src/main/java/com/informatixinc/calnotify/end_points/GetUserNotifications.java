@@ -12,6 +12,9 @@ import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.model.Notification;
 import com.informatixinc.calnotify.model.Session;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"getusernotifications"})
 @Path("/getusernotifications")
 public class GetUserNotifications {
 	

@@ -1,7 +1,5 @@
 package com.informatixinc.calnotify.end_points;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -17,6 +15,9 @@ import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.User;
 import com.informatixinc.calnotify.utils.GeoLookup;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"addlocations"})
 @Path("/addlocations")
 public class AddLocationsEndPoint {
 	

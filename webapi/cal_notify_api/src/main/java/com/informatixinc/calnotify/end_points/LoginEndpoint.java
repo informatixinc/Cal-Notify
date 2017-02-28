@@ -10,6 +10,9 @@ import com.informatixinc.calnotify.dao.UserDao;
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.User;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"login"})
 @Path("/login")
 public class LoginEndpoint {
 	

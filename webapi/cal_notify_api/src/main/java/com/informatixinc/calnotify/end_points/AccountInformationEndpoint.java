@@ -11,6 +11,9 @@ import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.User;
 import com.informatixinc.calnotify.utils.AuthMap;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"accountinformation"})
 @Path("/accountinformation")
 public class AccountInformationEndpoint {
 	

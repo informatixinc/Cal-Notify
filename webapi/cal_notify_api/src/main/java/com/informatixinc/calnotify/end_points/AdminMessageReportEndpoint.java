@@ -14,6 +14,9 @@ import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.utils.AuthMap;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"adminmessagereport"})
 @Path("/adminmessagereport")
 public class AdminMessageReportEndpoint {
 	

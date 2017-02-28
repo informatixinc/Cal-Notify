@@ -16,6 +16,9 @@ import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.User;
 import com.informatixinc.calnotify.utils.GeoLookup;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"updateaccount"})
 @Path("/updateaccount")
 public class UpdateAccountEndpoint {
 	

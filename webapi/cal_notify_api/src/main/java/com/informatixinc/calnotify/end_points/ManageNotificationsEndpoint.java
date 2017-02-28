@@ -13,6 +13,9 @@ import com.informatixinc.calnotify.model.NotificationSettings;
 import com.informatixinc.calnotify.model.NotificationsWrapper;
 import com.informatixinc.calnotify.model.PutResponse;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"managenotifications"})
 @Path("/managenotifications")
 public class ManageNotificationsEndpoint {
 	

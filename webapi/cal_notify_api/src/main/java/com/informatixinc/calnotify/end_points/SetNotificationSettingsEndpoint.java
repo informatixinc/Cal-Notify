@@ -10,6 +10,9 @@ import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.model.NotificationSettings;
 import com.informatixinc.calnotify.model.PutResponse;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"setnotificationsettings"})
 @Path("/setnotificationsettings")
 public class SetNotificationSettingsEndpoint {
 	

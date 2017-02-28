@@ -11,6 +11,9 @@ import com.informatixinc.calnotify.model.Address;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.utils.GeoLookup;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"geofromaddress"})
 @Path("geofromaddress")
 public class GetGeoLocationFromAddress {
 	

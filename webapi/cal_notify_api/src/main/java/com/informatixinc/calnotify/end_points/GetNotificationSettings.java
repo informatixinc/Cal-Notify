@@ -13,6 +13,9 @@ import com.informatixinc.calnotify.model.NotificationSettings;
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.utils.AuthMap;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"getnotificationsettings"})
 @Path("/getnotificationsettings")
 public class GetNotificationSettings {
 	

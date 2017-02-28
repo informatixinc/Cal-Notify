@@ -12,6 +12,9 @@ import com.informatixinc.calnotify.dao.UserDao;
 import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.SnsToken;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"savesnstoken"})
 @Path("/savesnstoken")
 public class SaveSnsToken {
 	@POST

@@ -9,6 +9,9 @@ import javax.ws.rs.core.MediaType;
 import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.model.Notification;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"getnotification"})
 @Path("getnotification")
 public class GetNotificationByIdEndpoint {
 	

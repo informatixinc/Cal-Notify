@@ -12,6 +12,9 @@ import com.informatixinc.calnotify.dao.GeoDao;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = {"updateuserposition"})
 @Path("/updateuserposition")
 public class UpdateGeoPosition {
 	
