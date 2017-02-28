@@ -14,9 +14,6 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
-  
-  <link rel="manifest" href="assets/files/manifest.json">
 </head>
 
 <body>
@@ -28,15 +25,5 @@
   <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
   <script src="/webpack-dev-server.js"></script>
   <% } %>
-  <script>
-    setTimeout(function(){
-      var config = {
-        apiKey: "AIzaSyA3RptRhCwTx3dbtGXHP3Qppqe7zHK0OXs",
-        authDomain: "calnotify-159923.firebaseapp.com",
-        messagingSenderId: "964503787836"
-      };
-      firebase.initializeApp(config);
-    }, 100);
-  </script>
 </body>
 </html>

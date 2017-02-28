@@ -51,12 +51,11 @@ public class NotificationDao {
 		try {
 			if(point.getLatitude() == 0D){
 				ps = conn.prepareStatement(
-						"select notification.id as notification_id, unique(notification_id), type, send_time, expire_time, icon from public.notification, "
-						+ "public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() order by notification.id desc");
+						"select notification.id as notification_id, type, send_time, expire_time, "
+						+ "icon from public.notification, public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() order by notification.id desc");
 			}else{
-				ps = conn.prepareStatement("select notification.id as notification_id, unique(notification_id), type, send_time, expire_time, icon from public.notification,"
-						+ "public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() order by notification.id desc"
-						+ "and location <@> POINT(?,?)  < ?");
+				ps = conn.prepareStatement("select notification.id as notification_id, type, send_time, expire_time, "
+						+ "icon from public.notification,public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() and location <@> POINT(?,?)  < ? order by notification.id desc");
 				ps.setDouble(1, point.getLongitude());
 				ps.setDouble(2, point.getLatitude());
 				ps.setInt(3, ProjectProperties.getProperty("getProperty", 50));
@@ -337,6 +336,25 @@ public class NotificationDao {
 		return putResponse;
 	}
 	
+	public PutResponse deleteLocation(NotificationSettings notificationSetting){
+		PutResponse putResponse = new PutResponse();
+		
+		Connection conn = DatabasePool.getConnection();
+		PreparedStatement ps = null;
+		
+		try {
+			ps = conn.prepareStatement("delete from public.user_location where id = ?");
+			ps.setInt(1, notificationSetting.getUserLocationId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
+		} finally {
+			DatabaseUtils.safeClose(conn, ps);
+		}
+		
+		return putResponse;
+	}
+	
 	public ArrayList<Notification> getUserNotifications(Session session){
 		
 		ArrayList<Notification> notifications = new ArrayList<Notification>();
@@ -345,10 +363,13 @@ public class NotificationDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = conn.prepareStatement("select distinct(notification.id) as notification_id, unique(notification_id), type, send_time, "
+			ps = conn.prepareStatement("select distinct(notification.id) as notification_id, type, send_time, "
 					+ "expire_time, icon from public.user, public.user_location, public.notification, "
-					+ "public.notification_classification where email = ? and user_location.location <@> notification.location < ? "
-					+ "and notification.classification_id = notification_classification.id and public.user.id = user_location.user_id  order by notification.id desc");
+					+ "public.notification_classification where email = ? and user_location.location <@> "
+					+ "notification.location < ? and notification.expire_time > now() and "
+					+ "notification.classification_id = notification_classification.id and public.user.id = user_location.user_id  "
+					+ "order by notification.id desc");
+			
 			ps.setString(1, AuthMap.getUserName(session.getSession()));
 			ps.setInt(2, ProjectProperties.getProperty("getProperty", 50));
 			rs = ps.executeQuery();

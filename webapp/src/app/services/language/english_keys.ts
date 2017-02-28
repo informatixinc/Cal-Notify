@@ -214,4 +214,5 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "policy13", "value": "Security Vulnerabilities Testing"},
 		{ "key": "policy14", "value": "The Cal Notify application will have vulnerabilities security testing done on a quarterly basis. If a security breach is identified outside of the normal testing time additional testing will be implemented."},
 		{ "key": "policy15", "value": "March 1, 2017"},
+		{ "key": "delete", "value": "Delete"},
 	]

@@ -24,6 +24,11 @@
 	max-width: 100%;
 }
 
+.fa-trash-o{
+	font-size: 2em;
+    margin-left: 8px;
+}
+
 .hr{
 	border-style: inset;
     border-width: 1px;

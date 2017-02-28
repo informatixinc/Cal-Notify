@@ -95,6 +95,16 @@ export class NotificationSettings {
 		}
 	}
 
+	deleteLocation(notification: NotificationObject){
+		this._apiRequest.doRequest('deletelocation',notification).subscribe(res => this.deleteConfirm(res))
+	}
+
+	deleteConfirm(res: any){
+		var session = new Session();
+		session.session = this._userState.getSession();
+		this._apiRequest.doRequest('getnotificationsettings',session).subscribe(res => this.addNotifications(res))
+	}
+
 	cancel(){
 		this.router.navigate(['dashboard']);
 	}
