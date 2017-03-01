@@ -32,8 +32,6 @@ export class DashBoard {
 		this._apiRequest.doRequest('getnotificationsettings',session).subscribe(res => this.loadSettings(res));
 		this._apiRequest.doRequest('getusernotifications',session).subscribe(res => this.loadNotifications(res));
 		navigator.geolocation.getCurrentPosition(this.geoSuccess.bind(this), this.geoFail);
-
-		
 	}
 
 	geoSuccess(position: any){
@@ -62,7 +60,6 @@ export class DashBoard {
 				this.emergencyNotifications.push(notificaitons[i]);
 			}
 		}
-		this.emergencyNotifications = notificaitons;
 	}
 
 	loadUser(user: any){

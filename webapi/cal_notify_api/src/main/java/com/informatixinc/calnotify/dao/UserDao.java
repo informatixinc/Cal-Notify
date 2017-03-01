@@ -40,7 +40,7 @@ public class UserDao {
 
 		try {
 			ps = conn.prepareStatement("select id from public.user where email = ?");
-			ps.setString(1, user.getEmail());
+			ps.setString(1, user.getEmail().toLowerCase());
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -56,7 +56,7 @@ public class UserDao {
 							+ "phone_number, signup_date, account_type)" + "values (?,?,?,now(),?,?,?,now(),?)",
 					Statement.RETURN_GENERATED_KEYS);
 
-			ps.setString(index++, user.getEmail());
+			ps.setString(index++, user.getEmail().toLowerCase());
 			ps.setBytes(index++, SecurityUtils.hashPassword(user.getPassword().getBytes(), salt));
 			ps.setBytes(index++, salt);
 			ps.setString(index++, user.getFirstName());
@@ -66,7 +66,7 @@ public class UserDao {
 			ps.setInt(index++, AccountType.USER.getAccountType());
 
 			if (ps.executeUpdate() == 1) {
-				session.setSession(AuthMap.addLogin(user.getEmail(), AccountType.USER.getAccountType()));
+				session.setSession(AuthMap.addLogin(user.getEmail().toLowerCase(), AccountType.USER.getAccountType()));
 				rs = ps.getGeneratedKeys();
 				rs.next();
 				int userId = rs.getInt(1);
@@ -150,7 +150,7 @@ public class UserDao {
 		try {
 			conn = DatabasePool.getConnection();
 			ps = conn.prepareStatement("select salt from public.user where email = ?");
-			ps.setString(1, login.getEmail());
+			ps.setString(1, login.getEmail().toLowerCase());
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -164,12 +164,12 @@ public class UserDao {
 			DatabaseUtils.safeClose(ps, rs);
 
 			ps = conn.prepareStatement("select id, account_type from public.user where email = ? and password = ?");
-			ps.setString(1, login.getEmail());
+			ps.setString(1, login.getEmail().toLowerCase());
 			ps.setBytes(2, SecurityUtils.hashPassword(login.getPassword().getBytes(), salt));
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				session.setSession(AuthMap.addLogin(login.getEmail(), rs.getInt("account_type")));
+				session.setSession(AuthMap.addLogin(login.getEmail().toLowerCase(), rs.getInt("account_type")));
 				session.setAccountType(rs.getInt("account_type"));
 				int userId = rs.getInt("id");
 				DatabaseUtils.safeClose(ps, rs);
@@ -227,7 +227,7 @@ public class UserDao {
 
 				int index = 1;
 				ps = conn.prepareStatement(sb.toString());
-				ps.setString(index++, user.getEmail());
+				ps.setString(index++, user.getEmail().toLowerCase());
 				if (user.getPassword().length() > 0) {
 					byte[] salt = SecurityUtils.getNewSalt();
 					ps.setBytes(index++, SecurityUtils.hashPassword(user.getPassword().getBytes(), salt));

@@ -50,12 +50,13 @@ public class NotificationDao {
 
 		try {
 			if(point.getLatitude() == 0D){
-				ps = conn.prepareStatement(
-						"select notification.id as notification_id, type, send_time, expire_time, "
-						+ "icon from public.notification, public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() order by notification.id desc");
+				ps = conn.prepareStatement("select notification.id as notification_id, type, send_time, expire_time, "
+						+ "icon from public.notification, public.notification_classification where notification.classification_id = notification_classification.id "
+						+ "and expire_time > now() order by notification.id desc");
 			}else{
 				ps = conn.prepareStatement("select notification.id as notification_id, type, send_time, expire_time, "
-						+ "icon from public.notification,public.notification_classification where notification.type_id = notification_classification.id and expire_time > now() and location <@> POINT(?,?)  < ? order by notification.id desc");
+						+ "icon from public.notification, public.notification_classification where notification.classification_id = notification_classification.id "
+						+ "and expire_time > now() and (location <@> POINT(?,?)  < ? or classification_id = 42) order by notification.id desc");
 				ps.setDouble(1, point.getLongitude());
 				ps.setDouble(2, point.getLatitude());
 				ps.setInt(3, ProjectProperties.getProperty("getProperty", 50));

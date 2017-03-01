@@ -137,7 +137,7 @@ public class AdminDao {
 					ps.setInt(2, i + firstYear);
 					rs = ps.executeQuery();
 					rs.next();
-					int activeUsers = rs.getInt("active_users");
+					int activeUsers = rs.getInt("logins");
 					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("active_users", activeUsers));
 					
 					DatabaseUtils.safeClose(ps,rs);
