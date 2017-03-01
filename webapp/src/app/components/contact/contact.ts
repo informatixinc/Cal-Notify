@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {LanguageService} from '../../services/language/language_service';
 import {ContactObject} from './contact_object';
 import {ContactObjectError} from './contact_error';
+import {UserState} from '../../services/user_state/user_state';
 
 @Component({
   selector: 'contact',
@@ -15,7 +16,7 @@ export class Contact {
 
 	contact: ContactObject = new ContactObject();
 	error: ContactObjectError = new ContactObjectError();
-	constructor(private router: Router, private _languageService: LanguageService) {}
+	constructor(private router: Router, private _languageService: LanguageService, private _userState: UserState) {}
 
 	submit(){
 		this.error.name = this.error.email = this.error.message = "";
@@ -49,9 +50,20 @@ export class Contact {
 		}
 		if(hasError){
 			return;
+		}else{
+			if(this._userState.getLoggedIn()==true){
+				this.router.navigate(['dashboard']);
+			}else{
+				this.router.navigate(['home']);
+			}
+			
 		}
 	}
 	cancel(){
-		this.router.navigate(['home']);
+		if(this._userState.getLoggedIn()==true){
+			this.router.navigate(['dashboard']);
+		}else{
+			this.router.navigate(['home']);
+		}
 	}
 }
