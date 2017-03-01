@@ -38,6 +38,8 @@ export class PasswordReset {
 		}
 		if(hasError){
 			return;
+		}else{
+			this.router.navigate(['home']);
 		}
 
 	}

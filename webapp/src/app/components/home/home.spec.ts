@@ -34,19 +34,20 @@
 //     el = de.nativeElement;
 //   });
 
-//   it('no title in the DOM until manually call `detectChanges`', () => {
-//     expect(el.textContent).toEqual('Cal Notify');
-//   });
-
 //   it('should display original title', () => {
-//     fixture.detectChanges();
-//     expect(el.textContent).toContain(comp.title);
+//   	fixture.detectChanges();
+//     expect(el.textContent).toEqual('Welcome to Calnotify');
 //   });
 
-//   it('should display a different test title', () => {
-//     comp.title = 'Test Title';
-//     fixture.detectChanges();
-//     expect(el.textContent).toContain('Test Title');
-//     });
+//   // it('should display original title', () => {
+//   //   fixture.detectChanges();
+//   //   expect(el.textContent).toContain(comp.title);
+//   // });
+
+//   // it('should display a different test title', () => {
+//   //   comp.title = 'Test Title';
+//   //   fixture.detectChanges();
+//   //   expect(el.textContent).toContain('Test Title');
+//   //   });
 
 // });
