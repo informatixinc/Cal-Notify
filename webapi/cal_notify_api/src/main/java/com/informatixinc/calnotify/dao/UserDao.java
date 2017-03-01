@@ -203,19 +203,19 @@ public class UserDao {
 			putResponse.getErrorResponse().setErrorMessage("Not logged in");
 			return putResponse;
 		}
-		int locationId;
+		int addressId;
 		int userId;
 
 		try {
 			// First address is their registration address
 			ps = conn.prepareStatement(
-					"select public.user.id as user_id, public.user_location.user_id as location_id from public.user, public.user_location where public.user.id = public.user_location.user_id and public.user.email = ?");
+					"select public.user.id as user_id, user_address.id as address_id from public.user, public.user_address where public.user.id = user_address.user_id and public.user.email = ? order by user_address.id limit 1");
 			ps.setString(1, email);
 			rs = ps.executeQuery();
 			// ps.close();
 			if (rs.next()) {
 				userId = rs.getInt("user_id");
-				locationId = rs.getInt("location_id");
+				addressId = rs.getInt("address_id");
 				DatabaseUtils.safeClose(ps, rs);
 				StringBuilder sb = new StringBuilder();
 				sb.append("update public.user set email = ?,");
@@ -241,12 +241,13 @@ public class UserDao {
 				if (ps.executeUpdate() == 1) {
 					DatabaseUtils.safeClose(ps, rs);
 					ps = conn.prepareStatement(
-							"update public.user_address set address_one = ?, address_two = ?, state_id = ?, nick_name = ? where user_id = ?");
+							"update public.user_address set address_one = ?, address_two = ?, city = ?, state_id = ?, zip_code = ? where user_address.id = ?");
 					ps.setString(1, user.getAddresses().get(0).getAddressOne());
 					ps.setString(2, user.getAddresses().get(0).getAddressTwo());
-					ps.setInt(3, UsState.getStateId(user.getAddresses().get(0).getState()));
-					ps.setString(4, user.getAddresses().get(0).getNickName());
-					ps.setInt(5, locationId);
+					ps.setString(3, user.getAddresses().get(0).getCity());
+					ps.setInt(4, UsState.getStateId(user.getAddresses().get(0).getState()));
+					ps.setString(5, user.getAddresses().get(0).getZipCode());
+					ps.setInt(6, addressId);
 
 					if (ps.executeUpdate() == 1) {
 						return putResponse;
@@ -333,8 +334,9 @@ public class UserDao {
 
 		try {
 			ps = conn.prepareStatement(
-					"select first_name, last_name, address_one, address_two, city, state_id, zip_code, email, phone_number "
-							+ "from public.user, public.user_address where public.user.id = user_address.user_id and public.user.email = ? limit 1");
+					"select first_name, last_name, address_one, address_two, city, state_id, zip_code, email, phone_number"
+					+ " from public.user, public.user_address "
+					+ "where public.user.id = user_address.user_id and public.user.email = ? order by user_address.id asc limit 1");
 			ps.setString(1, email);
 
 			rs = ps.executeQuery();

@@ -39,20 +39,17 @@ export class EditProfile {
 
 	save(){
 		this.error.firstName = this.error.lastName = this.error.email = this.error.phoneNumber = this.error.addresses[0].addressOne = this.error.addresses[0].addressTwo = 
-		this.error.addresses[0].city = this.error.addresses[0].zipCode = "";
-		// this.error.password = this.error.oldPassword = this.error.confPassword = "";
+		this.error.addresses[0].city = this.error.addresses[0].zipCode = this.error.password = this.error.confPassword = "";
 
 		document.getElementById("fname").style["borderColor"] = "black";
 		document.getElementById("lname").style["borderColor"] = "black";
 		document.getElementById("email").style["borderColor"] = "black";
 		document.getElementById("phone").style["borderColor"] = "black";
 		document.getElementById("address1").style["borderColor"] = "black";
-		//document.getElementById("address2").style["borderColor"] = "black";
 		document.getElementById("city").style["borderColor"] = "black";
 		document.getElementById("zipcode").style["borderColor"] = "black";
-		// document.getElementById("newPassword").style["borderColor"] = "black";
-		// document.getElementById("oldPassword").style["borderColor"] = "black";
-		// document.getElementById("confPassword").style["borderColor"] = "black";
+		document.getElementById("password").style["borderColor"] = "black";
+		document.getElementById("confPassword").style["borderColor"] = "black";
 
 		var num = /[0-9]/;
 		var lower = /[a-z]/;
@@ -102,10 +99,7 @@ export class EditProfile {
 			document.getElementById("address1").style["borderColor"] = "#CD2026";
 			hasError = true;
 		}
-		// if(this.edit_profile.address2.length == 0){
-		// 	this.error.address2 = this._languageService.getTranslation("address2_required");
-		// 	document.getElementById("address2").style["borderColor"] = "#CD2026";
-		// }
+
 		if(this.edit_profile.addresses[0].city.length == 0){
 			this.error.addresses[0].city = this._languageService.getTranslation("city_required");
 			document.getElementById("city").style["borderColor"] = "#CD2026";
@@ -124,40 +118,32 @@ export class EditProfile {
 			hasError = true;
 		}
 
-		// if(this.edit_profile.oldPassword.length == 0 ){
-		// 	this.error.oldPassword = this._languageService.getTranslation("old_password_required");
-		// 	document.getElementById("oldPassword").style["borderColor"] = "#CD2026";
-		// }
 
-		// if(this.edit_profile.password.length > 0){		
-		// 	if(this.edit_profile.password.length < 6){
-		// 		this.error.password = this._languageService.getTranslation("password_length_low");
-		// 		document.getElementById("newPassword").style["borderColor"] = "#CD2026";
-		// 	}else if(!num.test(this.edit_profile.password)){
-		// 		this.error.password = this._languageService.getTranslation("password_number");
-		// 		document.getElementById("newPassword").style["borderColor"] = "#CD2026";
-		// 	}else if(!lower.test(this.edit_profile.password)){
-		// 		this.error.password = this._languageService.getTranslation("password_lower");
-		// 		document.getElementById("newPassword").style["borderColor"] = "#CD2026";
-		// 	}else if(!upper.test(this.edit_profile.password)){
-		// 		this.error.password = this._languageService.getTranslation("password_upper");
-		// 		document.getElementById("newPassword").style["borderColor"] = "#CD2026";
-		// 	}	
-		// }else {
-		// 	this.error.password = this._languageService.getTranslation("new_password_required");
-		// 	document.getElementById("newPassword").style["borderColor"] = "#CD2026";
-		// }
+		if(this.edit_profile.password.length != 0){		
+			if(this.edit_profile.password.length < 6){
+				this.error.password = this._languageService.getTranslation("password_length_low");
+				document.getElementById("password").style["borderColor"] = "#CD2026";
+				hasError = true;
+			}else if(!num.test(this.edit_profile.password)){
+				this.error.password = this._languageService.getTranslation("password_number");
+				document.getElementById("password").style["borderColor"] = "#CD2026";
+				hasError = true;
+			}else if(!lower.test(this.edit_profile.password)){
+				this.error.password = this._languageService.getTranslation("password_lower");
+				document.getElementById("password").style["borderColor"] = "#CD2026";
+				hasError = true;
+			}else if(!upper.test(this.edit_profile.password)){
+				this.error.password = this._languageService.getTranslation("password_upper");
+				document.getElementById("password").style["borderColor"] = "#CD2026";
+				hasError = true;
+			}else if(this.edit_profile.confPassword != this.edit_profile.password){
+				document.getElementById("confPassword").style["borderColor"] = "#CD2026";
+				this.error.confPassword = this._languageService.getTranslation("password_dont_match");
+				hasError = true;
+			}
+		}
 
-
-		// if(this.edit_profile.confPassword.length > 0 ){
-		// 	if(this.edit_profile.confPassword != this.edit_profile.password){
-		// 		document.getElementById("confPassword").style["borderColor"] = "#CD2026";
-		// 		this.error.confPassword = this._languageService.getTranslation("password_dont_match");
-		// 	}
-		// }else{
-		// 	this.error.confPassword = this._languageService.getTranslation("confpassword_required");
-		// 	document.getElementById("confPassword").style["borderColor"] = "#CD2026";
-		// }
+ 		
 
 
 		if(hasError){
@@ -173,15 +159,15 @@ export class EditProfile {
 		delete editprofileObj.oldPassword;
 		console.log(JSON.stringify(editprofileObj));
 		this._apiRequest.doRequest('updateaccount',editprofileObj).subscribe(res => this.processResponse(res));
-
 	}
 
 	processResponse(response: any){
-		if(!response.errorResponse.error){
-			this.router.navigate(['dashboard']);
-		}else{
+		if(response.errorResponse.error == true){
 			this.error.password = response.errorResponse.errorMessage;
 			return;
+			
+		}else{
+			this.router.navigate(['dashboard']);
 		}
 	}
 
