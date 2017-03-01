@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import com.informatixinc.calnotify.model.UserNotification;
 import com.informatixinc.calnotify.model.UserSettings;
 import com.informatixinc.calnotify.utils.AuthMap;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
+import com.informatixinc.calnotify.utils.EmailClient;
 import com.informatixinc.calnotify.utils.ProjectProperties;
 import com.informatixinc.calnotify.utils.SecurityUtils;
 
@@ -134,7 +136,7 @@ public class UserDao {
 		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
-
+		sendConfirmationEmail(user);
 		return session;
 	}
 
@@ -599,5 +601,28 @@ public class UserDao {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
 		return null;
+	}
+	
+	public void sendConfirmationEmail(final User user) {
+		final String subject = ProjectProperties.getProperty("app_regConfirmSubject");
+		final String body = MessageFormat.format(ProjectProperties.getProperty("app_regConfirmBody"),
+				user.getFirstName(), user.getLastName());
+		EmailClient emailClient = new EmailClient();
+		emailClient.send(user.getEmail(), subject, body);
+	}
+
+	public static void main(String...args) {
+		try {
+			ProjectProperties.init();
+			User user = new User();
+			user.setFirstName("Paul");
+			user.setLastName("Ortiz");
+			user.setEmail("paul.ortiz@informatixinc.com");
+			UserDao userDao = new UserDao();
+			userDao.sendConfirmationEmail(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println();
 	}
 }
