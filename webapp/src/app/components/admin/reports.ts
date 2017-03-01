@@ -71,8 +71,6 @@ export class Reports {
       highestMonthMinusOne = highestMonth - 1;
     }
 
-    console.log(reportData.reportData);
-
     this.userData.push(['', 'This Month', 'Last Month']);
     this.userData.push(['New', reportData.reportData[highestYear][highestMonth][0].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][0].count]);
     this.userData.push(['Inactive', reportData.reportData[highestYear][highestMonth][2].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][2].count]);
@@ -84,11 +82,26 @@ export class Reports {
     for (var i = 0; i < years.length; ++i) {
       for (var j = 13 - 1; j >= 1; j--) {
         if(j in reportData.reportData[years[i]]){
-          if(String(j).length == 1){
-            this.userDataLabels.push("0" + j + "/" + years[i]);
+          var startMonth;
+          var startYear;
+          var endMonth;
+          if(j == 1){
+            startMonth = 12;
+            startYear = years[i] - 1;
           }else{
-            this.userDataLabels.push(j + "/" + years[i]);
+            startMonth = j - 1;
+            startYear = String(years[i]);
           }
+          if(String(startMonth).length == 1){
+            startMonth = "0"+String(startMonth);
+          }
+          if(String(j).length == 1){
+            endMonth = "0" + j;
+          }else{
+            endMonth = String(j);
+          }
+
+          this.userDataLabels.push(startMonth + "/" + startYear + " - " + endMonth + "/" + years[i]);
         }
       }
     }
@@ -177,7 +190,7 @@ export class Reports {
           var chart = new google.charts.Bar(document.getElementById('notifications-bar'));
 
           chart.draw(data, options);
-        }, 100);
+        }, 500);
   }
 
   drawPie(){
@@ -222,10 +235,16 @@ export class Reports {
   }
 
   exportUserData(date: string, event:any){
-    var exportText = "New Users,Active Users,Inactive Users\n";
-    var keys = date.split("/");
-    var data = this.userReportData[parseInt(keys[1])][parseInt(keys[0])];
-    exportText = exportText + data[0].count + "," + data[1].count + "," + data[2].count + ","
+    var dateOne = date.substring(0,7);
+    var dateTwo = date.substring(10,17);
+    var exportText = dateOne + ",,,,"+dateTwo+",,\nNew Users,Active Users,Inactive Users,,New Users,Active Users,Inactive Users,\n";
+    dateOne = dateOne.split("/");
+    dateTwo = dateTwo.split("/");
+
+    var dateOneData = this.userReportData[parseInt(dateOne[1])][parseInt(dateOne[0])];
+    var dateTwoData = this.userReportData[parseInt(dateTwo[1])][parseInt(dateTwo[0])];
+    exportText = exportText + dateOneData[0].count + "," + dateOneData[1].count + "," + dateOneData[2].count + ",,";
+    exportText = exportText + dateTwoData[0].count + "," + dateTwoData[1].count + "," + dateTwoData[2].count + ",";
 
     this.doExport(exportText, event.target, "User Activity - "+date+".csv");
   }
