@@ -62,8 +62,9 @@ export class SetLocation {
 		return input.replace(/\D/g, '');
 	}
 	setCoordinates(input: any){
-		if(input.errorResponse.error){
-			this.errorMessage = input.errorResponse.errorMessage;
+		if(input.errorResponse.error == true){
+			this.error.zipCode = input.errorResponse.errorMessage;
+			return;
 		}else{
 			this._userState.setAddress(this.address);
 			delete input.errorResponse;
@@ -107,8 +108,9 @@ export class SetLocation {
 		this._apiRequest.doRequest('geofromaddress', this.address).subscribe(res => this.setCoordinatesMobile(res));
 	}
 	setCoordinatesMobile(input: any){
-		if(input.errorResponse.error){
-			this.errorMessage = input.errorResponse.errorMessage;
+		if(input.errorResponse.error == true){
+			this.error.zipCode = input.errorResponse.errorMessage;
+			return;
 		}else{
 			this._userState.setAddress(this.address);
 			delete input.errorResponse;

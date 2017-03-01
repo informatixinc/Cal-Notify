@@ -27,13 +27,13 @@
 	<div class = "col-md-4">
 		<div class = "little-space"></div>
 		<div class = "report-title">
-			{{_languageService.getTranslation('notifications')}}<br>{{_languageService.getTranslation('by_source')}}
+			{{_languageService.getTranslation('notifications_upper')}}<br>{{_languageService.getTranslation('by_source')}}
 		</div>
 		<div class = "chart-display-background">
 			<div id = "notifications-pie"></div>
 			<div class = "little-space"></div>
 			<div class = "inner-container">
-				<div class = "inner-title">By Source</div>
+				<div class = "inner-title">{{_languageService.getTranslation('by_source')}}</div>
 				<div class = "report-row" *ngFor="let catagory of sourceData">
 					<div class = "row-date">{{catagory}}</div>
 					<a class = "export-button" (click)="exportCatagory(catagory, $event)">{{_languageService.getTranslation('export')}}</a>
@@ -46,13 +46,13 @@
 	<div class = "col-md-4">
 		<div class = "little-space"></div>
 		<div class = "report-title">
-			{{_languageService.getTranslation('by_status')}} {{_languageService.getTranslation('month_compare')}}
+			{{_languageService.getTranslation('by_status')}}
 		</div>
 		<div class = "chart-display-background">
 			<div id = "notifications-bar"></div>
 			<div class = "little-space"></div>
 			<div class = "inner-container">
-				<div class = "inner-title">By Date Range</div>
+				<div class = "inner-title">{{_languageService.getTranslation('by_date_range')}}</div>
 				<div class = "report-row" *ngFor = "let label of userDataLabels">
 					<div class = "row-date" >{{label}}</div>
 					<a class = "export-button" (click)="exportUserData(label, $event)">{{_languageService.getTranslation('export')}}</a>

@@ -1,40 +1,40 @@
 <navbar></navbar>
 <div class = "border">
 	<div class = "row section-title">
-		<div class = "col-md-4 col-md-offset-1">
-			{{_languageService.getTranslation('notification')}} <span class="second-word">{{_languageService.getTranslation('management')}}</span>
+		<div class = "col-md-6 col-md-offset-1">
+			{{_languageService.getTranslation('notification_admin')}} <span class="second-word">{{_languageService.getTranslation('management_admin')}}</span>
 		</div>
 	</div>
 	<div class="Non-Emergency">
 		<div class = "row">
 			<div class="little_space"></div>
-			<div class = "col-md-4 col-md-offset-1">
+			<div class = "col-md-6 col-md-offset-1">
 				<label class="title">{{_languageService.getTranslation('non_emergency')}} {{_languageService.getTranslation('notifications')}}</label>
 			</div>
 		</div>	
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-4 col-md-offset-1">
-				<label>{{_languageService.getTranslation('notify_title')}}</label>  
+				<label for="title">{{_languageService.getTranslation('notify_title')}}</label>  
 				<span class="required">({{_languageService.getTranslation('required')}})</span> 
-				<input type="text" class = "form-input" placeholder="Enter up to 80 characters only" id = "title" autofocus (keydown)="prevent($event)"  [(ngModel)]="notify.notifyTitle" />
-				<div class = "error" id="error">{{error.notifyTitle}}</div>
+				<input type="text" class = "form-input" placeholder="{{_languageService.getTranslation('char_limit_80')}}" id = "title" autofocus (keydown)="prevent($event)"  [(ngModel)]="notify.notifyTitle" />
+				<div class = "error" id="error1">{{error.notifyTitle}}</div>
 			</div>
 			<div class="little_space"></div>
 			<div class = "col-md-4">
-				<label>{{_languageService.getTranslation('exp_date')}}</label>
+				<label for="expdate">{{_languageService.getTranslation('exp_date')}}</label>
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
 				<input type="date" class = "form-input" id = "expdate" [(ngModel)]="notify.expDate" />
-				<div class = "error" id="error">{{error.expDate}}</div>
+				<div class = "error" id="error2">{{error.expDate}}</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-8 col-md-offset-1">
-				<label>{{_languageService.getTranslation('notify_details')}}</label>
+				<label for="message">{{_languageService.getTranslation('notify_details')}}</label>
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
 				<textarea class="form-input notify_details" rows="8" id = "message" (keyup.enter)='send()' [(ngModel)]="notify.notifyDetails" ></textarea>
-				<div class = "error" id="error">{{error.notifyDetails}}</div>
+				<div class = "error" id="error3">{{error.notifyDetails}}</div>
 				<div class = "success">{{successMessage}}</div>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 		</div>
 		<div class = "row">
 			<div class = "col-md-4 col-md-offset-1">
-				<label class="title">{{_languageService.getTranslation('notification')}} {{_languageService.getTranslation('history')}}</label>
+				<label class="title">{{_languageService.getTranslation('notification_history')}}</label>
 			</div>
 		</div>	
 		<div class="row">
