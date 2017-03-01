@@ -11,9 +11,10 @@ import com.informatixinc.calnotify.end_points.GetNotificationTest;
 import com.informatixinc.calnotify.end_points.NotificationSettingsTest;
 import com.informatixinc.calnotify.end_points.RegistrationTest;
 import com.informatixinc.calnotify.utils.ProjectProperties;
+import com.informatixinc.calnotify.utils.PushServiceTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ RegistrationTest.class})
+@SuiteClasses({ PushServiceTest.class})
 public class TestSuiteRunner {
 //	@SuiteClasses({ RegistrationTest.class, LoginTest.class, GetNotificationTest.class, NotificationSettingsTest.class})
 	

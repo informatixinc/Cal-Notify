@@ -36,6 +36,12 @@ export class Reports {
     this._apiRequest.doRequest('accountreport',session).subscribe(res => this.processAccountReports(res));
 	}
 
+  redraw(event: any){
+    this.drawPieChart();
+    this.drawBar();
+    this.drawGuage();
+  }
+
   processAccountReports(reportData: any){
     var highestYear = 0;
     var highestMonth = 0;
@@ -65,10 +71,12 @@ export class Reports {
       highestMonthMinusOne = highestMonth - 1;
     }
 
+    console.log(reportData.reportData);
+
     this.userData.push(['', 'This Month', 'Last Month']);
     this.userData.push(['New', reportData.reportData[highestYear][highestMonth][0].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][0].count]);
-    this.userData.push(['Inactive', reportData.reportData[highestYear][highestMonth][1].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][1].count]);
-    this.userData.push(['Active', reportData.reportData[highestYear][highestMonth][2].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][2].count]);
+    this.userData.push(['Inactive', reportData.reportData[highestYear][highestMonth][2].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][2].count]);
+    this.userData.push(['Active', reportData.reportData[highestYear][highestMonth][1].count, reportData.reportData[highestYearMinusOne][highestMonthMinusOne][1].count]);
     this.drawBar();
 
     years = years.sort().reverse();

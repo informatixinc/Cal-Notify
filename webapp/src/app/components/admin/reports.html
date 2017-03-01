@@ -4,8 +4,8 @@
 		<h1><b>{{_languageService.getTranslation('reports')}}</b></h1>
 	</div>
 </div>
-<div class = "row">
-	<div class = "col-md-4">
+<div class = "row" (window:resize)="redraw($event)">
+	<div class = "col-md-3 col-md-offset-1">
 		<div class = "little-space"></div>
 		<div class = "report-title">
 			{{_languageService.getTranslation('this_month')}}<br>{{_languageService.getTranslation('notifications')}}
@@ -24,7 +24,7 @@
 			<div class = "little-space"></div>
 		</div>
 	</div>
-	<div class = "col-md-4">
+	<div class = "col-md-3">
 		<div class = "little-space"></div>
 		<div class = "report-title">
 			{{_languageService.getTranslation('notifications_upper')}}<br>{{_languageService.getTranslation('by_source')}}
@@ -43,7 +43,7 @@
 			<div class = "little-space"></div>
 		</div>
 	</div>
-	<div class = "col-md-4">
+	<div class = "col-md-3">
 		<div class = "little-space"></div>
 		<div class = "report-title">
 			{{_languageService.getTranslation('by_status')}}

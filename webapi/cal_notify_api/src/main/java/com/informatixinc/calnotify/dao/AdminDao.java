@@ -130,15 +130,34 @@ public class AdminDao {
 					rs = ps.executeQuery();
 					rs.next();
 					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("new user", rs.getInt("new_users")));
-					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("inactive users", 0));
 					DatabaseUtils.safeClose(ps,rs);
 					
-					ps = conn.prepareStatement("select count(distinct(email)) as active_users from public.user, public.user_login where public.user.id = user_login.user_id and EXTRACT(MONTH FROM date) = ? and EXTRACT(YEAR FROM date) = ?");
+					ps = conn.prepareStatement("select count(distinct(user_id)) as logins from public.user_login where EXTRACT(MONTH FROM date) = ? and EXTRACT(YEAR FROM date) = ?");
 					ps.setInt(1, j);
 					ps.setInt(2, i + firstYear);
 					rs = ps.executeQuery();
 					rs.next();
-					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("active_users", rs.getInt("active_users")));
+					int activeUsers = rs.getInt("active_users");
+					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("active_users", activeUsers));
+					
+					DatabaseUtils.safeClose(ps,rs);
+					
+					ps = conn.prepareStatement("select count(id) as total_users from public.user where signup_date < ?");
+					Calendar loopDate = Calendar.getInstance();
+					if(j == 12){
+						loopDate.set(i + firstYear + 1, 1, 1);
+					}else{
+						loopDate.set(i + firstYear, j, 1);
+					}
+					ps.setDate(1, new Date(loopDate.getTimeInMillis()));
+					rs = ps.executeQuery();
+					rs.next();
+					int inactiveUsers = rs.getInt("total_users") - activeUsers;
+					if(inactiveUsers < 0){
+						inactiveUsers = 0;
+					}
+					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("inactive users", inactiveUsers));
+					DatabaseUtils.safeClose(ps,rs);
 				}
 			}
 			
