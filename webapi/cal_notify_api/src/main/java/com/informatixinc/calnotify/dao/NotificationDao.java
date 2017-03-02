@@ -50,11 +50,11 @@ public class NotificationDao {
 
 		try {
 			if(point.getLatitude() == 0D){
-				ps = conn.prepareStatement("select notification.id as notification_id, type, send_time, expire_time, "
+				ps = conn.prepareStatement("select notification.id as notification_id, type, title, classification_id, send_time, expire_time, "
 						+ "icon from public.notification, public.notification_classification where notification.classification_id = notification_classification.id "
 						+ "and expire_time > now() order by notification.id desc");
 			}else{
-				ps = conn.prepareStatement("select notification.id as notification_id, type, send_time, expire_time, "
+				ps = conn.prepareStatement("select notification.id as notification_id, type, title, classification_id, send_time, expire_time, "
 						+ "icon from public.notification, public.notification_classification where notification.classification_id = notification_classification.id "
 						+ "and expire_time > now() and (location <@> POINT(?,?)  < ? or classification_id = 42) order by notification.id desc");
 				ps.setDouble(1, point.getLongitude());
@@ -68,7 +68,15 @@ public class NotificationDao {
 			while (rs.next()) {
 				Notification notification = new Notification();
 				notification.setId(rs.getInt("notification_id"));
-				notification.setTitle(rs.getString("type"));
+				if(rs.getInt("classification_id") == NotificationClassification.AdminNotification.getId()){
+					if(rs.getString("title").length() > 20){
+						notification.setTitle(rs.getString("title").substring(0, 20));
+					}else{
+						notification.setTitle(rs.getString("title"));
+					}
+				}else{
+					notification.setTitle(rs.getString("type"));
+				}
 				notification.setSendTime(new Date(rs.getTimestamp("send_time").getTime()));
 				notification.setExpireTime(new Date(rs.getTimestamp("expire_time").getTime()));
 				notification.setImageUrl(rs.getString("icon"));
@@ -370,7 +378,7 @@ public class NotificationDao {
 			
 			DatabaseUtils.safeClose(ps,rs);
 			
-			ps = conn.prepareStatement("select distinct(notification.id) as notification_id, type, send_time, "
+			ps = conn.prepareStatement("select distinct(notification.id) as notification_id, type, title, classification_id, send_time, "
 					+ "expire_time, icon from public.notification, public.notification_classification "
 					+ "where classification_id = 42 and public.notification.classification_id = notification_classification.id");
 			
@@ -379,11 +387,16 @@ public class NotificationDao {
 			while(rs.next()){
 				Notification notification = new Notification();
 				notification.setId(rs.getInt("notification_id"));
-				notification.setTitle(rs.getString("type"));
+				if(rs.getString("title").length() > 20){
+					notification.setTitle(rs.getString("title").substring(0, 20));
+				}else{
+					notification.setTitle(rs.getString("title"));
+				}
 				notification.setSendTime(new Date(rs.getTimestamp("send_time").getTime()));
 				notification.setExpireTime(new Date(rs.getTimestamp("expire_time").getTime()));
 				notification.setImageUrl(rs.getString("icon"));
 				notification.setNotificationId(rs.getString("notification_id"));
+				notification.setClassificationId(rs.getInt("classification_id"));
 
 				notifications.add(notification);
 			}

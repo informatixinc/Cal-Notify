@@ -54,7 +54,7 @@ export class DashBoard {
 	loadNotifications(notificaitons: any){
 		let notifications: Notification[] = notificaitons;
 		for (var i = 0; i < notifications.length; ++i) {
-			if(notificaitons[i].title.toLowerCase().startsWith("admin")){
+			if(notificaitons[i].classificationId == 42){
 				this.nonEmergencyNotifications.push(notificaitons[i]);
 			}else{
 				this.emergencyNotifications.push(notificaitons[i]);

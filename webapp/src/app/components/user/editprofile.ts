@@ -157,7 +157,6 @@ export class EditProfile {
 		}
 		delete editprofileObj.confPassword;
 		delete editprofileObj.oldPassword;
-		console.log(JSON.stringify(editprofileObj));
 		this._apiRequest.doRequest('updateaccount',editprofileObj).subscribe(res => this.processResponse(res));
 	}
 

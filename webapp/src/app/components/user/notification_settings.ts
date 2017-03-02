@@ -44,7 +44,6 @@ export class NotificationSettings {
 		this.messaging.onTokenRefresh(function() {
 			this.messaging.getToken()
 			.then(function(refreshedToken) {
-				console.log("Refresh Token");
 				let snsToken = new SnsToken();
 				snsToken.token = refreshedToken;
 				this._apiRequest.doRequest('savesnstoken',snsToken).subscribe(res => {});
@@ -57,7 +56,6 @@ export class NotificationSettings {
 	    .then(function() {
 	      this.messaging.getToken()
 			.then(function(currentToken) {
-				console.log("New Token");
 				let snsToken = new SnsToken();
 				snsToken.token = currentToken;
 				this._apiRequest.doRequest('savesnstoken',snsToken).subscribe(res => {});
@@ -66,7 +64,6 @@ export class NotificationSettings {
 			});
 	    }.bind(this))
 	    .catch(function(err) {
-	      console.log('Unable to get permission to notify.', err);
 	    });
 	}
 
@@ -104,7 +101,6 @@ export class NotificationSettings {
 		}
 
 		var addLocObj = JSON.parse(JSON.stringify(this.additional_loc));
-		console.log(JSON.stringify(addLocObj));
 		this._apiRequest.doRequest('addlocations',addLocObj).subscribe(res => this.updateTable());
 
 	}

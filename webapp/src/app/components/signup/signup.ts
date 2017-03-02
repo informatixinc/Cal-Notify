@@ -153,7 +153,6 @@ export class Signup {
 		var regObj = JSON.parse(JSON.stringify(this.sign_up));
 		regObj.password = this._loginService.prepareLogin("", this.sign_up.password).password;
 		delete regObj.confPassword;
-		console.log(JSON.stringify(regObj));
 		this._apiRequest.doRequest('register',regObj).subscribe(res => this.processResponse(res));
 
 		

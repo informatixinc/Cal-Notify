@@ -48,7 +48,7 @@ export class Reports {
     var highestYearMinusOne = 0;
     var highestMonthMinusOne = 0;
 
-    var years = [];
+    var years:any[] = [];
 
     for(var key in reportData.reportData){
       if(parseInt(key) > highestYear){
@@ -82,9 +82,9 @@ export class Reports {
     for (var i = 0; i < years.length; ++i) {
       for (var j = 13 - 1; j >= 1; j--) {
         if(j in reportData.reportData[years[i]]){
-          var startMonth;
-          var startYear;
-          var endMonth;
+          var startMonth: any;
+          var startYear: any;
+          var endMonth: any;
           if(j == 1){
             startMonth = 12;
             startYear = years[i] - 1;
@@ -238,11 +238,11 @@ export class Reports {
     var dateOne = date.substring(0,7);
     var dateTwo = date.substring(10,17);
     var exportText = dateOne + ",,,,"+dateTwo+",,\nNew Users,Active Users,Inactive Users,,New Users,Active Users,Inactive Users,\n";
-    dateOne = dateOne.split("/");
-    dateTwo = dateTwo.split("/");
+    var dateOneSplit = dateOne.split("/");
+    var dateTwoSplit = dateTwo.split("/");
 
-    var dateOneData = this.userReportData[parseInt(dateOne[1])][parseInt(dateOne[0])];
-    var dateTwoData = this.userReportData[parseInt(dateTwo[1])][parseInt(dateTwo[0])];
+    var dateOneData = this.userReportData[parseInt(dateOneSplit[1])][parseInt(dateOneSplit[0])];
+    var dateTwoData = this.userReportData[parseInt(dateTwoSplit[1])][parseInt(dateTwoSplit[0])];
     exportText = exportText + dateOneData[0].count + "," + dateOneData[1].count + "," + dateOneData[2].count + ",,";
     exportText = exportText + dateTwoData[0].count + "," + dateTwoData[1].count + "," + dateTwoData[2].count + ",";
 
@@ -275,8 +275,12 @@ export class Reports {
 
   doExport(text: string, element: any, fileName: string){
     var file = new Blob([text], {type: 'text/plain'});
-    element["href"] = URL.createObjectURL(file);
-    element["download"] = fileName;
+    if (document["documentMode"] || /Edge/.test(navigator.userAgent)) {
+      window.navigator.msSaveOrOpenBlob(file, fileName);
+    }else{
+      element["href"] = URL.createObjectURL(file);
+      element["download"] = fileName;
+    }
   }
 
 }
