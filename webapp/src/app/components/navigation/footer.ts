@@ -15,7 +15,7 @@ export class Footer {
 	
 	setLanguage(language: string){
 		this._languageService.setSelectedLanguage(language);
-		// location.reload();
+		location.reload();
 	}
 
 	 
