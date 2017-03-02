@@ -112,7 +112,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "my1", "value": "My"},
 		{ "key": "and", "value": "And"},
 		{ "key": "preferences", "value": "Preferences"},
-		{ "key": "bottom_note", "value": "** Please refer to FAQ to set up Geo Location Service"},
+		{ "key": "bottom_note", "value": "** Please refer to FAQ for more information on Geo Location Service."},
 		{ "key": "save_notifications", "value": "Save My Notifications"},
 		{ "key": "receive_text", "value": "Receive Text Message"},
 		{ "key": "receive_email", "value": "Receive Email"},

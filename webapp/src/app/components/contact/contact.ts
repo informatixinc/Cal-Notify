@@ -51,8 +51,10 @@ export class Contact {
 		if(hasError){
 			return;
 		}else{
-			if(this._userState.getLoggedIn()==true){
+			if(this._userState.getLoggedIn() == true && this._userState.isAdmin() != true){
 				this.router.navigate(['dashboard']);
+			}else if(this._userState.getLoggedIn() == true && this._userState.isAdmin() == true){
+				this.router.navigate(['reports']);
 			}else{
 				this.router.navigate(['home']);
 			}
@@ -60,8 +62,10 @@ export class Contact {
 		}
 	}
 	cancel(){
-		if(this._userState.getLoggedIn()==true){
+		if(this._userState.getLoggedIn() == true && this._userState.isAdmin() != true){
 			this.router.navigate(['dashboard']);
+		}else if(this._userState.getLoggedIn() == true && this._userState.isAdmin() == true){
+			this.router.navigate(['reports']);
 		}else{
 			this.router.navigate(['home']);
 		}
