@@ -1,0 +1,15 @@
+version: 0.1
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - ./Cal-Notify/webapi/cal_notify_api/mvn compile
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - ./Cal-Notify/webapi/cal_notify_api/mvn package -DskipTests
+artifacts:
+  files:
+    - ./Cal-Notify/webapi/cal_notify_api/target/cal-notify-1.0.13-SNAPSHOT.jar
+	
