@@ -27,3 +27,4 @@ Our team used the following user centric processes to complete this prototype:
 * Developed [user stories]() and created backlog
 * Developed front end UI web/mobile application. Conducted [usability testing]() and improvements were incorporated into
 the design and user stories.  The first usability test results are [here.]()
+* Developed functioning UI web/mobile application. Conducted [quantitative and qualitative usability testing]() and improvements were incorporated into the user stories and final design
