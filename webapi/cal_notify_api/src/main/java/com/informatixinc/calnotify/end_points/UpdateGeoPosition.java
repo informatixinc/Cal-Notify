@@ -13,15 +13,20 @@ import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"updateuserposition"})
+@Api(tags = { "updateuserposition" })
 @Path("/updateuserposition")
 public class UpdateGeoPosition {
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PutResponse updatePosition(Point point,  @Context HttpServletRequest req){
+	@ApiOperation(value = "Store user's geolocation")
+	public PutResponse updatePosition(
+			@ApiParam(value = "Object holding geographic coordinates", required = true) Point point,
+			@Context HttpServletRequest req) {
 		GeoDao geoDao = new GeoDao();
 		return geoDao.updatePosition(point, req.getHeader("Authorization"));
 	}

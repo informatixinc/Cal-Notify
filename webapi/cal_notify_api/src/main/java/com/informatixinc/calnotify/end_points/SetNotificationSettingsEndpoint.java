@@ -11,15 +11,19 @@ import com.informatixinc.calnotify.model.NotificationSettings;
 import com.informatixinc.calnotify.model.PutResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"setnotificationsettings"})
+@Api(tags = { "setnotificationsettings" })
 @Path("/setnotificationsettings")
 public class SetNotificationSettingsEndpoint {
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PutResponse setNotificationSettings(NotificationSettings settings){
+	@ApiOperation(value = "Add user notification preferences")
+	public PutResponse setNotificationSettings(
+			@ApiParam(value = "Object holding user notification preferences", required = true) NotificationSettings settings) {
 		NotificationDao notificationDao = new NotificationDao();
 		return notificationDao.addNotificationSettings(settings);
 	}

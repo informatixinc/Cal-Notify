@@ -15,23 +15,27 @@ import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.utils.AuthMap;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"adminmessagehistory"})
+@Api(tags = { "adminmessagehistory" })
 @Path("/adminmessagehistory")
 public class AdminHistoryEndpoint {
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<AdminMessage> getMessages(Session session){
-		
-		if(!AuthMap.isAdmin(session.getSession())){
+	@ApiOperation(value = "Add user locations")
+	public ArrayList<AdminMessage> getMessages(
+			@ApiParam(value = "Object holding user session data", required = true) Session session) {
+
+		if (!AuthMap.isAdmin(session.getSession())) {
 			PutResponse putResponse = new PutResponse();
 			putResponse.getErrorResponse().setError(true);
 			putResponse.getErrorResponse().setErrorMessage("Not authorized");
 			return new ArrayList<AdminMessage>();
 		}
-		
+
 		AdminDao adminDao = new AdminDao();
 		return adminDao.getAdminMessages();
 	}

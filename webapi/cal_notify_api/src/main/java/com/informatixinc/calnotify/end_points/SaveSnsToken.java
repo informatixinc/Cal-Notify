@@ -13,14 +13,19 @@ import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.SnsToken;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"savesnstoken"})
+@Api(tags = { "savesnstoken" })
 @Path("/savesnstoken")
 public class SaveSnsToken {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PutResponse updatePosition(SnsToken token, @Context HttpServletRequest req) {
+	@ApiOperation(value = "Saves or updates a cloud messaging token")
+	public PutResponse updatePosition(
+			@ApiParam(value = "Object holding user session data", required = true) SnsToken token,
+			@Context HttpServletRequest req) {
 		UserDao userDao = new UserDao();
 		return userDao.saveSnsToken(token.getToken(), req.getHeader("Authorization"));
 	}

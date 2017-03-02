@@ -15,24 +15,27 @@ import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.utils.AuthMap;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"adminmessagereport"})
+@Api(tags = { "adminmessagereport" })
 @Path("/adminmessagereport")
 public class AdminMessageReportEndpoint {
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Notification> getNotifications(Session session){
-		
-		if(!AuthMap.isAdmin(session.getSession())){
+	@ApiOperation(value = "Fetch notifications for use in reports")
+	public ArrayList<Notification> getNotifications(
+			@ApiParam(value = "Object holding user session data", required = true) Session session) {
+
+		if (!AuthMap.isAdmin(session.getSession())) {
 			PutResponse putResponse = new PutResponse();
 			putResponse.getErrorResponse().setError(true);
 			putResponse.getErrorResponse().setErrorMessage("Not authorized");
 			return new ArrayList<Notification>();
 		}
-		
-		
+
 		AdminDao adminDao = new AdminDao();
 		return adminDao.getNotificationsForReport();
 	}

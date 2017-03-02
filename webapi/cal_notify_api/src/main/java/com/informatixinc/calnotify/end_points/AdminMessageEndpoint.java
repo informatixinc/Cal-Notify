@@ -16,15 +16,20 @@ import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.utils.AuthMap;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"adminmessage"})
+@Api(tags = { "adminmessage" })
 @Path("/adminmessage")
 public class AdminMessageEndpoint {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PutResponse sendMessage(final AdminMessage message, @Context HttpServletRequest req) {
+	@ApiOperation(value = "Stores and sends admin messages")
+	public PutResponse sendMessage(
+			@ApiParam(value = "Object holding user session data", required = true) final AdminMessage message,
+			@Context HttpServletRequest req) {
 
 		if (!AuthMap.isAdmin(req.getHeader("Authorization"))) {
 			PutResponse putResponse = new PutResponse();

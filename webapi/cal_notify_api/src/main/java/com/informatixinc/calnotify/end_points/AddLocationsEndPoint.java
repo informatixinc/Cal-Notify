@@ -11,11 +11,12 @@ import javax.ws.rs.core.MediaType;
 import com.informatixinc.calnotify.dao.UserDao;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.model.PutResponse;
-import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.User;
 import com.informatixinc.calnotify.utils.GeoLookup;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @Api(tags = {"addlocations"})
 @Path("/addlocations")
@@ -24,13 +25,15 @@ public class AddLocationsEndPoint {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PutResponse addlocations(User addlocations, @Context HttpServletRequest req){
+	@ApiOperation(value = "Add user locations")
+	public PutResponse addlocations(@ApiParam(value = "Object holding user info", required = true) User addlocations,
+			@Context HttpServletRequest req) {
 		PutResponse putResponse = new PutResponse();
 		validate(addlocations, putResponse);
-		if(putResponse.getErrorResponse().isError()){
+		if (putResponse.getErrorResponse().isError()) {
 			return putResponse;
 		}
-		
+
 		UserDao userDao = new UserDao();
 		return userDao.addlocations(addlocations, putResponse, req.getHeader("Authorization"));
 	}

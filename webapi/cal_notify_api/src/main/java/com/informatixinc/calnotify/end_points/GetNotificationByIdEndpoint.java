@@ -10,17 +10,21 @@ import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.model.Notification;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"getnotification"})
+@Api(tags = { "getnotification" })
 @Path("getnotification")
 public class GetNotificationByIdEndpoint {
-	
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Notification getNotifications(Notification notification){
+	@ApiOperation(value = "Fetch a notification by it's id")
+	public Notification getNotifications(
+			@ApiParam(value = "Object holding notificaition data", required = true) Notification notification) {
 		NotificationDao notificationDao = new NotificationDao();
-		
+
 		return notificationDao.getNotificationById(notification.getId());
 	}
 

@@ -13,15 +13,19 @@ import com.informatixinc.calnotify.model.Notification;
 import com.informatixinc.calnotify.model.Session;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"getusernotifications"})
+@Api(tags = { "getusernotifications" })
 @Path("/getusernotifications")
 public class GetUserNotifications {
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Notification> getUserNotifications(Session session){
+	@ApiOperation(value = "Get notifications specific to a particular user")
+	public ArrayList<Notification> getUserNotifications(
+			@ApiParam(value = "Object holding user session data", required = true) Session session) {
 		NotificationDao notificationDao = new NotificationDao();
 		return notificationDao.getUserNotifications(session);
 	}

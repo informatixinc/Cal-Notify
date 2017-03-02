@@ -15,16 +15,19 @@ import com.informatixinc.calnotify.model.User;
 import com.informatixinc.calnotify.utils.GeoLookup;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @Api(tags = {"register"})
 @Path("/register")
 public class RegisterEndpoint {
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Session register(User registration){
-		
+	@ApiOperation(value = "Fetch account information")
+	public Session register(@ApiParam(value = "Object holding user data", required = true) User registration) {
+
 		Session session = new Session();
 		
 		validate(registration, session);

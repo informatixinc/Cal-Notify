@@ -14,15 +14,19 @@ import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.utils.AuthMap;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
-@Api(tags = {"getnotificationsettings"})
+@Api(tags = { "getnotificationsettings" })
 @Path("/getnotificationsettings")
 public class GetNotificationSettings {
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<NotificationSettings> setNotificationSettings(Session session){
+	@ApiOperation(value = "Fetch user user notifiation preferences")
+	public ArrayList<NotificationSettings> setNotificationSettings(
+			@ApiParam(value = "Object holding user session data", required = true) Session session) {
 		NotificationDao notificationDao = new NotificationDao();
 		return notificationDao.getNotificationSettings(AuthMap.getUserName(session.getSession()));
 	}
