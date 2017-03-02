@@ -27,7 +27,7 @@
 				<input #input type="password" class = "form-input" placeholder="" id = "password" [(ngModel)]="password" (keyup.enter)='login()' />
 				<div class = "error" id="error2">{{error.password}}</div>	
 			</div>
-			<div class = "col-md-7 text-right password-align">
+			<div class = "col-md-8 text-right password-align">
 				<span (click)="showPassword(input)" id="show">{{error.showPassword}}</span>
 			</div>
 		</div>

@@ -18,7 +18,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "home1", "value": "Cal Notify is an alert notification system to keep California residents informed about events that may impact their safety, health and daily activities."},
 		{ "key": "home2", "value": "You can receive email, text and push notifications for multiple locations including home, child day care, work, etc."},
 		{ "key": "home3", "value": "We encourage you to create an account so you can receive notifications concerning locations of interest to you." },
-		{ "key": "home4", "value": "To find active notifications in your area, you may set your location in the active notification panel." },
+		{ "key": "home4", "value": "To find active notifications in your area, you may set your location in the Active Notifications Panel." },
 		{ "key": "home5", "value": "You do not need to create an account to set your location." },
 		{ "key": "home6", "value": "Active Notifications" },
 		{ "key": "home7", "value": "Set My Location" },
@@ -112,7 +112,7 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "my1", "value": "My"},
 		{ "key": "and", "value": "And"},
 		{ "key": "preferences", "value": "Preferences"},
-		{ "key": "bottom_note", "value": "** Please refer to FAQ to set up Geo Location Service"},
+		{ "key": "bottom_note", "value": "** Please refer to FAQ for more information on Geo Location Service"},
 		{ "key": "save_notifications", "value": "Save My Notifications"},
 		{ "key": "receive_text", "value": "Receive Text Message"},
 		{ "key": "receive_email", "value": "Receive Email"},
@@ -228,5 +228,4 @@ export var ENGLISH: LanguageComponent[] = [
 		{ "key": "reset_change", "value": "Reset" },
 		{ "key": "my_locations_and", "value": "My Locations and" },
 		{ "key": "manage_my", "value": "Manage My" },
-		
-	]
+]
