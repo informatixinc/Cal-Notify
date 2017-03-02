@@ -101,7 +101,7 @@ export class Home {
    		if(input.type === 'password'){
    			input.type = 'text';
    			this.error.showPassword = this._languageService.getTranslation("hide_password");
-
+   			
    		}else{
    			input.type = 'password';
    			this.error.showPassword = this._languageService.getTranslation("show_password");
