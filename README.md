@@ -12,7 +12,7 @@ Email Address:  calnotifyadmin@informatixinc.com
 Password: Calnotify1!
 
 
-##Technical Approach
+##**Technical Approach**
 
 Informatix Inc. is a minority-owned, Sacramento-based technology company that has provided information technology solutions
 and services to government and private industry for 30 years. Our response team for the Pre-Qualified Vendor Pool for
