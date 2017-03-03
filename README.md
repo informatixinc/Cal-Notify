@@ -74,7 +74,8 @@ Human centered design focuses on improving the user experience – a goal that i
   - Developed [personas]() that represented California residents, the intended users of this application.  
   - Designed a mockup of homepage for the application to use as a springboard for user persona interviews and surveys.  
   -	Conducted surveys and interviews to obtain feedback on the homepage, eliciting user expectations regarding log-in,  
-  account formation, notification preferences, and general expectations regarding the functionality of the application.::  
+  account formation, notification preferences, and general expectations regarding the functionality of the application.  
+•	Ideation – during this phase, our team refined our conceptual understanding of user requirements, by completing the following:
   
   
 
