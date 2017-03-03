@@ -18,15 +18,15 @@ Informatix Inc. is a minority-owned, Sacramento-based technology company that ha
 
 Our team used the following user centric processes to complete this prototype:
 
-*Conducted [surveys]() of the home page immediately following the start of the project.
-*Conducted research to understand the trends within the industry and other State solutions.
-*Created [personas]() to identify, personalize and focus on end users’ needs.
-*Developed [user stories]() and created backlog.
-*Developed front end UI web/mobile application. Conducted usability testing and improvements were
+* Conducted [surveys]() of the home page immediately following the start of the project.
+* Conducted research to understand the trends within the industry and other State solutions.
+* Created [personas]() to identify, personalize and focus on end users’ needs.
+* Developed [user stories]() and created backlog.
+* Developed front end UI web/mobile application. Conducted usability testing and improvements were
 incorporated into the design and user stories.  The results of the first usability test results are [here]().
-*Developed functioning UI web/mobile application. Conducted additional [usability testing]();  
+* Developed functioning UI web/mobile application. Conducted additional [usability testing]();  
 improvements were incorporated into the user stories and final design.
-*Developed fully functioning prototype including backend API and conducted another cycle of [usability testing](). Results were evaluated and either (1) prioritized and incorporated into the user stories and the final design of the prototype,
+* Developed fully functioning prototype including backend API and conducted another cycle of [usability testing](). Results were evaluated and either (1) prioritized and incorporated into the user stories and the final design of the prototype,
 or (2) identified as future improvements to the prototype. 
 
 
