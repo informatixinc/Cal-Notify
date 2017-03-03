@@ -23,11 +23,20 @@ import com.informatixinc.calnotify.utils.PushService;
 import com.informatixinc.calnotify.utils.SmsClient;
 import com.informatixinc.calnotify.utils.StringUtils;
 
+/**
+ * Scheduled job that fetches event notifications at configurable intervals.
+ * 
+ * @author Paul Ortiz
+ *
+ */
 public class FetchNotificationsJob implements Runnable {
 
 	private final DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy hh:mm:ss a");
-	
+
 	@Override
+	/**
+	 * Fetches event notifications from external source.
+	 */
 	public void run() {
 		log.info("=====Fetch Notification Job Running=====");
 		try {
@@ -102,7 +111,7 @@ public class FetchNotificationsJob implements Runnable {
 		emailClient.send(userNotification.getEmail(), subject, body);
 		addNewTransmission(userNotification, TransmissionType.EMAIL);
 	}
-	
+
 	private void sendPush(final UserNotification userNotification) {
 		final String snsToken = userNotification.getSnsToken();
 		if (StringUtils.isNull(snsToken)) {

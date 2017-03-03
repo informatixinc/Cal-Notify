@@ -26,8 +26,19 @@ import com.informatixinc.calnotify.utils.EmailClient;
 import com.informatixinc.calnotify.utils.ProjectProperties;
 import com.informatixinc.calnotify.utils.SecurityUtils;
 
+/**
+ * Manages persistence of User data
+ * @author Paul Ortiz
+ *
+ */
 public class UserDao {
 
+	/**
+	 * Registers a new user
+	 * @param user - the new user
+	 * @param session - user session data
+	 * @return - updated user session data
+	 */
 	public Session register(User user, Session session) {
 
 		Connection conn = DatabasePool.getConnection();
@@ -140,6 +151,12 @@ public class UserDao {
 		return session;
 	}
 
+	/**
+	 * Logs in a user
+	 * @param login  - user credential
+	 * @param session - user session data
+	 * @return - user session data
+	 */
 	public Session login(User login, Session session) {
 
 		Connection conn = null;
@@ -191,6 +208,13 @@ public class UserDao {
 
 	}
 
+	/**
+	 * Updates a user account
+	 * @param user - the user
+	 * @param putResponse - an http response
+	 * @param sessionId - the user session id
+	 * @return - an http response
+	 */
 	public PutResponse updateAccount(User user, PutResponse putResponse, String sessionId) {
 
 		Connection conn = DatabasePool.getConnection();
@@ -272,6 +296,11 @@ public class UserDao {
 		}
 	}
 
+	/**
+	 * Locate users in proximity of an event's coordinate
+	 * @param point - the event coordinates
+	 * @return - list of users in proximity
+	 */
 	public List<UserNotification> findUsersInProximityofEvent(Point point) {
 		final List<UserNotification> userNotifications = new ArrayList<UserNotification>();
 		Connection conn = null;
@@ -323,6 +352,11 @@ public class UserDao {
 		return userNotifications;
 	}
 
+	/**
+	 * Fetch user account info by email
+	 * @param email - user email address
+	 * @return - a user object
+	 */
 	public User getAccountInformation(String email) {
 		User user = new User();
 
@@ -366,6 +400,13 @@ public class UserDao {
 		return user;
 	}
 
+	/**
+	 * Add user locations
+	 * @param user - a user
+	 * @param putResponse = http response
+	 * @param sessionId - user session id
+	 * @return - http response
+	 */
 	public PutResponse addlocations(User user, PutResponse putResponse, String sessionId) {
 
 		Connection conn = DatabasePool.getConnection();
@@ -446,6 +487,11 @@ public class UserDao {
 		}
 	}
 
+	/**
+	 * Fetch user id by email
+	 * @param email - the email address
+	 * @return - the user id
+	 */
 	public int lookUpUserIdByEmail(String email) {
 		Connection conn = DatabasePool.getConnection();
 		PreparedStatement ps = null;
@@ -467,6 +513,10 @@ public class UserDao {
 		return -1;
 	}
 	
+	/**
+	 * Fetch list of preferences for all users
+	 * @return - the list of preferences
+	 */
 	public List<UserSettings> fetchSettingForAllUsers() {
 		final List<UserSettings> allSettings = new ArrayList<>();
 		Connection conn = DatabasePool.getConnection();
@@ -512,6 +562,12 @@ public class UserDao {
 		return allSettings;
 	}
 
+	/**
+	 * Save a user's push token
+	 * @param token - the push token
+	 * @param session - user session data
+	 * @return - an http response
+	 */
 	public PutResponse saveSnsToken(final String token, final String session) {
 		final PutResponse putResponse = new PutResponse();
 		SnsToken newToken = getUserSnsToken(token, session);
@@ -522,6 +578,18 @@ public class UserDao {
 			this.updateSnsToken(newToken);
 		}
 		return putResponse;
+	}
+	
+	/**
+	 * Sends a registration confirmation email
+	 * @param user - the registered user
+	 */
+	public void sendConfirmationEmail(final User user) {
+		final String subject = ProjectProperties.getProperty("app_regConfirmSubject");
+		final String body = MessageFormat.format(ProjectProperties.getProperty("app_regConfirmBody"),
+				user.getFirstName(), user.getLastName());
+		EmailClient emailClient = new EmailClient();
+		emailClient.send(user.getEmail(), subject, body);
 	}
 
 	private SnsToken getUserSnsToken(final String token, final String session) {
@@ -603,28 +671,5 @@ public class UserDao {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
 		return null;
-	}
-	
-	public void sendConfirmationEmail(final User user) {
-		final String subject = ProjectProperties.getProperty("app_regConfirmSubject");
-		final String body = MessageFormat.format(ProjectProperties.getProperty("app_regConfirmBody"),
-				user.getFirstName(), user.getLastName());
-		EmailClient emailClient = new EmailClient();
-		emailClient.send(user.getEmail(), subject, body);
-	}
-
-	public static void main(String...args) {
-		try {
-			ProjectProperties.init();
-			User user = new User();
-			user.setFirstName("Paul");
-			user.setLastName("Ortiz");
-			user.setEmail("paul.ortiz@informatixinc.com");
-			UserDao userDao = new UserDao();
-			userDao.sendConfirmationEmail(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println();
 	}
 }

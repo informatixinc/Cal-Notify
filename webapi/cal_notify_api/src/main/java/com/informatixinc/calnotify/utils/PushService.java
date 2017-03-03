@@ -15,8 +15,22 @@ import de.bytefish.fcmjava.requests.notification.NotificationPayload;
 import de.bytefish.fcmjava.responses.FcmMessageResponse;
 import de.bytefish.fcmjava.responses.FcmMessageResultItem;
 
+/**
+ * Service to push a message using Firebase Cloud Messaging (fcm) platform
+ * 
+ * @author Paul Ortiz
+ *
+ */
 public class PushService {
 
+	/**
+	 * Push a message using
+	 * 
+	 * @param token
+	 *            - fcm token
+	 * @param messageBody
+	 * @param messageTitle
+	 */
 	public void push(final String token, final String messageBody, final String messageTitle) {
 		final IFcmClientSettings settings = PropertiesBasedSettings
 				.createFromProperties(ProjectProperties.getProperties());

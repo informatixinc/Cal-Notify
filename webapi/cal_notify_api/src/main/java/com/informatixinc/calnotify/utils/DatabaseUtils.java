@@ -7,10 +7,23 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Util for working with JDBC connections
+ * 
+ * @author Sean Kammerich
+ *
+ */
 public class DatabaseUtils {
-	
+
 	private static final Logger logger = Logger.getLogger(DatabaseUtils.class);
-	
+
+	/**
+	 * Close jdbc connections safely
+	 * 
+	 * @param conn
+	 * @param ps
+	 * @param rs
+	 */
 	public static void safeClose(Connection conn, PreparedStatement ps, ResultSet rs) {
 		try {
 			if (rs != null) {
@@ -22,7 +35,14 @@ public class DatabaseUtils {
 			safeClose(conn, ps);
 		}
 	}
-	
+
+	/**
+	 * Close jdbc connections safely
+	 * 
+	 * @param conn
+	 * @param ps
+	 * @param rs
+	 */
 	public static void safeClose(PreparedStatement ps, ResultSet rs) {
 		try {
 			if (rs != null) {
@@ -37,7 +57,14 @@ public class DatabaseUtils {
 			logger.error("Unable to close result set", e);
 		}
 	}
-		
+
+	/**
+	 * Close jdbc connections safely
+	 * 
+	 * @param conn
+	 * @param ps
+	 * @param rs
+	 */
 	public static void safeClose(Connection conn, PreparedStatement ps) {
 		try {
 			if (ps != null) {
@@ -49,7 +76,14 @@ public class DatabaseUtils {
 			safeClose(conn);
 		}
 	}
-	
+
+	/**
+	 * Close jdbc connections safely
+	 * 
+	 * @param conn
+	 * @param ps
+	 * @param rs
+	 */
 	public static void safeClose(Connection conn) {
 		try {
 			if (conn != null) {
@@ -60,12 +94,19 @@ public class DatabaseUtils {
 			logger.error("Unable to close connection", e);
 		}
 	}
-	
-	public static void emptyToNull(int index, String emptyToNull, PreparedStatement ps){
+
+	/**
+	 * Convert empty string to null
+	 * 
+	 * @param index
+	 * @param emptyToNull
+	 * @param ps
+	 */
+	public static void emptyToNull(int index, String emptyToNull, PreparedStatement ps) {
 		try {
-			if(emptyToNull.length() > 0){
+			if (emptyToNull.length() > 0) {
 				ps.setString(index++, emptyToNull);
-			}else{
+			} else {
 				ps.setNull(index++, java.sql.Types.VARCHAR);
 			}
 		} catch (SQLException e) {
