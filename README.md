@@ -99,8 +99,7 @@ Human centered design focuses on improving the user experience – a goal that i
   - Refined user stories and product backlog based on user feedback  
   - Conducted Quality Assurance and [Accessibility Testing.](https://github.com/informatixinc/Cal-Notify/tree/master/Accessibility%20Testing)
   - Conduct Sprint Review meeting to demo completed software and to elicit acceptance/changes from stakeholders 
-  - Initiated subsequent sprint cycles including scrum meetings, usability testing, quality assurance and accessibility testing,  
-    and defect resolution  
+  - Initiated subsequent sprint cycles including scrum meetings, usability testing, quality assurance and accessibility testing,and defect resolution  
   - Released Informatix’ Cal Notify solution
 
 >d. As part of our [Human Centered Design](https://github.com/informatixinc/Cal-Notify/blob/master/Human%20Centered%20Design%20Approach%20final.pdf), we used the following user-centric design techniques or tools.
