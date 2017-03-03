@@ -24,7 +24,7 @@ Our team used the following user centric processes to complete this prototype:
 * Developed [user stories](https://github.com/informatixinc/Cal-Notify/blob/master/User%20Stories%20.pdf) and created backlog.
 * Developed front end UI web/mobile application. Conducted usability testing and improvements were
 incorporated into the design and user stories.  The results of the first usability test results are [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing/Usability%20Test%201%20Feedback.docx)
-* Developed functioning UI web/mobile application. Conducted additional [usability testing](https://github.com/informatixinc/Cal-Notify/tree/master/Usability%20Testing);  
+* Developed functioning UI web/mobile application. Conducted additional [usability testing](https://github.com/informatixinc/Cal-Notify/tree/master/Usability%20Testing). 
 improvements were incorporated into the user stories and final design.
 * Developed fully functioning prototype including backend API and conducted another cycle of [usability testing](https://github.com/informatixinc/Cal-Notify/tree/master/Usability%20Testing). Results were evaluated and either (1) prioritized and incorporated into the user stories and the final design of the prototype,
 or (2) identified as future improvements to the prototype. 
@@ -99,7 +99,7 @@ Human centered design focuses on improving the user experience – a goal that i
   - Refined user stories and product backlog based on user feedback  
   - Conducted Quality Assurance and [Accessibility Testing.](https://github.com/informatixinc/Cal-Notify/tree/master/Accessibility%20Testing)
   - Conduct Sprint Review meeting to demo completed software and to elicit acceptance/changes from stakeholders 
-  - Initiated subsequent sprint cycles including scrum meetings, usability testing, quality assurance and accessibility testing,and defect resolution  
+  - Initiated subsequent sprint cycles including scrum meetings, usability testing, quality assurance and accessibility testing, and defect resolution  
   - Released Informatix’ Cal Notify solution
 
 >d. As part of our [Human Centered Design](https://github.com/informatixinc/Cal-Notify/blob/master/Human%20Centered%20Design%20Approach%20final.pdf), we used the following user-centric design techniques or tools.
