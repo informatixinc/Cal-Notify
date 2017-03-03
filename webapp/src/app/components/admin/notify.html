@@ -33,7 +33,7 @@
 			<div class = "col-md-8 col-md-offset-1">
 				<label for="message">{{_languageService.getTranslation('notify_details')}}</label>
 				<span class="required">({{_languageService.getTranslation('required')}})</span>
-				<textarea class="form-input notify_details" rows="8" id = "message" (keyup.enter)='send()' [(ngModel)]="notify.notifyDetails" ></textarea>
+				<textarea class="form-input notify_details" rows="8" id = "message" [(ngModel)]="notify.notifyDetails" ></textarea>
 				<div class = "error" id="error3">{{error.notifyDetails}}</div>
 				<div class = "success">{{successMessage}}</div>
 			</div>

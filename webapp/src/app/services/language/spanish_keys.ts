@@ -141,6 +141,7 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "by_date", "value": "Por fecha"},
 		{ "key": "by_source", "value": "Por Fuente"},
 		{ "key": "by_status", "value": "Cuentas de estado 2 meses en comparación"},
+		{ "key": "by_status_two", "value": "Cuentas de estado 2 meses en comparación"},
 		{ "key": "export", "value": "Exportar"},
 		{ "key": "this_month", "value": "Este mes"},
 		{ "key": "my_dashboard", "value": "Mi tablero"},
