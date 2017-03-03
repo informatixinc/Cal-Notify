@@ -22,8 +22,20 @@ import com.informatixinc.calnotify.utils.PushService;
 import com.informatixinc.calnotify.utils.SmsClient;
 import com.informatixinc.calnotify.utils.StringUtils;
 
+/**
+ * An Admin Message action handler
+ * 
+ * @author Paul Ortiz
+ *
+ */
 public class AdminMessageAction {
 
+	/**
+	 * Sends message by email, SMS and web push (Firebase Cloud Messaging) to
+	 * all users based upon their preferences.
+	 * 
+	 * @param message - an Admin Notification
+	 */
 	public void notify(AdminMessage message) {
 		final UserDao userDao = new UserDao();
 		final AdminDao adminDao = new AdminDao();

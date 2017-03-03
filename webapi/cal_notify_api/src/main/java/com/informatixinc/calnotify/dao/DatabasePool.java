@@ -8,27 +8,43 @@ import org.postgresql.ds.PGPoolingDataSource;
 
 import com.informatixinc.calnotify.utils.ProjectProperties;
 
-
+/**
+ * Manages database JDBC connections
+ * 
+ * @author Sean Kammerich
+ *
+ */
 public class DatabasePool {
-	
+
 	private static PGPoolingDataSource source = new PGPoolingDataSource();
 	private static final Logger logger = Logger.getLogger(DatabasePool.class);
-	
-	public static Connection getConnection(){
+
+	/**
+	 * Get a connection
+	 * 
+	 * @return - a JDBC connection
+	 */
+	public static Connection getConnection() {
 		try {
 			return source.getConnection();
 		} catch (SQLException e) {
-			throw new RuntimeException("Error getting a connection from the database connection pool",e);
+			throw new RuntimeException("Error getting a connection from the database connection pool", e);
 		}
 	}
-	
-	public static void close(){
+
+	/**
+	 * Close the pool
+	 */
+	public static void close() {
 		logger.info("=====Stopping DB connection pool======");
 		source.close();
 	}
-	
-	public static void init(){
-		
+
+	/**
+	 * Initialze the pool
+	 */
+	public static void init() {
+
 		source.setDataSourceName("source");
 		source.setServerName(ProjectProperties.getProperty("db_url"));
 		source.setPortNumber(Integer.parseInt(ProjectProperties.getProperty("db_port")));

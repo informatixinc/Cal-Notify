@@ -17,9 +17,22 @@ import com.informatixinc.calnotify.model.UserEvent;
 import com.informatixinc.calnotify.model.UserReport;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 
+/**
+ * Manages persistence of Admin Message data
+ * 
+ * @author Sean Kammerich
+ *
+ */
 public class AdminDao {
-	
-	public int addMessage(AdminMessage message){
+
+	/**
+	 * Insert an Admin Message
+	 * 
+	 * @param message
+	 *            - an admin notification
+	 * @return - the id of the notification record
+	 */
+	public int addMessage(AdminMessage message) {
 		Connection conn = DatabasePool.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -37,24 +50,30 @@ public class AdminDao {
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
-		}finally{
+		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
 	}
-	
-	public ArrayList<AdminMessage> getAdminMessages(){
+
+	/**
+	 * Fetch all admin messages
+	 * 
+	 * @return
+	 */
+	public ArrayList<AdminMessage> getAdminMessages() {
 		ArrayList<AdminMessage> messages = new ArrayList<AdminMessage>();
-		
+
 		Connection conn = DatabasePool.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		try {
-			ps = conn.prepareStatement("select title, expire_time, admin_message_body, admin_sender_email, admin_message_body from public.notification where classification_id = ?");
+			ps = conn.prepareStatement(
+					"select title, expire_time, admin_message_body, admin_sender_email, admin_message_body from public.notification where classification_id = ?");
 			ps.setInt(1, NotificationClassification.AdminNotification.getId());
 			rs = ps.executeQuery();
-			
-			while(rs.next()){
+
+			while (rs.next()) {
 				AdminMessage adminMessage = new AdminMessage();
 				adminMessage.setExpirationDate(rs.getDate("expire_time").getTime());
 				adminMessage.setMessage(rs.getString("admin_message_body"));
@@ -65,104 +84,121 @@ public class AdminDao {
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
-		}finally{
+		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
-		
+
 		return messages;
 	}
-	
-	public ArrayList<Notification> getNotificationsForReport(){
+
+	/**
+	 * Fetch raw notification data for use in stats
+	 * 
+	 * @return - a list of Notification objects
+	 */
+	public ArrayList<Notification> getNotificationsForReport() {
 		Connection conn = DatabasePool.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		ArrayList<Notification> notifications = new ArrayList<Notification>();
-		
+
 		try {
-			ps = conn.prepareStatement("select type as title, send_time, expire_time from public.notification, public.notification_classification where notification.classification_id = notification_classification.id");
+			ps = conn.prepareStatement(
+					"select type as title, send_time, expire_time from public.notification, public.notification_classification where notification.classification_id = notification_classification.id");
 			rs = ps.executeQuery();
-			while(rs.next()){
+			while (rs.next()) {
 				Notification notification = new Notification();
 				notification.setTitle(rs.getString("title"));
 				notification.setSendTime(rs.getTimestamp("send_time"));
 				notification.setExpireTime(rs.getTimestamp("expire_time"));
 				notifications.add(notification);
 			}
-			
+
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
-		}finally{
+		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
-		
+
 		return notifications;
 	}
-	
-	public UserReport getUserReport(){
+
+	/**
+	 * Fetch user info for usage stats and reports
+	 * 
+	 * @return - a UserReport containing the raw data
+	 */
+	public UserReport getUserReport() {
 		UserReport userReport = new UserReport();
-		
+
 		Connection conn = DatabasePool.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		try {
-						
+
 			int firstYear = 2017;
-			Calendar now = Calendar.getInstance(); 
+			Calendar now = Calendar.getInstance();
 			int currentYear = now.get(Calendar.YEAR);
 			int currentMonth = now.get(Calendar.MONTH) + 1;
-			
+
 			for (int i = 0; i <= currentYear - firstYear; i++) {
 				userReport.getReportData().put(i + firstYear, new HashMap<Integer, ArrayList<UserEvent>>());
 				for (int j = 1; j <= 12; j++) {
-					if(currentYear == i + firstYear && j > currentMonth){
+					if (currentYear == i + firstYear && j > currentMonth) {
 						continue;
 					}
 					userReport.getReportData().get(i + firstYear).put(j, new ArrayList<UserEvent>());
-					ps = conn.prepareStatement("select count(id) as new_users from public.user WHERE EXTRACT(MONTH FROM signup_date) = ? and EXTRACT(YEAR FROM signup_date) = ?");
+					ps = conn.prepareStatement(
+							"select count(id) as new_users from public.user WHERE EXTRACT(MONTH FROM signup_date) = ? and EXTRACT(YEAR FROM signup_date) = ?");
 					ps.setInt(1, j);
 					ps.setInt(2, i + firstYear);
 					rs = ps.executeQuery();
 					rs.next();
-					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("new user", rs.getInt("new_users")));
-					DatabaseUtils.safeClose(ps,rs);
-					
-					ps = conn.prepareStatement("select count(distinct(user_id)) as logins from public.user_login where EXTRACT(MONTH FROM date) = ? and EXTRACT(YEAR FROM date) = ?");
+					userReport.getReportData().get(i + firstYear).get(j)
+							.add(new UserEvent("new user", rs.getInt("new_users")));
+					DatabaseUtils.safeClose(ps, rs);
+
+					ps = conn.prepareStatement(
+							"select count(distinct(user_id)) as logins from public.user_login where EXTRACT(MONTH FROM date) = ? and EXTRACT(YEAR FROM date) = ?");
 					ps.setInt(1, j);
 					ps.setInt(2, i + firstYear);
 					rs = ps.executeQuery();
 					rs.next();
 					int activeUsers = rs.getInt("logins");
-					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("active_users", activeUsers));
-					
-					DatabaseUtils.safeClose(ps,rs);
-					
-					ps = conn.prepareStatement("select count(id) as total_users from public.user where signup_date < ?");
+					userReport.getReportData().get(i + firstYear).get(j)
+							.add(new UserEvent("active_users", activeUsers));
+
+					DatabaseUtils.safeClose(ps, rs);
+
+					ps = conn
+							.prepareStatement("select count(id) as total_users from public.user where signup_date < ?");
 					Calendar loopDate = Calendar.getInstance();
-					if(j == 12){
+					if (j == 12) {
 						loopDate.set(i + firstYear + 1, 1, 1);
-					}else{
+					} else {
 						loopDate.set(i + firstYear, j, 1);
 					}
 					ps.setDate(1, new Date(loopDate.getTimeInMillis()));
 					rs = ps.executeQuery();
 					rs.next();
 					int inactiveUsers = rs.getInt("total_users") - activeUsers;
-					if(inactiveUsers < 0){
+					if (inactiveUsers < 0) {
 						inactiveUsers = 0;
 					}
-					userReport.getReportData().get(i + firstYear).get(j).add(new UserEvent("inactive users", inactiveUsers));
-					DatabaseUtils.safeClose(ps,rs);
+					userReport.getReportData().get(i + firstYear).get(j)
+							.add(new UserEvent("inactive users", inactiveUsers));
+					DatabaseUtils.safeClose(ps, rs);
 				}
 			}
-			
+
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
-		}finally{
+		} finally {
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
-		
+
 		return userReport;
 	}
 

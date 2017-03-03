@@ -8,8 +8,17 @@ import java.sql.Timestamp;
 import com.informatixinc.calnotify.model.NotificationTransmission;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 
+/**
+ * Manage persistence of transmission objects.
+ * @author Paul
+ *
+ */
 public class NotificationTransmissionDao {
 
+	/**
+	 * Insert a new transmission record
+	 * @param transmission
+	 */
 	public void addNew(NotificationTransmission transmission) {
 		Connection conn = null;
 		PreparedStatement ps = null;
