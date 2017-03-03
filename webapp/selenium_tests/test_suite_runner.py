@@ -4,10 +4,10 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 import login, dashboard, signup, addlocations, updateaccount, savenotifications
 
-baseUrl = "http://localhost:3000/"
+baseUrl = "https://calnotify.informatixinc.biz/"
 
-email = "test123@gmail.com"
-updateEmail = "test123@gmail.com"
+email = "test1@gmail.com"
+updateEmail = "test1@gmail.com"
 password = "Password1"
 updateOldPassword = "Password1"
 updatePassword = "Password1"
@@ -41,8 +41,6 @@ def runTests():
 	#Login
 	driver.get(baseUrl+"home")
 	login.doLogin(email,password,driver)
-	
-	# dashboard.doDashboard(driver)
 
 	# #Add new address location
 	driver.get(baseUrl+"notification")
