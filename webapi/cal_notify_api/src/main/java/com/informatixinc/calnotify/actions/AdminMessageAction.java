@@ -27,44 +27,45 @@ public class AdminMessageAction {
 	public void notify(AdminMessage message) {
 		final UserDao userDao = new UserDao();
 		final AdminDao adminDao = new AdminDao();
-		adminDao.addMessage(message);
+		final int id = adminDao.addMessage(message);
+		final String url = CALNO_URL + String.valueOf(id);
 		final List<UserSettings> allUsersSettings = userDao.fetchSettingForAllUsers();
 		for (UserSettings us : allUsersSettings) {
 			if (us.isSendSms()) {
-				sendSms(message, us.getPhoneNumber(), us.getUserId());
+				sendSms(message, us.getPhoneNumber(), us.getUserId(), url);
 			}
 			if (us.isSendEmail()) {
-				sendEmail(message, us.getEmail(), us.getUserId());
+				sendEmail(message, us.getEmail(), us.getUserId(), url);
 			}
 			if (us.isSendSns()) {
-				sendPush(message, us.getToken(), us.getUserId());
+				sendPush(message, us.getToken(), us.getUserId(), url);
 			}
 		}
 	}
 
-	private void sendSms(final AdminMessage message, String phoneNumber, int userId) {
+	private void sendSms(final AdminMessage message, final String phoneNumber, final int userId, final String url) {
 		final String msgPrefix = ProjectProperties.getProperty("app_notificationSubject");
 		final Date d = new Date(message.getExpirationDate());
 		final String expires = df.format(d);
 		final String msgBody = MessageFormat.format(ProjectProperties.getProperty("app_notificationBody"),
-				message.getTitle(), expires, message.getMessage());
+				message.getTitle(), expires, url);
 		final SmsClient smsClient = new SmsClient();
 		smsClient.send("+1" + phoneNumber, msgPrefix + ":" + msgBody);
 		addNewTransmission(message, userId, TransmissionType.SMS);
 	}
 
-	private void sendEmail(final AdminMessage message, String email, int userId) {
+	private void sendEmail(final AdminMessage message, final String email, final int userId, final String url) {
 		final String subject = ProjectProperties.getProperty("app_notificationSubject");
 		final Date d = new Date(message.getExpirationDate());
 		final String expires = df.format(d);
 		final String body = MessageFormat.format(ProjectProperties.getProperty("app_notificationBody"),
-				message.getTitle(), expires, message.getMessage());
+				message.getTitle(), expires, url);
 		final EmailClient emailClient = new EmailClient();
 		emailClient.send(email, subject, body);
 		addNewTransmission(message, userId, TransmissionType.EMAIL);
 	}
 
-	private void sendPush(final AdminMessage message, String token, int userId) {
+	private void sendPush(final AdminMessage message, final String token, final int userId, final String url) {
 		if (StringUtils.isNull(token)) {
 			log.error("Push failed: push setting set to true, but token is null. UserId: " + String.valueOf(userId));
 			return;
@@ -73,7 +74,7 @@ public class AdminMessageAction {
 		final Date d = new Date(message.getExpirationDate());
 		final String expires = df.format(d);
 		final String messageBody = MessageFormat.format(ProjectProperties.getProperty("app_notificationBody"),
-				message.getTitle(), expires, message.getMessage());
+				message.getTitle(), expires, url);
 		PushService ps = new PushService();
 		ps.push(token, messageBody, messageTitle);
 	}
@@ -90,4 +91,5 @@ public class AdminMessageAction {
 
 	private final Logger log = Logger.getLogger(this.getClass());
 	private final DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy hh:mm:ss a");
+	private final static String CALNO_URL = ProjectProperties.getProperty("app_apiPath");
 }

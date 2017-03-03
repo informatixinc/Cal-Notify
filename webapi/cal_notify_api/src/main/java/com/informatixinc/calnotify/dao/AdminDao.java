@@ -5,45 +5,41 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import com.informatixinc.calnotify.model.AdminMessage;
 import com.informatixinc.calnotify.model.Notification;
 import com.informatixinc.calnotify.model.NotificationClassification;
-import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.model.UserEvent;
 import com.informatixinc.calnotify.model.UserReport;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
 
 public class AdminDao {
 	
-	public PutResponse addMessage(AdminMessage message){
-		PutResponse putResponse = new PutResponse();
-		
+	public int addMessage(AdminMessage message){
 		Connection conn = DatabasePool.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+		final String sql = " insert into public.notification (classification_id, title, send_time, expire_time, admin_message_body, admin_sender_email) values (?,?,now(),?,?,?) ";
 		try {
-			ps = conn.prepareStatement("insert into public.notification (classification_id, title, send_time, expire_time, admin_message_body, admin_sender_email) values (?,?,now(),?,?,?)");
+			ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, NotificationClassification.AdminNotification.getId());
 			ps.setString(2, message.getTitle());
 			ps.setDate(3, new Date(message.getExpirationDate()));
 			ps.setString(4, message.getMessage());
 			ps.setString(5, message.getSentBy());
 			ps.executeUpdate();
-			
+			rs = ps.getGeneratedKeys();
+			rs.next();
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new RuntimeException("SQL error statement is " + ps.toString(), e);
 		}finally{
 			DatabaseUtils.safeClose(conn, ps, rs);
 		}
-		
-		return putResponse;
 	}
 	
 	public ArrayList<AdminMessage> getAdminMessages(){
