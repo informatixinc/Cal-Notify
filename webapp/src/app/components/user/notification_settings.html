@@ -26,7 +26,7 @@
 				<label for="nickname">{{_languageService.getTranslation('addr_nickname')}}</label>  
 				<span class="required">({{_languageService.getTranslation('required')}})</span> 
 				<input type="text" class = "form-input" placeholder="" id = "nickname" autofocus [(ngModel)]="additional_loc.addresses[0].nickName" />
-				<div class = "error" id="error1">{{error.addrNickname}}</div>
+				<div class = "error" id="error1">{{error.addresses[0].nickName}}</div>
 			</div>
 		</div>
 		<div class="row">
