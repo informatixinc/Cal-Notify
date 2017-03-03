@@ -45,10 +45,12 @@ of the U.S. Digital Services Playbook.  Details can be found [here]().
 
 ###Informatix' ADPQ Team
 >a.Assign one (1) team leader
+
 Caroline Brown-Pierce was selected to lead our team as Product Manager and Product Owner. She was accountable and responsibility for
 the quality of Informatix’ prototype.  
 
 >b.Assembled a multidisciplinary and collaborative team
+
 We assembled a [team] of experienced and creative professionals from eleven of the labor categories identified in the RFI:  
 1.	 Product Manager: Caroline Brown-Pierce
 2.	 Technical Architect: Paul Ortiz 
