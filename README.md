@@ -38,8 +38,7 @@ Cal Notify is built using a three tier architecture consisting of a client side,
   ![Flow Diagram](https://github.com/informatixinc/Cal-Notify/blob/master/Flow.PNG)
 
 ###Code Flow
-Our code flow illustrating application layers and technologies used is indicated below; our software architecture which  
-illustrates code flow can be found [here](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/cal_notify_software_architecture.png)
+Our code flow illustrating application layers and technologies used can be found [here](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/cal_notify_software_architecture.png)
 
 ###Adherence to the US Digital Services Playbook 
 We followed all of the applicable Playbook plays.  Our agile human centered approach incorporates the application development aspects
