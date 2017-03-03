@@ -107,7 +107,7 @@ Human centered design focuses on improving the user experience – a goal that i
 
 1.	[Persona](https://github.com/informatixinc/Cal-Notify/blob/master/Personas.pdf) development
 2.	[Surveying](https://github.com/informatixinc/Cal-Notify/blob/master/Sign%20In%20page%20Surveys.pdf) potential users
-3.	[Wireframe](https://github.com/informatixinc/Cal-Notify/tree/master/Wireframes) development through [user interviews]()
+3.	[Wireframe](https://github.com/informatixinc/Cal-Notify/tree/master/Wireframes) development through [user interviews](https://github.com/informatixinc/Cal-Notify/blob/master/Sign%20In%20page%20Surveys.pdf)
 4. [Mockup](https://github.com/informatixinc/Cal-Notify/tree/master/Mockups) development and user interviews
 5.	[Style Guide](https://github.com/informatixinc/Cal-Notify/blob/master/Style%20Guide.pdf) development 
 6.	[Usability testing](https://github.com/informatixinc/Cal-Notify/tree/master/Usability%20Testing) within Sprints
