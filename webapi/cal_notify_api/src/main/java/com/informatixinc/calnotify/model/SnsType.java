@@ -5,6 +5,7 @@ public enum SnsType {
 
 	public final int id;
 
+	// sns type id
 	private SnsType(int id) {
 		this.id = id;
 	}

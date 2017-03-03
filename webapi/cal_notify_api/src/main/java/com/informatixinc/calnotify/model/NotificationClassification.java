@@ -109,15 +109,22 @@ public enum NotificationClassification {
 	private String title;
 	private int id;
 	
+	// get title of notification
 	public String getTitle() {
 		return title;
 	}
+	
+	// set title of notification
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	// get id of notification title
 	public int getId() {
 		return id;
 	}
+	
+	// set id of notification title
 	public void setId(int id) {
 		this.id = id;
 	}

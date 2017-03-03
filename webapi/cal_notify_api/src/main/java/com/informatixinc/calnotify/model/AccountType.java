@@ -11,6 +11,7 @@ public enum AccountType {
 		this.accountType = accountType;
 	}
 	
+	// get account type of user
 	public int getAccountType(){
 		return this.accountType;
 	}
