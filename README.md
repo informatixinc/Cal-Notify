@@ -76,7 +76,7 @@ Human centered design focuses on improving the user experience – a goal that i
   account formation, notification preferences, and general expectations regarding the functionality of the application.  
   
 * Ideation – during this phase, our team refined our conceptual understanding of user requirements, by completing the following:  
-  - Conducted [whiteboard sessions](https://github.com/informatixinc/Cal-Notify/tree/master/Whiteboads) to review user feedback and expectations.
+  - Conducted [whiteboard sessions](https://github.com/informatixinc/Cal-Notify/blob/master/Whiteboads/Whiteboards.pdf) to review user feedback and expectations.
   - Created initial [user stories](https://github.com/informatixinc/Cal-Notify/blob/master/User%20Stories%20.pdf) reflecting each persona and their requirements.  
   - Established a product backlog used for Sprint planning.
   - Utilized a Sprint Backlog for subsequent sprints.  
@@ -135,7 +135,7 @@ speed the development process.
 
 >i. Performed usability tests with people  
 
-We tested usability with real people to get real feedback.  During each development sprint, our [testers](https://github.com/informatixinc/Cal-Notify/blob/master/Personas.pdf) were invited to use the  
+We tested usability with real people to get real feedback. During each development sprint, our testers were invited to use the  
 most recent iteration of the prototype and provide their feedback.  Through this testing [process](https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing%20Process.pdf), we were able achieve continuous improvement by incorporating their feedback into subsequent iterations of the prototype.
 
 >j. Used an iterative approach based on feedback prototype  
