@@ -13,10 +13,10 @@ public class AccountInformationTest {
 	@Test
 	public void accountInformation(){
 		Session session = new Session();
-		session.setSession(AuthMap.getSessionFromEmail("testsuite@informatixinc.com"));
+		session.setSession(AuthMap.getSessionFromEmail("resident@norcal.informatixinc.com"));
 		AccountInformationEndpoint accountInformationEndpoint = new AccountInformationEndpoint();
 		User response = accountInformationEndpoint.accountInformation(session);
-		assertTrue(response.getEmail().equals("calnotifyadmin@informatixinc.com"));
+		assertTrue(response.getEmail().equals("resident@norcal.informatixinc.com"));
 	}
 
 }

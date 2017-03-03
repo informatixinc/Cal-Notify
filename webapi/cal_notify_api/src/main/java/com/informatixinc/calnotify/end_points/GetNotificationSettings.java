@@ -25,7 +25,7 @@ public class GetNotificationSettings {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "Fetch user user notifiation preferences")
-	public ArrayList<NotificationSettings> setNotificationSettings(
+	public ArrayList<NotificationSettings> getNotificationSettings(
 			@ApiParam(value = "Object holding user session data", required = true) Session session) {
 		NotificationDao notificationDao = new NotificationDao();
 		return notificationDao.getNotificationSettings(AuthMap.getUserName(session.getSession()));

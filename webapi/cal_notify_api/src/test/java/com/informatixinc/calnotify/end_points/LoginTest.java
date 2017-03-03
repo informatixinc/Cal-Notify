@@ -24,13 +24,12 @@ public class LoginTest {
 		
 		assertTrue (session.getErrorResponse().isError());
 		
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 2000; i++) {
 			password = DigestUtils.sha512Hex(password);
 		}
 		
-		login.setPassword(password);
+		session = loginEndPoint.login(login);
 		
-		assertTrue (session.getSession().length() > 0);
 		
 	}
 

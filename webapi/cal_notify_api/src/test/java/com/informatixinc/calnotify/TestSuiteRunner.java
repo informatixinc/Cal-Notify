@@ -18,17 +18,23 @@ import com.informatixinc.calnotify.end_points.GetNotificationByIdTest;
 import com.informatixinc.calnotify.end_points.GetNotificationSettingsTest;
 import com.informatixinc.calnotify.end_points.GetNotificationTest;
 import com.informatixinc.calnotify.end_points.GetUserNotificationsTest;
+import com.informatixinc.calnotify.end_points.LoginTest;
+import com.informatixinc.calnotify.end_points.ManageNotificationsTest;
 import com.informatixinc.calnotify.end_points.NotificationSettingsTest;
 import com.informatixinc.calnotify.end_points.RegistrationTest;
 import com.informatixinc.calnotify.model.AccountType;
 import com.informatixinc.calnotify.utils.AuthMap;
+import com.informatixinc.calnotify.utils.GeoLookupTest;
 import com.informatixinc.calnotify.utils.ProjectProperties;
 import com.informatixinc.calnotify.utils.PushServiceTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ GetUserNotificationsTest.class})
+@SuiteClasses({ AccountInformationTest.class, AccountsReportTest.class, AddLocationsTest.class, 
+	AdminHistoryTest.class, AdminMessageReportTest.class, AdminMessageTest.class, GetActiveNotificationsTest.class, 
+	GetNotificationByIdTest.class, GetNotificationSettingsTest.class, GetNotificationTest.class, 
+	GetUserNotificationsTest.class, LoginTest.class, ManageNotificationsTest.class, NotificationSettingsTest.class, 
+	RegistrationTest.class, GeoLookupTest.class, PushServiceTest.class})
 public class TestSuiteRunner {
-//	@SuiteClasses({ RegistrationTest.class, LoginTest.class, GetNotificationTest.class, NotificationSettingsTest.class})
 	
 	@BeforeClass 
     public static void setup() {
