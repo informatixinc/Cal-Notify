@@ -23,11 +23,10 @@ Our team used the following user centric processes to complete this prototype:
 * Created [personas](https://github.com/informatixinc/Cal-Notify/blob/master/Personas.pdf) to identify, personalize and focus on end users’ needs.
 * Developed [user stories](https://github.com/informatixinc/Cal-Notify/blob/master/User%20Stories%20.pdf) and created backlog.
 * Developed front end UI web/mobile application. Conducted usability testing and improvements were
-incorporated into the design and user stories.  The results of the first usability test results are [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing/Usability%20Test%201%20Feedback.docx)
-* Developed functioning UI web/mobile application. Conducted additional [usability testing](https://github.com/informatixinc/Cal-Notify/tree/master/Usability%20Testing) and improvements were incorporated into the user stories and final design.
-* Developed fully functioning prototype including backend API and conducted another cycle of [usability testing](https://github.com/informatixinc/Cal-Notify/tree/master/Usability%20Testing). Results were evaluated and either (1) prioritized and incorporated into the user stories and the final design of the prototype,
+incorporated into the design and user stories.  The results of the first usability test results are [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing/Usability%20Test%201%20Feedback.pdf)
+* Developed functioning UI web/mobile application. Conducted additional [usability testing](https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing/Usability%20Test%202%20Feedback.pdf) and improvements were incorporated into the user stories and final design.
+* Developed fully functioning prototype including backend API and conducted another cycle of [usability testing](https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing/Usability%20Test%203%20Feedback.pdf). Results were evaluated and either (1) prioritized and incorporated into the user stories and the final design of the prototype,
 or (2) identified as future improvements to the prototype. 
-
 
 We started each iteration with a sprint planning meeting. These meetings were time-boxed conversations, where our Product Manager and the team identified which stories to be worked on for that sprint. Our Product Manager prioritized and added the stories to the sprint backlog. We conducted daily, in person, scrum meetings to discuss the progress that was made since the last scrum meeting (“yesterday”), goals to accomplish before the next scrum meeting (“tomorrow”), and any impediments that were preventing team members from performing their work. We conducted whiteboard sessions, initial wireframes and mockups immediately after the project start date, so we could immediately start surveying end users and have an initial mock up in hand. We conducted whiteboard sessions, additional design sessions, made continuous updates to wireframes and mockups throughout the effort.  We performed testing and made adjustments based on issues and feedback from our test cycles and usability tests. Each of our sprint cycles was performed to ensure that the prototype functioned and met user requirements.
 
@@ -123,7 +122,7 @@ A screenshot illustrating this can be found [here](https://github.com/informatix
 
 >g. Section 508 of the Americans with Disabilities Act and WCAG 2.0  
 
-To ensure compliance with Section 508 of the Americans with Disabilities Act and WCAG 2.0, [Accessibility Testing]() was completed
+To ensure compliance with Section 508 of the Americans with Disabilities Act and WCAG 2.0, [Accessibility Testing](https://github.com/informatixinc/Cal-Notify/tree/master/Accessibility%20Testing) was completed
 with the use of the Accessibility Developer Tools plugin in Chrome browser. The use of automated testing on the Cal Notify
 prototype provided validation of the 508 complaint standards.  
 
@@ -137,14 +136,14 @@ speed the development process.
 >i. Performed usability tests with people  
 
 We tested usability with real people to get real feedback.  During each development sprint, our [testers](https://github.com/informatixinc/Cal-Notify/blob/master/Personas.pdf) were invited to use the  
-most recent iteration of the prototype and provide their feedback.  Through this testing [process]https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing%20Process.pdf), we were able achieve continuous improvement by incorporating their feedback into subsequent iterations of the prototype.
+most recent iteration of the prototype and provide their feedback.  Through this testing [process](https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing%20Process.pdf), we were able achieve continuous improvement by incorporating their feedback into subsequent iterations of the prototype.
 
 >j. Used an iterative approach based on feedback prototype  
 
 We conducted two sprints, each sprint informing the subsequent. Each sprint cycle began with a sprint planning meeting and ended
 with a sprint review and sprint retrospective meetings. Daily scrum meetings provided our team the opportunity to review our
 progress and discuss testing feedback.  These were incorporate into the sprint and product backlog. For each sprint cycle, our
-product manager would lead a collaborative session of [whiteboard brainstorming]https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/Whiteboard%20Session.jpg) that ultimately drove the creation of
+product manager would lead a collaborative session of [whiteboard brainstorming](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/Whiteboard%20Session.jpg) that ultimately drove the creation of
 [user stories](https://github.com/informatixinc/Cal-Notify/blob/master/User%20Stories%20.pdf), wireframes and mockups and defined what was to be accomplished in each sprint or put into the product backlog for
 the next iteration.  
 
