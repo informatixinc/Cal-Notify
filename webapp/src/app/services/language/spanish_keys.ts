@@ -166,7 +166,7 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "q12", "value": "¿Qué debo hacer si mi información de contacto (teléfono, dirección) cambia?"},
 		{ "key": "q13", "value": "Quiero cambiar la forma en que recibo las notificaciones, ¿qué puedo hacer?"},
 		{ "key": "q14", "value": "¿De dónde vienen mis alertas?"},
-		{ "key": "q15", "value": "¿Qué son las Notificaciones de Push?"},
+		{ "key": "q15", "value": "¿Qué son las notificaciones push?"},
 		{ "key": "q16", "value": "¿Qué es geo-ubicación?"},
 		{ "key": "q17", "value": "¿Cómo configuro la geolocalización?"},
 		{ "key": "q18", "value": "¿Cómo encuentro mi nombre de usuario?"},
@@ -227,5 +227,5 @@ export var SPANISH: LanguageComponent[] = [
 		{ "key": "password_change", "value": "Restablecimiento de" },
 		{ "key": "reset_change", "value": "contraseña" },
 		{ "key": "my_locations_and", "value": "Mis ubicaciónes y" },
-		{ "key": "manage_my", "value": "Administrar mi" },
+		{ "key": "manage_my", "value": "Administrar mis" },
 ]
