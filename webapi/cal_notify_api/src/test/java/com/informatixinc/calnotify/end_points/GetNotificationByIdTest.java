@@ -10,14 +10,17 @@ import org.junit.Test;
 import com.informatixinc.calnotify.dao.DatabasePool;
 import com.informatixinc.calnotify.model.Notification;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
+
 import static org.junit.Assert.*;
-public class GetNotificationTest {
+
+public class GetNotificationByIdTest {
 	
 	@Test
-	public void notificaitonTest(){
-		GetNotificationByIdEndpoint getNotificationById = new GetNotificationByIdEndpoint();
-		Notification notification = getNotificationById.getNotifications(getLatestNotification());
-		assertTrue (notification.getTitle().length() > 0);
+	public void getNotificationById(){
+		Notification latestNotification = getLatestNotification();
+		GetNotificationByIdEndpoint getNotificationByIdEndpoint = new GetNotificationByIdEndpoint();
+		Notification retreivedNotification = getNotificationByIdEndpoint.getNotifications(latestNotification);
+		assertEquals(latestNotification.getTitle(), retreivedNotification.getTitle());
 	}
 	
 	private Notification getLatestNotification(){
@@ -27,11 +30,12 @@ public class GetNotificationTest {
 		Notification notification = new Notification();
 		
 		try {
-			ps = conn.prepareStatement("select id from public.notification order by id desc limit 1");
+			ps = conn.prepareStatement("select id, title from public.notification order by id desc limit 1");
 			
 			rs = ps.executeQuery();
 			if(rs.next()){
 				notification.setId(rs.getInt("id"));
+				notification.setTitle(rs.getString("title"));
 				return notification;
 			}else{
 				throw new RuntimeException("No notifications to test with");

@@ -24,6 +24,16 @@ public class AuthMap {
 		return uuid;
 	}
 	
+	public static String getSessionFromEmail(String email){
+			for (Map.Entry<String, Login> entry : logins.entrySet())
+			{
+			    if(entry.getValue().getUserName().equals(email)){
+			    	return entry.getKey();
+			    }
+			}
+			return null;
+	}
+	
 	public static boolean isAdmin(String sessionId){
 		if(logins.get(sessionId).getAccountType() == AccountType.ADMIN.getAccountType()){
 			return true;

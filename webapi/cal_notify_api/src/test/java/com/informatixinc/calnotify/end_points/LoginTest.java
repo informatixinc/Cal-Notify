@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import com.informatixinc.calnotify.model.Session;
 import com.informatixinc.calnotify.model.User;
-
+import static org.junit.Assert.*;
 public class LoginTest {
 	
 	//All passwords will be sha1 hashed 1k times by the client.  Replicating here for test.
@@ -22,7 +22,7 @@ public class LoginTest {
 		LoginEndpoint loginEndPoint = new LoginEndpoint();
 		Session session = loginEndPoint.login(login);
 		
-		assert(session.getErrorResponse().isError());
+		assertTrue (session.getErrorResponse().isError());
 		
 		for (int i = 0; i < 1000; i++) {
 			password = DigestUtils.sha512Hex(password);
@@ -30,7 +30,7 @@ public class LoginTest {
 		
 		login.setPassword(password);
 		
-		assert(session.getSession().length() > 0);
+		assertTrue (session.getSession().length() > 0);
 		
 	}
 

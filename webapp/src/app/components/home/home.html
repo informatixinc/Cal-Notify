@@ -7,8 +7,8 @@
 <div class = "main-container">
 	<div class = "main-body">
 		<h1><b>{{_languageService.getTranslation('welcome')}} <span class = "highlight-blue">{{_languageService.getTranslation('calnotify')}}</span></b></h1>
-		<p class="text_align">{{_languageService.getTranslation('home1')}} {{_languageService.getTranslation('home2')}} {{_languageService.getTranslation('home3')}}</p>
-
+		<p class="text_align">{{_languageService.getTranslation('home1')}} {{_languageService.getTranslation('home2')}} </p> 
+		<p class="text_align">{{_languageService.getTranslation('home3')}}</p>
 		<p class="text_align">{{_languageService.getTranslation('home4')}} {{_languageService.getTranslation('home5')}}</p>
 
 		<h1><b>{{_languageService.getTranslation('signin')}}</b></h1>
@@ -34,7 +34,7 @@
 		<div class="row">
 			<div class="little_space"></div>
 			<div class = "col-md-3">
-				<div class = "button" (click)="login()">{{_languageService.getTranslation('signin')}}</div>		
+				<div class = "button" id="loginbtn" (click)="login()">{{_languageService.getTranslation('signin')}}</div>		
 			</div>
 		</div>
 		<div class = "little_space"></div>

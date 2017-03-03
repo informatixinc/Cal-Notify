@@ -12,7 +12,7 @@ import com.informatixinc.calnotify.dao.NotificationDao;
 import com.informatixinc.calnotify.model.NotificationSettings;
 import com.informatixinc.calnotify.model.PutResponse;
 import com.informatixinc.calnotify.utils.DatabaseUtils;
-
+import static org.junit.Assert.*;
 public class NotificationSettingsTest {
 	
 	@Test
@@ -27,7 +27,7 @@ public class NotificationSettingsTest {
 		notificationSettings.setSns(true);
 		
 		PutResponse response = notificationDao.addNotificationSettings(notificationSettings);
-		assert(!response.getErrorResponse().isError());
+		assertFalse(response.getErrorResponse().isError());
 	}
 	
 	private int getFirstUserLocation(){
