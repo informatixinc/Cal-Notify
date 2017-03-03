@@ -36,4 +36,5 @@ We started each iteration with a sprint planning meeting. These meetings were ti
 Cal Notify has a three tier [architecture]() built on Cascading Style Sheets, Java API and PostgreSQL database. 
 
 ###Code Flow
-Our Code flow is identicated below
+Our code flow illustrating application layers and technologies used is indicated below; our software architecture which  
+illustrates code flow can be found [here]().
