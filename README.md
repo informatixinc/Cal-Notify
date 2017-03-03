@@ -39,22 +39,27 @@ Cal Notify is built using a three tier [architecture]() consisting of a client s
 Our code flow illustrating application layers and technologies used is indicated below; our software architecture which  
 illustrates code flow can be found [here]().
 
+###Adherence to the US Digital Services Playbook 
+We followed all of the applicable Playbook plays.  Our agile human centered approach incorporates the application development aspects
+of the U.S. Digital Services Playbook.  Details can be found [here]().
+
 ###Informatix' ADPQ Team
 >a.Assign one (1) team leader
-Caroline Brown-Pierce was selected to lead our team as Product Manager and Product Owner. She was accountable and responsibility for the quality of Informatix’ prototype.  
+Caroline Brown-Pierce was selected to lead our team as Product Manager and Product Owner. She was accountable and responsibility for
+the quality of Informatix’ prototype.  
 
 >b.Assembled a multidisciplinary and collaborative team
 We assembled a [team] of experienced and creative professionals from eleven of the labor categories identified in the RFI:  
-1.	Product Manager: Caroline Brown-Pierce
-2.	Technical Architect: Paul Ortiz 
-3.	Delivery Manager: Lesa Jones
-4.	Visual Designer: Mario Ruiz
-5.	Interaction Design/User Researcher/Usability Tester:  Stephanie Jones
-6.	Writer/Content Designer/ Content Strategist:  Karen Wagoner
-7.	Front End Web Developer: Sean Kammerich
-8.	Backend Web Developers: Nirali Tank
-9.	DevOps Engineer: Paul Ortiz
-10.	Security Engineer: Sean Kammerich
-11.	Business Analysts:  Ian Toner, Luis Pelayo, Yulia Vydra
+1.	 Product Manager: Caroline Brown-Pierce
+2.	 Technical Architect: Paul Ortiz 
+3.	 Delivery Manager: Lesa Jones
+4.	 Visual Designer: Mario Ruiz
+5.	 Interaction Design/User Researcher/Usability Tester:  Stephanie Jones
+6.  Writer/Content Designer/ Content Strategist:  Karen Wagoner
+7.	 Front End Web Developer: Sean Kammerich
+8.  Backend Web Developers: Nirali Tank
+9.	 DevOps Engineer: Paul Ortiz
+10. Security Engineer: Sean Kammerich
+11. Business Analysts:  Ian Toner, Luis Pelayo, Yulia Vydra
 
 
