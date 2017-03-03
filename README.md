@@ -52,6 +52,7 @@ the quality of Informatix’ prototype.
 >b.Assembled a multidisciplinary and collaborative team
 
 We assembled a [team] of experienced and creative professionals from eleven of the labor categories identified in the RFI:  
+
 1.	 Product Manager: Caroline Brown-Pierce
 2.	 Technical Architect: Paul Ortiz 
 3.	 Delivery Manager: Lesa Jones
