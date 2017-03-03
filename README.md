@@ -4,7 +4,7 @@
 ###Prototype:
    https://calnotify.informatixinc.biz/
 
-The user manual is located [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Cal%20Notify%20User%20Manual.pdf)  
+The user guide is located [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Cal%20Notify%20User%20Manual.pdf)  
 
 To login as an Authorized Administrative User please enter:  
 
@@ -33,13 +33,13 @@ or (2) identified as future improvements to the prototype.
 We started each iteration with a sprint planning meeting. These meetings were time-boxed conversations, where our Product Manager and the team identified which stories to be worked on for that sprint. Our Product Manager prioritized and added the stories to the sprint backlog. We conducted daily, in person, scrum meetings to discuss the progress that was made since the last scrum meeting (“yesterday”), goals to accomplish before the next scrum meeting (“tomorrow”), and any impediments that were preventing team members from performing their work. We conducted whiteboard sessions, initial wireframes and mockups immediately after the project start date, so we could immediately start surveying end users and have an initial mock up in hand. We conducted whiteboard sessions, additional design sessions, made continuous updates to wireframes and mockups throughout the effort.  We performed testing and made adjustments based on issues and feedback from our test cycles and usability tests. Each of our sprint cycles was performed to ensure that the prototype functioned and met user requirements.
 
 ###CalNotify Architecture|
-Cal Notify is built using a three tier [architecture](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/cal_notify_software_architecture.png) consisting of a client side, single-page web application, a RESTful web API providing backend application services and a database tier for storing application data and state.
+Cal Notify is built using a three tier architecture consisting of a client side, single-page web application, a RESTful web API providing backend application services and a database tier for storing application data and state. The system architecture is illustrated [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/cal_notify_sys_architecture.png) 
 
   ![Flow Diagram](https://github.com/informatixinc/Cal-Notify/blob/master/Flow.PNG)
 
 ###Code Flow
 Our code flow illustrating application layers and technologies used is indicated below; our software architecture which  
-illustrates code flow can be found [here](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/cal_notify_sys_architecture.png).
+illustrates code flow can be found [here](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/cal_notify_software_architecture.png)
 
 ###Adherence to the US Digital Services Playbook 
 We followed all of the applicable Playbook plays.  Our agile human centered approach incorporates the application development aspects
@@ -125,8 +125,8 @@ A screenshot illustrating this can be found [here](https://github.com/informatix
 
 >g. Section 508 of the Americans with Disabilities Act and WCAG 2.0  
 
-To ensure compliance with Section 508 of the Americans with Disabilities Act and WCAG 2.0, [Accessibility Testing]() was completed  
-with the use of the Accessibility Developer Tools plugin in Chrome browser. The use of automated testing on the Cal Notify  
+To ensure compliance with Section 508 of the Americans with Disabilities Act and WCAG 2.0, [Accessibility Testing]() was completed
+with the use of the Accessibility Developer Tools plugin in Chrome browser. The use of automated testing on the Cal Notify
 prototype provided validation of the 508 complaint standards.  
 
 >h. Created or used a design style guide and/or a pattern library  
@@ -139,14 +139,14 @@ speed the development process.
 >i. Performed usability tests with people  
 
 We tested usability with real people to get real feedback.  During each development sprint, our [testers](https://github.com/informatixinc/Cal-Notify/blob/master/Personas.pdf) were invited to use the  
-most recent iteration of the prototype and provide their feedback.  Through this testing [process](https://github.com/informatixinc/Cal-Notify/tree/master/Usability%20Testing), we were able achieve continuous improvement by incorporating their feedback into subsequent iterations of the prototype.
+most recent iteration of the prototype and provide their feedback.  Through this testing [process]https://github.com/informatixinc/Cal-Notify/blob/master/Usability%20Testing%20Process.pdf), we were able achieve continuous improvement by incorporating their feedback into subsequent iterations of the prototype.
 
 >j. Used an iterative approach based on feedback prototype  
 
 We conducted two sprints, each sprint informing the subsequent. Each sprint cycle began with a sprint planning meeting and ended
 with a sprint review and sprint retrospective meetings. Daily scrum meetings provided our team the opportunity to review our
 progress and discuss testing feedback.  These were incorporate into the sprint and product backlog. For each sprint cycle, our
-product manager would lead a collaborative session of [whiteboard brainstorming](https://github.com/informatixinc/Cal-Notify/tree/master/Whiteboads) that ultimately drove the creation of
+product manager would lead a collaborative session of [whiteboard brainstorming]https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/Whiteboard%20Session.jpg) that ultimately drove the creation of
 [user stories](https://github.com/informatixinc/Cal-Notify/blob/master/User%20Stories%20.pdf), wireframes and mockups and defined what was to be accomplished in each sprint or put into the product backlog for
 the next iteration.  
 
@@ -200,7 +200,7 @@ Our team used a continuous integration pipeline to automate testing and deploy c
    
 >p. Set up and used configuration management 
     
-For both development and production we used GitHub for source change control and AWS managed services for infrastructure,  
+For both development and production we used GitHub for source change control and AWS managed services for infrastructure,
 security, resource inventory, configuration history and configuration change.
  
 >q. Setup or used continuous monitoring  
@@ -225,7 +225,7 @@ Informatix’ CalNotify prototype and its underlying platforms and frameworks ar
 ### Additional Information 
 To see how we followed the USDS Playbook to build our prototype, see details [here](https://github.com/informatixinc/Cal-Notify/blob/master/Playbook.pdf).
 
-The user manual for CalNotify is located [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Cal%20Notify%20User%20Manual.pdf)
+The user guide for CalNotify is located [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Cal%20Notify%20User%20Manual.pdf)
    
 
 
