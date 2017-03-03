@@ -63,14 +63,17 @@ public enum UsState {
 		this.stateAbbreviation = stateAbbreviation;
 	}
 	
+	// get state id
 	public int getStateId() {
 		return stateId;
 	}
 
+	// get state name
 	public String getStateName() {
 		return stateName;
 	}
 	
+	// get state abbreviation value
 	public static String getStateAbbreviation(int id){
 		for(UsState instance: values()){
 			if(instance.getStateId() == id){
@@ -80,10 +83,12 @@ public enum UsState {
 		return null;
 	}
 
+	// get state abbreviation
 	public String getStateAbbreviation() {
 		return stateAbbreviation;
 	}
 	
+	// get state name
 	public static String getStateName(int id){
 		for(UsState instance: values()){
 			if(instance.getStateId() == id){
@@ -94,6 +99,7 @@ public enum UsState {
 		return null;
 	}
 	
+	// get state id
 	public static Integer getStateId(String state){
 		for(UsState instance: values()){
 			if(instance.getStateAbbreviation().toLowerCase().equals(state.toLowerCase())){
