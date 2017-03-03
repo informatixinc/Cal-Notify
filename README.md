@@ -38,3 +38,23 @@ Cal Notify has a three tier [architecture]() built on Cascading Style Sheets, Ja
 ###Code Flow
 Our code flow illustrating application layers and technologies used is indicated below; our software architecture which  
 illustrates code flow can be found [here]().
+
+###Informatix' ADPQ Team
+>a.Assign one (1) team leader
+Caroline Brown-Pierce was selected to lead our team as Product Manager and Product Owner. She was accountable and responsibility for the quality of Informatix’ prototype.  
+
+>b.Assembled a multidisciplinary and collaborative team
+We assembled a [team] of experienced and creative professionals from eleven of the labor categories identified in the RFI:  
+1.	Product Manager: Caroline Brown-Pierce
+2.	Technical Architect: Paul Ortiz 
+3.	Delivery Manager: Lesa Jones
+4.	Visual Designer: Mario Ruiz
+5.	Interaction Design/User Researcher/Usability Tester:  Stephanie Jones
+6.	Writer/Content Designer/ Content Strategist:  Karen Wagoner
+7.	Front End Web Developer: Sean Kammerich
+8.	Backend Web Developers: Nirali Tank
+9.	DevOps Engineer: Paul Ortiz
+10.	Security Engineer: Sean Kammerich
+11.	Business Analysts:  Ian Toner, Luis Pelayo, Yulia Vydra
+
+
