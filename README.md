@@ -51,7 +51,7 @@ the quality of Informatix’ prototype.
 
 >b.Assembled a multidisciplinary and collaborative team
 
-We assembled a [team] of experienced and creative professionals from eleven of the labor categories identified in the RFI:  
+We assembled a [team]() of experienced and creative professionals from eleven of the labor categories identified in the RFI:  
 
 1.	 Product Manager: Caroline Brown-Pierce
 2.	 Technical Architect: Paul Ortiz 
@@ -65,4 +65,11 @@ We assembled a [team] of experienced and creative professionals from eleven of t
 10. Security Engineer: Sean Kammerich
 11. Business Analysts:  Ian Toner, Luis Pelayo, Yulia Vydra
 
+###User Centric Design 
+
+>c.Understood what people needed 
+
+Human centered design focuses on improving the user experience – a goal that is impossible to achieve without understanding what people need.  Our [human centered design approach]() has three phases: Discovery, Ideation and Implementation.  Each phase has specific activities focused on eliciting user needs.
+*Discovery – Our Interaction Designer, Architect, Business Analysts, Delivery Manager, and Product Manager developed concepts for discussion and iteration including the following activities:
+-Developed [personas]() that represented California residents, the intended users of this application.
 
