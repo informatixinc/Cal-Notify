@@ -40,7 +40,7 @@
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn() && isAdmin()">|</li>
         <li class = "menu_item" *ngIf="isLoggedIn()  && isAdmin()"><a [routerLink]="['/reports']">{{_languageService.getTranslation('reports') | uppercase}}</a></li>
         <li class = "menu_item hide-mobile menu-spacer" *ngIf="isLoggedIn()">|</li>
-        <li class = "menu_item" *ngIf="isLoggedIn()"><a (click)="logOut()" class="pointer">{{_languageService.getTranslation('sign_out') | uppercase}}</a></li>
+        <li class = "menu_item" id="logout" *ngIf="isLoggedIn()"><a (click)="logOut()" class="pointer">{{_languageService.getTranslation('sign_out') | uppercase}}</a></li>
       </ul>
     </div>
   </div>
