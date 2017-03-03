@@ -101,6 +101,10 @@ export class Reports {
             endMonth = String(j);
           }
 
+          if(startYear == "2016"){
+            continue;
+          }
+
           this.userDataLabels.push(startMonth + "/" + startYear + " - " + endMonth + "/" + years[i]);
         }
       }

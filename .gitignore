@@ -1,6 +1,7 @@
 webapi/cal_notify_api/target
 webapi/cal_notify_api/src/main/resources/project.properties
 
+*.pyc
 *.log
 pids
 *.pid
