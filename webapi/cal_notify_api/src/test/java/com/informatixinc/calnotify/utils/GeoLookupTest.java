@@ -6,7 +6,7 @@ import com.informatixinc.calnotify.model.Address;
 import com.informatixinc.calnotify.model.Point;
 import com.informatixinc.calnotify.utils.GeoLookup;
 import com.informatixinc.calnotify.utils.ProjectProperties;
-
+import static org.junit.Assert.*;
 public class GeoLookupTest {
 	
 	@Test
@@ -18,6 +18,6 @@ public class GeoLookupTest {
 		address.setState("CA");
 		GeoLookup geoLookup = new GeoLookup();
 		Point point = geoLookup.latLongFromAddress(address);
-		assert(point != null);
+		assertTrue (point != null);
 	}
 }

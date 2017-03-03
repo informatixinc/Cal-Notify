@@ -31,7 +31,7 @@ public class RegistrationTest {
 		user.getAddresses().get(0).setAddressOne("2485 Natomas Park Drive");
 		user.getAddresses().get(0).setAddressTwo("Suite 430");
 		user.getAddresses().get(0).setCity("Sacramento");
-		user.setEmail("resident@norcal.informatixinc.com");
+		user.setEmail("testsuite@informatixinc.com");
 		user.setFirstName("Raul");
 		user.setLastName("Ocazionez");
 		user.setPassword(password);
