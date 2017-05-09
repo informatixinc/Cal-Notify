@@ -1,7 +1,7 @@
 
-#Informatix, Inc.  ADPQ Vendor Pool Prototype B
+ # Informatix, Inc.  ADPQ Vendor Pool Prototype B  
 
-###Prototype:
+ ### Prototype: 
    https://calnotify.informatixinc.biz/
 
 The user guide is located [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Cal%20Notify%20User%20Manual.pdf)  
@@ -12,7 +12,7 @@ Email Address:  calnotifyadmin@informatixinc.com
 Password: Calnotify1!
 
 
-##Technical Approach
+## Technical Approach
 
 Informatix Inc. is a minority-owned, Sacramento-based technology company that has provided information technology solutions and services to government and private industry for 30 years.   Our response team for the Pre-Qualified Vendor Pool for Digital Services – Agile Development RFI utilized an agile human centered approach to create our ADPQ prototype. We focused on the needs of the end users which drove our feature development and our application program interfaces (API) integration. We started with a discovery that included surveys, research, and interviews and focus groups with users which was conducted continuously throughout the iterations. This continuous feedback promoted end user adoption and satisfaction 
 
@@ -35,14 +35,14 @@ Cal Notify is built using a three tier architecture consisting of a client side,
 
   ![Flow Diagram](https://github.com/informatixinc/Cal-Notify/blob/master/Flow.PNG)
 
-###Code Flow
+### Code Flow
 Our code flow illustrating application layers and technologies used can be found [here](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/cal_notify_software_architecture.png)
 
-##Adherence to the US Digital Services Playbook 
+## Adherence to the US Digital Services Playbook 
 We followed all of the applicable Playbook plays.  Our agile human centered approach incorporates the application development aspects
 of the U.S. Digital Services Playbook.  Details can be found [here](https://github.com/informatixinc/Cal-Notify/blob/master/Playbook.pdf).
 
-##Informatix' ADPQ Team
+## Informatix' ADPQ Team
 >a. Assign one (1) team leader
 
 Caroline Brown-Pierce was selected to lead our team as Product Manager and Product Owner. She was accountable and responsibility for
@@ -64,7 +64,7 @@ We assembled a [team](https://github.com/informatixinc/Cal-Notify/blob/master/In
 10. Security Engineer: Sean Kammerich
 11. Business Analysts:  Ian Toner, Luis Pelayo, Yulia Vydra
 
-##User Centric Design 
+## User Centric Design 
 
 >c. Understood what people needed 
 
@@ -108,7 +108,7 @@ Human centered design focuses on improving the user experience – a goal that i
 5.	[Style Guide](https://github.com/informatixinc/Cal-Notify/blob/master/Style%20Guide.pdf) development 
 6.	[Usability testing](https://github.com/informatixinc/Cal-Notify/tree/master/Usability%20Testing) within Sprints
 
-##Prototype Development 
+## Prototype Development 
 
 >e. Used GitHub to document code commits  
 
@@ -152,7 +152,7 @@ the next iteration.
 Informatix’ prototype works on multiple devices including desktops, laptops, android and iOS phones and tablets. Our team developed
 [mock-ups](https://github.com/informatixinc/Cal-Notify/tree/master/Mockups) that reflected responsive design for multiple devices.  We conducted usability testing on various devices to ensure its ease of use and design for both Windows or iOS platforms and we tested the prototype in Internet Explorer (IE), Google Chrome, Firefox and Safari. Quality Assurance and Usability testing of the desktop and mobile versions of the prototype was also conducted concurrently, using both iOS and Android devices of various screen sizes and models.
 
-##Technology 
+## Technology 
 
 >l. Used at least five (5) modern and open-source technologies  
 
