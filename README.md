@@ -30,7 +30,7 @@ or (2) identified as future improvements to the prototype.
 
 We started each iteration with a sprint planning meeting. These meetings were time-boxed conversations, where our Product Manager and the team identified which stories to be worked on for that sprint. Our Product Manager prioritized and added the stories to the sprint backlog. We conducted daily, in person, scrum meetings to discuss the progress that was made since the last scrum meeting (“yesterday”), goals to accomplish before the next scrum meeting (“tomorrow”), and any impediments that were preventing team members from performing their work. We conducted whiteboard sessions, initial wireframes and mockups immediately after the project start date, so we could immediately start surveying end users and have an initial mock up in hand. We conducted whiteboard sessions, additional design sessions, made continuous updates to wireframes and mockups throughout the effort.  We performed testing and made adjustments based on issues and feedback from our test cycles and usability tests. Each of our sprint cycles was performed to ensure that the prototype functioned and met user requirements.
 
-###CalNotify Architecture|
+### CalNotify Architecture
 Cal Notify is built using a three tier architecture consisting of a client side, single-page web application, a RESTful web API providing backend application services and a database tier for storing application data and state. The system architecture is illustrated [here.](https://github.com/informatixinc/Cal-Notify/blob/master/Screenshots_and_pictures/cal_notify_sys_architecture.png) 
 
   ![Flow Diagram](https://github.com/informatixinc/Cal-Notify/blob/master/Flow.PNG)
